@@ -9,36 +9,40 @@
 </head>
 
 <body>
-    <nav aria-label="primary-menu">
-        <ul>
-            <li>
-                <div <?php if (isActive("index.php")) {
-                            echo 'class="active"';
-                        } ?>><img src="./resources/icon-index<?php echo isIconActive("index.php"); ?>.png" alt=""></div>
-            </li>
-            <li>
-                <div <?php if (isActive("search.php")) {
-                            echo 'class="active"';
-                        } ?>><img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt=""></div>
-            </li>
-            <li>
-                <header>
-                    <img src="./resources/header.png" alt="">
-                </header>
-            </li>
-            <li>
-                <div <?php if (isActive("notification.php")) {
-                            echo 'class="active"';
-                        } ?>><img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt=""></div>
-            </li>
-            <li>
-                <div <?php if (isActive("profile.php")) {
-                            echo 'class="active"';
-                        } ?>><img src="./resources/icon-profile<?php echo isIconActive("profile.php"); ?>.png" alt=""></div>
-            </li>
-        </ul>
-    </nav>
+    <header aria-label="primary-menu">
 
+        <nav aria-label="explore-nav">
+            <ul>
+                <li>
+                    <div <?php if (isActive("index.php")) {
+                                echo 'class="active"';
+                            } ?>><img src="./resources/icon-index<?php echo isIconActive("index.php"); ?>.png" alt=""></div>
+                </li>
+                <li>
+                    <div <?php if (isActive("search.php")) {
+                                echo 'class="active"';
+                            } ?>><img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt=""></div>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            <img src="./resources/header.png" alt="">
+        </div>
+        <nav aria-label="profile-nav">
+            <ul>
+                <li>
+                    <div <?php if (isActive("notification.php")) {
+                                echo 'class="active"';
+                            } ?>><img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt=""></div>
+                </li>
+                <li>
+                    <div <?php if (isActive("profile.php")) {
+                                echo 'class="active"';
+                            } ?>><img src="./resources/icon-profile<?php echo isIconActive("profile.php"); ?>.png" alt=""></div>
+                </li>
+            </ul>
+        </nav>
+    </header>
     <main>
         <?php
         if (isset($templateParams["main"])) {

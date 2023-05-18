@@ -1,35 +1,48 @@
-nav[aria-label="primary-menu"] ul {
-    list-style-type: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 0;
-    margin: 0;
+header[aria-label="primary-menu"] {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
     background-color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
-nav[aria-label="primary-menu"] li {
+header[aria-label="primary-menu"] nav ul {
+    list-style: none;
+    padding: 0;
     display: flex;
+    flex-direction: row;
+}
+
+header[aria-label="primary-menu"]:first-child {
+    align-items: flex-start;
+}
+
+header[aria-label="primary-menu"]:last-child {
+    align-items: flex-end;
+}
+
+header[aria-label="primary-menu"] nav ul li {
     padding: 10px;
 }
 
-nav[aria-label="primary-menu"] ul li header img {
+header[aria-label="primary-menu"]>div {
+    margin: auto;
+}
+
+header[aria-label="primary-menu"]>div>img {
     height: 24px;
 }
 
-nav[aria-label="primary-menu"] ul li div img {
+header[aria-label="primary-menu"] nav ul li div img {
     width: 24px;
     height: 24px;
 }
 
-nav[aria-label="primary-menu"] ul li:nth-child(2) {
-    margin-right: auto;
-}
-
-nav[aria-label="primary-menu"] ul li:nth-child(4) {
+header[aria-label="primary-menu"] div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: auto;
+    margin-right: auto;
 }
