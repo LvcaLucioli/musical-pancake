@@ -1,4 +1,4 @@
-ul {
+nav[aria-label="primary-menu"] ul {
     list-style-type: none;
     position: fixed;
     top: 0;
@@ -12,24 +12,24 @@ ul {
     background-color: white;
 }
 
-li {
+nav[aria-label="primary-menu"] li {
     display: flex;
     padding: 10px;
 }
 
-.navbar-icon {
+nav[aria-label="primary-menu"] ul li header img {
+    height: 24px;
+}
+
+nav[aria-label="primary-menu"] ul li div img {
     width: 24px;
     height: 24px;
 }
 
-.first-group {
+nav[aria-label="primary-menu"] ul li:nth-child(2) {
     margin-right: auto;
 }
 
-.second-group {
+nav[aria-label="primary-menu"] ul li:nth-child(4) {
     margin-left: auto;
-}
-
-.logo {
-    height: 24px;
 }
