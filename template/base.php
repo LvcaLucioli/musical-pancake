@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["title"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
 </head>
+
 <body>
-    <nav>
+    <nav aria-label="menu">
         <ul>
-        <li>
-            <a <?php isActive("index.php");?> href="index.php"><img ></a>
-        </li>
-        <li>
-            <a <?php isActive("search.php");?> href="search.php"><img ></a>
-        </li>
-        <li>
-            <a <?php isActive("notification.php");?> href="notification.php"><img ></a>
-        </li>
-        <li>
-            <a <?php isActive("profile.php");?> href="profile.php"><img ></a>
-        </li>
+            <li>
+                <a href="index.php" <?php isActive("index.php"); ?>><img src="./resources/icon-index<?php isIconActive("index.php"); ?>.png" alt=""></a>
+            </li>
+            <li>
+                <a href="search.php" <?php isActive("search.php"); ?>><img src="./resources/icon-search<?php isIconActive("search.php"); ?>.png" alt=""></a>
+            </li>
+            <li>
+                <a href="notification.php" <?php isActive("notification.php"); ?>><img src="./resources/icon-notification<?php isIconActive("notification.php"); ?>.png" alt=""></a>
+            </li>
+            <li>
+                <a href="profile.php" <?php isActive("profile.php"); ?>><img src="./resources/icon-profile<?php isIconActive("profile.php"); ?>.png" alt=""></a>
+            </li>
         </ul>
     </nav>
 </body>
+
 </html>

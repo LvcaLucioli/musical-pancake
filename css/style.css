@@ -1,0 +1,21 @@
+ul {
+    list-style-type: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+li {
+    float: left;
+    border-right: 1px solid white;
+}
+
+li a {
+    display: block;
+    padding: 8px;
+    background-color: orange;
+}
+
+li:last-child {
+    border-right: none;
+}
