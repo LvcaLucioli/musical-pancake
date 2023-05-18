@@ -5,22 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["title"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
     <nav aria-label="primary-menu">
         <ul>
             <li>
-                <a href="index.php" <?php isActive("index.php"); ?>><img src="./resources/icon-index<?php isIconActive("index.php"); ?>.png" alt=""></a>
+                <div <?php if (isActive("index.php")) {
+                            echo 'class="active"';
+                        } ?>><img src="./resources/icon-index<?php echo isIconActive("index.php"); ?>.png" alt="" class="navbar-icon"></div>
+            </li>
+            <li class="first-group">
+                <div <?php if (isActive("search.php")) {
+                            echo 'class="active"';
+                        } ?>><img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="" class="navbar-icon"></div>
             </li>
             <li>
-                <a href="search.php" <?php isActive("search.php"); ?>><img src="./resources/icon-search<?php isIconActive("search.php"); ?>.png" alt=""></a>
+                <div class="header"><img src="./resources/header.png" alt="" class="logo"></div>
+            </li>
+            <li class="second-group">
+                <div <?php if (isActive("notification.php")) {
+                            echo 'class="active"';
+                        } ?>><img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt="" class="navbar-icon"></div>
             </li>
             <li>
-                <a href="notification.php" <?php isActive("notification.php"); ?>><img src="./resources/icon-notification<?php isIconActive("notification.php"); ?>.png" alt=""></a>
-            </li>
-            <li>
-                <a href="profile.php" <?php isActive("profile.php"); ?>><img src="./resources/icon-profile<?php isIconActive("profile.php"); ?>.png" alt=""></a>
+                <div <?php if (isActive("profile.php")) {
+                            echo 'class="active"';
+                        } ?>><img src="./resources/icon-profile<?php echo isIconActive("profile.php"); ?>.png" alt="" class="navbar-icon"></div>
             </li>
         </ul>
     </nav>
