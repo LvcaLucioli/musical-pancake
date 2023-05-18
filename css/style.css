@@ -1,21 +1,35 @@
 ul {
     list-style-type: none;
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
 }
 
 li {
-    float: left;
-    border-right: 1px solid white;
+    display: flex;
+    padding: 10px;
 }
 
-li a {
-    display: block;
-    padding: 8px;
-    background-color: orange;
+.navbar-icon {
+    width: 24px;
+    height: 24px;
 }
 
-li:last-child {
-    border-right: none;
+.first-group {
+    margin-right: auto;
+}
+
+.second-group {
+    margin-left: auto;
+}
+
+.logo {
+    height: 24px;
 }
