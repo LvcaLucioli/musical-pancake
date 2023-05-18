@@ -7,6 +7,8 @@
             </ul>
         </nav>
 
-        <section>
-            
-        </section>
+        <section></section>
+
+        <footer>
+            <a onclick="loadMore();return false;" href="index.php">Load more posts</a>
+        </footer>
