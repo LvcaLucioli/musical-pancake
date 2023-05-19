@@ -6,7 +6,7 @@
     $templateParams["main"] = "feed.php";
 
     // Home template
-    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js","js/index.js");
+    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "js/posts_list.js","js/index.js");
 
     require_once 'template/base.php';
 ?>
