@@ -1,6 +1,6 @@
 <?php
 require_once '../bootstrap.php';
-$posts = $dbh->getPosts(2);
+$posts = $dbh->getPosts($_POST["i"], $_POST["n"]);
 
 for($i = 0; $i < count($posts); $i++){
     $posts[$i]["propic"] = UPLOAD_DIR.$posts[$i]["propic"];

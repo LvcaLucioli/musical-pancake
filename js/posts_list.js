@@ -10,7 +10,10 @@ function generatePosts(posts){
                         <img src="${posts[i]["propic"]}" alt="Profile picture" />
                         </a>
                     </div>
-                    <div class="col-8">
+                    <div class="col-4">
+                        <a href="user.php?username=${posts[i]["username"]}">${posts[i]["username"]}</a>
+                    </div>
+                    <div class="col-4">
                         <a href="user.php?username=${posts[i]["username"]}">${posts[i]["username"]}</a>
                     </div>
                 </div>`

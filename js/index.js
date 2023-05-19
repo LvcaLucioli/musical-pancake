@@ -1,20 +1,21 @@
-const dict = {
+const DICT = {
     true : "#followers",
     false : "#discovery"
 }
+const N_POST = 2;
 
 function switchHome(tab){
-    if (tab != home_status){
+    if (tab != homeStatus){
         const section = document.querySelector("main section");
-        document.querySelector(dict[!tab]).classList.remove("active");
-        document.querySelector(dict[tab]).classList.add("active");
-        home_status = tab;
+        document.querySelector(DICT[!tab]).classList.remove("active");
+        document.querySelector(DICT[tab]).classList.add("active");
+        homeStatus = tab;
         if (tab){
-            prev_disc = section.innerHTML;
-            section.innerHTML = prev_posts;
+            prevDisc = section.innerHTML;
+            section.innerHTML = prevPosts;
         }else{
             prev_posts = section.innerHTML;
-            section.innerHTML = prev_disc;
+            section.innerHTML = prevDisc;
         }
     }
 }
@@ -47,8 +48,11 @@ function generateDiscovery(posts){
 
 function loadMore(){
     const section = document.querySelector("main section");
-    if (home_status){
-        axios.get('api/api-follow.php').then(response => {
+    if (homeStatus){
+        formData.append('i', lastPost);
+        formData.append('n', N_POST);
+        lastPost+=N_POST
+        axios.post('api/api-follow.php', formData).then(response => {
             section.innerHTML = section.innerHTML + generatePosts(response.data);
         });
     }else{
@@ -58,15 +62,21 @@ function loadMore(){
     }
 }
 
-let home_status = true;
-let prev_posts = '';
-let prev_disc = '';
+let homeStatus = true;
+let prevPosts = '';
+let prevDisc = '';
+let lastPost = 0;
 
 axios.get('api/api-discovery.php').then(response => {
-    prev_disc = generateDiscovery(response.data);
+    prevDisc = generateDiscovery(response.data);
 });
 
-axios.get('api/api-follow.php').then(response => {
+const formData = new FormData();
+formData.append('i', lastPost);
+formData.append('n', N_POST);
+lastPost+=N_POST
+axios.post('api/api-follow.php', formData).then(response => {
+    console.log(response.data, lastPost);
     let posts = generatePosts(response.data);
     const followers = document.querySelector("main section");
     followers.innerHTML = posts;

@@ -1,18 +1,15 @@
 <?php
 class DatabaseHelper{
     private $db;
-    private $n_posts;
 
     public function __construct($servername, $username, $password, $dbname, $port){
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
         if ($this->db->connect_error) {
             die("Connection failed: " . $this->db->connect_error);
         }
-        $this->n_posts = 0;  
     }
 
     public function getDiscoveryPosts($n){
-        $this->n_posts = 0;
         $stmt = $this->db->prepare("... LIMIT ?");
         $stmt->bind_param('i',$n);
         $stmt->execute();
@@ -21,7 +18,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getPosts($n){
+    public function getPosts($i, $n){
         $query = "SELECT *
         FROM posts p, users u
         WHERE p.user = u.username
@@ -29,10 +26,9 @@ class DatabaseHelper{
         LIMIT ?, ?;";
 
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ii', $this->n_posts, $n);
+        $stmt->bind_param('ii', $i, $n);
         $stmt->execute();
         $result = $stmt->get_result();
-        $this->n_posts += $n+1;
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
