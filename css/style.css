@@ -52,7 +52,7 @@ main nav[aria-label="feed-menu"] {
     border-radius: 20px;
     overflow: hidden;
     height: 40px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 main nav[aria-label="feed-menu"] ul {
