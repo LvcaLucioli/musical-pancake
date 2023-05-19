@@ -52,6 +52,7 @@ main nav[aria-label="feed-menu"] {
     border-radius: 20px;
     overflow: hidden;
     height: 40px;
+    margin-top: 10px;
 }
 
 main nav[aria-label="feed-menu"] ul {
@@ -69,8 +70,15 @@ main nav[aria-label="feed-menu"] ul li {
 }
 
 main nav[aria-label="feed-menu"] ul li a {
+    opacity: 0.5;
+    font-weight: normal;
     color: white;
     text-decoration: none;
+}
+
+main nav[aria-label="feed-menu"] ul li a.active {
+    font-weight: bold;
+    opacity: 1;
 }
 
 header[aria-label="primary-menu"] div {

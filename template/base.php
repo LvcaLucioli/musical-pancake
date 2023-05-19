@@ -15,12 +15,20 @@
                 <li>
                     <div <?php if (isActive("index.php")) {
                                 echo 'class="active"';
-                            } ?>><img src="./resources/icon-index<?php echo isIconActive("index.php"); ?>.png" alt=""></div>
+                            } ?>>
+                        <a href="index.php">
+                            <img src="./resources/icon-index<?php echo isIconActive("index.php"); ?>.png" alt="">
+                        </a>
+                    </div>
                 </li>
                 <li>
                     <div <?php if (isActive("search.php")) {
                                 echo 'class="active"';
-                            } ?>><img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt=""></div>
+                            } ?>>
+                        <a href="search.php">
+                            <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="">
+                        </a>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -32,12 +40,20 @@
                 <li>
                     <div <?php if (isActive("notification.php")) {
                                 echo 'class="active"';
-                            } ?>><img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt=""></div>
+                            } ?>>
+                        <a href="notiication.php">
+                            <img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt="">
+                        </a>
+                    </div>
                 </li>
                 <li>
                     <div <?php if (isActive("profile.php")) {
                                 echo 'class="active"';
-                            } ?>><img src="./resources/icon-profile<?php echo isIconActive("profile.php"); ?>.png" alt=""></div>
+                            } ?>>
+                        <a href="profile.php">
+                            <img src="./resources/icon-profile<?php echo isIconActive("profile.php"); ?>.png" alt="">
+                        </a>
+                    </div>
                 </li>
             </ul>
         </nav>
