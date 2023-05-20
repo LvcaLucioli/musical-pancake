@@ -1,9 +1,9 @@
-function generatePosts(posts){
+function generatePosts(posts) {
     let result = '';
 
-    for(let i=0; i < posts.length; i++){
+    for (let i = 0; i < posts.length; i++) {
         let like_section = ``;
-        if (posts[i]["is_liked"]){
+        if (posts[i]["is_liked"]) {
             `<div class="row">
                     <div class="col-4">
                         <a href="" onClick="">
@@ -30,7 +30,7 @@ function generatePosts(posts){
                     </div>
                 </div>
             </header>
-            <section>
+            <section aria-label="photo">
                 <img src="${posts[i]["img_name"]}" alt="Post picture" />
                 <p>${posts[i]["description"]}</p>
             </section>
@@ -46,4 +46,3 @@ function generatePosts(posts){
     }
     return result;
 }
-

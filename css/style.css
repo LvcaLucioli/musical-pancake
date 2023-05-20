@@ -4,11 +4,8 @@ body {
 
 header[aria-label="primary-menu"] {
     display: flex;
-    flex-direction: row;
     background-color: white;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 }
 
 header[aria-label="primary-menu"] nav ul {
@@ -16,57 +13,54 @@ header[aria-label="primary-menu"] nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: row;
-}
-
-header[aria-label="primary-menu"]:first-child {
-    align-items: flex-start;
-}
-
-header[aria-label="primary-menu"]:last-child {
-    align-items: flex-end;
 }
 
 header[aria-label="primary-menu"] nav ul li {
     padding: 10px;
 }
 
+header[aria-label="primary-menu"] nav ul li div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header[aria-label="primary-menu"] nav ul li div span {
+    padding: 10px;
+}
+
 header[aria-label="primary-menu"]>div {
-    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 80px;
+    margin-right: 50px;
+}
+
+header[aria-label="primary-menu"]>nav[aria-label="explore-nav"] div img {
+    height: 24px;
 }
 
 header[aria-label="primary-menu"]>div>img {
     height: 24px;
 }
 
-header[aria-label="primary-menu"] nav ul li div img {
-    width: 24px;
-    height: 24px;
-}
-
 main nav[aria-label="feed-menu"] {
+    display: flex;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
     background-color: black;
     border-radius: 20px;
     overflow: hidden;
     height: 40px;
-    margin-top: 15px;
+    margin: 15px auto 10px;
 }
 
 main nav[aria-label="feed-menu"] ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: space-between;
-}
-
-main nav[aria-label="feed-menu"] ul li {
-    text-align: center;
-    padding: 5px;
-    margin: 5px;
+    list-style: none;
+    width: 100%;
+    padding: 0 10px;
 }
 
 main nav[aria-label="feed-menu"] ul li a {
@@ -81,38 +75,90 @@ main nav[aria-label="feed-menu"] ul li a.active {
     opacity: 1;
 }
 
-header[aria-label="primary-menu"] div {
+main>section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 297px;
+}
+
+main section article {
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: white;
+}
+
+main>section>article>section[aria-label="photo"] {
+    width: 293px;
+    border: 2px solid black;
+    padding: 0;
+}
+
+main>section>article>section>img {
+    width: 293px;
+}
+
+main>footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: blue;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 10px auto;
+    width: 90px;
+}
+
+main>footer a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+main>section>article>header>div[class="row"]>div[class="col-3"] {
+    padding-left: 20px;
+}
+
+main>section>article>header>div[class="row"]>div[class="col-3"]>a {
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
+}
+
+main>section>article>header>div[class="row"]>div[class="col-3"]>a>img {
+    border-radius: 50%;
+}
+
+main>section>article>header>div[class="row"]>div[class="col-9"]>a {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 767px) {
-    /* smartphone rule */
+    /* Smartphone rule */
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
     }
-}
-
-@media (min-width: 768px) {
-    /* desktop rule */
-    header[aria-label="primary-menu"] nav ul li {
-        padding: 10px;
-    }
-}
-
-@media (min-width: 768px) {
-    /* desktop rule */
     main nav[aria-label="feed-menu"] {
-        min-width: 200px;
+        min-width: 180px;
         max-width: 200px;
     }
 }
 
-@media (max-width: 767px) {
-    /* smartphone rule */
+@media (min-width: 768px) {
+    /* Desktop rule */
+    header[aria-label="primary-menu"] nav ul li {
+        padding: 10px;
+    }
     main nav[aria-label="feed-menu"] {
         min-width: 200px;
         max-width: 200px;
