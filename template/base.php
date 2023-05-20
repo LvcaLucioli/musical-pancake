@@ -10,24 +10,26 @@
 
 <body style="overflow: hidden;">
     <header aria-label="primary-menu">
-        <nav aria-label="explore-nav">
-            <ul>
-                <li>
+        <nav class="navbar navbar-expand-lg" aria-label="explore-nav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
                     <div <?php if (isActive("index.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a href="index.php">
+                        <a class="nav-link" href="index.php">
                             <img src="./resources/icon-index<?php echo isIconActive("index.php"); ?>.png" alt="">
                         </a>
+                        <span class="label d-none d-lg-inline">home</span>
                     </div>
                 </li>
-                <li>
-                    <div <?php if (isActive("search.php")) {
+                <li class="nav-item">
+                    <div <?php if (isActive("profile.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a href="search.php">
-                            <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="">
+                        <a class="nav-link" href="profile.php">
+                            <img src="./resources/icon-profile<?php echo isIconActive("profile.php"); ?>.png" alt="">
                         </a>
+                        <span class="label d-none d-lg-inline">profile</span>
                     </div>
                 </li>
             </ul>
@@ -35,25 +37,26 @@
         <div>
             <img src="./resources/header.png" alt="">
         </div>
-        <nav aria-label="profile-nav">
-            <ul>
-                <li>
+        <nav class="navbar navbar-expand-lg d-lg-none" aria-label="profile-nav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
                     <div <?php if (isActive("notification.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a href="notiication.php">
+                        <a class="nav-link" href="notification.php">
                             <img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt="">
                         </a>
                     </div>
                 </li>
-                <li>
-                    <div <?php if (isActive("profile.php")) {
+                <li class="nav-item ">
+                    <div <?php if (isActive("search.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a href="profile.php">
-                            <img src="./resources/icon-profile<?php echo isIconActive("profile.php"); ?>.png" alt="">
+                        <a class="nav-link " href="search.php">
+                            <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="">
                         </a>
                     </div>
+
                 </li>
             </ul>
         </nav>

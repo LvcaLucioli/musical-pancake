@@ -13,7 +13,7 @@ function switchHome(tab){
         document.querySelector(DICT[!tab]).classList.remove("active");
         document.querySelector(DICT[tab]).classList.add("active");
         homeStatus = tab;
-        scrollStep = scrollable.scrollHeight / 35;
+        scrollStep = scrollable.scrollHeight / 28;
         if (tab){
             prevDisc[0] = section.innerHTML;
             prevDisc[1] = scrollable.scrollTop;

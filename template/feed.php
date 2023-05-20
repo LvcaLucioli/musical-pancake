@@ -13,7 +13,6 @@
             <section></section>
         
             <footer>
-                <a onclick="loadMore();return false;" href="index.php">Load more posts</a>
+                <button onclick="loadMore();return false;">load more</button>
             </footer>
         </div>
-
