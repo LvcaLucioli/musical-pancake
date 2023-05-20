@@ -5,6 +5,6 @@ require_once("utils/functions.php");
 require_once("db/database.php");
 $dbh = new DatabaseHelper("localhost", "root", "", "bevero", 3306);
 
-$_SESSION["username"]="prova";
+$_SESSION["username"]="user5";
 
 ?>

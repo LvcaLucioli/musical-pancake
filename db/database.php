@@ -9,8 +9,13 @@ class DatabaseHelper{
         }
     }
 
-    public function getDiscoveryPosts($n){
-        $stmt = $this->db->prepare("... LIMIT ?");
+    public function getDiscPosts($n){
+        $stmt = $this->db->prepare("SELECT img_name 
+        FROM posts p, users u
+        WHERE p.user = u.username
+        AND u.is_in_disc = 1
+        ORDER BY RAND()
+        LIMIT ?");
         $stmt->bind_param('i',$n);
         $stmt->execute();
         $result = $stmt->get_result();

@@ -9,9 +9,11 @@
             </ul>
         </nav>
 
-        <section></section>
-
-        <footer>
-            <a onclick="loadMore();return false;" href="index.php">Load more posts</a>
-        </footer>
+        <div id="scrollable_div">
+            <section></section>
+        
+            <footer>
+                <a onclick="loadMore();return false;" href="index.php">Load more posts</a>
+            </footer>
+        </div>
 

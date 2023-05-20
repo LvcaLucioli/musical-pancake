@@ -2,23 +2,6 @@ function generatePosts(posts){
     let result = '';
 
     for(let i=0; i < posts.length; i++){
-        let like_section = ``;
-        if (posts[i]["is_liked"]){
-            `<div class="row">
-                    <div class="col-4">
-                        <a href="" onClick="">
-                        <img src="${posts[i]["propic"]}" alt="Profile picture" />
-                        </a>
-                    </div>
-                    <div class="col-4">
-                        <a href="user.php?username=${posts[i]["username"]}">${posts[i]["username"]}</a>
-                    </div>
-                    <div class="col-4">
-                        <a href="user.php?username=${posts[i]["username"]}">${posts[i]["username"]}</a>
-                    </div>
-                </div>`
-        }
-
         let post = `
         <article>
             <header>
@@ -38,10 +21,22 @@ function generatePosts(posts){
                 <p>${posts[i]["description"]}</p>
             </section>
             <section>
-            ` + like_section + `
+                <div class="row">
+                    <div class="col-4">
+                        <a href="" onClick="likeClick(${posts[i]["is_liked"]}, ${posts[i]["username"]}, ${posts[i]["id"]})">
+                        <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="Like button" />
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <p>${posts[i]["n_likes"]} likes</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Published on ${posts[i]["date"]}</p>
+                    </div>
+                </div>
             </section>
             <footer>
-                <a href="">Show comments</a>
+                <button onClick="switchHome(false)">Show comments</button>
             </footer>
         </article>
         `;
