@@ -61,6 +61,8 @@ main nav[aria-label="feed-menu"] ul {
     list-style: none;
     width: 100%;
     padding: 0 10px;
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
 main nav[aria-label="feed-menu"] ul li a {
