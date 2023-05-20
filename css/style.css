@@ -95,7 +95,7 @@ main nav[aria-label="feed-menu"] ul li a.active {
     opacity: 1;
 }
 
-main>section {
+main>div>section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -103,7 +103,7 @@ main>section {
     margin: auto;
     border: 2px solid rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.1);
-    width: 297px;
+    width: 612px;
 }
 
 main section article {
@@ -111,8 +111,8 @@ main section article {
     align-items: center;
     border: 2px solid rgba(0, 0, 0, 0.4);
     margin-bottom: 10px;
-    width: 100%;
     background-color: white;
+    width: 100%;
 }
 
 main>section>article>section[aria-label="photo"] {
