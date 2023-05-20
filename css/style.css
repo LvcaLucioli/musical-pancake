@@ -13,6 +13,7 @@ header[aria-label="primary-menu"] nav ul {
     padding: 0;
     margin: 0;
     display: flex;
+    flex-direction: row;
 }
 
 header[aria-label="primary-menu"] nav ul li {
@@ -37,12 +38,13 @@ header[aria-label="primary-menu"]>div {
     margin-right: 50px;
 }
 
-header[aria-label="primary-menu"]>nav[aria-label="explore-nav"] div img {
-    height: 24px;
+header[aria-label="primary-menu"] nav ul li div img {
+    width: 24px
 }
 
 header[aria-label="primary-menu"]>div>img {
     height: 24px;
+    margin-right: 0;
 }
 
 main nav[aria-label="feed-menu"] {
