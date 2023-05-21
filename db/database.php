@@ -47,5 +47,18 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getNotifications(){
+        $query = "SELECT n.*
+        FROM notifications n, users u
+        WHERE n.user = u.username
+        ORDER BY date DESC";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>

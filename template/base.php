@@ -68,7 +68,6 @@
         }
         ?>
     </main>
-
     <?php
     if (isset($templateParams["js"])) :
         foreach ($templateParams["js"] as $script) :
