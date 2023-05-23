@@ -1,18 +1,18 @@
         <nav aria-label="feed-menu">
             <ul>
                 <li>
-                    <a href="index.php" class="active" onclick="switchHome(true);return false;" id="followers">followers</a>
+                    <button class="active" onclick="switchHome(true);" id="followers">followers</button>
                 </li>
                 <li>
-                    <a href="index.php" onclick="switchHome(false);return false;" id="discovery">discovery</a>
+                    <button onclick="switchHome(false);" id="discovery">discovery</button>
                 </li>
             </ul>
         </nav>
 
-        <div id="scrollable_div">
+        <div class="scrollable_div">
             <section></section>
         
             <footer>
-                <button onclick="loadMore();return false;">load more</button>
+                <button onclick="loadMore();">load more</button>
             </footer>
         </div>

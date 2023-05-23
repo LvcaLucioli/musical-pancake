@@ -1,5 +1,6 @@
 body {
     font-family: "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
 }
 
 header[aria-label="primary-menu"] {
@@ -52,10 +53,39 @@ header[aria-label="primary-menu"] nav ul li div img {
     height: 24px;
 }
 
-main > div{
+/*main > div*/
+/* .scrollable_div{
     width: 100vw; 
-    height: 70vh;
+    height: 75vh;
     position: fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#drawer {
+    position: fixed;
+    width: 100vw; 
+    height: 75vh;
+} */
+
+#drawer {
+    position: fixed;
+    width: 100%;
+    height: 78.5%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+#slide_button {
+    background-color: white;
+    z-index: 1;
+    width: 100%;
+}
+  
+.scrollable_div {
+    width: 100%;
+    flex: 1;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -159,6 +189,8 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     justify-content: center;
     align-items: center;
 }
+
+
 
 @media (max-width: 767px) {
     /* Smartphone rule */
