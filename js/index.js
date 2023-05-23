@@ -160,3 +160,28 @@ axios.post('api/api-discovery.php', formData).then(response => {
 });
 
 loadMore();
+
+// set posts scrollbar
+let scrollableDivMain = document.querySelectorAll('.scrollable_div')[0];
+let isScrollingMain;
+const screenWidth = window.innerWidth;
+
+scrollableDivMain.addEventListener('scroll', function() {
+    window.clearTimeout(isScrollingMain);
+    scrollableDivMain.classList.add('show-scrollbar');
+    isScrollingMain = setTimeout(function() {
+      scrollableDivMain.classList.remove('show-scrollbar');
+    }, 400);
+
+    let header = document.querySelector('header[aria-label="primary-menu"]');
+    let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
+    if (screenWidth < 992){
+        if (scrollableDivMain.scrollTop > nav_feed.scrollHeight){
+            header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
+        }else{
+            header.style.boxShadow = "none";
+        }
+    }
+});
+
+scrollableDivMain.style.height = "89.5vh"

@@ -1,12 +1,36 @@
+.scrollable_div::-webkit-scrollbar {
+    width: 20px;
+    background-color: transparent;
+}
+  
+.scrollable_div::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+  
+.scrollable_div.show-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #a8bbbf;
+}
+  
+.scrollable_div.hide-scrollbar::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
 body {
     font-family: "Helvetica Neue", Arial, sans-serif;
     overflow: hidden;
 }
 
 header[aria-label="primary-menu"] {
+    position: relative;
     display: flex;
     background-color: white;
     justify-content: space-between;
+    z-index: 100;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
 }
 
 header[aria-label="primary-menu"] nav ul {
@@ -51,16 +75,19 @@ header[aria-label="primary-menu"] nav ul li div img {
     height: 24px;
 }
 
-#drawer {
-    position: fixed;
-    width: 100vw; 
-    height: 75vh;
+.scrollable_div {
+    padding: 0;
+    width: 100%;
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 #drawer {
     position: fixed;
     width: 100%;
-    height: 78.5%;
+    height: 74%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -70,13 +97,6 @@ header[aria-label="primary-menu"] nav ul li div img {
     background-color: white;
     z-index: 1;
     width: 100%;
-}
-  
-.scrollable_div {
-    width: 100%;
-    flex: 1;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 main nav[aria-label="feed-menu"] {
@@ -88,8 +108,9 @@ main nav[aria-label="feed-menu"] {
     height: 40px;
     margin: 15px auto 10px;
     position: sticky;
-    top: 0;
-    z-index: 1;
+    top: 15px;
+    z-index: 101;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3);
 }
 
 main nav[aria-label="feed-menu"] ul {
@@ -286,5 +307,12 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     /* Smartphone rule */
     header[aria-label="primary-menu"]>div {
         justify-content: center;
+    }
+
+    header[aria-label="primary-menu"] {
+        margin-top: -5px;
+        padding-bottom: 0;
+        box-shadow: none;
+        transition: 0.3s ease;
     }
 }

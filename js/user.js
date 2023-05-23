@@ -1,6 +1,5 @@
 const SWIPE_TH = 1;
 
-
 function loadMore(){
     base.loadMore();
 }
@@ -47,3 +46,17 @@ let div = $(".scrollable_div:eq(1)");
 div.on("touchmove", function(e) {
     e.preventDefault();
 });
+
+// set posts scrollbar
+let scrollableDiv = document.querySelectorAll('.scrollable_div')[1];
+let isScrolling;
+
+scrollableDiv.addEventListener('scroll', function() {
+  window.clearTimeout(isScrolling);
+  scrollableDiv.classList.add('show-scrollbar');
+  isScrolling = setTimeout(function() {
+    scrollableDiv.classList.remove('show-scrollbar');
+  }, 400);
+});
+
+scrollableDiv.style.height = "none"
