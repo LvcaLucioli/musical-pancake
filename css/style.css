@@ -319,7 +319,7 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
 
     header[aria-label="primary-menu"] {
         margin-top: 0;
-        padding-bottom: ;
+        padding-bottom: 0;
         box-shadow: none;
         transition: 0.3s ease;
     }
