@@ -33,10 +33,8 @@ header[aria-label="primary-menu"] nav ul li div span {
 
 header[aria-label="primary-menu"]>div {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     height: 80px;
-    margin-right: 50px;
 }
 
 header[aria-label="primary-menu"] nav ul li div img {
@@ -53,20 +51,11 @@ header[aria-label="primary-menu"] nav ul li div img {
     height: 24px;
 }
 
-/*main > div*/
-/* .scrollable_div{
-    width: 100vw; 
-    height: 75vh;
-    position: fixed;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
 #drawer {
     position: fixed;
     width: 100vw; 
     height: 75vh;
-} */
+}
 
 #drawer {
     position: fixed;
@@ -75,7 +64,7 @@ header[aria-label="primary-menu"] nav ul li div img {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-  }
+}
   
 #slide_button {
     background-color: white;
@@ -98,6 +87,9 @@ main nav[aria-label="feed-menu"] {
     overflow: hidden;
     height: 40px;
     margin: 15px auto 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 main nav[aria-label="feed-menu"] ul {
@@ -122,7 +114,7 @@ main nav[aria-label="feed-menu"] ul li a.active {
     opacity: 1;
 }
 
-main>section {
+main div[id="scrollable_div"]>section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -130,7 +122,7 @@ main>section {
     margin: auto;
     border: 2px solid rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.1);
-    width: 297px;
+    width: 612px;
 }
 
 main section article {
@@ -138,8 +130,8 @@ main section article {
     align-items: center;
     border: 2px solid rgba(0, 0, 0, 0.4);
     margin-bottom: 10px;
-    width: 100%;
     background-color: white;
+    width: 100%;
 }
 
 main>section>article>section[aria-label="photo"] {
@@ -152,7 +144,7 @@ main>section>article>section>img {
     width: 293px;
 }
 
-main>footer {
+main div[id="scrollable_div"]>footer>button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -190,7 +182,75 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     align-items: center;
 }
 
+#profile-aside {
+    height: 60vh;
+    padding: 0;
+}
 
+#profile-aside nav {
+    padding: 0;
+}
+
+#profile-aside nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#profile-aside button {
+    border: 0;
+    width: 100%;
+    padding: 0;
+}
+
+#profile-aside nav ul li {
+    margin: auto;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+#profile-aside nav ul li img {
+    height: 24px;
+    width: 24px;
+}
+
+#profile-aside>section {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    height: 60vh;
+}
+
+#search-section button {
+    height: 100%;
+    border: 0;
+}
+
+#search-section header div {
+    display: flex;
+    align-items: center;
+    background-color: #fafafa;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+#search-section header div input {
+    flex-grow: 1;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 14px;
+    color: #262626;
+}
+
+#search-section header div button {
+    margin-left: 8px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
 
 @media (max-width: 767px) {
     /* Smartphone rule */
@@ -211,5 +271,20 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     main nav[aria-label="feed-menu"] {
         min-width: 200px;
         max-width: 200px;
+    }
+}
+
+@media (min-width: 992px) {
+    /* Desktop rule */
+    header[aria-label="primary-menu"]>div {
+        justify-content: flex-end;
+        margin-right: 50px;
+    }
+}
+
+@media (max-width: 992px) {
+    /* Smartphone rule */
+    header[aria-label="primary-menu"]>div {
+        justify-content: center;
     }
 }
