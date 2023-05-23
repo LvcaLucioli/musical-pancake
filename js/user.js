@@ -59,4 +59,4 @@ scrollableDiv.addEventListener('scroll', function() {
   }, 400);
 });
 
-scrollableDiv.style.height = "none"
+window.onunload = function () { console.log("ciao") };

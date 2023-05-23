@@ -51,10 +51,8 @@ class PostsDrawer{
         div.animate({ top: topHeight }, {
           duration: duration,
           step: function(now, fx) {
-            $(this).css('top', now);
-          },
-          complete: function() {
             $(this).children().eq(1).css({ overflowY: 'scroll' });
+            $(this).css('top', now);
           }
         });
       

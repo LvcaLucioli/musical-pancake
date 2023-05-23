@@ -78,16 +78,17 @@ header[aria-label="primary-menu"] nav ul li div img {
 .scrollable_div {
     padding: 0;
     width: 100%;
-    flex: 1;
+    height: 70vh;
     overflow-y: scroll;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    position: absolute;
 }
 
 #drawer {
     position: fixed;
     width: 100%;
-    height: 74%;
+    height: 75vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -128,6 +129,13 @@ main nav[aria-label="feed-menu"] ul li a {
     font-weight: normal;
     color: white;
     text-decoration: none;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+main nav[aria-label="feed-menu"] ul li a:hover{
+    opacity: 0.7;
 }
 
 main nav[aria-label="feed-menu"] ul li a.active {
@@ -310,9 +318,14 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     }
 
     header[aria-label="primary-menu"] {
-        margin-top: -5px;
-        padding-bottom: 0;
+        margin-top: 0;
+        padding-bottom: ;
         box-shadow: none;
         transition: 0.3s ease;
+    }
+
+    main nav[aria-label="feed-menu"] {
+        margin: 10px auto 10px;
+        top: 10px;
     }
 }
