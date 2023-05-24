@@ -162,48 +162,43 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     align-items: center;
 }
 
-#profile-aside {
+.profile-aside {
     height: 60vh;
     padding: 0;
 }
 
-#profile-aside nav {
+.profile-aside nav button {
+    border: 0;
+    width: 100%;
     padding: 0;
 }
 
-#profile-aside nav ul {
+.profile-aside nav {
+    padding: 0;
+}
+
+.profile-aside nav ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
 }
 
-#profile-aside button {
-    border: 0;
-    width: 100%;
-    padding: 0;
-}
-
-#profile-aside nav ul li {
+.profile-aside nav ul li {
     margin: auto;
     border: 2px solid rgba(0, 0, 0, 0.1);
     width: 100%;
 }
 
-#profile-aside nav ul li img {
+.profile-aside nav ul li button img {
     height: 24px;
     width: 24px;
 }
 
-#profile-aside>section {
+.profile-aside>section {
     border: 2px solid rgba(0, 0, 0, 0.1);
     overflow-y: scroll;
     height: 60vh;
-}
-
-#search-section button {
-    height: 100%;
-    border: 0;
 }
 
 #search-section header div {
@@ -230,6 +225,8 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     border: none;
     outline: none;
     cursor: pointer;
+    height: 100%;
+    border: 0;
 }
 
 @media (max-width: 767px) {

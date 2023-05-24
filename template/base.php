@@ -61,13 +61,25 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <?php
-        if (isset($templateParams["main"])) {
-            require($templateParams["main"]);
-        }
-        ?>
-    </main>
+    <div class="row">
+        <div class="col-lg-8">
+            <main>
+                <?php
+                if (isset($templateParams["main"])) {
+                    require($templateParams["main"]);
+                }
+                ?>
+            </main>
+        </div>
+        <div class="col-lg-3 d-none d-md-block profile-aside">
+            <?php
+            if (isset($templateParams["aside"])) {
+                require($templateParams["aside"]);
+            } ?>
+        </div>
+        <div class="col-lg-1 d-none d-md-block"></div>
+    </div>
+
     <?php
     if (isset($templateParams["js"])) :
         foreach ($templateParams["js"] as $script) :
