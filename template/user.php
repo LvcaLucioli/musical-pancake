@@ -13,21 +13,25 @@
         </div>
 
         <section id="drawer">
-            <button onclick="slideDrawer();" id="slide_button">
-                <div class="row">
-                    <div class="col-8"></div>
-                    <div class="col-4"></div>
-                </div>
-            </button>
+            <div class="row slide_button">
+                <button onclick="slideDrawer();" id="slide_button">
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4"></div>
+                    </div>
+                </button>
+            </div>
             
-            <div class="scrollable_div">
-                <section id="posts_section">
-                    
-                </section>
+            <div class="row">
+                <div class="scrollable_div">
+                    <section id="posts_section">
+                        
+                    </section>
 
-                <footer>
-                    <button onclick="loadMore();">load more</button>
-                </footer>
+                    <footer>
+                        <button onclick="loadMore();">load more</button>
+                    </footer>
+                </div>
             </div>
         </section>
         

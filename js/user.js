@@ -42,10 +42,7 @@ button.addEventListener("touchend", function(event) {
     checkSwipe();
 }, { passive: true });
 
-let div = $(".scrollable_div:eq(1)");
-div.on("touchmove", function(e) {
-    e.preventDefault();
-});
+
 
 // set posts scrollbar
 let scrollableDiv = document.querySelectorAll('.scrollable_div')[1];
@@ -56,7 +53,5 @@ scrollableDiv.addEventListener('scroll', function() {
   scrollableDiv.classList.add('show-scrollbar');
   isScrolling = setTimeout(function() {
     scrollableDiv.classList.remove('show-scrollbar');
-  }, 400);
+  }, 700);
 });
-
-window.onunload = function () { console.log("ciao") };

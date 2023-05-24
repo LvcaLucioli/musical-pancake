@@ -171,7 +171,7 @@ scrollableDivMain.addEventListener('scroll', function() {
     scrollableDivMain.classList.add('show-scrollbar');
     isScrollingMain = setTimeout(function() {
       scrollableDivMain.classList.remove('show-scrollbar');
-    }, 400);
+    }, 700);
 
     let header = document.querySelector('header[aria-label="primary-menu"]');
     let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
