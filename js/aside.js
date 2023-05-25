@@ -58,7 +58,7 @@ function switchNotificationSearch(targetButton, target) {
         document.querySelectorAll('.profile-aside>section').forEach(function(section) {
             section.classList.add('d-none');
         });
-        document.querySelector('#' + target).classList.remove('d-none');
+        document.querySelector(target).classList.remove('d-none');
         setIconActive(targetButton);
     }
 }

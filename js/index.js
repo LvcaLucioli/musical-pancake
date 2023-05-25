@@ -72,26 +72,28 @@ async function loadMore() {
     }
 }
 
-function search() {
+function search(targetSection, querySection) {
     const formData = new FormData();
+    let searchQuery = querySection.value;
+    // reset search area
+    let allSections = document.querySelectorAll(targetSection + " section");
+    allSections.forEach(function(section) {
+        section.remove();
+    });
 
-    let searchSection = document.querySelector("#search-section");
-    let searchQuery = document.querySelector("#search-section input").value;
+    if (searchQuery === "") return;
 
     formData.append('q', searchQuery);
     axios.post('api/api-search.php', formData).then(response => {
-        let allSections = document.querySelectorAll("#search-section section");
-        allSections.forEach(function(section) {
-            section.remove();
-        });
-        console.log(searchSection.innerHTML);
-        searchSection.innerHTML = searchSection.innerHTML + displaySearchResult(response.data);
-        document.querySelector("#search-section input").value = searchQuery;
-        document.querySelector("#search-section input").focus();
-        console.log(searchSection.innerHTML);
-    });
 
+
+        document.querySelector(targetSection).innerHTML += displaySearchResult(response.data);
+
+        document.querySelector(targetSection + " input").value = searchQuery;
+        document.querySelector(targetSection + " input").focus();
+    });
 }
+
 
 let homeStatus = true;
 let prevPosts = [``, 0, 0];
