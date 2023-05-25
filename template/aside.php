@@ -1,12 +1,12 @@
 <nav class="navbar" aria-label="profile-nav">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <button class="active" aria-label="notifications" onclick="switchNotificationSearch(this, 'notifications-section');">
+            <button class="active" aria-label="notifications-section" onclick="switchNotificationSearch(this, 'notifications-section');">
                 <img src="./resources/icon-notification-active.png" alt="notifications">
             </button>
         </li>
         <li class="nav-item ">
-            <button aria-label="search" onclick="switchNotificationSearch(this, 'search-section');">
+            <button aria-label="search-section" onclick="switchNotificationSearch(this, 'search-section');">
                 <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="search" active>
             </button>
         </li>

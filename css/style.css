@@ -229,6 +229,14 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     border: 0;
 }
 
+.profile-aside nav button:focus {
+    outline: none;
+}
+
+.profile-aside nav button.active {
+    background-color: #fafafa;
+}
+
 @media (max-width: 767px) {
     /* Smartphone rule */
     header[aria-label="primary-menu"] nav ul li {
