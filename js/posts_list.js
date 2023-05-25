@@ -44,4 +44,3 @@ function generatePosts(posts){
     }
     return result;
 }
-

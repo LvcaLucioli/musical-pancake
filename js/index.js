@@ -6,24 +6,26 @@ const N_POST = 2;
 const N_BLOCK_DISC = 36;
 
 
-function switchHome(tab) {
+async function switchHome(tab) {
     if (tab != homeStatus) {
         const section = document.querySelector("main section");
-        const scrollable = document.querySelector("#scrollable_div");
+        const scrollable = document.querySelector(".scrollable_div");
         document.querySelector(DICT[!tab]).classList.remove("active");
         document.querySelector(DICT[tab]).classList.add("active");
         homeStatus = tab;
-        scrollStep = scrollable.scrollHeight / 28;
+
         if (tab) {
             prevDisc[0] = section.innerHTML;
             prevDisc[1] = scrollable.scrollTop;
+            prevDisc[2] = scrollable.clientHeight * 2 / 1000 + scrollable.clientWidth * 2 / 1000;
             section.innerHTML = prevPosts[0];
-            scrollable.scrollTop = prevPosts[1] - scrollStep;
+            scrollable.scrollTop = prevPosts[1] - prevPosts[2];
         } else {
             prevPosts[0] = section.innerHTML;
             prevPosts[1] = scrollable.scrollTop;
+            prevPosts[2] = scrollable.clientHeight * 2 / 1000 + scrollable.clientWidth * 2 / 1000;
             section.innerHTML = prevDisc[0];
-            scrollable.scrollTop = prevDisc[1] - scrollStep;
+            scrollable.scrollTop = prevDisc[1] - prevDisc[2];
         }
     }
 }
@@ -92,22 +94,20 @@ function generateDiscovery(posts) {
     return result;
 }
 
-function loadMore() {
+async function loadMore() {
     const section = document.querySelector("main section");
     const formData = new FormData();
 
     if (homeStatus) {
         formData.append('i', lastPost);
         formData.append('n', N_POST);
-        lastPost += N_POST
-        axios.post('api/api-follow.php', formData).then(response => {
-            section.innerHTML = section.innerHTML + generatePosts(response.data);
-        });
+        lastPost += N_POST;
+        const response = await axios.post('api/api-posts-followed.php', formData);
+        section.innerHTML = section.innerHTML + generatePosts(response.data);
     } else {
         formData.append('n_block_disc', N_BLOCK_DISC);
-        axios.post('api/api-discovery.php', formData).then(response => {
-            section.innerHTML = section.innerHTML + generateDiscovery(response.data);
-        });
+        const response = await axios.post('api/api-discovery.php', formData);
+        section.innerHTML = section.innerHTML + generateDiscovery(response.data);
     }
 }
 
@@ -141,26 +141,39 @@ function search() {
 }
 
 let homeStatus = true;
-let prevPosts = [``, 0];
-let prevDisc = [``, 0];
+let prevPosts = [``, 0, 0];
+let prevDisc = [``, 0, 0];
 let lastPost = 0;
 
-const formDataDisc = new FormData();
-formDataDisc.append('n_block_disc', N_BLOCK_DISC);
-axios.post('api/api-discovery.php', formDataDisc).then(response => {
+const formData = new FormData();
+formData.append('n_block_disc', N_BLOCK_DISC);
+axios.post('api/api-discovery.php', formData).then(response => {
     prevDisc[0] = generateDiscovery(response.data);
 });
 
-const formDataPost = new FormData();
-formDataPost.append('i', lastPost);
-formDataPost.append('n', N_POST);
-lastPost += N_POST;
-axios.post('api/api-follow.php', formDataPost).then(response => {
-    let posts = generatePosts(response.data);
-    const followers = document.querySelector("main div div section");
-    followers.innerHTML = posts;
+loadMore();
+
+// set posts scrollbar
+let scrollableDivMain = document.querySelectorAll('.scrollable_div')[0];
+let isScrollingMain;
+const screenWidth = window.innerWidth;
+
+scrollableDivMain.addEventListener('scroll', function() {
+    window.clearTimeout(isScrollingMain);
+    scrollableDivMain.classList.add('show-scrollbar');
+    isScrollingMain = setTimeout(function() {
+        scrollableDivMain.classList.remove('show-scrollbar');
+    }, 700);
+
+    let header = document.querySelector('header[aria-label="primary-menu"]');
+    let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
+    if (screenWidth < 992) {
+        if (scrollableDivMain.scrollTop > nav_feed.scrollHeight) {
+            header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
+        } else {
+            header.style.boxShadow = "none";
+        }
+    }
 });
 
-axios.post('api/api-notification.php').then(response => {
-    displayNotification(response.data);
-});
+scrollableDivMain.style.height = "89.5vh"

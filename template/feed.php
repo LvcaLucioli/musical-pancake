@@ -1,6 +1,6 @@
         <div class="container">
             <div class="row">
-                <div id="scrollable_div" class="col-lg-8">
+                <div class="col-lg-8 scrollable_div">
                     <nav aria-label="feed-menu">
                         <ul>
                             <li>
