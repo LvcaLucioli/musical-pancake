@@ -70,9 +70,7 @@
                 }
                 ?>
             </main>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         </div>
         <div class="col-lg-3 d-none d-md-block profile-aside">
             <?php
