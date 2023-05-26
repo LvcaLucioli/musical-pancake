@@ -62,7 +62,7 @@
         </nav>
     </header>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             <main>
                 <?php
                 if (isset($templateParams["main"])) {
@@ -78,7 +78,6 @@
                 require($templateParams["aside"]);
             } ?>
         </div>
-        <div class="col-lg-1 d-none d-md-block"></div>
     </div>
 
     <?php
