@@ -10,7 +10,7 @@
 
 <body>
     <header aria-label="primary-menu">
-        <nav class="navbar navbar-expand-lg" aria-label="explore-nav">
+        <nav class="navbar navbar-expand-md" aria-label="explore-nav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <div <?php if (isActive("index.php")) {
@@ -19,7 +19,7 @@
                         <a class="nav-link" href="index.php">
                             <img src="./resources/icon-index<?php echo isIconActive("index.php"); ?>.png" alt="">
                         </a>
-                        <span class="label d-none d-lg-inline">home</span>
+                        <span class="label d-none d-md-inline">home</span>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -29,7 +29,7 @@
                         <a class="nav-link" href="user.php?username=<?php echo $_SESSION['username']; ?>">
                             <img src="./resources/icon-profile<?php echo isIconActive("user.php"); ?>.png" alt="">
                         </a>
-                        <span class="label d-none d-lg-inline">profile</span>
+                        <span class="label d-none d-md-inline">profile</span>
                     </div>
                 </li>
             </ul>
@@ -37,7 +37,7 @@
         <div>
             <img src="./resources/header.png" alt="">
         </div>
-        <nav class="navbar navbar-expand-lg d-lg-none" aria-label="profile-nav">
+        <nav class="navbar navbar-expand-md d-md-none" aria-label="profile-nav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <div <?php if (isActive("notification.php")) {
@@ -61,15 +61,24 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <?php
-        if (isset($templateParams["main"])) {
-            require($templateParams["main"]);
-        }
-        ?>
-    </main>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <div class="row">
+        <div class="col-lg-8">
+            <main>
+                <?php
+                if (isset($templateParams["main"])) {
+                    require($templateParams["main"]);
+                }
+                ?>
+            </main>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        </div>
+        <div class="col-lg-4 d-none d-lg-block profile-aside">
+            <?php
+            if (isset($templateParams["aside"])) {
+                require($templateParams["aside"]);
+            } ?>
+        </div>
+    </div>
 
     <?php
     if (isset($templateParams["js"])) :

@@ -58,7 +58,7 @@ button.addEventListener("touchend", function(event) {
 
 
 // set posts scrollbar
-let scrollableDiv = document.querySelectorAll('.scrollable_div')[1];
+let scrollableDiv = document.querySelector('.scrollable_feed');
 let isScrolling;
 let header = document.querySelector('.slide_button');
 

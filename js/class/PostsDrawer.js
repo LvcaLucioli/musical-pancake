@@ -53,36 +53,39 @@ class PostsDrawer{
           },
           queue : false
         });
-        $("#drawer").animate({ 
-          borderTopLeftRadius: "0px",
-          borderTopRightRadius: "0px",
-          borderBottomLeftRadius: "0px",
-          borderBottomRightRadius: "0px"
-        }, { 
-          duration : 1200, 
-          step: function(now, fx) {
-            $(this).css('borderRadius', now);
-          },
-          queue : false
-        });
-        $(".posts_count").animate({ 
-          marginLeft: "-10%"
-        }, { 
-          duration : 1200, 
-          step: function(now, fx) {
-            $(this).css('marginLeft', now);
-          },
-          queue : false
-        });
-        $(".add_button").animate({ 
-          marginLeft: "33%"
-        }, { 
-          duration : 1200, 
-          step: function(now, fx) {
-            $(this).css('marginLeft', now);
-          },
-          queue : false
-        });
+
+        if (IS_MOBILE){
+          $("#drawer").animate({ 
+            borderTopLeftRadius: "0px",
+            borderTopRightRadius: "0px",
+            borderBottomLeftRadius: "0px",
+            borderBottomRightRadius: "0px"
+          }, { 
+            duration : 1200, 
+            step: function(now, fx) {
+              $(this).css('borderRadius', now);
+            },
+            queue : false
+          });
+          $(".posts_count").animate({ 
+            marginLeft: "-10%"
+          }, { 
+            duration : 1200, 
+            step: function(now, fx) {
+              $(this).css('marginLeft', now);
+            },
+            queue : false
+          });
+          $(".add_button").animate({ 
+            marginLeft: "16%"
+          }, { 
+            duration : 1200, 
+            step: function(now, fx) {
+              $(this).css('marginLeft', now);
+            },
+            queue : false
+          });
+        }
 
         document.querySelector("main header nav").classList.add("active");
         this.currentState = PostsDrawer.STATES[0];
@@ -109,36 +112,39 @@ class PostsDrawer{
           },
           queue : false
         });
-        $("#drawer").animate({ 
-          borderTopLeftRadius: "40px",
-          borderTopRightRadius: "40px",
-          borderBottomLeftRadius: "40px",
-          borderBottomRightRadius: "40px"
-        }, { 
-          duration : 600, 
-          step: function(now, fx) {
-            $(this).css('borderRadius', now);
-          },
-          queue : false
-        });
-        $(".posts_count").animate({ 
-          marginLeft: "0%"
-        }, { 
-          duration : 600, 
-          step: function(now, fx) {
-            $(this).css('marginLeft', now);
-          },
-          queue : false
-        });
-        $(".add_button").animate({ 
-          marginLeft: "22%"
-        }, { 
-          duration : 600, 
-          step: function(now, fx) {
-            $(this).css('marginLeft', now);
-          },
-          queue : false
-        });
+
+        if (IS_MOBILE){
+          $("#drawer").animate({ 
+            borderTopLeftRadius: "40px",
+            borderTopRightRadius: "40px",
+            borderBottomLeftRadius: "40px",
+            borderBottomRightRadius: "40px"
+          }, { 
+            duration : 600, 
+            step: function(now, fx) {
+              $(this).css('borderRadius', now);
+            },
+            queue : false
+          });
+          $(".posts_count").animate({ 
+            marginLeft: "0%"
+          }, { 
+            duration : 600, 
+            step: function(now, fx) {
+              $(this).css('marginLeft', now);
+            },
+            queue : false
+          });
+          $(".add_button").animate({ 
+            marginLeft: "0%"
+          }, { 
+            duration : 600, 
+            step: function(now, fx) {
+              $(this).css('marginLeft', now);
+            },
+            queue : false
+          });
+        }
 
         document.querySelector("main header nav").classList.remove("active");
         this.currentState = PostsDrawer.STATES[1];

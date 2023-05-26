@@ -117,7 +117,7 @@ class DatabaseHelper{
     }
 
     public function getSearchResult($searchQuery){
-        $query = "SELECT username, propic FROM users WHERE username LIKE CONCAT(?, '%')";
+        $query = "SELECT username, propic FROM users WHERE username LIKE CONCAT('%', ?, '%')";
 
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("s", $searchQuery);

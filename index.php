@@ -4,6 +4,7 @@
     // Base template
     $templateParams["title"] = "bevero";
     $templateParams["main"] = "feed.php";
+    $templateParams["aside"] = "aside.php";
 
     // Home template
     $templateParams["js"] = array(

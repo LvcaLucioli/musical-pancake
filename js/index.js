@@ -29,64 +29,17 @@ async function switchHome(tab){
         if (tab) {
             prevDisc[0] = section.innerHTML;
             prevDisc[1] = scrollable.scrollTop;
-            prevDisc[2] = scrollable.clientHeight*2/1000 + scrollable.clientWidth*2/1000;
+            prevDisc[2] = scrollable.clientHeight * 2 / 1000 + scrollable.clientWidth * 2 / 1000;
             section.innerHTML = prevPosts[0];
             scrollable.scrollTop = prevPosts[1] - prevPosts[2];
         } else {
             prevPosts[0] = section.innerHTML;
             prevPosts[1] = scrollable.scrollTop;
-            prevPosts[2] = scrollable.clientHeight*2/1000 + scrollable.clientWidth*2/1000;
+            prevPosts[2] = scrollable.clientHeight * 2 / 1000 + scrollable.clientWidth * 2 / 1000;
             section.innerHTML = prevDisc[0];
             scrollable.scrollTop = prevDisc[1] - prevDisc[2];
         }
     }
-}
-
-function setIconActiveDefault(button) {
-    let icon = button.querySelector('img');
-    let path = icon.getAttribute('src');
-
-    let new_path;
-    let offset = path.length - 4;
-    let substring = "-active";
-
-    new_path = path.slice(0, offset) + substring + path.slice(offset);
-    icon.setAttribute('src', new_path);
-    button.disabled = false;
-}
-
-function setIconActive() {
-    let nav = document.querySelector('[aria-label="profile-nav"]');
-    let buttons = nav.querySelectorAll('button');
-
-    let substring = "-active";
-
-    buttons.forEach(button => {
-        let icon = button.querySelector(img);
-        let path = icon.getAttribute('src');
-        let new_path = path;
-        let offset = path.length - 4;
-
-        if (path.includes(substring)) {
-            new_path = path.slice(0, offset - substring.length) + path.slice(offset);
-            button.disabled = false;
-            console.log("ao");
-        } else {
-            new_path = path.slice(0, offset) + substring + path.slice(offset);
-            button.disabled = false;
-        }
-        console.log(new_path);
-        icon.setAttribute('src', new_path);
-    });
-
-}
-
-function switchNotificationSearch(target) {
-    document.querySelectorAll('#profile-aside>section').forEach(function(section) {
-        section.classList.add('d-none');
-    });
-    switchingTo = document.getElementById(target).classList.remove("d-none");
-
 }
 
 function generateDiscovery(posts) {
@@ -114,7 +67,7 @@ function generateDiscovery(posts) {
     return result;
 }
 
-async function loadMore(){
+async function loadMore() {
     const section = document.querySelector("main section");
     const formData = new FormData();
 
@@ -126,40 +79,33 @@ async function loadMore(){
         lastPost+=N_POST;
         const response = await axios.post('api/api-posts-followed.php', formData);
         section.innerHTML = section.innerHTML + generatePosts(response.data);
-    }else{
+    } else {
         formData.append('n_block_disc', N_BLOCK_DISC);
         const response = await axios.post('api/api-discovery.php', formData);
         section.innerHTML = section.innerHTML + generateDiscovery(response.data);
     }
 }
 
-function displayNotification(notifications) {
-    let notificationSection = document.querySelector("#notifications-section");
-    if (window.innerWidth <= 768) {
-        // TODO:
-    }
-    notificationSection.innerHTML = notificationSection.innerHTML + showNotifications(notifications);
-}
-
-function search() {
+function search(targetSection, querySection) {
     const formData = new FormData();
+    let searchQuery = querySection.value;
+    // reset search area
+    let allSections = document.querySelectorAll(targetSection + " section");
+    allSections.forEach(function(section) {
+        section.remove();
+    });
 
-    let searchSection = document.querySelector("#search-section");
-    let searchQuery = document.querySelector("#search-section input").value;
+    if (searchQuery === "") return;
 
     formData.append('q', searchQuery);
     axios.post('api/api-search.php', formData).then(response => {
-        let allSections = document.querySelectorAll("#search-section section");
-        allSections.forEach(function(section) {
-            section.remove();
-        });
-        console.log(searchSection.innerHTML);
-        searchSection.innerHTML = searchSection.innerHTML + displaySearchResult(response.data);
-        document.querySelector("#search-section input").value = searchQuery;
-        document.querySelector("#search-section input").focus();
-        console.log(searchSection.innerHTML);
-    });
 
+
+        document.querySelector(targetSection).innerHTML += displaySearchResult(response.data);
+
+        document.querySelector(targetSection + " input").value = searchQuery;
+        document.querySelector(targetSection + " input").focus();
+    });
 }
 
 const now = new Date();
@@ -193,7 +139,7 @@ scrollableDivMain.addEventListener('scroll', function() {
     window.clearTimeout(isScrollingMain);
     scrollableDivMain.classList.add('show-scrollbar');
     isScrollingMain = setTimeout(function() {
-      scrollableDivMain.classList.remove('show-scrollbar');
+        scrollableDivMain.classList.remove('show-scrollbar');
     }, 700);
 
     let header = document.querySelector('header[aria-label="primary-menu"]');
@@ -201,7 +147,7 @@ scrollableDivMain.addEventListener('scroll', function() {
     if (IS_MOBILE){
         if (scrollableDivMain.scrollTop > nav_feed.scrollHeight){
             header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
-        }else{
+        } else {
             header.style.boxShadow = "none";
         }
     }

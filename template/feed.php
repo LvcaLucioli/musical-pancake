@@ -17,7 +17,5 @@
                         <button onclick="loadMore();return false;">load more</button>
                     </footer>
                 </div>
-
-                <div class="col-lg-1 d-none d-md-block"></div>
             </div>
         </div>

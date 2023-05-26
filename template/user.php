@@ -33,7 +33,7 @@
             </div>
             
             <div class="row">
-                <div class="scrollable_div">
+                <div class="scrollable_feed">
                     <div class="scrollable_el">
                         <section id="posts_section">
                             
