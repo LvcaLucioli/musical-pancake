@@ -1,10 +1,4 @@
-        <header
-        style="margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-        overflow: hidden;"
-        ></header>
+        <header></header>
 
         <div class="scrollable_div">
             <section id="userlist_section">
@@ -16,21 +10,39 @@
             <div class="row slide_button">
                 <button onclick="slideDrawer();" id="slide_button">
                     <div class="row">
-                        <div class="col-8"></div>
-                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <p class="posts_count">
+                                <span class="num_posts"></span> posts
+                            </p>
+                        </div>
+                        <div class="col-4 p-0">
+                            <div class="swipe_div">
+                                <img class="swipe_icon" src="./resources/swipe_icon.png" alt="Add a new post" />
+                                <pre>swipe up</pre>
+                            </div>
+                        </div>
+                        <div class="col-4 p-0">
+                            <div class="add_button">
+                            <a href=''>
+                                <img class="add_icon" src="./resources/add_icon.png" alt="Add a new post" />
+                            </a>
+                        </div>
+                        </div>
                     </div>
                 </button>
             </div>
             
             <div class="row">
                 <div class="scrollable_div">
-                    <section id="posts_section">
-                        
-                    </section>
+                    <div class="scrollable_el">
+                        <section id="posts_section">
+                            
+                        </section>
 
-                    <footer>
-                        <button onclick="loadMore();">load more</button>
-                    </footer>
+                        <footer>
+                            <button onclick="loadMore();">load more</button>
+                        </footer>
+                    </div>
                 </div>
             </div>
         </section>

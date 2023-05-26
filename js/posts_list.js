@@ -8,7 +8,7 @@ function generatePosts(posts){
                 <div class="row">
                     <div class="col-3">
                         <a href="user.php?username=${posts[i]["username"]}">
-                        <img src="${posts[i]["propic"]}" alt="Profile picture" />
+                        <!--<img src="${posts[i]["propic"]}" alt="Profile picture" />-->
                         </a>
                     </div>
                     <div class="col-9">

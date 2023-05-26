@@ -1,35 +1,57 @@
-.scrollable_div::-webkit-scrollbar {
+/* scrollbar */
+::-webkit-scrollbar {
     width: 20px;
     background-color: transparent;
 }
   
-.scrollable_div::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: transparent;
     border-radius: 20px;
-    border: 7px solid transparent;
+    border: 8px solid transparent;
     background-clip: content-box;
 }
   
-.scrollable_div.show-scrollbar::-webkit-scrollbar-thumb {
+.show-scrollbar::-webkit-scrollbar-thumb {
     background-color: #dadada;
 }
   
-.scrollable_div.hide-scrollbar::-webkit-scrollbar-thumb {
+.hide-scrollbar::-webkit-scrollbar-thumb {
     background-color: transparent;
 }
 
-.scrollable_div::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background-color: #b7b7b7;
     border: 4px solid transparent;
 }
   
-  
 
+/*  base */
 body {
     font-family: "Helvetica Neue", Arial, sans-serif;
     overflow: hidden;
 }
 
+main{
+    width: 100%;
+    height: 100;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin: auto;
+    display: block;
+}
+
+button:focus,
+button:active {
+  outline: none !important;
+}
+
+/* main navbar */
 header[aria-label="primary-menu"] {
     position: relative;
     display: flex;
@@ -82,27 +104,60 @@ header[aria-label="primary-menu"] nav ul li div img {
     height: 24px;
 }
 
-.scrollable_div {
-    padding: 0;
+.container{
     width: 100%;
-    height: 70vh;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*  scrollable element */
+.scroll-wrap{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding-bottom: 0%;
+}
+
+.scrollable_div {
+    padding: 0%;
+    padding-top: 0;
+    width: 100%;
+    height: 75%;
     overflow-y: auto;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
     position: fixed;
+}
+
+.scrollable_feed {
+    padding: 0%;
+    padding-top: 0;
+    width: 100vw;
+    height: 92%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+}
+
+.scrollable_el{
+    padding-left: 40px;
+    padding-right: 20px;
 }
 
 #drawer{
     position: fixed;
-    width: 100%;
-    height: 75vh;
+    width: 105%;
+    height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.3), 
-                5px 0 5px -5px rgba(0, 0, 0, 0.3),
-                -5px 0 5px -5px rgba(0, 0, 0, 0.3);
-    border-radius: 30px;
+    border-radius: 40px;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.15);
+    margin-left: -2.5%;
+    padding-left: 2.5%;
 }
 
 #drawer .row{
@@ -110,15 +165,80 @@ header[aria-label="primary-menu"] nav ul li div img {
 }
 
 .slide_button{
-    height: 10%;
+    height: 9%;
+    top: 20%;
 }
 
 #slide_button{
     width: 100%;
-    background-color: white;
+    border-radius: 25px 25px 0 0;
+    background-color: rgb(0, 0, 0);
     border: 0;
+    color: white;
+    z-index: 9990;
 }
 
+
+
+/* userpage fallows navbar */
+main nav[aria-label="followers/following-nav"] {
+    background-color: white;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    height: 40px;
+    margin: 15px 10% 10px;
+    top: 15px;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+main nav[aria-label="followers/following-nav"].active {
+    background-color: black;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3);
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+main nav[aria-label="followers/following-nav"].active ul li a {
+    opacity: 0.5;
+    font-weight: normal;
+    color: white !important;
+}
+
+main nav[aria-label="followers/following-nav"] ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 100%;
+    padding: 0 5%;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+main nav[aria-label="followers/following-nav"] ul li a {
+    text-decoration: none;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    color: black !important;
+    opacity: 1;
+    font-weight: bold;
+}
+
+main nav[aria-label="followers/following-nav"] ul li a:hover{
+    opacity: 0.7;
+}
+
+main nav[aria-label="followers/following-nav"] ul li a.active {
+    font-weight: bold;
+    opacity: 1;
+}
+
+
+
+/* feed navbar */
 main nav[aria-label="feed-menu"] {
     display: flex;
     align-items: center;
@@ -162,6 +282,8 @@ main nav[aria-label="feed-menu"] ul li a.active {
     opacity: 1;
 }
 
+
+/* posts list */
 main div[id="scrollable_div"]>section {
     display: flex;
     flex-direction: column;
@@ -180,6 +302,8 @@ main section article {
     margin-bottom: 10px;
     background-color: white;
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 main>section>article>section[aria-label="photo"] {
@@ -192,7 +316,7 @@ main>section>article>section>img {
     width: 293px;
 }
 
-main div[id="scrollable_div"]>footer>button {
+main .scrollable_el > footer button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -200,8 +324,8 @@ main div[id="scrollable_div"]>footer>button {
     color: white;
     padding: 20px;
     border-radius: 20px;
-    margin: 10px auto;
-    width: 90px;
+    margin: 2% auto 3%;
+    width: 20%;
 }
 
 main>footer a {
@@ -230,6 +354,9 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     align-items: center;
 }
 
+
+
+/* aside */
 #profile-aside {
     height: 60vh;
     padding: 0;
@@ -269,6 +396,9 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     height: 60vh;
 }
 
+
+
+/* search section */
 #search-section button {
     height: 100%;
     border: 0;
@@ -299,6 +429,109 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     outline: none;
     cursor: pointer;
 }
+
+
+/* user header */
+.user_header{
+    max-width: 80%;
+    margin: 2% auto 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.user_header img{
+    width: 110%;
+    height: auto;
+    border-radius: 1000px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3);
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.username{
+    padding-top: 0.5vw;
+    margin-left: 0px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-bottom: 3%;
+}
+
+.bio{
+    margin-left: 15px;
+    font-size: 1em;
+    margin-bottom: 0;
+}
+
+.edit_user_btn{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.user_info{
+    padding-left: 5% !important;
+}
+
+.num{
+    font-size: 1.3em;
+}
+
+.posts_count{
+    padding: 0.7% 0 5% 6%;
+    text-align: left;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.num_posts{
+    font-size: 1.8em;
+}
+
+.add_button{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding-left: 62%;
+    padding-top: 2.1vh;
+}
+
+.add_icon{
+    width: 40px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    margin-top: 0%;
+    margin-bottom: auto;
+    z-index: 9999;
+}
+
+.swipe_div{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    margin-left: -4%;
+    opacity: 0;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.swipe_div pre{
+    color: white;
+    font-size: 0.7em;
+    margin-top: 3px;
+}
+
+.swipe_icon{
+    width: 15px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    margin-top: 1vw;
+    margin-bottom: auto;
+}
+
+
 
 @media (max-width: 767px) {
     /* Smartphone rule */
@@ -347,4 +580,35 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
         margin: 10px auto 10px;
         top: 10px;
     }
+
+    main nav[aria-label="feed-menu"] ul li a:hover{
+        opacity: none;
+    }
+
+    .scrollable_div {
+        height: 90vh;
+    }
+    
+    .scrollable_feed {
+        height: 93%;
+    }
+
+    main .scrollable_el > footer button{
+        margin: 7% auto 15%;
+        width: 60%;
+    }
+
+    main nav[aria-label="followers/following-nav"] {
+        margin: 15px 10% 10px;
+        top: 15px;
+    }
+
+    main nav[aria-label="followers/following-nav"] ul li a:hover{
+        opacity: none;
+    }
+
+    .add_button{
+        padding-top: 1.35vh;
+    }
 }
+
