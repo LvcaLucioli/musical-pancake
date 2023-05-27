@@ -66,10 +66,10 @@ class UserHelper{
         let header = `
                 <div class="user_header">
                     <div class="row ">
-                        <div class="col-4">
+                        <div class="col-5">
                             <img src="${user["propic"]}" alt="Profile picture" />
                         </div>
-                        <div class="col-8 user_info">
+                        <div class="col-7 user_info">
                             <div class="row">
                                 <div class="col-10">
                                     <p class="username">${user["username"]}</p>

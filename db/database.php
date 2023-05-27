@@ -98,9 +98,15 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssii', $username, $date, $i, $n);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        $stmt = $this->db->prepare($query);
+        $i += $n;
+        $stmt->bind_param('ssii', $username, $date, $i, $n);
+        $stmt->execute();
+        $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
+
+        return $result;
     }
 
     public function getNotifications(){

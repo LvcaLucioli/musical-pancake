@@ -132,7 +132,7 @@ header[aria-label="primary-menu"] nav ul li div img {
 /*  scrollable element */
 .scroll-wrap{
     width: 100%;
-    height: 100vh;
+    
     overflow: hidden;
     margin: 0;
     padding-bottom: 0%;
@@ -141,41 +141,38 @@ header[aria-label="primary-menu"] nav ul li div img {
 .scrollable_div {
     padding: 0%;
     padding-top: 0;
-    width: 100%;
-    height: 90vh;
+    height: 50%;
+    width: 104%;
     overflow-y: auto;
     overflow-x: hidden;
     position: fixed;
+    padding-left: 3.5vh;
+    margin-top: 0;
 }
 
 .scrollable_feed {
     padding: 0%;
     padding-top: 0;
-    height: 93%;
-    width: 105vw;
+    width: 100vw;
+    height: 94vh;
     overflow-y: auto;
     overflow-x: hidden;
     position: fixed;
 }
 
-.scrollable_el{
-    padding-left: 40px;
-    padding-right: 20px;
-}
-
 #drawer{
     position: fixed;
-    width: 103%;
-    height: 110vh;
+    width: 105vw;
+    height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     border-radius: 40px;
     background-color: rgb(0, 0, 0);
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.15);
-    margin-left: -2.5%;
-    padding-left: 2.5%;
-
+    margin-left: -2.7vw;
+    padding: 0;
+    padding-left: 0;
 }
 
 #drawer .row {
@@ -183,17 +180,20 @@ header[aria-label="primary-menu"] nav ul li div img {
 }
 
 .slide_button{
-    height: 9%;
     top: 20%;
+    height: 7.5vh;
+    border-radius: 40px 40px 0 0;
+    background-color: transparent;
 }
 
 #slide_button {
     width: 100%;
-    border-radius: 25px 25px 0 0;
-    background-color: rgb(0, 0, 0);
+    border-radius: 40px 40px 0 0;
+    background-color: transparent;
     border: 0;
     color: white;
     z-index: 9990;
+    height: 2vh;
 }
 
 
@@ -451,7 +451,6 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
 
 /* user header */
 .user_header{
-    max-width: 80%;
     margin: 2% auto 0;
     height: 100%;
     width: 100%;
@@ -459,12 +458,15 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
 }
 
 .user_header img{
-    width: 110%;
+    min-width: 100px;
+    width: 80%;
+    max-width: 200px;
     height: auto;
     border-radius: 1000px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3);
     margin-top: 10%;
     margin-bottom: 10%;
+    margin-left: 30%;
 }
 
 .username{
@@ -510,8 +512,8 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     width: 100%;
     height: 100%;
     margin: 0;
-    padding-top: 0.3vw;
-    padding-left: 33%;
+    padding-top: 10%;
+    padding-left: 50%;
 }
 
 .add_icon{
@@ -519,7 +521,7 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     height: auto;
     margin: 0;
     padding: 0;
-    margin-top: 0%;
+    margin-top: 5%;
     margin-bottom: auto;
     z-index: 9999;
 }
@@ -532,6 +534,7 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     opacity: 0;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
+    margin-top: 5%;
 }
 
 .swipe_div pre{
@@ -549,76 +552,21 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     margin-bottom: auto;
 }
 
+main section#posts_section article{
+    background-color: black;
+    margin: 0;
+    padding: 0.5vw;
+}
 
-
-@media (max-width: 767px) {
-    /* Smartphone rule */
-    header[aria-label="primary-menu"] nav ul li {
-        padding: 10px;
-    }
-    main nav[aria-label="feed-menu"] {
-        min-width: 180px;
-        max-width: 200px;
-    }
-    /* Smartphone rule */
-    header[aria-label="primary-menu"]>div {
-        justify-content: center;
-    }
-    header[aria-label="primary-menu"] {
-        margin-top: 0;
-        padding-bottom: 0;
-        box-shadow: none;
-        transition: 0.3s ease;
-    }
-    main nav[aria-label="feed-menu"] {
-        margin: 10px auto 10px;
-        top: 10px;
-    }
-
-    main nav[aria-label="feed-menu"] ul li a:hover{
-        opacity: none;
-    }
-
-    .scrollable_div {
-        height: 90vh;
-    }
-    
-    .scrollable_feed {
-        height: 93%;
-    }
-
-    main .scrollable_el > footer button{
-        margin: 7% auto 15%;
-        width: 60%;
-    }
-
-    main nav[aria-label="followers/following-nav"] {
-        margin: 15px 10% 10px;
-        top: 15px;
-    }
-
-    main nav[aria-label="followers/following-nav"] ul li a:hover{
-        opacity: none;
-    }
-
-    .add_button{
-        
-        padding-left: 33%;
-    }
-
-    #drawer{
-        border-radius: 40px;
-        width: 103%;
-    }
-
-    .scrollable_feed{
-        width: 103%;
-    }
+main section#posts_section article img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 
 
-@media (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) and (max-width: 991px){
     /* Tablet rule */
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
@@ -629,19 +577,98 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
         margin-right: 50px;
     }
 
-    header[aria-label="primary-menu"]>div {
-        justify-content: center;
+    .add_button{
+        padding-left: 19vw;
+        padding-top: 13px;
+    }
+    
+    .user_info{
+        padding-left: 3% !important;
     }
 
-    header[aria-label="primary-menu"] {
-        box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
+    .user_header{
+        margin: 0;
+    }
+
+    .user_header img{
+        margin-top: 4%;
+    }
+
+    main nav[aria-label="followers/following-nav"]{
+        max-width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    main nav[aria-label="feed-menu"] {
+        max-width: 300px;
+    }
+
+    .posts_count{
+        padding-left: 16%;
+    }
+
+    .swipe_div{
+        margin: 0;
+    }
+
+    .username{
+        padding-top: 4%;
+        font-size: 2.5em;
+        margin-bottom: 0;
+    }
+
+    .bio{
+        font-size: 1.1em;
+    }
+
+    .add_icon{
+        width: 50px;
+    }
+
+    #drawer{
+        width: 102vw;
+        margin-left: -1vw;
+        border-radius: 60px;
+    }
+
+    #drawer .scrollable_div {
+        width: 99.3vw;
+        padding: 0;
+        margin-left: 2.5%;
+        height: 64vh;
+    }
+
+    .slide_button{
+        height: 80px;
+    }
+
+    .posts_count{
+        font-size: 1.4em;
+        padding-top: 4%;
+        margin-left: 5vw;
+    }
+
+    main nav[aria-label="followers/following-nav"]{
+        max-width: 50%;
+        margin-right: auto;
+        margin-left: auto;
+        height: 50px;
+        border-radius: 100px;
+        margin-top: -1%;
+    }
+
+    #followers_button{
+        font-size: 1.3em;
+    }
+
+    #following_button{
+        font-size: 1.3em;
     }
 }
 
 
-
-
-@media (min-width: 1024px) {
+@media screen and (min-width: 992px) {
     /* Desktop rule */
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
@@ -663,19 +690,31 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     main nav[aria-label="feed-menu"] {
         margin: 15px auto 10px;
         top: 15px;
+        max-width: 300px;
     }
 
     main nav[aria-label="feed-menu"] ul li a:hover{
         opacity: 0.7;
     }
 
-    .scrollable_div {
-        height: 75%;
+    #drawer .scrollable_div {
+        height: 50%;
+        width: 69.5vw;
+        padding: 0;
+        margin: 0;
+        margin-top: 8vh;
+        padding-left: 1.5%;
+        padding-right: 0;
+    }
+
+    #drawer .scrollable_el {
+        
+        padding-right: 0;
     }
     
     .scrollable_feed {
-        height: 92%;
-        width: 65vw;
+        height: 75%;
+        max-width: 100% !important;
     }
 
     main .scrollable_el > footer button{
@@ -683,16 +722,92 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
         width: 20%;
     }
 
+    main nav[aria-label="followers/following-nav"]{
+        max-width: 50%;
+        margin-right: auto;
+        margin-left: auto;
+        height: 50px;
+        border-radius: 100px;
+        margin-top: 0%;
+    }
+
     main nav[aria-label="followers/following-nav"] ul li a:hover{
         opacity: 0.7;
     }
 
+    main nav[aria-label="followers/following-nav"] ul li a.active:hover{
+        opacity: 1;
+    }
+
     .add_button{
-        padding-left: 0%;
+        padding-top: 1vh;
+        padding-left: 15vw;
+    }
+
+    .add_icon{
+        width: 50px;
     }
 
     #drawer{
-        border-radius: 0 35px;
+        border-radius: 0 30px;
         width: 69.5vw;
+    }
+
+    .user_header img{
+        width: 60%;
+        margin-left: 100px;
+        margin-right: auto;
+        max-width: 13vw;
+    }
+
+    .username{
+        padding-top: 7%;
+        font-size: 3em;
+        margin-bottom: 0;
+    }
+
+    .bio{
+        font-size: 1.2em;
+    }
+
+    .user_info{
+        padding-left: 0% !important;
+        margin-left: -5%;
+    }
+
+    .user_header{
+        margin: 0;
+        margin-top: -1vw;
+    }
+    
+    .posts_count{
+        font-size: 1.4em;
+        padding-top: 1%;
+        margin-left: 10%;
+    }
+    
+    #followers_button{
+        font-size: 1.3em;
+    }
+
+    #following_button{
+        font-size: 1.3em;
+    }
+
+    .slide_button{
+        height: 10px;
+    }
+
+    .scrollable_el{
+        padding-left: 40px;
+        padding-right: 20px;
+    }
+
+    .swipe_div{
+        margin: 0;
+    }
+
+    main section#posts_section article{
+        padding: 0.15vw;
     }
 }

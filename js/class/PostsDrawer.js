@@ -3,7 +3,7 @@ class PostsDrawer{
         0 : "closed",
         1 : "open"
     }
-    static N_POST = 6;
+    static N_POST = 18;
 
     constructor(user, isLogged, date){
         this.date = date;
@@ -23,6 +23,25 @@ class PostsDrawer{
         axios.post('api/api-user-posts.php', formData).then(response => {
             button.innerHTML = response.data;
         });
+
+        if(iOS() && !IS_MOBILE){
+          document.querySelectorAll(".scrollable_div")[1].style.width = "69.5vw";
+          document.querySelectorAll(".scrollable_div")[1].style.paddingLeft = "0.5%";
+          document.querySelectorAll(".scrollable_div")[1].style.paddingRight = "1%";
+        }
+        if(iOS() && IS_MOBILE){
+          if(window.innerWidth < 768) {
+            document.querySelectorAll(".scrollable_div")[1].style.width = "103vw";
+            document.querySelectorAll(".scrollable_div")[1].style.paddingLeft = "3%";
+            document.querySelectorAll(".scrollable_div")[1].style.paddingRight = "1.5%";
+          }else{
+            document.querySelectorAll(".scrollable_div")[1].style.paddingLeft = "0%";
+            document.querySelectorAll(".scrollable_div")[1].style.width = "98.5vw";
+            document.querySelectorAll(".scrollable_div")[1].style.paddingRight = "2%";
+          }
+        }
+
+        this.loadMore();
     }
 
     slideDownDrawer() {
@@ -31,7 +50,9 @@ class PostsDrawer{
         let duration = 600;
         
         let targetPosition = window.innerHeight - document.querySelector(".slide_button").offsetHeight;
-
+        if(!IS_MOBILE){
+          targetPosition -= 60;
+        }
         $(".swipe_div").animate({ 
           opacity: "1"
         }, { 
@@ -68,7 +89,7 @@ class PostsDrawer{
             queue : false
           });
           $(".posts_count").animate({ 
-            marginLeft: "-10%"
+            marginLeft: "-3vw"
           }, { 
             duration : 1200, 
             step: function(now, fx) {
@@ -76,12 +97,12 @@ class PostsDrawer{
             },
             queue : false
           });
-          $(".add_button").animate({ 
-            marginLeft: "16%"
+          $(".add_icon").animate({ 
+            marginRight: "-7vw"
           }, { 
             duration : 1200, 
             step: function(now, fx) {
-              $(this).css('marginLeft', now);
+              $(this).css('marginRight', now);
             },
             queue : false
           });
@@ -114,11 +135,12 @@ class PostsDrawer{
         });
 
         if (IS_MOBILE){
+          let px = window.innerWidth < 768 ? "40px" : "60px";
           $("#drawer").animate({ 
-            borderTopLeftRadius: "40px",
-            borderTopRightRadius: "40px",
-            borderBottomLeftRadius: "40px",
-            borderBottomRightRadius: "40px"
+            borderTopLeftRadius: px,
+            borderTopRightRadius: px,
+            borderBottomLeftRadius: px,
+            borderBottomRightRadius: px
           }, { 
             duration : 600, 
             step: function(now, fx) {
@@ -135,12 +157,12 @@ class PostsDrawer{
             },
             queue : false
           });
-          $(".add_button").animate({ 
-            marginLeft: "0%"
+          $(".add_icon").animate({ 
+            marginRight: "0%"
           }, { 
             duration : 600, 
             step: function(now, fx) {
-              $(this).css('marginLeft', now);
+              $(this).css('marginRight', now);
             },
             queue : false
           });
@@ -164,41 +186,48 @@ class PostsDrawer{
     }
 
     _generatePosts(posts){
-      console.log("ciao");
       let result = ``;
-      let colCount = 0;
-      let row = posts.length % 3 == 0 
-        ? posts.length % 3 
-        : (posts.length % 3) +1;
+      let count = 0;
+      let row = posts.length % 6 == 0 
+        ? Math.floor(posts.length / 6)
+        : Math.floor(posts.length / 6) +1;
   
-      for (let j = 0; j < row; j++) {
+      for (let j = 1; j <= row; j++) {
         result += `<div class="row">`
-
-        for (let i = 0; i < posts.length; i++) {
-          colCount++;
-  
-          let post = `
-          <article class="col-4">
-              <img src="${posts[i]["img_name"]}" alt="Post image" />
+        
+        for (let i = 0; (i < 6) && (count < posts.length-1); i++) {
+          result += `
+          <article class="col-4 col-lg-2">
+              <a href="post.php?id=${posts[count]["id"]}" >
+              <img src="${posts[count]["img_name"]}" alt="Post by ${posts[count]["username"]} on ${posts[count]["date"]}" />
+              </a>
           </article>
           `;
-          result += post;
+          count++;
         }
 
-        let missCol = colCount % 3;
-        if (missCol == 0){
-          colCount = 0;
-        }else{
-          for (let i = 0; i < missCol; i++) {
-            result += `
-            <article class="col-4">
-            </article>
-            `;
-          }
-        }
+        if (j != row)
+          result += `</div>`
+      }
 
+      let missCol = count % 6;
+      if (missCol != 0){
+        for (let i = 0; i < 6-missCol; i++) {
+          result += `
+          <article class="col-4 col-lg-2">
+          </article>
+          `;
+        }
         result += `</div>`
       }
+
+      if(posts[posts.length-1]){
+        document.getElementById('posts_section')
+                .closest('.scrollable_div')
+                .querySelector('footer')
+                .innerHTML = "finito";
+      }
+
       return result;
     }
 }

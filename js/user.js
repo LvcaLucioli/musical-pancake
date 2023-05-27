@@ -58,7 +58,7 @@ button.addEventListener("touchend", function(event) {
 
 
 // set posts scrollbar
-let scrollableDiv = document.querySelector('.scrollable_feed');
+let scrollableDiv = document.querySelectorAll('.scrollable_div')[1];
 let isScrolling;
 let header = document.querySelector('.slide_button');
 
@@ -70,24 +70,21 @@ scrollableDiv.addEventListener('scroll', function() {
     }, 700);
 });
 
-if (iOS()){
-    let scroll_els = document.querySelectorAll('.scrollable_el');
-    scroll_els[0].style.paddingRight = "80px";
-    for (var i = 0; i < scroll_els.length; i++) {
-        scroll_els[i].style.paddingRight = "40px";
-    }
+// if (iOS()){
+//     let scroll_els = document.querySelectorAll('.scrollable_el');
+//     scroll_els[0].style.paddingRight = "80px";
+//     for (var i = 0; i < scroll_els.length; i++) {
+//         scroll_els[i].style.paddingRight = "40px";
+//     }
 
-    if (IS_MOBILE){
-        document.querySelector('#drawer footer button')
-                .style
-                .marginBottom = "20vh";
-    }else{
-        document.querySelector('#drawer footer button')
-                .style
-                .marginBottom = "12vh";
-    }
+//     if (IS_MOBILE){
+//         document.querySelector('#drawer footer button')
+//                 .style
+//                 .marginBottom = "20vh";
+//     }else{
+//         document.querySelector('#drawer footer button')
+//                 .style
+//                 .marginBottom = "12vh";
+//     }
     
-}
-
-base.loadMore();
-base.loadMore();
+// }
