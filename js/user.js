@@ -18,15 +18,11 @@ function loadMore(){
 }
 
 function checkSwipe() {
-    if (base.currentState != UserHelper.STATES[0]){
         if (touchEndY - touchStartY < -SWIPE_TH) {
-            base.slideDrawer();
+            base.swipeUp();
+        } else if (touchEndY - touchStartY > SWIPE_TH) {
+            base.swipeDown();
         }
-    }else{
-        if (touchEndY - touchStartY > SWIPE_TH) {
-            base.slideDrawer();
-        }
-    }
 }
 
 function slideDrawer(){
@@ -37,6 +33,10 @@ function switchSection(target){
     base.switchSection(target);
 }
 
+function clickUserBtn(){
+    base.clickUserBtn();
+}
+
 
 
 const base = new UserHelper();
@@ -45,7 +45,7 @@ const base = new UserHelper();
 var touchStartY = 0;
 var touchEndY = 0;
 const section = document.querySelector("#posts_section");
-const button = document.querySelector("#slide_button");
+const button = document.querySelector(".slide_button");
 button.addEventListener("touchstart", function(event) {
     touchStartY = event.changedTouches[0].screenY;
 }, { passive: true });
@@ -57,10 +57,10 @@ button.addEventListener("touchend", function(event) {
 
 
 
-// set posts scrollbar
-let scrollableDiv = document.querySelector('.scrollable_feed');
+// set scrolling effects scrollbar
+let init = true;
+let scrollableDiv = document.querySelector('.scrollable_div');
 let isScrolling;
-let header = document.querySelector('.slide_button');
 
 scrollableDiv.addEventListener('scroll', function() {
     window.clearTimeout(isScrolling);
@@ -68,26 +68,43 @@ scrollableDiv.addEventListener('scroll', function() {
     isScrolling = setTimeout(function() {
         scrollableDiv.classList.remove('show-scrollbar');
     }, 700);
+
+    if(init) {
+        base.swipeUp();
+        init = false;
+    }
 });
 
-if (iOS()){
-    let scroll_els = document.querySelectorAll('.scrollable_el');
-    scroll_els[0].style.paddingRight = "80px";
-    for (var i = 0; i < scroll_els.length; i++) {
-        scroll_els[i].style.paddingRight = "40px";
-    }
+let scrollableUser = document.querySelector('.scrollable_user');
+let isScrollingUser;
+
+let header = document.querySelector('header[aria-label="primary-menu"]');
+scrollableUser.addEventListener('scroll', function() {
+    window.clearTimeout(isScrollingUser);
+    scrollableUser.classList.add('show-scrollbar');
+    isScrollingUser = setTimeout(function() {
+        scrollableUser.classList.remove('show-scrollbar');
+    }, 700);
 
     if (IS_MOBILE){
-        document.querySelector('#drawer footer button')
-                .style
-                .marginBottom = "20vh";
-    }else{
-        document.querySelector('#drawer footer button')
-                .style
-                .marginBottom = "12vh";
+        if (scrollableUser.scrollTop > 10){
+            header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
+        } else {
+            header.style.boxShadow = "none";
+        }
     }
-    
-}
 
-base.loadMore();
-base.loadMore();
+    if(init){
+        base.swipeDown();
+        init = false;
+    }
+});
+
+// if (iOS()){
+//     let scroll_els = document.querySelectorAll('.scrollable_el');
+//     scroll_els[0].style.paddingRight = "80px";
+//     for (var i = 0; i < scroll_els.length; i++) {
+//         scroll_els[i].style.paddingRight = "40px";
+//     }
+    
+// }

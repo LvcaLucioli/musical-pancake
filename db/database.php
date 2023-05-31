@@ -51,7 +51,7 @@ class DatabaseHelper{
 
     public function getUser($username, $date){
         $query = "SELECT 
-        q1.username, q1.propic, q1.bio, q1.followers, q2.following
+        q1.username, q1.propic, q1.bio, COALESCE(q1.followers, 0) AS followers, COALESCE(q2.following, 0) AS following
         FROM (
             SELECT 
                 u.username, u.propic, u.bio, COUNT(*) AS followers
@@ -64,7 +64,7 @@ class DatabaseHelper{
                 GROUP BY 
                     u.username
         ) AS q1
-        JOIN (
+        LEFT JOIN (
             SELECT 
                     follower,
                     COUNT(*) AS following
@@ -98,9 +98,15 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssii', $username, $date, $i, $n);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        $stmt = $this->db->prepare($query);
+        $i += $n;
+        $stmt->bind_param('ssii', $username, $date, $i, $n);
+        $stmt->execute();
+        $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
+
+        return $result;
     }
 
     public function getNotifications(){
@@ -141,6 +147,42 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function checkFollow($user, $target){
+        $query = "SELECT *
+        FROM followers
+        WHERE follower = ?
+        AND followed = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $user, $target);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all(MYSQLI_ASSOC)) == 0;
+    }
+
+    public function follow($user, $target){
+        // aggiungere gestione notifiche
+        $query = "INSERT INTO `followers` (`follower`, `followed`, `date`) VALUES
+        (?, ?, NOW())";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $user, $target);
+        $stmt->execute();
+    }
+
+    public function unfollow($user, $target){
+        // aggiungere gestione notifiche
+        $query = "DELETE
+        FROM followers
+        WHERE follower = ?
+        AND followed = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $user, $target);
+        $stmt->execute();
     }
 }
 ?>

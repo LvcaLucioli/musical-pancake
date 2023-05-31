@@ -72,7 +72,7 @@
             <main>
                 <?php
                 if (isset($templateParams["main"])) {
-                    require($templateParams["main"]);
+                    require __DIR__ . "\\" . $templateParams["main"];
                 }
                 ?>
             </main>
@@ -81,7 +81,7 @@
         <div class="col-lg-3 d-none d-lg-block profile-aside">
             <?php
             if (isset($templateParams["aside"])) {
-                require($templateParams["aside"]);
+                require __DIR__ . "\\" .$templateParams["aside"];
             } ?>
         </div>
     </div>

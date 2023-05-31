@@ -1,27 +1,34 @@
-        <header></header>
+        <div class="scrollable_user">
+            <div class="scrollable_el">
 
-        <div class="scrollable_div">
+            <header></header>
+
             <section id="userlist_section">
-                
+                <br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb
+                <br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb
             </section>
+            </div>
         </div>
 
         <section id="drawer">
             <div class="row slide_button">
                 <button onclick="slideDrawer();" id="slide_button">
+                    <div class="swipe_down-btn text-center">
+                        <img src="./resources/swipedown__icon.png" alt="Add a new post" />
+                    </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4 col-7 pr-0">
                             <p class="posts_count">
                                 <span class="num_posts"></span> posts
                             </p>
                         </div>
-                        <div class="col-4 p-0">
+                        <div class="col-md-4 col-2 p-0">
                             <div class="swipe_div">
                                 <img class="swipe_icon" src="./resources/swipe_icon.png" alt="Add a new post" />
                                 <pre>swipe up</pre>
                             </div>
                         </div>
-                        <div class="col-4 p-0">
+                        <div class="col-2 col-md-4 p-0">
                             <div class="add_button">
                             <a href=''>
                                 <img class="add_icon" src="./resources/add_icon.png" alt="Add a new post" />
@@ -33,14 +40,17 @@
             </div>
             
             <div class="row">
-                <div class="scrollable_feed">
+                <div class="scrollable_div">
                     <div class="scrollable_el">
                         <section id="posts_section">
                             
                         </section>
 
                         <footer>
-                            <button onclick="loadMore();">load more</button>
+                            <button onclick="loadMore();">
+                            view more
+                            <img src="./resources/load.png">
+                            </button>
                         </footer>
                     </div>
                 </div>

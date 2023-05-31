@@ -76,7 +76,6 @@ async function loadMore() {
         formData.append('i', lastPost);
         formData.append('n', N_POST);
         formData.append('date', date);
-        console.log(date);
         lastPost += N_POST;
         const response = await axios.post('api/api-posts-followed.php', formData);
         section.innerHTML = section.innerHTML + generatePosts(response.data);
