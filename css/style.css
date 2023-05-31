@@ -1,20 +1,21 @@
 /* scrollbar */
+
 ::-webkit-scrollbar {
     width: 20px;
     background-color: transparent;
 }
-  
+
 ::-webkit-scrollbar-thumb {
     background-color: transparent;
     border-radius: 20px;
     border: 8px solid transparent;
     background-clip: content-box;
 }
-  
+
 .show-scrollbar::-webkit-scrollbar-thumb {
     background-color: #dadada;
 }
-  
+
 .hide-scrollbar::-webkit-scrollbar-thumb {
     background-color: transparent;
 }
@@ -26,7 +27,8 @@
 
 
 /*  base */
-html{
+
+html {
     overflow: hidden;
 }
 
@@ -35,7 +37,7 @@ body {
     overflow: hidden;
 }
 
-main{
+main {
     width: 100%;
     height: 100;
     margin: 0;
@@ -52,7 +54,7 @@ button {
 
 button:focus,
 button:active {
-  outline: none !important;
+    outline: none !important;
 }
 
 body>.row {
@@ -65,8 +67,8 @@ main>.container>.row {
 }
 
 
-
 /* main navbar */
+
 header[aria-label="primary-menu"] {
     position: relative;
     display: flex;
@@ -130,12 +132,17 @@ header[aria-label="primary-menu"] nav ul li div img {
 
 
 /*  scrollable element */
-.scroll-wrap{
-    width: 100%;
+
+.scroll-wrap {
     height: 100vh;
     overflow: hidden;
     margin: 0;
     padding-bottom: 0%;
+}
+
+.scroll-wrap {
+    display: flex;
+    justify-content: center;
 }
 
 .scrollable_div {
@@ -158,12 +165,12 @@ header[aria-label="primary-menu"] nav ul li div img {
     position: fixed;
 }
 
-.scrollable_el{
+.scrollable_el {
     padding-left: 40px;
     padding-right: 20px;
 }
 
-#drawer{
+#drawer {
     position: fixed;
     width: 103%;
     height: 110vh;
@@ -175,14 +182,13 @@ header[aria-label="primary-menu"] nav ul li div img {
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.15);
     margin-left: -2.5%;
     padding-left: 2.5%;
-
 }
 
 #drawer .row {
     margin: 0;
 }
 
-.slide_button{
+.slide_button {
     height: 9%;
     top: 20%;
 }
@@ -197,8 +203,8 @@ header[aria-label="primary-menu"] nav ul li div img {
 }
 
 
-
 /* userpage fallows navbar */
+
 main nav[aria-label="followers/following-nav"] {
     background-color: white;
     box-shadow: none;
@@ -214,7 +220,7 @@ main nav[aria-label="followers/following-nav"] {
 
 main nav[aria-label="followers/following-nav"].active {
     background-color: black;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
 }
@@ -245,7 +251,7 @@ main nav[aria-label="followers/following-nav"] ul li a {
     font-weight: bold;
 }
 
-main nav[aria-label="followers/following-nav"] ul li a:hover{
+main nav[aria-label="followers/following-nav"] ul li a:hover {
     opacity: none;
 }
 
@@ -255,8 +261,8 @@ main nav[aria-label="followers/following-nav"] ul li a.active {
 }
 
 
-
 /* feed navbar */
+
 main nav[aria-label="feed-menu"] {
     display: flex;
     align-items: center;
@@ -299,6 +305,7 @@ main nav[aria-label="feed-menu"] ul li a.active {
 
 
 /* posts list */
+
 main div[id="scrollable_div"]>section {
     display: flex;
     flex-direction: column;
@@ -331,7 +338,7 @@ main>section>article>section>img {
     width: 293px;
 }
 
-main .scrollable_el > footer button {
+main .scrollable_el>footer button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -369,36 +376,36 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     align-items: center;
 }
 
-
 .profile-aside {
     height: 60vh;
     padding-top: 10px;
 }
 
-.profile-aside nav button {
-    border: 0;
-    width: 100%;
+.profile-aside .navbar {
     padding: 0;
 }
 
-.profile-aside nav {
-    padding: 0;
-}
-
-.profile-aside nav ul {
+.profile-aside .navbar ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    padding: 0;
 }
 
-.profile-aside nav ul li {
+.profile-aside .navbar ul li {
     margin: auto;
     border: 2px solid rgba(0, 0, 0, 0.1);
     width: 100%;
 }
 
-.profile-aside nav ul li button img {
+.profile-aside .navbar ul li button {
+    border: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.profile-aside .navbar ul li button img {
     height: 24px;
     width: 24px;
 }
@@ -409,28 +416,33 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     height: 60vh;
 }
 
+#search-section {
+    padding-right: 0;
+    width: 100%;
+}
 
 
-/* search section */
-#search-section header div {
+/* #search-section header div {
     display: flex;
     align-items: center;
     background-color: #fafafa;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
     padding: 8px;
-}
+} */
 
-#search-section header div input {
+
+/* #search-section header div input {
     flex-grow: 1;
     border: none;
     background-color: transparent;
     outline: none;
     font-size: 14px;
     color: #262626;
-}
+} */
 
-#search-section header div button {
+
+/* #search-section header div button {
     margin-left: 8px;
     background-color: transparent;
     border: none;
@@ -438,19 +450,84 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     cursor: pointer;
     height: 100%;
     border: 0;
+} */
+
+
+/* .row.search-result {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    border-top: 0;
+    padding: 5px;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+} */
+
+.row.search-result img {
+    width: 24px;
+    height: 24px;
 }
 
-.profile-aside nav button:focus {
+.profile-aside .navbar button:focus {
     outline: none;
 }
 
-.profile-aside nav button.active {
+.profile-aside .navbar button.active {
     background-color: #fafafa;
+}
+
+#notifications-section {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+#search-section>header {
+    width: 100%;
+}
+
+#search-section>header>div {
+    width: 100%;
+}
+
+#search-section>header>div>input {
+    width: 100%;
+}
+
+#search-section {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.row.notifications {
+    width: 100%;
+    display: flex;
+    margin: 0 0;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.row.search {
+    display: flex;
+    width: 100%;
+    margin: 0 0;
+    padding: 0;
+    justify-content: space-between;
 }
 
 
 /* user header */
-.user_header{
+
+.user_header {
     max-width: 80%;
     margin: 2% auto 0;
     height: 100%;
@@ -458,16 +535,16 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     overflow: hidden;
 }
 
-.user_header img{
+.user_header img {
     width: 110%;
     height: auto;
     border-radius: 1000px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
     margin-top: 10%;
     margin-bottom: 10%;
 }
 
-.username{
+.username {
     padding-top: 0.5vw;
     margin-left: 0px;
     font-weight: bold;
@@ -475,38 +552,38 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     margin-bottom: 3%;
 }
 
-.bio{
+.bio {
     margin-left: 15px;
     font-size: 1em;
     margin-bottom: 0;
 }
 
-.edit_user_btn{
+.edit_user_btn {
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
-.user_info{
+.user_info {
     padding-left: 5% !important;
 }
 
-.num{
+.num {
     font-size: 1.3em;
 }
 
-.posts_count{
+.posts_count {
     padding: 0.7% 0 5% 6%;
     text-align: left;
     font-size: 1.2em;
     margin: 0;
 }
 
-.num_posts{
+.num_posts {
     font-size: 1.8em;
 }
 
-.add_button{
+.add_button {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -514,7 +591,7 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     padding-left: 33%;
 }
 
-.add_icon{
+.add_icon {
     width: 40px;
     height: auto;
     margin: 0;
@@ -524,7 +601,7 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     z-index: 9999;
 }
 
-.swipe_div{
+.swipe_div {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -534,13 +611,13 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     transition-timing-function: ease-in-out;
 }
 
-.swipe_div pre{
+.swipe_div pre {
     color: white;
     font-size: 0.7em;
     margin-top: 3px;
 }
 
-.swipe_icon{
+.swipe_icon {
     width: 15px;
     height: auto;
     margin: 0;
@@ -548,8 +625,6 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
     margin-top: 1vw;
     margin-bottom: auto;
 }
-
-
 
 @media (max-width: 767px) {
     /* Smartphone rule */
@@ -574,124 +649,95 @@ main>section>article>header>div[class="row"]>div[class="col-9"]>a {
         margin: 10px auto 10px;
         top: 10px;
     }
-
-    main nav[aria-label="feed-menu"] ul li a:hover{
+    main nav[aria-label="feed-menu"] ul li a:hover {
         opacity: none;
     }
-
     .scrollable_div {
         height: 90vh;
     }
-    
     .scrollable_feed {
         height: 93%;
     }
-
-    main .scrollable_el > footer button{
+    main .scrollable_el>footer button {
         margin: 7% auto 15%;
         width: 60%;
     }
-
     main nav[aria-label="followers/following-nav"] {
         margin: 15px 10% 10px;
         top: 15px;
     }
-
-    main nav[aria-label="followers/following-nav"] ul li a:hover{
+    main nav[aria-label="followers/following-nav"] ul li a:hover {
         opacity: none;
     }
-
-    .add_button{
-        
+    .add_button {
         padding-left: 33%;
     }
-
-    #drawer{
+    #drawer {
         border-radius: 40px;
         width: 103%;
     }
-
-    .scrollable_feed{
+    .scrollable_feed {
         width: 103%;
     }
 }
-
-
 
 @media (min-width: 769px) and (max-width: 1023px) {
     /* Tablet rule */
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
     }
-
     header[aria-label="primary-menu"]>div {
         justify-content: flex-end;
         margin-right: 50px;
     }
-
     header[aria-label="primary-menu"]>div {
         justify-content: center;
     }
-
     header[aria-label="primary-menu"] {
         box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
     }
 }
-
-
-
 
 @media (min-width: 1024px) {
     /* Desktop rule */
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
     }
-
     header[aria-label="primary-menu"]>div {
         justify-content: flex-end;
         margin-right: 50px;
     }
-
     header[aria-label="primary-menu"]>div {
         justify-content: center;
     }
-
     header[aria-label="primary-menu"] {
         box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
     }
-    
     main nav[aria-label="feed-menu"] {
         margin: 15px auto 10px;
         top: 15px;
     }
-
-    main nav[aria-label="feed-menu"] ul li a:hover{
+    main nav[aria-label="feed-menu"] ul li a:hover {
         opacity: 0.7;
     }
-
     .scrollable_div {
         height: 75%;
     }
-    
     .scrollable_feed {
         height: 92%;
         width: 65vw;
     }
-
-    main .scrollable_el > footer button{
+    main .scrollable_el>footer button {
         margin: 2% auto 3%;
         width: 20%;
     }
-
-    main nav[aria-label="followers/following-nav"] ul li a:hover{
+    main nav[aria-label="followers/following-nav"] ul li a:hover {
         opacity: 0.7;
     }
-
-    .add_button{
+    .add_button {
         padding-left: 0%;
     }
-
-    #drawer{
+    #drawer {
         border-radius: 0 35px;
         width: 69.5vw;
     }

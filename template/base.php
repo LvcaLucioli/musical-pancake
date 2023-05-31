@@ -6,6 +6,12 @@
     <title><?php echo $templateParams["title"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="js/class/MyAside.js"></script>
+    <script src="js/class/AbstractSection.js"></script>
+    <script src="js/class/AsideItem.js"></script>
+    <script src="js/class/NotificationsSection.js"></script>
+    <script src="js/class/NotImplementedError.js"></script>
+    <script src="js/class/SearchSection.js"></script> 
 </head>
 
 <body>
@@ -62,7 +68,7 @@
         </nav>
     </header>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             <main>
                 <?php
                 if (isset($templateParams["main"])) {
@@ -72,14 +78,13 @@
             </main>
             <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         </div>
-        <div class="col-lg-4 d-none d-lg-block profile-aside">
+        <div class="col-lg-3 d-none d-lg-block profile-aside">
             <?php
             if (isset($templateParams["aside"])) {
                 require($templateParams["aside"]);
             } ?>
         </div>
     </div>
-
     <?php
     if (isset($templateParams["js"])) :
         foreach ($templateParams["js"] as $script) :
@@ -89,6 +94,7 @@
         endforeach;
     endif;
     ?>
+   
 
 </body>
 
