@@ -1,14 +1,21 @@
-        <header></header>
+        <div class="scrollable_user">
+            <div class="scrollable_el">
 
-        <div class="scrollable_div">
+            <header></header>
+
             <section id="userlist_section">
-                
+                <br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb
+                <br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb
             </section>
+            </div>
         </div>
 
         <section id="drawer">
             <div class="row slide_button">
                 <button onclick="slideDrawer();" id="slide_button">
+                    <div class="swipe_down-btn text-center">
+                        <img src="./resources/swipedown__icon.png" alt="Add a new post" />
+                    </div>
                     <div class="row">
                         <div class="col-md-4 col-7 pr-0">
                             <p class="posts_count">
@@ -40,7 +47,10 @@
                         </section>
 
                         <footer>
-                            <button onclick="loadMore();">load more</button>
+                            <button onclick="loadMore();">
+                            view more
+                            <img src="./resources/load.png">
+                            </button>
                         </footer>
                     </div>
                 </div>

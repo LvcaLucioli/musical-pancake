@@ -1,5 +1,5 @@
         <div class="scroll-wrap">
-            <div class="col-lg-8 scrollable_feed">
+            <div class="scrollable_feed">
                 <div class="scrollable_el">
                     <nav aria-label="feed-menu">
                         <ul>
