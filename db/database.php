@@ -1,29 +1,33 @@
 <?php
-class DatabaseHelper{
+class DatabaseHelper
+{
     private $db;
 
-    public function __construct($servername, $username, $password, $dbname, $port){
+    public function __construct($servername, $username, $password, $dbname, $port)
+    {
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
         if ($this->db->connect_error) {
             die("Connection failed: " . $this->db->connect_error);
         }
     }
 
-    public function getDiscPosts($n){
+    public function getDiscPosts($n)
+    {
         $stmt = $this->db->prepare("SELECT img_name 
         FROM posts p, users u
         WHERE p.user = u.username
         AND u.is_in_disc = 1
         ORDER BY RAND()
         LIMIT ?");
-        $stmt->bind_param('i',$n);
+        $stmt->bind_param('i', $n);
         $stmt->execute();
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getPosts($i, $n, $date){
+    public function getPosts($i, $n, $date)
+    {
         $query = "SELECT *
         FROM posts p, users u
         WHERE p.user = u.username
@@ -39,7 +43,8 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getLikeList($postId){
+    public function getLikeList($postId)
+    {
         $query = "SELECT user FROM likes WHERE post = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $postId);
@@ -49,7 +54,8 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUser($username, $date){
+    public function getUser($username, $date)
+    {
         $query = "SELECT 
         q1.username, q1.propic, q1.bio, COALESCE(q1.followers, 0) AS followers, COALESCE(q2.following, 0) AS following
         FROM (
@@ -77,16 +83,27 @@ class DatabaseHelper{
                     follower
         ) AS q2
         ON q1.username = q2.follower;";
-      
+
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssss', $date, $username, $date, $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
+        if ($result->num_rows == 0) {
+            error_log(var_export($result, true));
+            $query = "SELECT u.username, u.propic, u.bio FROM users u WHERE u.username = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            error_log(var_export($result, true));
+        }
+
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUserPosts($username, $i, $n, $date){
+    public function getUserPosts($username, $i, $n, $date)
+    {
         $query = "SELECT *
         FROM posts p, users u
         WHERE p.user = ?
@@ -109,7 +126,8 @@ class DatabaseHelper{
         return $result;
     }
 
-    public function getNotifications(){
+    public function getNotifications()
+    {
         $query = "SELECT n.*
         FROM notifications n, users u
         WHERE n.user = u.username
@@ -122,7 +140,8 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getSearchResult($searchQuery){
+    public function getSearchResult($searchQuery)
+    {
         $query = "SELECT username, propic FROM users WHERE username LIKE CONCAT('%', ?, '%')";
 
         $stmt = $this->db->prepare($query);
@@ -134,7 +153,8 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUserNPosts($username, $date){
+    public function getUserNPosts($username, $date)
+    {
         $query = "SELECT COUNT(*)
         FROM posts p, users u
         WHERE p.user = ?
@@ -149,7 +169,8 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function checkFollow($user, $target){
+    public function checkFollow($user, $target)
+    {
         $query = "SELECT *
         FROM followers
         WHERE follower = ?
@@ -163,7 +184,8 @@ class DatabaseHelper{
         return count($result->fetch_all(MYSQLI_ASSOC)) == 0;
     }
 
-    public function follow($user, $target){
+    public function follow($user, $target)
+    {
         // aggiungere gestione notifiche
         $query = "INSERT INTO `followers` (`follower`, `followed`, `date`) VALUES
         (?, ?, NOW())";
@@ -173,7 +195,8 @@ class DatabaseHelper{
         $stmt->execute();
     }
 
-    public function unfollow($user, $target){
+    public function unfollow($user, $target)
+    {
         // aggiungere gestione notifiche
         $query = "DELETE
         FROM followers
@@ -185,4 +208,3 @@ class DatabaseHelper{
         $stmt->execute();
     }
 }
-?>

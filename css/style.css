@@ -60,7 +60,7 @@ button:active {
 
 body>.row {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 main>.container>.row {
@@ -331,6 +331,14 @@ body>div>div.col-lg-8 {
     transition-timing-function: ease-in-out;
 }
 
+.profile-aside-container {
+    background-color: black;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
 .profile-aside {
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
@@ -338,10 +346,15 @@ body>div>div.col-lg-8 {
     padding-top: 10vh;
     margin-top: 0vh;
     width: 50vh;
+    margin-right: 20px;
 }
 
 .profile-aside .navbar {
     padding: 0;
+}
+
+.profile-aside-container.navbar-nav {
+    border-radius: 10px;
 }
 
 .profile-aside .navbar ul {
@@ -350,6 +363,7 @@ body>div>div.col-lg-8 {
     justify-content: space-between;
     width: 100%;
     padding: 0;
+    border-radius: 10px;
 }
 
 .profile-aside .navbar ul li {
@@ -375,7 +389,7 @@ body>div>div.col-lg-8 {
     height: 60vh;
 }
 
-#search-section {
+.search-section {
     padding-right: 0;
     width: 100%;
 }
@@ -437,34 +451,35 @@ body>div>div.col-lg-8 {
     background-color: #fafafa;
 }
 
-#notifications-section {
+.notifications-section {
     width: 100%;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: space-between;
+    overflow-y: scroll;
 }
 
-#search-section>header {
+.search-section>header {
     width: 100%;
 }
 
-#search-section>header>div {
+.search-section>header>div {
     width: 100%;
 }
 
-#search-section>header>div>input {
+.search-section>header>div>input {
     width: 100%;
 }
 
-#search-section {
+.search-section {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-content: space-between;
+    align-items: flex-start;
+    overflow-y: auto;
+    height: 400px;
 }
 
 .row.notifications {
@@ -577,6 +592,12 @@ body>div>div.col-lg-8 {
     padding-left: 2%;
     height: 30px;
 }
+
+
+/* .profile-aside.user_btn {
+    width: 10vw;
+    height: 10px;
+} */
 
 .user_btn img {
     margin: 0%;

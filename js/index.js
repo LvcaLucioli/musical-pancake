@@ -86,8 +86,6 @@ async function loadMore() {
     }
 }
 
-
-
 const now = new Date();
 const year = now.getFullYear();
 const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -149,5 +147,3 @@ if (iOS()) {
             .marginBottom = "12vh";
     }
 }
-
-const aside = new MyAside();

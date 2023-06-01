@@ -1,0 +1,1 @@
+const aside = new MyAside();
