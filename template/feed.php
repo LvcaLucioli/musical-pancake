@@ -14,7 +14,7 @@
 
                     <section></section>
                     <footer>
-                        <button onclick="loadMore();return false;">load more</button>
+                        <button onclick="loadMore();">load more</button>
                     </footer>
                 </div>
             </div>

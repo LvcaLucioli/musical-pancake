@@ -26,16 +26,7 @@ class UserHelper{
     
 
     constructor(){
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-
         this.userBtn = "unset";
-        this.date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         this.user = this._get("username");
         this.currentState = UserHelper.STATES[0];
         this.init = true;
@@ -44,12 +35,11 @@ class UserHelper{
         const formData = new FormData();
 
         formData.append('username', this.user);
-        formData.append('date', this.date);
         axios.post('api/api-user.php', formData).then(response => {
             header.innerHTML = this._generateUserPage(response.data);
         });
 
-        this.postsDrawer = new PostsDrawer(this.user, this.date);
+        this.postsDrawer = new PostsDrawer(this.user);
 
         if(iOS() && IS_MOBILE){
             if(window.innerWidth < 768) {

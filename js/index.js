@@ -6,7 +6,6 @@ const N_POST = 4;
 const N_BLOCK_DISC = 36;
 
 
-
 function iOS() {
     return [
             'iPad Simulator',
@@ -43,11 +42,69 @@ async function switchHome(tab) {
     }
 }
 
+function generatePosts(posts) {
+    let result = '';
+
+    for (let i = 0; i < posts.length - 1; i++) {
+        let post = `
+        <article>
+            <header>
+                <div class="row">
+                    <div class="col-3">
+                        <a href="user.php?username=${posts[i]["user"]}">
+                        <!--<img src="${posts[i]["propic"]}" alt="Profile picture" />-->
+                        </a>
+                    </div>
+                    <div class="col-9">
+                        <a href="user.php?username=${posts[i]["user"]}">${posts[i]["user"]}</a>
+                    </div>
+                </div>
+            </header>
+            <section>
+                <img src="${posts[i]["img_name"]}" alt="Post picture" />
+                <p>${posts[i]["description"]}</p>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col-4">
+                        <a href="" onClick="likeClick(${posts[i]["is_liked"]}, ${posts[i]["user"]}, ${posts[i]["id"]})">
+                        <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="Like button" />
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <p>${posts[i]["n_likes"]} likes</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Published on ${posts[i]["date"]}</p>
+                    </div>
+                </div>
+            </section>
+            <footer>
+                <button onClick="switchHome(false)">Show comments</button>
+            </footer>
+        </article>
+        `;
+        result += post;
+    }
+
+    if (posts[posts.length - 1]) {
+        document.querySelector('.scrollable_feed footer')
+            .innerHTML = `
+                <button disabled>
+                    <img src="./resources/nomore_white.png">
+                </button>
+                `;
+    }
+
+    lastPost = posts[posts.length - 2]["id"];
+    return result;
+}
+
 function generateDiscovery(posts) {
     let result = ``;
     let colCount = 0;
 
-    for (let i = 0; i < posts.length; i++) {
+    for (let i = 0; i < posts.length - 1; i++) {
         colCount++;
         if (colCount == 1) {
             result += `<div class="row">`
@@ -73,11 +130,10 @@ async function loadMore() {
     const formData = new FormData();
 
     if (homeStatus) {
-        formData.append('i', lastPost);
         formData.append('n', N_POST);
-        formData.append('date', date);
-        lastPost += N_POST;
+        formData.append('last_id', lastPost);
         const response = await axios.post('api/api-posts-followed.php', formData);
+        console.log(response.data);
         section.innerHTML = section.innerHTML + generatePosts(response.data);
     } else {
         formData.append('n_block_disc', N_BLOCK_DISC);
@@ -86,23 +142,41 @@ async function loadMore() {
     }
 }
 
-const now = new Date();
-const year = now.getFullYear();
-const month = String(now.getMonth() + 1).padStart(2, '0');
-const day = String(now.getDate()).padStart(2, '0');
-const hours = String(now.getHours()).padStart(2, '0');
-const minutes = String(now.getMinutes()).padStart(2, '0');
-const seconds = String(now.getSeconds()).padStart(2, '0');
 
-const date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+function search(targetSection, querySection) {
+    const formData = new FormData();
+    let searchQuery = querySection.value;
+    // reset search area
+    let allSections = document.querySelectorAll(targetSection + " section");
+    allSections.forEach(function(section) {
+        section.remove();
+    });
+
+    if (searchQuery === "") return;
+
+    formData.append('q', searchQuery);
+    axios.post('api/api-search.php', formData).then(response => {
+
+
+        document.querySelector(targetSection).innerHTML += displaySearchResult(response.data);
+
+        document.querySelector(targetSection + " input").value = searchQuery;
+        document.querySelector(targetSection + " input").focus();
+    });
+}
+
+
+
 let homeStatus = true;
 let prevPosts = [``, 0, 0];
 let prevDisc = [``, 0, 0];
-let lastPost = 0;
+let lastPost = -1;
 
 const formData = new FormData();
 formData.append('n_block_disc', N_BLOCK_DISC);
 axios.post('api/api-discovery.php', formData).then(response => {
+    console.log(response.data);
     prevDisc[0] = generateDiscovery(response.data);
 });
 

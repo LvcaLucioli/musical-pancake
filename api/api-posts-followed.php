@@ -1,8 +1,8 @@
 <?php
 require_once '../bootstrap.php';
-$posts = $dbh->getPosts($_POST["i"], $_POST["n"], $_POST["date"]);
+$posts = $dbh->getFollowedPosts($_SESSION["username"], $_POST["last_id"], $_POST["n"]);
 
-for($i = 0; $i < count($posts); $i++){
+for($i = 0; $i < count($posts)-1; $i++){
     $posts[$i]["propic"] = UPLOAD_DIR.$posts[$i]["propic"];
     $posts[$i]["img_name"] = UPLOAD_DIR.$posts[$i]["img_name"];
 

@@ -1,6 +1,6 @@
 <?php
 require_once '../bootstrap.php';
-$user = $dbh->getUser($_POST["username"], $_POST["date"])[0];
+$user = $dbh->getUser($_POST["username"])[0];
 $user["propic"] = UPLOAD_DIR.$user["propic"];
 
 if($_SESSION["username"] == $_POST["username"]) {

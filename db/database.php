@@ -11,36 +11,64 @@ class DatabaseHelper
         }
     }
 
-    public function getDiscPosts($n)
-    {
-        $stmt = $this->db->prepare("SELECT img_name 
+    public function getDiscPosts($current_user, $n){
+        $stmt = $this->db->prepare("SELECT p.*
         FROM posts p, users u
-        WHERE p.user = u.username
+        WHERE p.user != ?
+        AND p.user = u.username
         AND u.is_in_disc = 1
         ORDER BY RAND()
         LIMIT ?");
-        $stmt->bind_param('i', $n);
+        $stmt->bind_param('si', $current_user, $n);
         $stmt->execute();
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getPosts($i, $n, $date)
-    {
-        $query = "SELECT *
-        FROM posts p, users u
-        WHERE p.user = u.username
-        AND p.date < ?
-        ORDER BY date DESC
-        LIMIT ?, ?;";
-
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sii', $date, $i, $n);
+    public function getFollowedPosts($current_user, $id, $n){
+        
+        if ($id != -1){
+            $query = "SELECT p.*, u.propic
+            FROM posts p, users u, followers f
+            WHERE f.follower = ?
+            AND f.followed = p.user
+            AND p.user = u.username
+            AND p.id < ? 
+            ORDER BY p.date DESC
+            LIMIT ?;";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sii', $current_user, $id, $n);
+        }else{
+            $query = "SELECT p.*, u.propic
+            FROM posts p, users u, followers f
+            WHERE f.follower = ?
+            AND f.followed = p.user
+            AND p.user = u.username
+            ORDER BY p.date DESC
+            LIMIT ?;";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('si', $current_user, $n);
+        }
+        
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        $query = "SELECT p.*, u.propic
+        FROM posts p, users u, followers f
+        WHERE f.follower = ?
+        AND f.followed = p.user
+        AND p.user = u.username
+        AND p.id < ? 
+        ORDER BY p.date DESC
+        LIMIT ?;";
+        $stmt = $this->db->prepare($query);
+        $id = $result[count($result)-1]["id"];
+        $stmt->bind_param('sii', $current_user, $id, $n);
+        $stmt->execute();
+        $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
+
+        return $result;
     }
 
     public function getLikeList($postId)
@@ -54,8 +82,7 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUser($username, $date)
-    {
+    public function getUser($username){
         $query = "SELECT 
         q1.username, q1.propic, q1.bio, COALESCE(q1.followers, 0) AS followers, COALESCE(q2.following, 0) AS following
         FROM (
@@ -65,8 +92,7 @@ class DatabaseHelper
                     users u
                     JOIN followers f ON u.username = f.followed
                 WHERE 
-                    f.date < ?
-                    AND u.username = ?
+                    u.username = ?
                 GROUP BY 
                     u.username
         ) AS q1
@@ -77,15 +103,14 @@ class DatabaseHelper
                 FROM 
                     followers
                 WHERE 
-                    date < ?
-                    AND follower = ?
+                    follower = ?
                 GROUP BY 
                     follower
         ) AS q2
         ON q1.username = q2.follower;";
 
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ssss', $date, $username, $date, $username);
+        $stmt->bind_param('ss', $username, $username);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -102,24 +127,42 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUserPosts($username, $i, $n, $date)
-    {
-        $query = "SELECT *
-        FROM posts p, users u
-        WHERE p.user = ?
-        AND p.user = u.username
-        AND p.date < ?
-        ORDER BY date DESC
-        LIMIT ?, ?;";
+    public function getUserPosts($username, $id, $n){
 
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ssii', $username, $date, $i, $n);
+        if ($id != -1){
+            $query = "SELECT p.*
+            FROM posts p, users u
+            WHERE p.user = ?
+            AND p.user = u.username
+            AND p.id < ? 
+            ORDER BY date DESC
+            LIMIT ?;";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sii', $username, $id, $n);
+        }else{
+            $query = "SELECT p.*
+            FROM posts p, users u
+            WHERE p.user = ?
+            AND p.user = u.username
+            ORDER BY date DESC
+            LIMIT ?;";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('si', $username, $n);
+        }
+        
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
+        $query = "SELECT p.*
+        FROM posts p, users u
+        WHERE p.user = ?
+        AND p.user = u.username
+        AND p.id < ? 
+        ORDER BY date DESC
+        LIMIT ?;";
         $stmt = $this->db->prepare($query);
-        $i += $n;
-        $stmt->bind_param('ssii', $username, $date, $i, $n);
+        $id = $result[count($result)-1]["id"];
+        $stmt->bind_param('sii', $username, $id, $n);
         $stmt->execute();
         $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
 
@@ -153,16 +196,14 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUserNPosts($username, $date)
-    {
+    public function getUserNPosts($username){
         $query = "SELECT COUNT(*)
         FROM posts p, users u
         WHERE p.user = ?
-        AND p.user = u.username
-        AND p.date < ?";
+        AND p.user = u.username";
 
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', $username, $date);
+        $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
 

@@ -24,8 +24,8 @@
                             } ?>>
                         <a class="nav-link" href="index.php">
                             <img src="./resources/icon-index<?php echo isIconActive("index.php"); ?>.png" alt="">
+                            <span class="label d-none d-md-inline">home</span>
                         </a>
-                        <span class="label d-none d-md-inline">home</span>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -34,8 +34,8 @@
                             } ?>>
                         <a class="nav-link" href="user.php?username=<?php echo $_SESSION['username']; ?>">
                             <img src="./resources/icon-profile<?php echo isIconActive("user.php"); ?>.png" alt="">
+                            <span class="label d-none d-md-inline">profile</span>
                         </a>
-                        <span class="label d-none d-md-inline">profile</span>
                     </div>
                 </li>
             </ul>
