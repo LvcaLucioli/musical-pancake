@@ -5,10 +5,9 @@ class PostsDrawer{
     }
     static N_POST = 36;
 
-    constructor(user, date){
-        this.date = date;
+    constructor(user){
         this.user = user;
-        this.lastPost = 0;
+        this.lastPost = -1;
         this.currentState = PostsDrawer.STATES[1];
         this.topHeight =  document.querySelector("body header").getBoundingClientRect().bottom + (IS_MOBILE ? 40 : 40);
         this.duration = 300;
@@ -17,7 +16,6 @@ class PostsDrawer{
         const formData = new FormData();
 
         formData.append('username', this.user);
-        formData.append('date', this.date);
         formData.append('n_posts', "target");
 
         axios.post('api/api-user-posts.php', formData).then(response => {
@@ -242,9 +240,7 @@ class PostsDrawer{
         const formData = new FormData();
         formData.append('username', this.user);
         formData.append('n_posts', PostsDrawer.N_POST);
-        formData.append('i', this.lastPost);
-        formData.append('date', this.date);
-        this.lastPost += PostsDrawer.N_POST;
+        formData.append('last_id', this.lastPost);
         axios.post('api/api-user-posts.php', formData).then(response => {
             section.innerHTML = section.innerHTML + this._generatePosts(response.data);
         });
@@ -297,6 +293,7 @@ class PostsDrawer{
                 `;
       }
 
+      this.lastPost = posts[posts.length-2]["id"];
       return result;
     }
 }

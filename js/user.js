@@ -99,12 +99,3 @@ scrollableUser.addEventListener('scroll', function() {
         init = false;
     }
 });
-
-// if (iOS()){
-//     let scroll_els = document.querySelectorAll('.scrollable_el');
-//     scroll_els[0].style.paddingRight = "80px";
-//     for (var i = 0; i < scroll_els.length; i++) {
-//         scroll_els[i].style.paddingRight = "40px";
-//     }
-    
-// }

@@ -98,6 +98,18 @@ header[aria-label="primary-menu"] nav ul li {
     padding: 10px;
 }
 
+header[aria-label="primary-menu"] nav ul li a{
+    padding: 10px;
+}
+
+header[aria-label="primary-menu"] a:link,
+header[aria-label="primary-menu"] a:visited,
+header[aria-label="primary-menu"] a:hover,
+header[aria-label="primary-menu"] a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
 header[aria-label="primary-menu"] nav ul li div {
     display: flex;
     flex-direction: row;
@@ -106,6 +118,7 @@ header[aria-label="primary-menu"] nav ul li div {
 
 header[aria-label="primary-menu"] nav ul li div span {
     padding: 10px;
+    padding-top: 20px;
 }
 
 header[aria-label="primary-menu"]>div {
@@ -128,6 +141,7 @@ header[aria-label="primary-menu"]>div>img {
 header[aria-label="primary-menu"] nav ul li div img {
     width: 24px;
     height: 24px;
+    margin-bottom: 3px;
 }
 
 .col-lg-6.scrollable_div {
@@ -905,6 +919,16 @@ main div.scrollable_div footer button[disabled] img{
     header[aria-label="primary-menu"] {
         box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
     }
+
+    header[aria-label="primary-menu"] a{
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+        border-radius: 10px;
+    }
+
+    header[aria-label="primary-menu"] a:hover{
+        background-color:rgb(237, 237, 240);
+    }
     
     main nav[aria-label="feed-menu"] {
         margin: 15px auto 10px;
@@ -1088,6 +1112,11 @@ main div.scrollable_div footer button[disabled] img{
         margin-top: 1vh;
     }
 
+    main div.scrollable_div footer button img{
+        width: 100%;
+        max-width: 40px;
+    }
+
     main div.scrollable_div footer button[disabled] img{
         max-width: 55px;
         margin-left: -0.5vw;
@@ -1118,6 +1147,6 @@ main div.scrollable_div footer button[disabled] img{
         max-width: 260px;
         border-radius: 100px;
         font-size: 1.4em;
-        margin-bottom: 15%;
+        margin-bottom: 20vh;
     }
 }

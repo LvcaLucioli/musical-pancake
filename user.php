@@ -10,7 +10,6 @@
     $templateParams["js"] = array(
         "https://unpkg.com/axios/dist/axios.min.js",
         "js/base.js",
-        "js/posts_list.js",
         "js/class/PostsDrawer.js",
         "js/class/UserHelper.js",
         "js/class/Follows.js",
