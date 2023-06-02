@@ -25,8 +25,7 @@ class SearchSection extends AbstractSection {
 
     clickUserBtn(userBtn) {
         const formData = new FormData();
-        formData.append('username', this.user);
-
+        formData.append('username', userBtn.parentNode.querySelector("p").textContent);;
         if (userBtn.textContent.includes("settings")) {
             window.location.href = "./settings.php";
         } else if (userBtn.textContent.includes("following")) {
@@ -50,9 +49,10 @@ class SearchSection extends AbstractSection {
                  <input type="search" placeholder="search" aria-label="search" oninput="aside.sections[0].search(this); ">
              </div>
          </header></section>`;
+
     }
 
-    displaySearchResult(searchResult, searchQuery) {
+    displaySearchResult(searchResult) {
         var i = 0;
 
         searchResult.forEach(element => {
@@ -76,9 +76,10 @@ class SearchSection extends AbstractSection {
             axios.post('api/api-user.php', formData).then(response => {
                 button = SearchSection.USER_BTN[response.data["btn"]];
                 this.items[i] = new AsideItem(SearchSection.itemClass, element["propic"], element["username"], element["username"], "", button);
-                document.querySelector(SearchSection.sectionId).innerHTML += this.items[i].getHTMLItem();
+                var child = document.createElement("div");
+                document.querySelector(SearchSection.sectionId).appendChild(child);
+                child.outerHTML = this.items[i].getHTMLItem();
             });
-
             i++;
         });
     }
@@ -99,13 +100,8 @@ class SearchSection extends AbstractSection {
         });
         formData.append('q', searchQuery);
         axios.post('api/api-search.php', formData).then(response => {
-            this.displaySearchResult(response.data, searchQuery);
-            // document.querySelector(SearchSection.sectionId).innerHTML += aside.sections[aside.activeSection].displaySearchResult(response.data);
-            document.querySelector(SearchSection.sectionId + " input").value = searchQuery;
-            document.querySelector(SearchSection.sectionId + " input").focus();
+            this.displaySearchResult(response.data);
         });
-
-
     }
 
 }
