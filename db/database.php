@@ -11,7 +11,8 @@ class DatabaseHelper
         }
     }
 
-    public function getDiscPosts($current_user, $n){
+    public function getDiscPosts($current_user, $n)
+    {
         $stmt = $this->db->prepare("SELECT p.*
         FROM posts p, users u
         WHERE p.user != ?
@@ -26,9 +27,10 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getFollowedPosts($current_user, $id, $n){
-        
-        if ($id != -1){
+    public function getFollowedPosts($current_user, $id, $n)
+    {
+
+        if ($id != -1) {
             $query = "SELECT p.*, u.propic
             FROM posts p, users u, followers f
             WHERE f.follower = ?
@@ -39,7 +41,7 @@ class DatabaseHelper
             LIMIT ?;";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sii', $current_user, $id, $n);
-        }else{
+        } else {
             $query = "SELECT p.*, u.propic
             FROM posts p, users u, followers f
             WHERE f.follower = ?
@@ -50,7 +52,7 @@ class DatabaseHelper
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('si', $current_user, $n);
         }
-        
+
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
@@ -63,7 +65,7 @@ class DatabaseHelper
         ORDER BY p.date DESC
         LIMIT ?;";
         $stmt = $this->db->prepare($query);
-        $id = $result[count($result)-1]["id"];
+        $id = $result[count($result) - 1]["id"];
         $stmt->bind_param('sii', $current_user, $id, $n);
         $stmt->execute();
         $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
@@ -82,7 +84,8 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUser($username){
+    public function getUser($username)
+    {
         $query = "SELECT 
         q1.username, q1.propic, q1.bio, COALESCE(q1.followers, 0) AS followers, COALESCE(q2.following, 0) AS following
         FROM (
@@ -127,9 +130,10 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUserPosts($username, $id, $n){
+    public function getUserPosts($username, $id, $n)
+    {
 
-        if ($id != -1){
+        if ($id != -1) {
             $query = "SELECT p.*
             FROM posts p, users u
             WHERE p.user = ?
@@ -139,7 +143,7 @@ class DatabaseHelper
             LIMIT ?;";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sii', $username, $id, $n);
-        }else{
+        } else {
             $query = "SELECT p.*
             FROM posts p, users u
             WHERE p.user = ?
@@ -149,7 +153,7 @@ class DatabaseHelper
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('si', $username, $n);
         }
-        
+
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
@@ -161,7 +165,7 @@ class DatabaseHelper
         ORDER BY date DESC
         LIMIT ?;";
         $stmt = $this->db->prepare($query);
-        $id = $result[count($result)-1]["id"];
+        $id = $result[count($result) - 1]["id"];
         $stmt->bind_param('sii', $username, $id, $n);
         $stmt->execute();
         $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
@@ -169,14 +173,16 @@ class DatabaseHelper
         return $result;
     }
 
-    public function getNotifications()
+    public function getNotifications($username)
     {
-        $query = "SELECT n.*
-        FROM notifications n, users u
-        WHERE n.user = u.username
-        ORDER BY date DESC";
+        $query = "SELECT n.user, n.content, u.propic, n.date
+        FROM notifications n
+        JOIN users u ON n.user = u.username
+        WHERE n.targetUser = ?
+        ORDER BY n.date DESC";
 
         $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -196,7 +202,8 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getUserNPosts($username){
+    public function getUserNPosts($username)
+    {
         $query = "SELECT COUNT(*)
         FROM posts p, users u
         WHERE p.user = ?
@@ -247,5 +254,41 @@ class DatabaseHelper
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ss', $user, $target);
         $stmt->execute();
+    }
+
+    public function deleteNotification($targetUser, $userPropic, $contentDate)
+    {
+        $splitted = explode(".", $contentDate);
+        $content = $splitted[0];
+        $date = $splitted[1];
+        
+
+        $query = "DELETE FROM notifications
+        WHERE targetUser = ?
+          AND content = ?
+          AND date = ?
+          AND user IN (
+            SELECT username
+            FROM users  
+            WHERE propic = ?
+          );
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssss', $targetUser, $content, $date, $userPropic);
+        error_log($targetUser);
+        error_log($content);
+        error_log($date);
+        error_log($userPropic);
+        $stmt->execute();
+        if ($this->db->affected_rows > 0) {
+            error_log("ok");
+        } else {
+            error_log("not ok");
+        }
+    }
+
+    private function notify()
+    {
     }
 }

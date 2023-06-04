@@ -25,7 +25,7 @@ class SearchSection extends AbstractSection {
 
     clickUserBtn(userBtn) {
         const formData = new FormData();
-        formData.append('username', userBtn.parentNode.querySelector("p").textContent);;
+        formData.append('username', userBtn.parentNode.querySelector("p").textContent);
         if (userBtn.textContent.includes("settings")) {
             window.location.href = "./settings.php";
         } else if (userBtn.textContent.includes("following")) {
