@@ -276,16 +276,7 @@ class DatabaseHelper
 
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssss', $targetUser, $content, $date, $userPropic);
-        error_log($targetUser);
-        error_log($content);
-        error_log($date);
-        error_log($userPropic);
         $stmt->execute();
-        if ($this->db->affected_rows > 0) {
-            error_log("ok");
-        } else {
-            error_log("not ok");
-        }
     }
 
     private function notify()
