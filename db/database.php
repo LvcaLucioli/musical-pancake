@@ -278,7 +278,16 @@ class DatabaseHelper
         $stmt->bind_param('ssss', $targetUser, $content, $date, $userPropic);
         $stmt->execute();
     }
-
+    public function like_unlike($user, $action, $postId){
+        if($action == 'add'){
+            $query = "INSERT INTO `likes` (`post`, `user`) VALUES (?, ?);";
+        }else if ($action = 'remove'){
+            $query = "DELETE FROM `likes` WHERE  post = ? AND user = ?";
+        }
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('is', $postId, $user);
+        $stmt->execute();
+    }
     private function notify()
     {
     }

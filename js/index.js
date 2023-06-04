@@ -42,6 +42,25 @@ async function switchHome(tab) {
     }
 }
 
+function likeClick(button, isLiked, postId) {
+    const formData = new FormData();
+    formData.append('id', postId);
+    let path = button.querySelector("img").getAttribute("src");
+
+    if (isLiked) {
+        formData.append('action', 'remove');
+        path = path.replace("true", "false");
+        button.setAttribute("onClick", "likeClick(this, false, " + postId + ")");
+
+    } else {
+        formData.append('action', 'add');
+        path = path.replace("false", "true");
+        button.setAttribute("onClick", "likeClick(this, true, " + postId + ")");
+    }
+    button.querySelector("img").setAttribute("src", path);
+    axios.post('api/api-like.php', formData).then(response => {});
+}
+
 function generatePosts(posts) {
     let result = '';
 
@@ -67,9 +86,9 @@ function generatePosts(posts) {
             <section>
                 <div class="row">
                     <div class="col-4">
-                        <a href="" onClick="likeClick(${posts[i]["is_liked"]}, ${posts[i]["user"]}, ${posts[i]["id"]})">
-                        <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="Like button" />
-                        </a>
+                        <button class="like_btn" onClick="likeClick(this, ${posts[i]["is_liked"]}, ${posts[i]["id"]})">
+                            <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="Like button" />
+                        </button>
                     </div>
                     <div class="col-4">
                         <p>${posts[i]["n_likes"]} likes</p>
@@ -141,31 +160,6 @@ async function loadMore() {
         section.innerHTML = section.innerHTML + generateDiscovery(response.data);
     }
 }
-
-
-
-function search(targetSection, querySection) {
-    const formData = new FormData();
-    let searchQuery = querySection.value;
-    // reset search area
-    let allSections = document.querySelectorAll(targetSection + " section");
-    allSections.forEach(function(section) {
-        section.remove();
-    });
-
-    if (searchQuery === "") return;
-
-    formData.append('q', searchQuery);
-    axios.post('api/api-search.php', formData).then(response => {
-
-
-        document.querySelector(targetSection).innerHTML += displaySearchResult(response.data);
-
-        document.querySelector(targetSection + " input").value = searchQuery;
-        document.querySelector(targetSection + " input").focus();
-    });
-}
-
 
 
 let homeStatus = true;
