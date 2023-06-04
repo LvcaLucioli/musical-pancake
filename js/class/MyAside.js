@@ -1,7 +1,7 @@
 class MyAside {
     constructor() {
         this.container = document.querySelector(".profile-aside-container");
-        this.sections = [new SearchSection(), new NotificationsSection()];
+        this.sections = [new SearchSection(".profile-aside-container"), new NotificationsSection(".profile-aside-container")];
         this.activeSection = 1;
         this.sections[this.activeSection].retrieve();
         // console.log(document.querySelector(".notifications-button"));

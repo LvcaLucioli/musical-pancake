@@ -161,6 +161,29 @@ async function loadMore() {
     }
 }
 
+function showNotificationSection() {
+    if (document.querySelector(".col-lg-6 #notifications-section")) {
+        document.querySelector(".col-lg-6 #notifications-section").outerHTML = "";
+        document.querySelector(".scrollable_feed").classList.remove("d-none");
+    } else {
+        const notificationsSection = new NotificationsSection(".row main");
+        notificationsSection.retrieve();
+        document.querySelector(".scrollable_feed").classList.add("d-none");
+    }
+
+}
+
+function showSearchSection() {
+    if (document.querySelector(".col-lg-6 #search-section")) {
+        document.querySelector(".col-lg-6 #search-section").outerHTML = "";
+        document.querySelector(".scrollable_feed").classList.remove("d-none");
+    } else {
+        const searchSection = new SearchSection(".row main");
+        searchSection.retrieve();
+        document.querySelector(".scrollable_feed").classList.add("d-none");
+    }
+}
+
 
 let homeStatus = true;
 let prevPosts = [``, 0, 0];

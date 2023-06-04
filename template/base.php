@@ -49,18 +49,18 @@
                     <div <?php if (isActive("notification.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a class="nav-link" href="notification.php">
+                        <button class="nav-link" onClick="showNotificationSection()">
                             <img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt="">
-                        </a>
+                        </button>
                     </div>
                 </li>
                 <li class="nav-item ">
                     <div <?php if (isActive("search.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a class="nav-link " href="search.php">
+                        <button class="nav-link" onclick="showSearchSection()">
                             <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="">
-                        </a>
+                        </button>
                     </div>
 
                 </li>
@@ -78,7 +78,7 @@
             </main>
             <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         </div>
-        <div class="col-lg-3 d-none d-lg-block profile-aside">
+        <div class="col-lg-3 d-lg-block profile-aside">
             <?php
             if (isset($templateParams["aside"])) {
                 require __DIR__ . "\\" .$templateParams["aside"];

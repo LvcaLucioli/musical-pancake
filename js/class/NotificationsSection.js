@@ -1,5 +1,8 @@
 class NotificationsSection extends AbstractSection {
-
+    constructor(container) {
+        super();
+        this.container = container;
+    }
     static itemClass = "notifications";
     static readButton = `<button class="read_btn" onClick="aside.sections[aside.activeSection].markAsRead(this)">
     read
@@ -15,9 +18,10 @@ class NotificationsSection extends AbstractSection {
                     markup += this.items[i].getHTMLItem();
                     i++;
                 });
-                document.querySelector(".profile-aside-container").innerHTML += `<section id="notifications-section">` + markup + `</section>`;
             }
+            document.querySelector(this.container).innerHTML += `<section id="notifications-section">` + markup + `</section>`;
         });
+
 
     }
 
