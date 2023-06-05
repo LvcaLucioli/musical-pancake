@@ -8,7 +8,7 @@
             </li>
             <li class="nav-item ">
                 <button aria-label="search-section" class="search-button" onclick="aside.switch(this);">
-                    <img src="./resources/icon-search.png" alt="search" active>
+                    <img src="./resources/icon-search.png" alt="search">
                 </button>
             </li>
         </ul>
