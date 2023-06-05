@@ -48,14 +48,10 @@ class PostsDrawer{
         
         let targetPosition = window.innerHeight - document.querySelector(".slide_button").offsetHeight + 4;
         if(!IS_MOBILE){
-          targetPosition -= 60;
+          targetPosition -= 50;
+        }else{
+          targetPosition -= 5;
         }
-        
-        $(".scrollable_user").css("padding-right", "0px");
-        setTimeout(function() {
-            $(".scrollable_user").css("overflow-y", "auto");
-        }, 250);
-
         $(".swipe_down-btn").animate({ 
           opacity: "0"
         }, { 
@@ -87,7 +83,7 @@ class PostsDrawer{
           queue : false
         });
 
-        
+        $(".scrollable_user").css("overflow-y", "scroll");
         $(".user_header").css("opacity", "1");
         $(".scrollable_user").css("paddingTop", "0%");
         $("#userlist_section").css("opacity", "1");
@@ -112,7 +108,7 @@ class PostsDrawer{
             queue : false
           });
           $(".posts_count").animate({ 
-            marginLeft: "-3vw"
+            marginLeft: "-5.5vw"
           }, { 
             duration : 1200, 
             step: function(now, fx) {
@@ -121,11 +117,11 @@ class PostsDrawer{
             queue : false
           });
           $(".add_icon").animate({ 
-            marginRight: "-7vw"
+            marginLeft: "6.5vw"
           }, { 
             duration : 1200, 
             step: function(now, fx) {
-              $(this).css('marginRight', now);
+              $(this).css('marginLeft', now);
             },
             queue : false
           });
@@ -165,10 +161,8 @@ class PostsDrawer{
           queue : false
         });
         
-        
 
         if (IS_MOBILE){
-          
           $(".user_header").css("opacity", "0");
           $("#userlist_section").css("opacity", "0");
           $("main nav[aria-label='followers/following-nav']").css("opacity", "0");
@@ -196,11 +190,11 @@ class PostsDrawer{
             queue : false
           });
           $(".add_icon").animate({ 
-            marginRight: "0%"
+            marginLeft: "0%"
           }, { 
             duration : duration, 
             step: function(now, fx) {
-              $(this).css('marginRight', now);
+              $(this).css('marginLeft', now);
             },
             queue : false
           });
@@ -288,9 +282,8 @@ class PostsDrawer{
                 .querySelector('footer')
                 .innerHTML = `
                 <button disabled>
-                    <img src="./resources/nomore_white.png">
-                </button>
-                `;
+                    <img src="./resources/nomore_white.png" alt="no more item to view">
+                </button>`;
       }
 
       this.lastPost = posts[posts.length-2]["id"];
