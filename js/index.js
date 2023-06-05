@@ -47,10 +47,10 @@ async function switchHome(tab) {
             scrollable.scrollTop = prevPosts[1] - prevPosts[2];
 
             if (lastPost == "finish") {
-                document.querySelector('.scrollable_el > footer')
+                document.querySelector('.scrollable_feed > footer')
                         .innerHTML = LOAD_BTN_DISABLED;
             } else {
-                document.querySelector('.scrollable_el > footer')
+                document.querySelector('.scrollable_feed > footer')
                         .innerHTML = LOAD_BTN;
             }
             section.classList.remove("discovery");
@@ -143,7 +143,7 @@ function generatePosts(posts) {
     }
 
     if(posts[posts.length - 1]){
-        document.querySelector('.scrollable_el > footer')
+        document.querySelector('.scrollable_feed > footer')
                 .innerHTML = LOAD_BTN_DISABLED;
         lastPost = "finish";
     } else {

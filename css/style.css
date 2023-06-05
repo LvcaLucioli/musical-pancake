@@ -275,7 +275,7 @@ main nav[aria-label="feed-menu"] ul li button.active {
     margin-top: 0;
 }
 
-main div.scrollable_el > footer button{
+main div.scrollable_feed > footer button{
     margin-top: 7%;
     width: 40vw;
     padding: 0.5%;
@@ -294,7 +294,7 @@ main div.scrollable_el > footer button{
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-main div.scrollable_el > footer button img{
+main div.scrollable_feed > footer button img{
     margin: 0%;
     padding: 0;
     width: 4vh;
@@ -302,7 +302,7 @@ main div.scrollable_el > footer button img{
     margin-left: 3%;
 }
 
-main div.scrollable_el > footer button[disabled]{
+main div.scrollable_feed > footer button[disabled]{
     width: 60px;
     height: 60px;
     background-color: rgb(224, 224, 228);
@@ -311,7 +311,7 @@ main div.scrollable_el > footer button[disabled]{
     box-shadow: none;
 }
 
-main div.scrollable_el > footer button[disabled] img{
+main div.scrollable_feed > footer button[disabled] img{
     margin-left: -1vh;
     margin-top: -0.5vw;
     padding: 0;
@@ -1013,7 +1013,10 @@ main div.scrollable_div footer button[disabled] img {
         padding-right: 0;
     }
     .scrollable_feed {
-        width: 67vw;
+        width: 70vw;
+        padding-left: 40px;
+        padding-right: 10px;
+        z-index: 100;
     }
     main nav[aria-label="followers/following-nav"] {
         max-width: 50%;
