@@ -1,25 +1,26 @@
 /* scrollbar */
-::-webkit-scrollbar {
+
+ ::-webkit-scrollbar {
     width: 20px;
     background-color: transparent;
 }
-  
-::-webkit-scrollbar-thumb {
+
+ ::-webkit-scrollbar-thumb {
     background-color: transparent;
     border-radius: 20px;
     border: 8px solid transparent;
     background-clip: content-box;
 }
-  
+
 .show-scrollbar::-webkit-scrollbar-thumb {
     background-color: #dadada;
 }
-  
+
 .hide-scrollbar::-webkit-scrollbar-thumb {
     background-color: transparent;
 }
 
-::-webkit-scrollbar-thumb:hover {
+ ::-webkit-scrollbar-thumb:hover {
     background-color: #b7b7b7;
     border: 4px solid transparent;
 }
@@ -27,7 +28,8 @@
 
 
 /*  base */
-html{
+
+html {
     overflow: hidden;
 }
 
@@ -36,7 +38,7 @@ body {
     overflow: hidden;
 }
 
-main{
+main {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -54,19 +56,19 @@ button {
 
 button:focus,
 button:active {
-  outline: none !important;
+    outline: none !important;
 }
 
 body>.row {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 main>.container>.row {
     display: initial !important;
 }
 
-.scroll-wrap{
+.scroll-wrap {
     width: 100%;
     overflow: hidden;
     margin: 0;
@@ -76,6 +78,7 @@ main>.container>.row {
 
 
 /* main navbar */
+
 header[aria-label="primary-menu"] {
     position: fixed;
     width: 100%;
@@ -100,7 +103,7 @@ header[aria-label="primary-menu"] nav ul li {
     padding: 10px;
 }
 
-header[aria-label="primary-menu"] nav ul li a{
+header[aria-label="primary-menu"] nav ul li a {
     padding: 10px;
 }
 
@@ -108,8 +111,8 @@ header[aria-label="primary-menu"] a:link,
 header[aria-label="primary-menu"] a:visited,
 header[aria-label="primary-menu"] a:hover,
 header[aria-label="primary-menu"] a:active {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 header[aria-label="primary-menu"] nav ul li div {
@@ -156,7 +159,63 @@ header[aria-label="primary-menu"] nav ul li div img {
 
 
 
+/* userpage fallows navbar */
+
+main nav[aria-label="followers/following-nav"] {
+    background-color: white;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    height: 40px;
+    margin: 15px 10% 10px;
+    top: 15px;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+main nav[aria-label="followers/following-nav"].active {
+    background-color: black;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+main nav[aria-label="followers/following-nav"].active ul li a {
+    opacity: 0.5;
+    font-weight: normal;
+    color: white !important;
+}
+
+main nav[aria-label="followers/following-nav"] ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 100%;
+    padding: 0 5%;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+main nav[aria-label="followers/following-nav"] ul li a {
+    text-decoration: none;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    color: black !important;
+    opacity: 1;
+    font-weight: bold;
+}
+
+main nav[aria-label="followers/following-nav"] ul li a.active {
+    font-weight: bold;
+    opacity: 1;
+}
+
+
+
 /* feed navbar */
+
 main nav[aria-label="feed-menu"] {
     position: sticky;
     display: flex;
@@ -203,6 +262,7 @@ main nav[aria-label="feed-menu"] ul li button.active {
 
 
 /*  index section */
+
 .scrollable_feed {
     padding: 0%;
     padding-left: 21px;
@@ -262,6 +322,7 @@ main div.scrollable_el > footer button[disabled] img{
 
 
 /* posts list */
+
 main div[id="scrollable_feed"]>section.followers {
     display: flex;
     flex-direction: column;
@@ -374,97 +435,8 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 
 
 
-/*  */
-body>div>div.col-lg-8{
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
-}
-
-.profile-aside {
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
-    height: 100vh;
-    padding-top: 10vh;
-    margin-top: 0vh;
-    width: 50vh;
-}
-
-.profile-aside nav button {
-    border: 0;
-    width: 100%;
-    padding: 0;
-}
-
-.profile-aside nav {
-    padding: 0;
-}
-
-.profile-aside nav ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.profile-aside nav ul li {
-    margin: auto;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    width: 100%;
-}
-
-.profile-aside nav ul li button img {
-    height: 24px;
-    width: 24px;
-}
-
-.profile-aside>section {
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    overflow-y: scroll;
-    height: 60vh;
-}
-
-
-
-/* search section */
-#search-section header div {
-    display: flex;
-    align-items: center;
-    background-color: #fafafa;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
-    padding: 8px;
-}
-
-#search-section header div input {
-    flex-grow: 1;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    font-size: 14px;
-    color: #262626;
-}
-
-#search-section header div button {
-    margin-left: 8px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    height: 100%;
-    border: 0;
-}
-
-.profile-aside nav button:focus {
-    outline: none;
-}
-
-.profile-aside nav button.active {
-    background-color: #fafafa;
-}
-
-
-
 /* user header */
+
 .scrollable_user {
     padding: 0%;
     padding-top: 0;
@@ -494,7 +466,7 @@ body>div>div.col-lg-8{
     transition-timing-function: ease-in-out;
 }
 
-#userlist_section{
+#userlist_section {
     transition-duration: 0.6s;
     transition-timing-function: ease-in-out;
     margin-top: 5vh;
@@ -505,17 +477,17 @@ body>div>div.col-lg-8{
     max-width: 100px;
     height: auto;
     border-radius: 1000px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 2px 3px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.3);
     margin-top: 10%;
     margin-bottom: 10%;
     margin-left: 30%;
 }
 
-#btn_space{
+#btn_space {
     padding-bottom: 2%;
 }
 
-.username{
+.username {
     padding-top: 2vw;
     margin-left: 0px;
     font-weight: bold;
@@ -523,7 +495,7 @@ body>div>div.col-lg-8{
     margin-bottom: 1%;
 }
 
-.bio{
+.bio {
     font-size: 1em;
     margin-bottom: 0;
     white-space: pre-wrap;
@@ -534,21 +506,21 @@ body>div>div.col-lg-8{
     overflow-x: auto;
 }
 
-.edit_user_btn{
+.edit_user_btn {
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
-.user_info{
+.user_info {
     padding-left: 5% !important;
 }
 
-.num{
+.num {
     font-size: 1.3em;
 }
 
-.user_btn{
+.user_btn {
     margin-top: 5%;
     width: 25vh;
     max-width: 150px;
@@ -562,7 +534,7 @@ body>div>div.col-lg-8{
     height: 30px;
 }
 
-.user_btn img{
+.user_btn img {
     margin: 0%;
     padding: 0;
     width: 4vh;
@@ -570,44 +542,44 @@ body>div>div.col-lg-8{
     margin-bottom: 1%;
 }
 
-.following_btn{
+.following_btn {
     background-color: rgb(230, 230, 230);
     color: rgb(0, 128, 255);
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
 }
 
-.following_btn img{
+.following_btn img {
     width: 4.5vh;
 }
 
-.follow_btn{
+.follow_btn {
     background-color: rgb(0, 128, 255);
     color: white;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
 }
 
-.follow_btn img{
+.follow_btn img {
     width: 2.5vh;
     margin-left: 7%;
     margin-bottom: 2.5%;
 }
 
-.settings_btn{
+.settings_btn {
     background-color: rgb(255, 128, 0);
     color: white;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
 }
 
-.settings_btn img{
+.settings_btn img {
     margin-left: 7%;
     width: 3.5vh;
     margin-bottom: 2%;
 }
 
-.swipe_down-btn{
+.swipe_down-btn {
     position: relative;
     width: 40vw;
     margin-right: auto;
@@ -618,7 +590,7 @@ body>div>div.col-lg-8{
     background-color: transparent;
 }
 
-.swipe_down-btn img{
+.swipe_down-btn img {
     margin-right: auto;
     margin-left: auto;
     width: 15px;
@@ -629,6 +601,7 @@ body>div>div.col-lg-8{
 
 
 /* posts drawer */
+
 .scrollable_div {
     padding: 0%;
     padding-top: 0;
@@ -658,7 +631,7 @@ body>div>div.col-lg-8{
     z-index: 100;
 }
 
-#drawer footer{
+#drawer footer {
     margin-bottom: 2vh;
 }
 
@@ -666,7 +639,7 @@ body>div>div.col-lg-8{
     margin: 0;
 }
 
-.slide_button{
+.slide_button {
     top: 20%;
     height: 7.5vh;
     border-radius: 40px 40px 0 0;
@@ -683,7 +656,7 @@ body>div>div.col-lg-8{
     height: 2vh;
 }
 
-.posts_count{
+.posts_count {
     padding: 0.7% 0 5% 6%;
     text-align: left;
     font-size: 1.2em;
@@ -694,7 +667,7 @@ body>div>div.col-lg-8{
     font-size: 1.7em;
 }
 
-.add_button{
+.add_button {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -702,7 +675,7 @@ body>div>div.col-lg-8{
     padding-left: 5vw;
 }
 
-.add_icon{
+.add_icon {
     width: 40px;
     height: auto;
     margin: 0;
@@ -712,7 +685,7 @@ body>div>div.col-lg-8{
     z-index: 9999;
 }
 
-.swipe_div{
+.swipe_div {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -722,13 +695,13 @@ body>div>div.col-lg-8{
     margin-left: 2vw;
 }
 
-.swipe_div pre{
+.swipe_div pre {
     color: white;
     font-size: 0.7em;
     margin-top: 3px;
 }
 
-.swipe_icon{
+.swipe_icon {
     width: 15px;
     height: auto;
     margin: 0;
@@ -737,19 +710,19 @@ body>div>div.col-lg-8{
     margin-bottom: auto;
 }
 
-main section#posts_section article{
+main section#posts_section article {
     background-color: black;
     margin: 0;
     padding: 0.5vw;
 }
 
-main section#posts_section article img{
+main section#posts_section article img {
     width: 100%;
     height: auto;
     border-radius: 10px;
 }
 
-main div.scrollable_div footer button{
+main div.scrollable_div footer button {
     margin-top: 7%;
     width: 40vw;
     padding: 0.5%;
@@ -767,7 +740,7 @@ main div.scrollable_div footer button{
     transition-timing-function: ease-in-out;
 }
 
-main div.scrollable_div footer button img{
+main div.scrollable_div footer button img {
     margin: 0%;
     padding: 0;
     width: 4vh;
@@ -775,7 +748,7 @@ main div.scrollable_div footer button img{
     margin-left: 3%;
 }
 
-main div.scrollable_div footer button[disabled]{
+main div.scrollable_div footer button[disabled] {
     width: 60px;
     height: 60px;
     background-color: #1c1c1c;
@@ -783,7 +756,7 @@ main div.scrollable_div footer button[disabled]{
     border-radius: 100px;
 }
 
-main div.scrollable_div footer button[disabled] img{
+main div.scrollable_div footer button[disabled] img {
     margin-left: -15%;
     margin-top: -2px;
     padding: 0;
@@ -794,13 +767,32 @@ main div.scrollable_div footer button[disabled] img{
 
 
 
+/* aside */
+
+.profile-aside-container {
+    display: none;
+}
+
+#notifications-section {
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+}
+
+#search-section {
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+}
+
+
 /* Tablet rules */
-@media screen and (min-width: 768px) and (max-width: 991px){
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
 
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
     }
-
     header[aria-label="primary-menu"]>div {
         justify-content: flex-end;
         margin-right: 50px;
@@ -824,40 +816,34 @@ main div.scrollable_div footer button[disabled] img{
         padding-left: 11vw;
         padding-top: 13px;
     }
-    
-    .user_info{
+    .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: -1%;
     }
-
-    .user_header{
+    .user_header {
         margin: 0;
         width: 100%;
     }
-
     main nav[aria-label="feed-menu"] {
         max-width: 300px;
         margin: 15px auto 10px;
         top: 15px;
     }
-
-    .posts_count{
+    .posts_count {
         padding-left: 16%;
     }
 
     .swipe_div{
         margin-left: 2.6vw;
     }
-
-    .username{
+    .username {
         padding-top: 4%;
         font-size: 4vmin;
         margin-bottom: 0;
         height: 100%;
     }
-
-    .bio{
+    .bio {
         font-size: 2vmin;
         margin-top: 6%;
         padding-left: 0 !important;
@@ -865,59 +851,49 @@ main div.scrollable_div footer button[disabled] img{
         padding-bottom: 0;
         height: 100%;
     }
-
-    .propic{
+    .propic {
         width: 100%;
         margin-top: 5%;
         margin-left: 12%;
         max-width: 18vw;
     }
-
-    .add_icon{
+    .add_icon {
         width: 45px;
     }
-
-    #drawer{
+    #drawer {
         top: calc(37vw + 1%);
         width: 102vw;
         margin-left: -1vw;
         border-radius: 60px;
     }
-
     #drawer .scrollable_div {
         width: 99.3vw;
         padding: 0;
         margin-left: 2.5%;
         height: 84vh;
     }
-
-    .slide_button{
+    .slide_button {
         height: 80px;
     }
-
-    .posts_count{
+    .posts_count {
         font-size: 1.3em;
         padding-top: 4%;
         margin-left: 5vw;
     }
-
-    main nav[aria-label="followers/following-nav"]{
+    main nav[aria-label="followers/following-nav"] {
         max-width: 50%;
         margin-right: auto;
         margin-left: auto;
         height: 45px;
         border-radius: 100px;
     }
-
-    #followers_button{
+    #followers_button {
         font-size: 2.3vmin;
     }
-
-    #following_button{
+    #following_button {
         font-size: 2.3vmin;
     }
-
-    .user_btn{
+    .user_btn {
         margin-top: 0;
         font-size: 2.3vmin;
         max-width: 20vmin;
@@ -926,7 +902,6 @@ main div.scrollable_div footer button[disabled] img{
         margin-left: -0.2vmin;
         height: 4vmin;
     }
-
     .scrollable_user {
         margin-top: calc(-10.5vh + 9vw);
         height: 90%;
@@ -941,41 +916,36 @@ main div.scrollable_div footer button[disabled] img{
         width: 4vmin;
         margin-bottom: 3%;
     }
-
-    .follow_btn img{
+    .follow_btn img {
         width: 2.5vmin;
     }
-
-    .settings_btn img{
+    .settings_btn img {
         margin-left: 6%;
         width: 2.5vw;
     }
-
-    .swipe_down-btn img{
+    .swipe_down-btn img {
         width: 20px;
     }
-
-    .following_btn img{
+    .following_btn img {
         width: 4.5vmin;
         margin-bottom: 0;
     }
-    
-    main div.scrollable_div footer button[disabled] img{
+    main div.scrollable_div footer button[disabled] img {
         max-width: 55px;
         margin-left: -0.8vmin;
         margin-top: -0.1vw;
     }
-
-    main div.scrollable_div footer button{
+    main div.scrollable_div footer button {
         max-height: 55px;
     }
-
-    main div.scrollable_div footer button img{
+    main div.scrollable_div footer button img {
         width: 4vmin;
     }
 }
 
+
 /* Desktop rules */
+
 @media screen and (min-width: 992px) {
 
     header[aria-label="primary-menu"]{
@@ -986,25 +956,21 @@ main div.scrollable_div footer button[disabled] img{
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
     }
-
     header[aria-label="primary-menu"]>div {
         margin-right: 50px;
         margin-top: -10px;
         position: relative;
     }
-
     header[aria-label="primary-menu"] {
         box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
     }
-
-    header[aria-label="primary-menu"] a{
+    header[aria-label="primary-menu"] a {
         transition-duration: 0.3s;
         transition-timing-function: ease-in-out;
         border-radius: 10px;
     }
-
-    header[aria-label="primary-menu"] a:hover{
-        background-color:rgb(237, 237, 240);
+    header[aria-label="primary-menu"] a:hover {
+        background-color: rgb(237, 237, 240);
     }
 
     .logout_lg img{
@@ -1034,7 +1000,6 @@ main div.scrollable_div footer button[disabled] img{
     main nav[aria-label="feed-menu"] ul li button:hover{
         opacity: 0.7;
     }
-
     #drawer .scrollable_div {
         height: 85%;
         width: 69.5vw;
@@ -1044,16 +1009,13 @@ main div.scrollable_div footer button[disabled] img{
         padding-left: 1.5%;
         padding-right: 0;
     }
-
     #drawer .scrollable_el {
         padding-right: 0;
     }
-    
     .scrollable_feed {
         width: 67vw;
     }
-
-    main nav[aria-label="followers/following-nav"]{
+    main nav[aria-label="followers/following-nav"] {
         max-width: 50%;
         margin-right: auto;
         margin-left: auto;
@@ -1079,30 +1041,26 @@ main div.scrollable_div footer button[disabled] img{
     .add_icon{
         width: 2.6em;
     }
-
-    #drawer{
+    #drawer {
         border-radius: 0 30px;
         width: 69.5vw;
         top: calc(30% + 5vw + 1vmin);
     }
-
-    .propic{
+    .propic {
         width: 70%;
         margin-top: 2vh;
         margin-right: auto;
         max-width: 220px;
         margin-left: 15%;
     }
-
-    .username{
+    .username {
         margin-top: -3%;
         font-size: 4.2vmin;
         margin-bottom: 0;
         height: 100%;
         padding-top: 0;
     }
-
-    .bio{
+    .bio {
         font-size: 2vmin;
         margin-top: 0%;
         padding-left: 0 !important;
@@ -1110,14 +1068,12 @@ main div.scrollable_div footer button[disabled] img{
         padding-bottom: 0;
         height: 100%;
     }
-
-    .user_info{
+    .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: 2%;
     }
-
-    .user_header{
+    .user_header {
         margin: 0;
         width: 100%;
         padding-top: 0.6vh;
@@ -1129,20 +1085,16 @@ main div.scrollable_div footer button[disabled] img{
         padding-top: 1%;
         margin-left: 10%;
     }
-    
-    #followers_button{
+    #followers_button {
         font-size: 2vmin;
     }
-
-    #following_button{
+    #following_button {
         font-size: 2vmin;
     }
-
-    .slide_button{
+    .slide_button {
         height: 10px;
     }
-
-    .scrollable_el{
+    .scrollable_el {
         padding-left: 40px;
         padding-right: 20px;
     }
@@ -1151,12 +1103,10 @@ main div.scrollable_div footer button[disabled] img{
         margin-left: 3vw !important;
         margin: 0;
     }
-
-    main section#posts_section article{
+    main section#posts_section article {
         padding: 0.15vw;
     }
-
-    .user_btn{
+    .user_btn {
         margin-top: 0;
         font-size: 2.3vmin;
         height: 4vmin;
@@ -1164,18 +1114,15 @@ main div.scrollable_div footer button[disabled] img{
         max-width: 10vw;
         min-width: 150px;
     }
-
-    .user_btn img{
+    .user_btn img {
         width: 4vmin;
         margin-bottom: 3%;
     }
-
-    .follow_btn img{
+    .follow_btn img {
         width: 2.5vh;
         margin-bottom: 5px;
     }
-
-    .settings_btn img{
+    .settings_btn img {
         margin-left: 6%;
         width: 3vh;
     }
@@ -1190,18 +1137,15 @@ main div.scrollable_div footer button[disabled] img{
         width: 66vw;
         height: 87vmin;
     }
-
-    .swipe_icon{
+    .swipe_icon {
         margin-top: -20%;
     }
-
-    .swipe_down-btn img{
+    .swipe_down-btn img {
         margin-top: -3%;
         margin-left: 3vw;
         width: 20px;
     }
-
-    .following_btn img{
+    .following_btn img {
         width: 4.6vmin;
         margin-top: 2px;
     }
@@ -1209,46 +1153,146 @@ main div.scrollable_div footer button[disabled] img{
     .swipe_div pre{
         font-size: 0.8em;
     }
-    
-    .swipe_icon{
+    .swipe_icon {
         margin-top: 1vh;
     }
-
-    main div.scrollable_div footer button img{
+    main div.scrollable_div footer button img {
         width: 100%;
         max-width: 40px;
     }
-
-    main div.scrollable_div footer button[disabled] img{
+    main div.scrollable_div footer button[disabled] img {
         max-width: 55px;
         margin-left: -0.5vw;
         margin-top: -0.1vw;
     }
-
-    .following_btn:hover{
+    .following_btn:hover {
         background-color: rgb(192, 192, 199);
-        
     }
-    
-    .follow_btn:hover{
+    .follow_btn:hover {
         background-color: rgb(0, 100, 199);
         color: white;
     }
-    
-    .settings_btn:hover{
+    .settings_btn:hover {
         background-color: rgb(195, 88, 0);
     }
-
-    main div.scrollable_div footer button:hover{
+    main div.scrollable_div footer button:hover {
         background-color: rgb(174, 174, 178);
     }
-    
-    main div.scrollable_div footer button{
+    main div.scrollable_div footer button {
         font-size: 1.3em;
         max-height: 70px;
         max-width: 260px;
         border-radius: 100px;
         font-size: 1.4em;
         margin-bottom: 20vh;
+    }
+
+
+    /* aside */
+    .profile-aside-container {
+        display: block;
+    }
+    .profile-aside-container {
+        background-color: white;
+        padding: 20px;
+        box-shadow: -4px 0 4px -2px rgba(0, 0, 0, 0.2);
+        color: white;
+        padding: 10px;
+    }
+    .profile-aside {
+        transition-duration: 0.6s;
+        transition-timing-function: ease-in-out;
+        height: 100vh;
+        padding-top: 10vh;
+        margin-top: 0vh;
+        max-width: 35.37vw !important;
+        padding-left: 5vw !important
+    }
+    .profile-aside .navbar {
+        padding: 0;
+    }
+    .profile-aside-container.navbar-nav {
+        border-radius: 10px;
+    }
+    .profile-aside .navbar ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0;
+        border-radius: 10px;
+    }
+    .profile-aside .navbar ul li {
+        margin: auto;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+    .profile-aside .navbar ul li button {
+        border: 0;
+        width: 100%;
+        padding: 0;
+    }
+    .profile-aside .navbar ul li button img {
+        height: 24px;
+        width: 24px;
+    }
+    .profile-aside>section {
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        overflow-y: scroll;
+        height: 60vh;
+    }
+    .search-section {
+        padding-right: 0;
+        width: 100%;
+    }
+    .row.search-result img {
+        width: 24px;
+        height: 24px;
+    }
+    .profile-aside .navbar button:focus {
+        outline: none;
+    }
+    .profile-aside .navbar button.active {
+        background-color: #fafafa;
+    }
+    .notifications-section {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: space-between;
+        overflow-y: scroll;
+    }
+    .search-section>header {
+        width: 100%;
+    }
+    .search-section>header>div {
+        width: 100%;
+    }
+    .search-section>header>div>input {
+        width: 100%;
+    }
+    .search-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        overflow-y: auto;
+        height: 400px;
+    }
+    .row.notifications {
+        width: 100%;
+        display: flex;
+        margin: 0 0;
+        padding: 0;
+        justify-content: space-between;
+    }
+    .row.search {
+        display: flex;
+        width: 100%;
+        margin: 0 0;
+        padding: 0;
+        justify-content: space-between;
     }
 }

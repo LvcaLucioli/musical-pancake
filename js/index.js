@@ -17,21 +17,20 @@ const LOAD_BTN_DISABLED = `
     </button>`;
 
 
-
 function iOS() {
     return [
-      'iPad Simulator',
-      'iPhone Simulator',
-      'iPod Simulator',
-      'iPad',
-      'iPhone',
-      'iPod'
-    ].includes(navigator.userAgent)
-    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+            'iPad Simulator',
+            'iPhone Simulator',
+            'iPod Simulator',
+            'iPad',
+            'iPhone',
+            'iPod'
+        ].includes(navigator.userAgent) ||
+        (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
-async function switchHome(tab){
-    if (tab != homeStatus){
+async function switchHome(tab) {
+    if (tab != homeStatus) {
         const section = document.querySelector("main section");
         const scrollable = document.querySelector(".scrollable_feed");
         document.querySelector(DICT[!tab]).classList.remove("active");
@@ -70,10 +69,29 @@ async function switchHome(tab){
     }
 }
 
-function generatePosts(posts){
+function likeClick(button, isLiked, postId) {
+    const formData = new FormData();
+    formData.append('id', postId);
+    let path = button.querySelector("img").getAttribute("src");
+
+    if (isLiked) {
+        formData.append('action', 'remove');
+        path = path.replace("true", "false");
+        button.setAttribute("onClick", "likeClick(this, false, " + postId + ")");
+
+    } else {
+        formData.append('action', 'add');
+        path = path.replace("false", "true");
+        button.setAttribute("onClick", "likeClick(this, true, " + postId + ")");
+    }
+    button.querySelector("img").setAttribute("src", path);
+    axios.post('api/api-like.php', formData).then(response => {});
+}
+
+function generatePosts(posts) {
     let result = '';
-    
-    for(let i=0; i < posts.length-1; i++){
+
+    for (let i = 0; i < posts.length - 1; i++) {
         let post = `
         <article>
             <header>
@@ -124,12 +142,12 @@ function generatePosts(posts){
         result += post;
     }
 
-    if(posts[posts.length-1]){
+    if(posts[posts.length - 1]){
         document.querySelector('.scrollable_el > footer')
                 .innerHTML = LOAD_BTN_DISABLED;
         lastPost = "finish";
     } else {
-        lastPost = posts[posts.length-2]["id"];
+        lastPost = posts[posts.length - 2]["id"];
     }
     return result;
 }
@@ -175,30 +193,28 @@ async function loadMore() {
     }
 }
 
+function showNotificationSection() {
+    if (document.querySelector(".col-lg-6 #notifications-section")) {
+        document.querySelector(".col-lg-6 #notifications-section").outerHTML = "";
+        document.querySelector(".scrollable_feed").classList.remove("d-none");
+    } else {
+        const notificationsSection = new NotificationsSection(".row main");
+        notificationsSection.retrieve();
+        document.querySelector(".scrollable_feed").classList.add("d-none");
+    }
 
-
-function search(targetSection, querySection) {
-    const formData = new FormData();
-    let searchQuery = querySection.value;
-    // reset search area
-    let allSections = document.querySelectorAll(targetSection + " section");
-    allSections.forEach(function(section) {
-        section.remove();
-    });
-
-    if (searchQuery === "") return;
-
-    formData.append('q', searchQuery);
-    axios.post('api/api-search.php', formData).then(response => {
-
-
-        document.querySelector(targetSection).innerHTML += displaySearchResult(response.data);
-
-        document.querySelector(targetSection + " input").value = searchQuery;
-        document.querySelector(targetSection + " input").focus();
-    });
 }
 
+function showSearchSection() {
+    if (document.querySelector(".col-lg-6 #search-section")) {
+        document.querySelector(".col-lg-6 #search-section").outerHTML = "";
+        document.querySelector(".scrollable_feed").classList.remove("d-none");
+    } else {
+        const searchSection = new SearchSection(".row main");
+        searchSection.retrieve();
+        document.querySelector(".scrollable_feed").classList.add("d-none");
+    }
+}
 
 
 let homeStatus = true;
@@ -228,8 +244,8 @@ scrollableDivMain.addEventListener('scroll', function() {
 
     let header = document.querySelector('header[aria-label="primary-menu"]');
     let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
-    if (IS_MOBILE){
-        if (scrollableDivMain.scrollTop > nav_feed.scrollHeight){
+    if (IS_MOBILE) {
+        if (scrollableDivMain.scrollTop > nav_feed.scrollHeight) {
             header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
         } else {
             header.style.boxShadow = "none";

@@ -6,6 +6,12 @@
     <title><?php echo $templateParams["title"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="js/class/MyAside.js"></script>
+    <script src="js/class/AbstractSection.js"></script>
+    <script src="js/class/AsideItem.js"></script>
+    <script src="js/class/NotificationsSection.js"></script>
+    <script src="js/class/NotImplementedError.js"></script>
+    <script src="js/class/SearchSection.js"></script> 
 </head>
 
 <body>
@@ -43,18 +49,18 @@
                     <div <?php if (isActive("notification.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a class="nav-link" href="notification.php">
+                        <button class="nav-link" onClick="showNotificationSection()">
                             <img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt="">
-                        </a>
+                        </button>
                     </div>
                 </li>
                 <li class="nav-item ">
                     <div <?php if (isActive("search.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a class="nav-link " href="search.php">
+                        <button class="nav-link" onclick="showSearchSection()">
                             <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="">
-                        </a>
+                        </button>
                     </div>
 
                 </li>
@@ -62,7 +68,7 @@
         </nav>
     </header>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-7">
             <main>
                 <?php
                 if (isset($templateParams["main"])) {
@@ -72,14 +78,13 @@
             </main>
             <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         </div>
-        <div class="col-lg-4 d-none d-lg-block profile-aside">
+        <div class="col-lg-5 d-lg-block profile-aside">
             <?php
             if (isset($templateParams["aside"])) {
                 require __DIR__ . "\\" .$templateParams["aside"];
             } ?>
         </div>
     </div>
-
     <?php
     if (isset($templateParams["js"])) :
         foreach ($templateParams["js"] as $script) :
@@ -89,6 +94,7 @@
         endforeach;
     endif;
     ?>
+   
 
 </body>
 
