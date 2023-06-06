@@ -48,10 +48,10 @@ async function switchHome(tab) {
 
             if (lastPost == "finish") {
                 document.querySelector('.scrollable_feed > footer')
-                        .innerHTML = LOAD_BTN_DISABLED;
+                    .innerHTML = LOAD_BTN_DISABLED;
             } else {
                 document.querySelector('.scrollable_feed > footer')
-                        .innerHTML = LOAD_BTN;
+                    .innerHTML = LOAD_BTN;
             }
             section.classList.remove("discovery");
             section.classList.add("followers");
@@ -62,7 +62,7 @@ async function switchHome(tab) {
             section.innerHTML = prevDisc[0];
             scrollable.scrollTop = prevDisc[1] - prevDisc[2];
             document.querySelector('.scrollable_el > footer')
-                    .innerHTML = LOAD_BTN;
+                .innerHTML = LOAD_BTN;
             section.classList.remove("followers");
             section.classList.add("discovery");
         }
@@ -114,7 +114,7 @@ function generatePosts(posts) {
             <section>
                 <div class="row">
                     <div class="col-4">
-                        <button onClick="likeClick(${posts[i]["is_liked"]}, ${posts[i]["user"]}, ${posts[i]["id"]})">
+                        <button onClick="likeClick(this, ${posts[i]["is_liked"]}, ${posts[i]["id"]})">
                             <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="Like button" />
                         </button>
                         <a href="./post.php?id=${posts[i]["id"]}&target=like" >
@@ -142,9 +142,9 @@ function generatePosts(posts) {
         result += post;
     }
 
-    if(posts[posts.length - 1]){
+    if (posts[posts.length - 1]) {
         document.querySelector('.scrollable_feed > footer')
-                .innerHTML = LOAD_BTN_DISABLED;
+            .innerHTML = LOAD_BTN_DISABLED;
         lastPost = "finish";
     } else {
         lastPost = posts[posts.length - 2]["id"];
@@ -253,8 +253,8 @@ scrollableDivMain.addEventListener('scroll', function() {
     }
 });
 
-if (iOS()){
-    if (IS_MOBILE){
+if (iOS()) {
+    if (IS_MOBILE) {
         document.querySelector(".scrollable_feed").style.paddingRight = "21px";
     }
 }
