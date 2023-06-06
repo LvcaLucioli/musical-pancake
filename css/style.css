@@ -749,6 +749,10 @@ main div.scrollable_div footer button[disabled] img {
     background-color: black;
 }
 
+.navbar-nav .nav-link {
+    background-color: transparent;
+}
+
 
 /* Tablet rules */
 
