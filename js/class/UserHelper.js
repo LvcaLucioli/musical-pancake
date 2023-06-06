@@ -44,9 +44,9 @@ class UserHelper{
         if(iOS() && IS_MOBILE){
             if(window.innerWidth < 768) {
               document.querySelector(".scrollable_user").style.paddingRight = "20px";
-            }else{
-              
             }
+        } else if (iOS()){
+            document.querySelector(".scrollable_user").style.marginTop = "-3%";
         }
     }
 
@@ -59,9 +59,13 @@ class UserHelper{
             this.postsDrawer.slideDownDrawer();
         }
         
-        document.querySelector('nav[aria-label="followers/following-nav"] a.active')
+        document.querySelector('nav[aria-label="followers/following-nav"] button.active')
+                .setAttribute("aria-pressed", false);
+        document.querySelector('nav[aria-label="followers/following-nav"] button.active')
                 .classList.remove("active");
-        document.querySelector("#"+ target +"_button a")
+        document.querySelector("#"+ target +"_button button")
+                .setAttribute("aria-pressed", true);
+        document.querySelector("#"+ target +"_button button")
                 .classList.add("active");
         this.currentState = UserHelper.STATES[1];
     }
@@ -106,7 +110,8 @@ class UserHelper{
                 formData.append('action', "unfollow");
                 axios.post('api/api-follow-unfollow.php', formData).then(response => {
                     document.querySelector("#btn_space").innerHTML = UserHelper.USER_BTN["follow"];
-                });      
+                });
+                document.querySelector("#followers_button .num").innerHTML = parseInt(document.querySelector("#followers_button .num").innerHTML) -1;
                 this.userBtn = "follow";
                 break;
 
@@ -115,6 +120,7 @@ class UserHelper{
                 axios.post('api/api-follow-unfollow.php', formData).then(response => {
                     document.querySelector("#btn_space").innerHTML = UserHelper.USER_BTN["following"];
                 });
+                document.querySelector("#followers_button .num").innerHTML = parseInt(document.querySelector("#followers_button .num").innerHTML) +1;
                 this.userBtn = "following";
                 break;
         }
@@ -148,12 +154,12 @@ class UserHelper{
                 <nav aria-label="followers/following-nav">
                     <ul>
                         <li id='followers_button'>
-                            <a onClick="switchSection('followers')" class="active">
+                            <button onClick="switchSection('followers')" class="active" aria-pressed="true">
                             <span class="num">${user["followers"]}</span> followers
                             </a>
                         </li>
                         <li id='following_button'>
-                            <a onClick="switchSection('following')">
+                            <button onClick="switchSection('following')" aria-pressed="false">
                             <span class="num">${user["following"]}</span> following
                             </a>
                         </li>
@@ -162,15 +168,27 @@ class UserHelper{
     
         this.userBtn = user["btn"];
 
-        if (user["btn"] == "settings" && window.innerWidth < 768){
-            document.getElementsByClassName("nav-item")[1].innerHTML = `
-            <div>
-                <a class="nav-link" href="logout.php">
-                    <img src="./resources/logout.png" alt="Logout from your account" class="logout">
-                </a>
-                <span class="label d-none d-md-inline">logout</span>
-            </div>
-            `;
+        if (user["btn"] == "settings"){
+            if (window.innerWidth < 768) {
+                document.getElementsByClassName("nav-item")[1].innerHTML = `
+                <div>
+                    <a class="nav-link" href="logout.php">
+                        <img src="./resources/logout.png" alt="Logout from your account" class="logout">
+                    </a>
+                    <span class="label d-none d-md-inline">logout</span>
+                </div>`;
+            } else {
+                document.getElementsByClassName("navbar-nav")[0].innerHTML += `
+                <li class="nav-item">
+                    <div>
+                        <a class="nav-link logout_lg" href="logout.php">
+                            <img src="./resources/logout.png" alt="">
+                            <span class="label d-none d-md-inline">logout</span>
+                        </a>
+                    </div>
+                </li>`;
+            }
+            
         }
         return header;
     }

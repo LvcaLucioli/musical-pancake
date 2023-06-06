@@ -68,7 +68,7 @@
         </nav>
     </header>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-7">
             <main>
                 <?php
                 if (isset($templateParams["main"])) {
@@ -78,7 +78,7 @@
             </main>
             <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         </div>
-        <div class="col-lg-3 d-lg-block profile-aside">
+        <div class="col-lg-5 d-lg-block profile-aside">
             <?php
             if (isset($templateParams["aside"])) {
                 require __DIR__ . "\\" .$templateParams["aside"];
