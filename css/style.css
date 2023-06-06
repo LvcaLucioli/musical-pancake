@@ -315,15 +315,6 @@ main div.scrollable_feed>footer button[disabled] img {
     opacity: 0.1;
 }
 
-button.like_btn {
-    background-color: transparent;
-}
-
-button.like_btn img {
-    width: 24px;
-    height: 24px;
-}
-
 
 /* posts list */
 
