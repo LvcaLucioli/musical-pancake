@@ -201,7 +201,7 @@ function showNotificationSection() {
         document.querySelector(".col-lg-7 .notifications-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
-        aside.sections[1].changeContainer(".row main");
+        aside.sections[1].retrieve(".row main");
         document.querySelector(".scrollable_feed").classList.add("d-none");
     }
 
@@ -215,7 +215,7 @@ function showSearchSection() {
         document.querySelector(".col-lg-7 .search-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
-        aside.sections[0].changeContainer(".row main");
+        aside.sections[0].retrieve(".row main");
         document.querySelector(".scrollable_feed").classList.add("d-none");
     }
 }
