@@ -1,11 +1,11 @@
 /* scrollbar */
 
- ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 20px;
     background-color: transparent;
 }
 
- ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: transparent;
     border-radius: 20px;
     border: 8px solid transparent;
@@ -20,7 +20,7 @@
     background-color: transparent;
 }
 
- ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background-color: #b7b7b7;
     border: 4px solid transparent;
 }
@@ -516,7 +516,6 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 }
 
 .user_btn {
-    margin-top: 5%;
     width: 25vh;
     max-width: 150px;
     padding: 0.5%;
@@ -527,6 +526,8 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     margin-left: -0.2vmin;
     padding-left: 2%;
     height: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .user_btn img {
@@ -542,6 +543,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     color: rgb(0, 128, 255);
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
+
 }
 
 .following_btn img {
@@ -566,11 +568,6 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     color: white;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
-}
-
-button.user_btn.settings_btn {
-    /* display: flex; */
-    /* align-items: stretch; */
 }
 
 .settings_btn img {
@@ -824,50 +821,79 @@ main div.scrollable_div footer button[disabled] img {
 }
 
 .row .content {
+    color: black;
+}
+
+.row .search .content {
     display: flex;
-    flex-direction: row;
+    min-width: 33%;
+    max-width: 66%;
     align-items: flex-end;
+    justify-content: space-around;
+
+}
+
+.row .notifications .content {
+    display: flex;
+    min-width: 70%;
+    max-width: 70%;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-left: 5px;
+    font-size: 14px;
 }
 
 .row .content img {
     width: 48px;
     height: 48px;
+    border-radius: 50%;
 }
-
 
 /* notifications section */
 
 .notifications-section {
-    height: 100vh;
+
     width: 100%;
-    background-color: black;
+    background-color: #F2F2F2;
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-content: space-between;
     overflow-y: scroll;
 }
 
-.row.notifications {
-    width: 100%;
+.row .notifications {
     display: flex;
+    width: 100%;
     margin: 0 0;
     padding: 0;
+    padding: 5px;
+    align-items: center;
     justify-content: space-between;
-    color: white;
 }
 
+.read_btn {
+    background-color: #f7f7f7;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.read_btn {
+    background-color: #333;
+    color: #f7f7f7;
+}
 
 /* search section */
 
 .search-section {
-    height: 100vh;
+
     width: 100%;
-    background-color: black;
+    background-color: #F2F2F2;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     overflow-y: scroll;
 }
 
@@ -881,17 +907,21 @@ main div.scrollable_div footer button[disabled] img {
 
 .search-section>header>div>input {
     width: 100%;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f2f2f2;
 }
 
-.row.search {
+.row .search {
     display: flex;
     width: 100%;
     margin: 0 0;
     padding: 0;
+    padding: 5px;
+    align-items: center;
     justify-content: space-between;
-    color: white;
 }
-
 
 /* Tablet rules */
 
@@ -899,51 +929,63 @@ main div.scrollable_div footer button[disabled] img {
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
     }
+
     header[aria-label="primary-menu"]>div {
         justify-content: flex-end;
         margin-right: 50px;
     }
+
     .logout_lg img {
         height: 30px !important;
         width: auto !important;
     }
+
     .logout_lg span {
         color: rgb(255, 59, 48);
     }
+
     .logout_lg {
         padding-bottom: 7px !important;
         margin-top: -2px;
     }
+
     .add_button {
         padding-left: 11vw;
         padding-top: 13px;
     }
+
     .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: -1%;
     }
+
     .user_header {
         margin: 0;
         width: 100%;
     }
+
     main nav[aria-label="feed-menu"] {
         max-width: 300px;
         margin: 15px auto 10px;
         top: 15px;
     }
+
     .posts_count {
         padding-left: 16%;
     }
+
     .swipe_div {
         margin-left: 2.6vw;
     }
+
     .username {
         padding-top: 4%;
         font-size: 4vmin;
         margin-bottom: 0;
         height: 100%;
     }
+
     .bio {
         font-size: 2vmin;
         margin-top: 6%;
@@ -952,35 +994,42 @@ main div.scrollable_div footer button[disabled] img {
         padding-bottom: 0;
         height: 100%;
     }
+
     .propic {
         width: 100%;
         margin-top: 5%;
         margin-left: 12%;
         max-width: 18vw;
     }
+
     .add_icon {
         width: 45px;
     }
+
     #drawer {
         top: calc(37vw + 1%);
         width: 102vw;
         margin-left: -1vw;
         border-radius: 60px;
     }
+
     #drawer .scrollable_div {
         width: 99.3vw;
         padding: 0;
         margin-left: 2.5%;
         height: 84vh;
     }
+
     .slide_button {
         height: 80px;
     }
+
     .posts_count {
         font-size: 1.3em;
         padding-top: 4%;
         margin-left: 5vw;
     }
+
     main nav[aria-label="followers/following-nav"] {
         max-width: 50%;
         margin-right: auto;
@@ -988,12 +1037,15 @@ main div.scrollable_div footer button[disabled] img {
         height: 45px;
         border-radius: 100px;
     }
+
     #followers_button {
         font-size: 2.3vmin;
     }
+
     #following_button {
         font-size: 2.3vmin;
     }
+
     .user_btn {
         margin-top: 0;
         font-size: 2.3vmin;
@@ -1003,40 +1055,50 @@ main div.scrollable_div footer button[disabled] img {
         margin-left: -0.2vmin;
         height: 4vmin;
     }
+
     .scrollable_user {
         margin-top: calc(-10.5vh + 9vw);
         height: 90%;
     }
+
     .scrollable_user header {
         height: 20vmin;
         margin-top: 1.5vmin;
     }
+
     .user_btn img {
         width: 4vmin;
         margin-bottom: 3%;
     }
+
     .follow_btn img {
         width: 2.5vmin;
     }
+
     .settings_btn img {
         margin-left: 6%;
         width: 2.5vw;
     }
+
     .swipe_down-btn img {
         width: 20px;
     }
+
     .following_btn img {
         width: 4.5vmin;
         margin-bottom: 0;
     }
+
     main div.scrollable_div footer button[disabled] img {
         max-width: 55px;
         margin-left: -0.8vmin;
         margin-top: -0.1vw;
     }
+
     main div.scrollable_div footer button {
         max-height: 55px;
     }
+
     main div.scrollable_div footer button img {
         width: 4vmin;
     }
@@ -1050,47 +1112,59 @@ main div.scrollable_div footer button[disabled] img {
         height: 10vh;
         max-height: 65px;
     }
+
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
     }
+
     header[aria-label="primary-menu"]>div {
         margin-right: 50px;
         margin-top: -10px;
         position: relative;
     }
+
     header[aria-label="primary-menu"] {
         box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
     }
+
     header[aria-label="primary-menu"] a {
         transition-duration: 0.3s;
         transition-timing-function: ease-in-out;
         border-radius: 10px;
     }
+
     header[aria-label="primary-menu"] a:hover {
         background-color: rgb(237, 237, 240);
     }
+
     .logout_lg img {
         height: 30px !important;
         width: auto !important;
     }
+
     .logout_lg span {
         color: rgb(255, 59, 48);
     }
+
     .logout_lg {
         padding-bottom: 7px !important;
         margin-top: -2px;
     }
+
     .logout_lg:hover {
         background-color: rgb(255, 237, 237) !important;
     }
+
     main nav[aria-label="feed-menu"] {
         margin: 15px auto 10px;
         top: 15px;
         max-width: 300px;
     }
+
     main nav[aria-label="feed-menu"] ul li button:hover {
         opacity: 0.7;
     }
+
     #drawer .scrollable_div {
         height: 85%;
         width: 69.5vw;
@@ -1100,15 +1174,18 @@ main div.scrollable_div footer button[disabled] img {
         padding-left: 1.5%;
         padding-right: 0;
     }
+
     #drawer .scrollable_el {
         padding-right: 0;
     }
+
     .scrollable_feed {
         width: 70vw;
         padding-left: 40px;
         padding-right: 10px;
         z-index: 100;
     }
+
     main nav[aria-label="followers/following-nav"] {
         max-width: 50%;
         margin-right: auto;
@@ -1118,24 +1195,30 @@ main div.scrollable_div footer button[disabled] img {
         margin-top: -1%;
         max-height: 5vh;
     }
+
     main nav[aria-label="followers/following-nav"] ul li button:hover {
         opacity: 0.7;
     }
+
     main nav[aria-label="followers/following-nav"] ul li button.active:hover {
         opacity: 1;
     }
+
     .add_button {
         padding-top: 5px;
         margin-left: 3.5vw;
     }
+
     .add_icon {
         width: 2.6em;
     }
+
     #drawer {
         border-radius: 0 30px;
         width: 69.5vw;
         top: calc(30% + 5vw + 1vmin);
     }
+
     .propic {
         width: 70%;
         margin-top: 2vh;
@@ -1143,6 +1226,7 @@ main div.scrollable_div footer button[disabled] img {
         max-width: 220px;
         margin-left: 15%;
     }
+
     .username {
         margin-top: -3%;
         font-size: 4.2vmin;
@@ -1150,6 +1234,7 @@ main div.scrollable_div footer button[disabled] img {
         height: 100%;
         padding-top: 0;
     }
+
     .bio {
         font-size: 2vmin;
         margin-top: 0%;
@@ -1158,42 +1243,52 @@ main div.scrollable_div footer button[disabled] img {
         padding-bottom: 0;
         height: 100%;
     }
+
     .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: 2%;
     }
+
     .user_header {
         margin: 0;
         width: 100%;
         padding-top: 0.6vh;
         margin-top: 0px;
     }
+
     .posts_count {
         font-size: 1.2em;
         padding-top: 1%;
         margin-left: 10%;
     }
+
     #followers_button {
         font-size: 2vmin;
     }
+
     #following_button {
         font-size: 2vmin;
     }
+
     .slide_button {
         height: 10px;
     }
+
     .scrollable_el {
         padding-left: 40px;
         padding-right: 20px;
     }
+
     .swipe_div {
         margin-left: 3vw !important;
         margin: 0;
     }
+
     main section#posts_section article {
         padding: 0.15vw;
     }
+
     .user_btn {
         margin-top: 0;
         font-size: 2.3vmin;
@@ -1202,67 +1297,84 @@ main div.scrollable_div footer button[disabled] img {
         max-width: 10vw;
         min-width: 150px;
     }
+
     .user_btn img {
         width: 4vmin;
         margin-bottom: 3%;
     }
+
     .follow_btn img {
         width: 2.5vh;
         margin-bottom: 5px;
     }
+
     .settings_btn img {
         margin-left: 6%;
         width: 3vh;
     }
+
     .scrollable_user header {
         height: 25vh;
         margin-top: 1.5vh;
     }
+
     .scrollable_user {
         margin-top: -10px;
         width: 66vw;
         height: 87vmin;
     }
+
     .swipe_icon {
         margin-top: -20%;
     }
+
     .swipe_down-btn img {
         margin-top: -3%;
         margin-left: 3vw;
         width: 20px;
     }
+
     .following_btn img {
         width: 4.6vmin;
         margin-top: 2px;
     }
+
     .swipe_div pre {
         font-size: 0.8em;
     }
+
     .swipe_icon {
         margin-top: 1vh;
     }
+
     main div.scrollable_div footer button img {
         width: 100%;
         max-width: 40px;
     }
+
     main div.scrollable_div footer button[disabled] img {
         max-width: 55px;
         margin-left: -0.5vw;
         margin-top: -0.1vw;
     }
+
     .following_btn:hover {
         background-color: rgb(192, 192, 199);
     }
+
     .follow_btn:hover {
         background-color: rgb(0, 100, 199);
         color: white;
     }
+
     .settings_btn:hover {
         background-color: rgb(195, 88, 0);
     }
+
     main div.scrollable_div footer button:hover {
         background-color: rgb(174, 174, 178);
     }
+
     main div.scrollable_div footer button {
         font-size: 1.3em;
         max-height: 70px;
@@ -1271,24 +1383,45 @@ main div.scrollable_div footer button[disabled] img {
         font-size: 1.4em;
         margin-bottom: 20vh;
     }
+
     /* aside */
+
+    .scrollable_feed .d-none{
+        display: block !important;
+    }
+
+    main>.notifications-section{
+        display: none;
+    }
+    main>.search-section{
+        display: none;
+    }
+
     .profile-aside-container {
         display: block;
     }
+
     .profile-aside-container {
+        height: 100vh;
         background-color: white;
         padding: 20px;
         box-shadow: -4px 0 4px -2px rgba(0, 0, 0, 0.2);
         color: white;
         padding: 10px;
     }
+
     .search-section {
-        height: 400px;
+        height: 100%;
     }
+
+    .notifications-section{
+        height: 100%;
+    }
+
     .profile-aside {
+        height: 100%;
         transition-duration: 0.6s;
         transition-timing-function: ease-in-out;
-        height: 100vh;
         padding-top: 10vh;
         margin-top: 0vh;
         max-width: 35.37vw !important;
