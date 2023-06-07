@@ -224,8 +224,15 @@ $(document).ready(function() {
     function handleResize() {
       var windowWidth = $(window).width();
 
-      if ((windowWidth > 768) && (document.querySelector(".scrollable_feed").classList.contains("d-none"))) {
+      if ((windowWidth > 992) && (document.querySelector(".scrollable_feed").classList.contains("d-none"))) {
         $('.scrollable_feed').removeClass('d-none');
+      }
+
+      if ((windowWidth < 992) && (document.querySelector(".col-lg-7 .search-section"))) {
+        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
+      }
+      if ((windowWidth < 992) && (document.querySelector(".col-lg-7 .notifications-section"))) {
+        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
       }
     }
     $(window).on('load resize', handleResize);

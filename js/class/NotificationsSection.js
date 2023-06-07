@@ -1,6 +1,6 @@
 class NotificationsSection extends AbstractSection {
     static itemClass = "notifications";
-    static readButton = `<button class="read_btn" onClick="aside.sections[aside.activeSection].markAsRead(this)">
+    static readButton = `<button class="read_btn" onClick="aside.sections[1].markAsRead(this)">
     read
     </button>`;
 

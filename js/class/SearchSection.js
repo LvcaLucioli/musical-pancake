@@ -5,19 +5,19 @@ class SearchSection extends AbstractSection {
 
     static USER_BTN = {
         "following": `
-                                        <button class="user_btn following_btn" onCLick="aside.sections[aside.activeSection].clickUserBtn(this)">
+                                        <button class="user_btn following_btn" onCLick="aside.sections[0].clickUserBtn(this)">
                                             following
                                         <img src="./resources/following.png">
                                     </button>`,
 
         "follow": `
-                                        <button class="user_btn follow_btn" onCLick="aside.sections[aside.activeSection].clickUserBtn(this)">
+                                        <button class="user_btn follow_btn" onCLick="aside.sections[0].clickUserBtn(this)">
                                         follow
                                         <img src="./resources/follow.png">
                                     </button>`,
 
         "settings": `
-                                    <button class="user_btn settings_btn" onCLick="aside.sections[aside.activeSection].clickUserBtn(this)">
+                                    <button class="user_btn settings_btn" onCLick="aside.sections[0].clickUserBtn(this)">
                                             settings
                                             <img src="./resources/settings.png">
                                     </button>`
