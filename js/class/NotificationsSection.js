@@ -1,14 +1,10 @@
 class NotificationsSection extends AbstractSection {
-    constructor(container) {
-        super();
-        this.container = container;
-    }
     static itemClass = "notifications";
     static readButton = `<button class="read_btn" onClick="aside.sections[aside.activeSection].markAsRead(this)">
     read
     </button>`;
 
-    retrieve() {
+    retrieve(container) {
         let markup = "";
         axios.post('api/api-notification.php').then(response => {
             if (response.data.length > 0) {
@@ -19,7 +15,7 @@ class NotificationsSection extends AbstractSection {
                     i++;
                 });
             }
-            document.querySelector(this.container).innerHTML += `<section class="notifications-section">` + markup + `</section>`;
+            document.querySelector(container).innerHTML += `<section class="notifications-section">` + markup + `</section>`;
         });
 
 

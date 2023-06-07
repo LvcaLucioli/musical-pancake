@@ -1,10 +1,8 @@
 class MyAside {
     constructor() {
         this.container = document.querySelector(".profile-aside-container");
-        this.sections = [new SearchSection(".profile-aside-container"), new NotificationsSection(".profile-aside-container")];
+        this.sections = [new SearchSection(), new NotificationsSection()];
         this.activeSection = 1;
-        this.sections[this.activeSection].retrieve();
-        // console.log(document.querySelector(".notifications-button"));
     }
 
     switch (triggerButton) {
@@ -20,9 +18,7 @@ class MyAside {
         } else {
             this.activeSection = 1;
         }
-        triggerButton.classList.add("active");
         if (triggerButton === this.buttons[0]) {
-            this.buttons[1].classList.remove("active");
             this.removeIconActive(this.buttons[1]);
             this.addIconActive(this.buttons[0]);
 
@@ -34,7 +30,7 @@ class MyAside {
         while (this.container.childElementCount > 1) {
             this.container.removeChild(this.container.lastChild);
         }
-        this.sections[this.activeSection].retrieve();
+        this.sections[this.activeSection].retrieve(".profile-aside-container");
     }
 
     removeIconActive(button) {
