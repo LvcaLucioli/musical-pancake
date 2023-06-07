@@ -10,10 +10,12 @@ class AsideItem {
 
     getHTMLItem() {
         return `<div class="row ${this.itemClass}" onclick="${this.itemLink}">
-          <img src="${this.imageScr}" alt="${this.imageAlt}">
-          <p>${this.copy}</p>
-          ${this.button}
-        </div>`;
+                    <div class="content">
+                        <img src="./uploads/${this.imageScr}" alt="${this.imageAlt}">
+                        <p>${this.copy}</p>
+                    </div>
+                    ${this.button}
+                </div>`;
     }
 
 }

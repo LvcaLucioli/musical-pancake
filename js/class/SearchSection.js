@@ -48,7 +48,7 @@ class SearchSection extends AbstractSection {
 
     retrieve() {
         // let child = document.querySelector(".profile-aside-container").querySelector("#notifications-section");
-        document.querySelector(this.container).innerHTML += `<section id="search-section" class="search-section">
+        document.querySelector(this.container).innerHTML += `<section class="search-section">
          <header>
              <div>
                  <input type="search" placeholder="search" aria-label="search" oninput="aside.sections[0].search(this); ">

@@ -194,8 +194,8 @@ async function loadMore() {
 }
 
 function showNotificationSection() {
-    if (document.querySelector(".col-lg-6 #notifications-section")) {
-        document.querySelector(".col-lg-6 #notifications-section").outerHTML = "";
+    if (document.querySelector(".col-lg-7 .notifications-section")) {
+        document.querySelector(".col-lg-7 .notifications-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
         const notificationsSection = new NotificationsSection(".row main");
@@ -206,8 +206,8 @@ function showNotificationSection() {
 }
 
 function showSearchSection() {
-    if (document.querySelector(".col-lg-6 #search-section")) {
-        document.querySelector(".col-lg-6 #search-section").outerHTML = "";
+    if (document.querySelector(".col-lg-7 .search-section")) {
+        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
         const searchSection = new SearchSection(".row main");

@@ -568,6 +568,11 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     transition-timing-function: ease-in-out;
 }
 
+button.user_btn.settings_btn {
+    /* display: flex; */
+    /* align-items: stretch; */
+}
+
 .settings_btn img {
     margin-left: 7%;
     width: 3.5vh;
@@ -766,20 +771,125 @@ main div.scrollable_div footer button[disabled] img {
     display: none;
 }
 
-#notifications-section {
-    height: 100vh;
-    width: 100%;
-    background-color: black;
-}
-
-#search-section {
-    height: 100vh;
-    width: 100%;
-    background-color: black;
-}
-
 .navbar-nav .nav-link {
     background-color: transparent;
+}
+
+.profile-aside .navbar button:focus {
+    outline: none;
+}
+
+.profile-aside .navbar button.active {
+    background-color: #fafafa;
+}
+
+.profile-aside .navbar {
+    padding: 0;
+}
+
+.profile-aside-container.navbar-nav {
+    border-radius: 10px;
+}
+
+.profile-aside .navbar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    border-radius: 10px;
+}
+
+.profile-aside .navbar ul li {
+    margin: auto;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.profile-aside .navbar ul li button {
+    border: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.profile-aside .navbar ul li button img {
+    height: 24px;
+    width: 24px;
+}
+
+.profile-aside>section {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    height: 60vh;
+}
+
+.row .content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.row .content img {
+    width: 48px;
+    height: 48px;
+}
+
+
+/* notifications section */
+
+.notifications-section {
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    overflow-y: scroll;
+}
+
+.row.notifications {
+    width: 100%;
+    display: flex;
+    margin: 0 0;
+    padding: 0;
+    justify-content: space-between;
+    color: white;
+}
+
+
+/* search section */
+
+.search-section {
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: scroll;
+}
+
+.search-section>header {
+    width: 100%;
+}
+
+.search-section>header>div {
+    width: 100%;
+}
+
+.search-section>header>div>input {
+    width: 100%;
+}
+
+.row.search {
+    display: flex;
+    width: 100%;
+    margin: 0 0;
+    padding: 0;
+    justify-content: space-between;
+    color: white;
 }
 
 
@@ -1172,6 +1282,9 @@ main div.scrollable_div footer button[disabled] img {
         color: white;
         padding: 10px;
     }
+    .search-section {
+        height: 400px;
+    }
     .profile-aside {
         transition-duration: 0.6s;
         transition-timing-function: ease-in-out;
@@ -1180,92 +1293,5 @@ main div.scrollable_div footer button[disabled] img {
         margin-top: 0vh;
         max-width: 35.37vw !important;
         padding-left: 5vw !important
-    }
-    .profile-aside .navbar {
-        padding: 0;
-    }
-    .profile-aside-container.navbar-nav {
-        border-radius: 10px;
-    }
-    .profile-aside .navbar ul {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        padding: 0;
-        border-radius: 10px;
-    }
-    .profile-aside .navbar ul li {
-        margin: auto;
-        border: 2px solid rgba(0, 0, 0, 0.1);
-        width: 100%;
-    }
-    .profile-aside .navbar ul li button {
-        border: 0;
-        width: 100%;
-        padding: 0;
-    }
-    .profile-aside .navbar ul li button img {
-        height: 24px;
-        width: 24px;
-    }
-    .profile-aside>section {
-        border: 2px solid rgba(0, 0, 0, 0.1);
-        overflow-y: scroll;
-        height: 60vh;
-    }
-    .search-section {
-        padding-right: 0;
-        width: 100%;
-    }
-    .row.search-result img {
-        width: 24px;
-        height: 24px;
-    }
-    .profile-aside .navbar button:focus {
-        outline: none;
-    }
-    .profile-aside .navbar button.active {
-        background-color: #fafafa;
-    }
-    .notifications-section {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-content: space-between;
-        overflow-y: scroll;
-    }
-    .search-section>header {
-        width: 100%;
-    }
-    .search-section>header>div {
-        width: 100%;
-    }
-    .search-section>header>div>input {
-        width: 100%;
-    }
-    .search-section {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        overflow-y: auto;
-        height: 400px;
-    }
-    .row.notifications {
-        width: 100%;
-        display: flex;
-        margin: 0 0;
-        padding: 0;
-        justify-content: space-between;
-    }
-    .row.search {
-        display: flex;
-        width: 100%;
-        margin: 0 0;
-        padding: 0;
-        justify-content: space-between;
     }
 }

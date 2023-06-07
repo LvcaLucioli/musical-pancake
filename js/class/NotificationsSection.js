@@ -19,7 +19,7 @@ class NotificationsSection extends AbstractSection {
                     i++;
                 });
             }
-            document.querySelector(this.container).innerHTML += `<section id="notifications-section">` + markup + `</section>`;
+            document.querySelector(this.container).innerHTML += `<section class="notifications-section">` + markup + `</section>`;
         });
 
 
