@@ -56,10 +56,10 @@ async function switchHome(tab) {
 
             if (lastPost == "finish") {
                 document.querySelector('.scrollable_feed > footer')
-                        .innerHTML = LOAD_BTN_DISABLED;
+                    .innerHTML = LOAD_BTN_DISABLED;
             } else {
                 document.querySelector('.scrollable_feed > footer')
-                        .innerHTML = LOAD_BTN;
+                    .innerHTML = LOAD_BTN;
             }
             section.classList.remove("discovery");
             section.classList.add("followers");
@@ -70,7 +70,7 @@ async function switchHome(tab) {
             section.innerHTML = prevDisc[0];
             scrollable.scrollTop = prevDisc[1] - prevDisc[2];
             document.querySelector('.scrollable_el > footer')
-                    .innerHTML = LOAD_BTN;
+                .innerHTML = LOAD_BTN;
             section.classList.remove("followers");
             section.classList.add("discovery");
         }
@@ -149,9 +149,9 @@ function generatePosts(posts) {
         result += post;
     }
 
-    if(posts[posts.length - 1]){
+    if (posts[posts.length - 1]) {
         document.querySelector('.scrollable_feed > footer')
-                .innerHTML = LOAD_BTN_DISABLED;
+            .innerHTML = LOAD_BTN_DISABLED;
         lastPost = "finish";
     } else {
         lastPost = posts[posts.length - 2]["id"];
@@ -201,28 +201,49 @@ async function loadMore() {
 }
 
 function showNotificationSection() {
-    if (document.querySelector(".col-lg-6 #notifications-section")) {
-        document.querySelector(".col-lg-6 #notifications-section").outerHTML = "";
+    if(document.querySelector(".col-lg-7 .search-section")){
+        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
+    }
+    if (document.querySelector(".col-lg-7 .notifications-section")) {
+        document.querySelector(".col-lg-7 .notifications-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
-        const notificationsSection = new NotificationsSection(".row main");
-        notificationsSection.retrieve();
+        aside.sections[1].retrieve(".row main");
         document.querySelector(".scrollable_feed").classList.add("d-none");
     }
 
 }
 
 function showSearchSection() {
-    if (document.querySelector(".col-lg-6 #search-section")) {
-        document.querySelector(".col-lg-6 #search-section").outerHTML = "";
+    if(document.querySelector(".col-lg-7 .notifications-section")){
+        document.querySelector(".col-lg-7 .notifications-section").outerHTML = "";
+    }
+    if (document.querySelector(".col-lg-7 .search-section")) {
+        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
-        const searchSection = new SearchSection(".row main");
-        searchSection.retrieve();
+        aside.sections[0].retrieve(".row main");
         document.querySelector(".scrollable_feed").classList.add("d-none");
     }
 }
 
+$(document).ready(function() {
+    function handleResize() {
+      var windowWidth = $(window).width();
+
+      if ((windowWidth > 992) && (document.querySelector(".scrollable_feed").classList.contains("d-none"))) {
+        $('.scrollable_feed').removeClass('d-none');
+      }
+
+      if ((windowWidth < 992) && (document.querySelector(".col-lg-7 .search-section"))) {
+        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
+      }
+      if ((windowWidth < 992) && (document.querySelector(".col-lg-7 .notifications-section"))) {
+        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
+      }
+    }
+    $(window).on('load resize', handleResize);
+  });
 
 let homeStatus = true;
 let prevPosts = [``, 0, 0];
