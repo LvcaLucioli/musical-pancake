@@ -449,6 +449,124 @@ main section.followers article footer pre {
 
 
 
+/* single post pop-up */
+
+.modal-lg {
+    max-width: 100% !important;
+    margin: 70px 21px !important;
+}
+
+.modal-content {
+    border-radius: 20px !important;
+}
+
+.modal-header {
+    border-radius: 20px 20px 0 0 !important;
+    background-color: white;
+    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
+    padding-bottom: 0.5rem !important;
+    padding-top: 0.7rem !important;
+    padding-left: 0.7rem !important;
+    
+}
+
+.modal-header button {
+    padding-top: 0.6rem !important;
+}
+
+.modal-header .row {
+    width: 100vw;
+}
+
+.modal-header img {
+    height: 6vh;
+    max-height: 35px;
+    width: auto;
+    border-radius: 1000px;
+    margin-left: 1vw;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 2px 3px rgba(0,0,0,0.3);
+}
+
+.modal-header .col-6 {
+    padding-top: 0.5vh;
+    font-weight: bold;
+    margin-left: calc(50px - 13vw);
+    font-size: 1.1em;
+}
+
+.modal-header .date {
+    padding-left: 0;
+    padding-right: 3vw;
+    padding-top: 1.5%;
+    background-color: transparent;
+}
+
+.modal-header .date pre {
+    margin-bottom: 0;
+    color: rgb(116, 116, 118);
+    font-size: 0.8em;
+    margin-left: 20px;
+    margin-top: 0.2rem;
+}
+
+.modal-body > img {
+    width: calc(100% + 2rem);
+    height: auto;
+    margin-left: -1rem;
+    margin-top: -1rem;
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] {
+    background-color: black;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    height: 40px;
+    margin: 15px 10% 10px;
+    top: 15px;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] ul li button {
+    opacity: 0.5;
+    font-weight: normal;
+    color: white !important;
+    padding: 0;
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 100%;
+    padding: 0 5%;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] ul li button {
+    text-decoration: none;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    background-color: transparent;
+    opacity: 0.5;
+    font-weight: normal;
+    color: white !important;
+    padding: 0;
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] ul li button.active {
+    font-weight: bold;
+    opacity: 1;
+}
+
 
 
 /* userpage follows navbar */
