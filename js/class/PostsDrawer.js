@@ -22,23 +22,6 @@ class PostsDrawer{
             button.innerHTML = response.data;
         });
 
-        if(iOS() && !IS_MOBILE){
-          document.querySelector(".scrollable_div").style.width = "69.5vw";
-          document.querySelector(".scrollable_div").style.paddingLeft = "0.5%";
-          document.querySelector(".scrollable_div").style.paddingRight = "1%";
-        }
-        if(iOS() && IS_MOBILE){
-          if(window.innerWidth < 768) {
-            document.querySelector(".scrollable_div").style.width = "103vw";
-            document.querySelector(".scrollable_div").style.paddingLeft = "3%";
-            document.querySelector(".scrollable_div").style.paddingRight = "1.5%";
-          }else{
-            document.querySelector(".scrollable_div").style.paddingLeft = "0%";
-            document.querySelector(".scrollable_div").style.width = "98.5vw";
-            document.querySelector(".scrollable_div").style.paddingRight = "2%";
-          }
-        }
-
         this.loadMore();
     }
 
@@ -46,6 +29,9 @@ class PostsDrawer{
         let div = $("#drawer");
         let duration = 400;
         
+        document.querySelector(".user_header").style.height = "auto";
+        document.querySelector(".bio").style.removeProperty("-webkit-line-clamp");
+
         let targetPosition = window.innerHeight - document.querySelector(".slide_button").offsetHeight + 4;
         if(!IS_MOBILE){
           targetPosition -= 50;
@@ -77,9 +63,6 @@ class PostsDrawer{
           step: function(now, fx) {
             $(this).css('top', now);
           },
-          complete: function() {
-            document.querySelector("#drawer").style.boxShadow = "0px -2px 4px rgba(0, 0, 0, 0.1)";
-          },
           queue : false
         });
 
@@ -108,16 +91,7 @@ class PostsDrawer{
             queue : false
           });
           $(".posts_count").animate({ 
-            marginLeft: "-5.5vw"
-          }, { 
-            duration : 1200, 
-            step: function(now, fx) {
-              $(this).css('marginLeft', now);
-            },
-            queue : false
-          });
-          $(".add_icon").animate({ 
-            marginLeft: "6.5vw"
+            marginLeft: "-20px"
           }, { 
             duration : 1200, 
             step: function(now, fx) {
@@ -126,9 +100,10 @@ class PostsDrawer{
             queue : false
           });
         }else{
-          $(".profile-aside").css("transition-duration", "0.6s");
+          $(".row_back").css("transitionDuration", "0.6s");
           $(".profile-aside").css("backgroundColor", "white");
           $("body>div>div.col-lg-8").css("backgroundColor", "white");
+          $(".row_back").css("backgroundColor", "white");
         }
 
         
@@ -153,7 +128,7 @@ class PostsDrawer{
         div.animate({ top: this.topHeight }, {
           duration: duration,
           step: function(now, fx) {
-            document.querySelector("#drawer").style.boxShadow = "0 -6px 4px -3px rgba(0, 0, 0, 0.3)";
+            document.querySelector("#drawer").style.boxShadow = "0 -1rem 2rem rgba(0,0,0,.100)";
             $(this).css('top', now);
           },
           queue : false
@@ -187,20 +162,12 @@ class PostsDrawer{
             },
             queue : false
           });
-          $(".add_icon").animate({ 
-            marginLeft: "0%"
-          }, { 
-            duration : duration, 
-            step: function(now, fx) {
-              $(this).css('marginLeft', now);
-            },
-            queue : false
-          });
 
           document.querySelector('header[aria-label="primary-menu"]').style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
         }else{
           $(".profile-aside").css("backgroundColor", "rgb(210, 210, 210)");
           $("body>div>div.col-lg-8").css("backgroundColor", "rgb(210, 210, 210)");
+          $(".row_back").css("backgroundColor", "rgb(210, 210, 210)");
         }
         
         $(".scrollable_user").css("paddingTop", "30%");

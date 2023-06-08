@@ -4,6 +4,7 @@
     // Base template
     $templateParams["title"] = "bevero";
     $templateParams["main"] = "feed.php";
+    $templateParams["modal"] = "post_modal.php";
     $templateParams["aside"] = "aside.php";
 
     // Home template
@@ -11,6 +12,7 @@
         "https://unpkg.com/axios/dist/axios.min.js",
         "js/base.js",
         "js/index.js",
+        "js/post_modal.js",
         "js/aside.js"
     );
 

@@ -29,6 +29,10 @@ function slideDrawer(){
     base.slideDrawer();
 }
 
+function slideDownDrawer(){
+    base.swipeDown();
+}
+
 function switchSection(target){
     base.switchSection(target);
 }
