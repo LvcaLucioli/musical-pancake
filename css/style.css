@@ -82,11 +82,11 @@ header[aria-label="primary-menu"] {
     width: 100%;
     display: flex;
     background-color: white;
-    justify-content: space-between;
     z-index: 100;
     transition: 0.3s ease;
     margin-top: 0;
     padding-bottom: 0;
+    justify-content: space-between;
 }
 
 header[aria-label="primary-menu"] nav ul {
@@ -364,10 +364,19 @@ main section.followers article header a:active {
     text-decoration: none;
 }
 
-main section.followers article section img {
+main section.followers article section>img {
     width: 100%;
     height: auto;
     margin-top: 2vw;
+}
+
+.like_btn{
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+}
+.like_btn img{
+    width: 24px;
 }
 
 
@@ -844,8 +853,8 @@ main div.scrollable_div footer button[disabled] img {
 }
 
 .row .content img {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
@@ -931,8 +940,8 @@ main div.scrollable_div footer button[disabled] img {
     }
 
     header[aria-label="primary-menu"]>div {
-        justify-content: flex-end;
-        margin-right: 50px;
+        justify-content: center;
+        flex-grow: 2;
     }
 
     .logout_lg img {
@@ -1101,6 +1110,16 @@ main div.scrollable_div footer button[disabled] img {
 
     main div.scrollable_div footer button img {
         width: 4vmin;
+    }
+
+    nav[aria-label="explore-nav"]{
+        display: flex;
+        width: 33%;
+    }
+
+    nav[aria-label="profile-nav"]{
+        display: flex;
+        width: 33%;
     }
 }
 

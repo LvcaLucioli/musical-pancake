@@ -114,7 +114,7 @@ function generatePosts(posts) {
             <section>
                 <div class="row">
                     <div class="col-4">
-                        <button onClick="likeClick(this, ${posts[i]["is_liked"]}, ${posts[i]["id"]})">
+                        <button class="like_btn" onClick="likeClick(this, ${posts[i]["is_liked"]}, ${posts[i]["id"]})">
                             <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="Like button" />
                         </button>
                         <a href="./post.php?id=${posts[i]["id"]}&target=like" >
