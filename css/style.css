@@ -653,7 +653,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     padding-bottom: 1%;
     transition-duration: 0.6s;
     transition-timing-function: ease-in-out;
-    height: 28vh;
+    height: calc(20vh + 15vw);
 }
 
 #userlist_section {
@@ -699,7 +699,6 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     overflow: hidden;
     text-overflow: ellipsis;
     padding-right: 10%;
-    height: 85px;
 }
 
 .edit_user_btn {
@@ -811,7 +810,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 }
 
 #drawer{
-    top: calc(39vh + 17.5vw);
+    top: calc(37.2vh + 19.5vw);;
     position: fixed;
     width: 105vw;
     height: 100vh;
@@ -890,7 +889,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     opacity: 0;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
-    padding-top: 0.6%;
+    padding-top: 0.2vh;
     padding-left: 40vw;
 }
 
@@ -1325,15 +1324,7 @@ main div.scrollable_div footer button[disabled] img {
         margin-left: 5%;
     }
 
-    nav[aria-label="explore-nav"]{
-        display: flex;
-        width: 33%;
-    }
-
-    nav[aria-label="profile-nav"]{
-        display: flex;
-        width: 33%;
-    }
+    
 }
 
 

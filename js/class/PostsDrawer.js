@@ -21,7 +21,7 @@ class PostsDrawer{
         axios.post('api/api-user-posts.php', formData).then(response => {
             button.innerHTML = response.data;
         });
-
+        
         this.loadMore();
     }
 
@@ -36,7 +36,7 @@ class PostsDrawer{
         if(!IS_MOBILE){
           targetPosition -= 50;
         }else{
-          targetPosition -= 5;
+          targetPosition -= window.innerWidth/100;
         }
         $(".swipe_down-btn").animate({ 
           opacity: "0"
@@ -71,7 +71,6 @@ class PostsDrawer{
         $(".scrollable_user").css("paddingTop", "0%");
         $("#userlist_section").css("opacity", "1");
         $("main nav[aria-label='followers/following-nav']").css("opacity", "1");
-        
         
         if(IS_MOBILE && document.querySelector(".scrollable_user").scrollTop == 0)
           document.querySelector('header[aria-label="primary-menu"]').style.boxShadow = "none";
