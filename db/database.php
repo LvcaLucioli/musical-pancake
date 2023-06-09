@@ -255,16 +255,26 @@ class DatabaseHelper
 
         return count($result->fetch_all(MYSQLI_ASSOC)) == 0;
     }
+    private function notifyFollow($user, $targetUser)
+    {
+        $content = $user . " started following you";
+
+        $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`) VALUES (?, ?, ?, NOW());";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sss', $targetUser, $content, $user);
+        $stmt->execute();
+    }
 
     public function follow($user, $target)
     {
-        // aggiungere gestione notifiche
         $query = "INSERT INTO `followers` (`follower`, `followed`, `date`) VALUES
         (?, ?, NOW())";
 
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ss', $user, $target);
         $stmt->execute();
+
+        $this->notifyFollow($user, $target);
     }
 
     public function unfollow($user, $target)
@@ -285,7 +295,7 @@ class DatabaseHelper
         $splitted = explode(".", $contentDate);
         $content = $splitted[0];
         $date = $splitted[1];
-        
+
 
         $query = "DELETE FROM notifications
         WHERE targetUser = ?
@@ -302,17 +312,33 @@ class DatabaseHelper
         $stmt->bind_param('ssss', $targetUser, $content, $date, $userPropic);
         $stmt->execute();
     }
-    public function like_unlike($user, $action, $postId){
-        if($action == 'add'){
+    private function notifyLike($user, $targetPost)
+    {
+        $query = "SELECT `user` FROM `posts` WHERE `id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $targetPost);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_row();
+        $targetUser = $row[0];
+
+        $content = $user . " liked your post";
+
+        $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, NOW(), ?);";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sssi', $targetUser, $content, $user, $targetPost);
+        $stmt->execute();
+    }
+    public function like_unlike($user, $action, $postId)
+    {
+        if ($action == 'add') {
             $query = "INSERT INTO `likes` (`post`, `user`) VALUES (?, ?);";
-        }else if ($action = 'remove'){
+            $this->notifyLike($user, $postId);
+        } else if ($action = 'remove') {
             $query = "DELETE FROM `likes` WHERE  post = ? AND user = ?";
         }
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('is', $postId, $user);
         $stmt->execute();
-    }
-    private function notify()
-    {
     }
 }

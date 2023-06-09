@@ -53,14 +53,15 @@
         <div>
             <img src="./resources/header.png" alt="">
         </div>
-        <nav class="navbar navbar-expand-md d-md-none" aria-label="profile-nav">
+        <nav class="navbar navbar-expand-md d-none d-block d-lg-none" aria-label="profile-nav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <div <?php if (isActive("notification.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <button title="notifications" class="nav-link" onClick="showNotificationSection()">
-                            <img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt="notifications">
+                        <button class="nav-link" onClick="showNotificationSection()">
+                            <img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt="">
+                            <span class="label d-none d-md-inline">notifications</span>
                         </button>
                     </div>
                 </li>
@@ -68,11 +69,11 @@
                     <div <?php if (isActive("search.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <button title="user search" class="nav-link" onclick="showSearchSection()">
-                            <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="user search">
+                        <button class="nav-link" onclick="showSearchSection()">
+                            <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="">
+                            <span class="label d-none d-md-inline">search</span>
                         </button>
                     </div>
-
                 </li>
             </ul>
         </nav>

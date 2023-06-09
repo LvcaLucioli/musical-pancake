@@ -69,11 +69,11 @@ header[aria-label="primary-menu"] {
     width: 100%;
     display: flex;
     background-color: white;
-    justify-content: space-between;
     z-index: 100;
     transition: 0.3s ease;
     margin-top: 0;
     padding-bottom: 0;
+    justify-content: space-between;
 }
 
 header[aria-label="primary-menu"] nav ul {
@@ -1047,8 +1047,8 @@ main div.scrollable_div footer button[disabled] img {
 }
 
 .row .content img {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
@@ -1134,8 +1134,8 @@ main div.scrollable_div footer button[disabled] img {
     }
 
     header[aria-label="primary-menu"]>div {
-        justify-content: flex-end;
-        margin-right: 50px;
+        justify-content: center;
+        flex-grow: 2;
     }
     .logout_lg img{
         height: 30px !important;
@@ -1259,21 +1259,17 @@ main div.scrollable_div footer button[disabled] img {
     .swipe_down-btn img {
         width: 20px;
     }
-
     main div.scrollable_div footer button[disabled] img {
         max-width: 55px;
         margin-left: -0.8vmin;
         margin-top: -0.1vw;
     }
-
     main div.scrollable_div footer button {
         max-height: 55px;
     }
-
     main div.scrollable_div footer button img {
         width: 4vmin;
     }
-
 
     .scrollable_feed{
         margin-top: calc(-15vh + 13vw);
@@ -1327,6 +1323,16 @@ main div.scrollable_div footer button[disabled] img {
         width: 4vw;
         height: auto;
         margin-left: 5%;
+    }
+
+    nav[aria-label="explore-nav"]{
+        display: flex;
+        width: 33%;
+    }
+
+    nav[aria-label="profile-nav"]{
+        display: flex;
+        width: 33%;
     }
 }
 
