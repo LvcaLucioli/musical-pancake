@@ -1,28 +1,7 @@
 /* scrollbar */
 
 ::-webkit-scrollbar {
-    width: 20px;
-    background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border-radius: 20px;
-    border: 8px solid transparent;
-    background-clip: content-box;
-}
-
-.show-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #dadada;
-}
-
-.hide-scrollbar::-webkit-scrollbar-thumb {
-    background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #b7b7b7;
-    border: 4px solid transparent;
+    display: none;
 }
 
 
@@ -35,6 +14,14 @@ html {
 body {
     font-family: "Helvetica Neue", Arial, sans-serif;
     overflow: hidden;
+}
+
+body a:link,
+body a:visited,
+body a:hover,
+body a:active {
+  color: inherit;
+  text-decoration: none;
 }
 
 main {
@@ -220,8 +207,8 @@ main nav[aria-label="feed-menu"] {
     border-radius: 20px;
     overflow: hidden;
     height: 40px;
-    margin: 20px auto 10px;
-    top: 20px;
+    margin: calc(10vw - 3vh) auto 10px;
+    top: calc(10vw - 3vh);
     z-index: 101;
     min-width: 200px;
     max-width: 200px;
@@ -261,24 +248,24 @@ main nav[aria-label="feed-menu"] ul li button.active {
 .scrollable_feed {
     padding: 0%;
     padding-left: 21px;
-    padding-right: 1px;
+    padding-right: 21px;
     width: 100vw;
     height: 94vh;
     overflow-y: scroll;
     overflow-x: hidden;
     position: fixed;
-    margin-top: 0;
+    margin-top: 1vw;
 }
 
-main div.scrollable_feed>footer button {
-    margin-top: 7%;
+main div.scrollable_feed > footer button{
+    margin-top: 0;
     width: 40vw;
     padding: 0.5%;
     font-size: 1.1em;
     font-weight: bold;
     border-radius: 30px;
     margin-left: auto;
-    margin-bottom: 40%;
+    margin-bottom: 15%;
     margin-right: auto;
     background-color: black;
     border: 2px solid black;
@@ -329,18 +316,19 @@ main div[id="scrollable_feed"]>section.followers {
 main section.followers article {
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 13%;
     background-color: white;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 25px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
     margin-top: 7%;
+    border: 0.1px solid rgba(0, 0, 0, 0.1);
 }
 
 main section.followers article header img {
-    height: 9vw;
+    height: 6vh;
+    max-height: 35px;
     width: auto;
     border-radius: 1000px;
     margin-left: 4vw;
@@ -349,36 +337,231 @@ main section.followers article header img {
 }
 
 main section.followers article header .col-8 {
-    padding-top: 3vw;
+    padding-top: calc(2% + 0.5vh);
     font-weight: bold;
     padding-left: 0;
     font-size: 1.1em;
-    margin-left: -15px;
+    margin-left: calc(-12vw + 4vh);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-main section.followers article header a:link,
-main section.followers article header a:visited,
-main section.followers article header a:hover,
-main section.followers article header a:active {
-    color: inherit;
-    text-decoration: none;
+main section.followers article section:nth-child(2) button {
+    padding: 0;
+    background-color: transparent;
 }
 
-main section.followers article section>img {
+main section.followers article section:nth-child(2) img {
     width: 100%;
     height: auto;
     margin-top: 2vw;
 }
 
-.like_btn {
-    width: 24px;
-    height: 24px;
+main section.followers article section:nth-child(3) {
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+}
+
+.like_block{
+    padding-right: 0 !important;
+    
+}
+
+.like_block button img{
+    height: 4vh;
+    width: auto;
+    margin-right: 1vh;
+}
+
+.like_block button:nth-child(1) {
+    display: unset;
+    background-color: white;
+    margin-left: 2vh;
+    padding: 0;
+}
+
+.like_block button:nth-child(2) {
+    display: unset;
+    font-weight: bold !important;
+    padding: 0;
+    background-color: white;
+    color: black;
+}
+
+.comments_block{
+    margin-top: -2px;
+    padding-left: 0 !important;
+}
+
+.comments_block img{
+    height: 4.5vh;
+    width: auto;
+    margin-left: 0;
+}
+
+.comments_block span{
+    font-weight: normal;
+    color: rgb(116, 116, 118);
+    font-size: 0.8em;
+}
+
+.comments_block button {
+    display: unset;
+    margin: 0 !important;
+    margin-right: 2vh !important;
+    font-weight: bold !important;
+    padding: 0;
+    background-color: white;
+    color: black;
+}
+
+main section.followers article section:nth-child(4) {
+    padding-right: 2vh;
+    padding-left: 2vh;
+}
+
+main section.followers article section:nth-child(4) p {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
+}
+
+main section.followers article footer {
+    padding-right: 2vh;
+    padding-left: 2vh;
+    padding-bottom: 1px;
+}
+
+main section.followers article footer pre {
+    margin-bottom: 2vh;
+    color: rgb(116, 116, 118);
+    font-size: 0.8em;
+}
+
+
+
+/* single post pop-up */
+
+.modal-lg {
+    max-width: 100% !important;
+    margin: 70px 21px !important;
+}
+
+.modal-content {
+    border-radius: 20px !important;
+}
+
+.modal-header {
+    border-radius: 20px 20px 0 0 !important;
+    background-color: white;
+    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
+    padding-bottom: 0.5rem !important;
+    padding-top: 0.7rem !important;
+    padding-left: 0.7rem !important;
+    
+}
+
+.modal-header button {
+    padding-top: 0.6rem !important;
+}
+
+.modal-header .row {
+    width: 100vw;
+}
+
+.modal-header img {
+    height: 6vh;
+    max-height: 35px;
+    width: auto;
+    border-radius: 1000px;
+    margin-left: 1vw;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 2px 3px rgba(0,0,0,0.3);
+}
+
+.modal-header .col-6 {
+    padding-top: 0.5vh;
+    font-weight: bold;
+    margin-left: calc(50px - 13vw);
+    font-size: 1.1em;
+}
+
+.modal-header .date {
+    padding-left: 0;
+    padding-right: 3vw;
+    padding-top: 1.5%;
     background-color: transparent;
 }
 
-.like_btn img {
-    width: 24px;
+.modal-header .date pre {
+    margin-bottom: 0;
+    color: rgb(116, 116, 118);
+    font-size: 0.8em;
+    margin-left: 20px;
+    margin-top: 0.2rem;
 }
+
+.modal-body > img {
+    width: calc(100% + 2rem);
+    height: auto;
+    margin-left: -1rem;
+    margin-top: -1rem;
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] {
+    background-color: black;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    height: 40px;
+    margin: 15px 10% 10px;
+    top: 15px;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] ul li button {
+    opacity: 0.5;
+    font-weight: normal;
+    color: white !important;
+    padding: 0;
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 100%;
+    padding: 0 5%;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] ul li button {
+    text-decoration: none;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    background-color: transparent;
+    opacity: 0.5;
+    font-weight: normal;
+    color: white !important;
+    padding: 0;
+}
+
+.modal-body nav[aria-label="comments/likes-menu"] ul li button.active {
+    font-weight: bold;
+    opacity: 1;
+}
+
 
 
 /* userpage follows navbar */
@@ -454,27 +637,30 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     transition-duration: 0.6s;
     transition-timing-function: ease-in-out;
     padding-left: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .scrollable_user header {
     height: calc(22vh + 13vw);
-    margin-top: 2vh;
+    display: table-footer-group;
 }
 
 .user_header {
-    margin: 0 auto 0;
-    height: 100%;
+    margin: 2vh auto 0;
     width: 100%;
     overflow: hidden;
     padding-bottom: 1%;
     transition-duration: 0.6s;
     transition-timing-function: ease-in-out;
+    height: calc(20vh + 15vw);
 }
 
 #userlist_section {
     transition-duration: 0.6s;
     transition-timing-function: ease-in-out;
-    margin-top: 5vh;
+    margin-top: 3vmin;
+    display: inline-block;
 }
 
 .propic {
@@ -496,19 +682,23 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     padding-top: 2vw;
     margin-left: 0px;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 1.5em;
     margin-bottom: 1%;
+    padding-right: 10%;
 }
 
 .bio {
     font-size: 1em;
     margin-bottom: 0;
     white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
     word-wrap: break-word;
     overflow-x: auto;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10%;
 }
 
 .edit_user_btn {
@@ -536,8 +726,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     margin-left: -0.2vmin;
     padding-left: 2%;
     height: 30px;
-    display: flex;
-    justify-content: center;
+    margin-top: 5%;
 }
 
 .user_btn img {
@@ -553,7 +742,6 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     color: rgb(0, 128, 255);
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
-
 }
 
 .following_btn img {
@@ -616,12 +804,13 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     overflow-y: scroll;
     overflow-x: hidden;
     position: fixed;
-    padding-left: 3.5vh;
+    padding-left: 5.2vw;
+    padding-right: 4vw;
     margin-top: 0;
 }
 
-#drawer {
-    top: calc(44vh + 10vw);
+#drawer{
+    top: calc(37.2vh + 19.5vw);;
     position: fixed;
     width: 105vw;
     height: 100vh;
@@ -630,7 +819,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     flex-direction: column;
     border-radius: 40px;
     background-color: rgb(0, 0, 0);
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 -1rem 2rem rgba(0,0,0,.100);
     margin-left: -2.7vw;
     padding: 0;
     padding-left: 0;
@@ -663,7 +852,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 }
 
 .posts_count {
-    padding: 0.7% 0 5% 6%;
+    padding: 0.7% 0 5% 20%;
     text-align: left;
     font-size: 1.2em;
     margin: 0;
@@ -674,15 +863,17 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 }
 
 .add_button {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding-top: 0.8vh;
-    padding-left: 5vw;
+    position: relative;
+    width: 36px;
+    height: auto;
+    margin-left: 25%;
+    margin-top: calc(-22% + 3vw - 3vh);
+    background-color: white;
+    border-radius: 100px;
 }
 
 .add_icon {
-    width: 40px;
+    width: 35px;
     height: auto;
     margin: 0;
     padding: 0;
@@ -698,7 +889,8 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     opacity: 0;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
-    margin-left: 2vw;
+    padding-top: 0.2vh;
+    padding-left: 40vw;
 }
 
 .swipe_div pre {
@@ -961,58 +1153,36 @@ input[type="search"]::-webkit-search-cancel-button {
         justify-content: center;
         flex-grow: 2;
     }
-
-    .logout_lg img {
+    .logout_lg img{
         height: 30px !important;
         width: auto !important;
     }
-
-    .logout_lg span {
+    .logout_lg span{
         color: rgb(255, 59, 48);
     }
-
     .logout_lg {
         padding-bottom: 7px !important;
         margin-top: -2px;
     }
 
-    .add_button {
-        padding-left: 11vw;
-        padding-top: 13px;
-    }
 
     .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: -1%;
     }
-
     .user_header {
-        margin: 0;
-        width: 100%;
+        width: 100vw;
+        height: 100%;
     }
-
-    main nav[aria-label="feed-menu"] {
-        max-width: 300px;
-        margin: 15px auto 10px;
-        top: 15px;
-    }
-
-    .posts_count {
-        padding-left: 16%;
-    }
-
-    .swipe_div {
-        margin-left: 2.6vw;
-    }
-
     .username {
         padding-top: 4%;
         font-size: 4vmin;
         margin-bottom: 0;
         height: 100%;
+        padding-bottom: 2%;
+        padding-right: 0;
     }
-
     .bio {
         font-size: 2vmin;
         margin-top: 6%;
@@ -1021,58 +1191,12 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-bottom: 0;
         height: 100%;
     }
-
     .propic {
         width: 100%;
         margin-top: 5%;
         margin-left: 12%;
         max-width: 18vw;
     }
-
-    .add_icon {
-        width: 45px;
-    }
-
-    #drawer {
-        top: calc(37vw + 1%);
-        width: 102vw;
-        margin-left: -1vw;
-        border-radius: 60px;
-    }
-
-    #drawer .scrollable_div {
-        width: 99.3vw;
-        padding: 0;
-        margin-left: 2.5%;
-        height: 84vh;
-    }
-
-    .slide_button {
-        height: 80px;
-    }
-
-    .posts_count {
-        font-size: 1.3em;
-        padding-top: 4%;
-        margin-left: 5vw;
-    }
-
-    main nav[aria-label="followers/following-nav"] {
-        max-width: 50%;
-        margin-right: auto;
-        margin-left: auto;
-        height: 45px;
-        border-radius: 100px;
-    }
-
-    #followers_button {
-        font-size: 2.3vmin;
-    }
-
-    #following_button {
-        font-size: 2.3vmin;
-    }
-
     .user_btn {
         margin-top: 0;
         font-size: 2.3vmin;
@@ -1082,124 +1206,185 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-left: -0.2vmin;
         height: 4vmin;
     }
-
     .scrollable_user {
         margin-top: calc(-10.5vh + 9vw);
         height: 90%;
     }
-
     .scrollable_user header {
-        height: 20vmin;
+        height: calc(21vw);
         margin-top: 1.5vmin;
     }
-
     .user_btn img {
         width: 4vmin;
         margin-bottom: 3%;
     }
-
     .follow_btn img {
         width: 2.5vmin;
     }
-
     .settings_btn img {
         margin-left: 6%;
         width: 2.5vw;
     }
-
-    .swipe_down-btn img {
-        width: 20px;
-    }
-
     .following_btn img {
         width: 4.5vmin;
         margin-bottom: 0;
     }
-
+    
+    .add_button{
+        margin-left: 3.2vw;
+        margin-top: -6.2vw;
+    }
+    .posts_count {
+        padding-left: 16%;
+    }
+    .swipe_div{
+        margin-top: 1vw;
+    }
+    #drawer {
+        top: calc(37vw + 1%);
+        width: 102vw;
+        margin-left: -1vw;
+        border-radius: 60px;
+    }
+    #drawer .scrollable_div {
+        width: 101.5vw;
+        padding-left: 4vw;
+        height: 84vh;
+    }
+    .slide_button {
+        height: 80px;
+    }
+    .posts_count {
+        font-size: 1.4em;
+        padding-top: 4%;
+        margin-left: 5vw;
+    }
+    main nav[aria-label="followers/following-nav"] {
+        max-width: 50%;
+        margin-right: auto;
+        margin-left: auto;
+        height: 45px;
+        border-radius: 100px;
+    }
+    #followers_button {
+        font-size: 2.3vmin;
+    }
+    #following_button {
+        font-size: 2.3vmin;
+    }
+    .swipe_down-btn img {
+        width: 20px;
+    }
     main div.scrollable_div footer button[disabled] img {
         max-width: 55px;
         margin-left: -0.8vmin;
         margin-top: -0.1vw;
     }
-
     main div.scrollable_div footer button {
         max-height: 55px;
     }
-
     main div.scrollable_div footer button img {
         width: 4vmin;
     }
 
-    nav[aria-label="explore-nav"] {
-        display: flex;
-        width: 33%;
+    .scrollable_feed{
+        margin-top: calc(-15vh + 13vw);
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
+    main nav[aria-label="feed-menu"] {
+        max-width: 300px;
+        margin: calc(2vmin + 1vh) auto 10px;
+        top: calc(2vmin + 1vh);
+    }
+    main section.followers article header img {
+        max-height: 50px;
+        height: 100%;
+    }
+    main section.followers article header .col-8 {
+        margin-left: calc(-5vw - 2vh + 1%);
+        font-size: 1.2em;
+        padding-top: 3vw;
+    }
+    .like_block button img{
+        height: 4vmin;
+    }
+    .like_block button:nth-child(2) {
+        font-size: 1.3em;
+    }
+    .comments_block img{
+        height: 4.5vw;
+    }
+    .comments_block button {
+        font-size: 1.3em;
+    }
+    .comments_block span{
+        font-size: 0.9em !important;
+    }
+    main section.followers article section:nth-child(4) p {
+        font-size: 1.2em;
+    }
+    main section.followers article footer pre {
+        font-size: 0.9em;
+    }
+    main div.scrollable_feed > footer button{
+        width: 40vh;
+        max-width: 300px;
+        height: 5vw;
+        margin-bottom: 18%;
+    }
+    main div.scrollable_feed > footer button img{
+        margin: 0%;
+        padding: 0;
+        width: 4vw;
+        height: auto;
+        margin-left: 5%;
     }
 
-    nav[aria-label="profile-nav"] {
-        display: flex;
-        width: 33%;
-    }
+    
 }
 
 
 /* Desktop rules */
 
 @media screen and (min-width: 992px) {
+
     header[aria-label="primary-menu"] {
         height: 10vh;
         max-height: 65px;
     }
-
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
     }
-
     header[aria-label="primary-menu"]>div {
         margin-right: 50px;
         margin-top: -10px;
         position: relative;
     }
-
     header[aria-label="primary-menu"] {
         box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
     }
-
     header[aria-label="primary-menu"] a {
         transition-duration: 0.3s;
         transition-timing-function: ease-in-out;
         border-radius: 10px;
     }
-
     header[aria-label="primary-menu"] a:hover {
         background-color: rgb(237, 237, 240);
     }
-
-    .logout_lg img {
+    .logout_lg img{
         height: 30px !important;
         width: auto !important;
     }
-
-    .logout_lg span {
+    .logout_lg span{
         color: rgb(255, 59, 48);
     }
-
     .logout_lg {
         padding-bottom: 7px !important;
         margin-top: -2px;
     }
-
-    .logout_lg:hover {
-        background-color: rgb(255, 237, 237) !important;
-    }
-
-    main nav[aria-label="feed-menu"] {
-        margin: 15px auto 10px;
-        top: 15px;
-        max-width: 300px;
-    }
-
-    main nav[aria-label="feed-menu"] ul li button:hover {
-        opacity: 0.7;
+    .logout_lg:hover{
+        background-color:rgb(255, 237, 237) !important;
     }
 
     #drawer .scrollable_div {
@@ -1209,18 +1394,72 @@ input[type="search"]::-webkit-search-cancel-button {
         margin: 0;
         margin-top: 3em;
         padding-left: 1.5%;
-        padding-right: 0;
+        padding-right: 1.5%;
     }
-
     #drawer .scrollable_el {
         padding-right: 0;
     }
-
-    .scrollable_feed {
-        width: 70vw;
+    .add_button{
+        margin-left: 13%;
+        margin-top: -28%;
+    }
+    #drawer {
+        border-radius: 0 30px;
+        width: 69.5vw;
+        top: calc(30% + 5vw + 1vmin);
+    }
+    .posts_count{
+        font-size: 1.2em;
+        padding-top: 1%;
+        margin-left: 10%;
+    }
+    .slide_button {
+        height: 10px;
+    }
+    .scrollable_el {
         padding-left: 40px;
-        padding-right: 10px;
-        z-index: 100;
+        padding-right: 20px;
+    }
+    .swipe_div{
+        margin: 0;
+        padding-left: 35vw !important;
+    }
+    .swipe_icon {
+        margin-top: -20%;
+    }
+    .swipe_down-btn img {
+        margin-top: -3%;
+        margin-left: 3vw;
+        width: 20px;
+    }
+    .swipe_div pre{
+        font-size: 0.8em;
+    }
+    .swipe_icon {
+        margin-top: 1vh;
+    }
+    main section#posts_section article {
+        padding: 0.15vw;
+    }
+    main div.scrollable_div footer button img {
+        width: 100%;
+        max-width: 40px;
+    }
+    main div.scrollable_div footer button[disabled] img {
+        max-width: 55px;
+        margin-left: -0.5vw;
+        margin-top: -0.1vw;
+    }
+    main div.scrollable_div footer button:hover {
+        background-color: rgb(174, 174, 178);
+    }
+    main div.scrollable_div footer button {
+        font-size: 1.3em;
+        max-height: 70px;
+        max-width: 260px;
+        border-radius: 100px;
+        font-size: 1.4em;
+        margin-bottom: 20vh;
     }
 
     main nav[aria-label="followers/following-nav"] {
@@ -1232,30 +1471,13 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-top: -1%;
         max-height: 5vh;
     }
-
     main nav[aria-label="followers/following-nav"] ul li button:hover {
         opacity: 0.7;
     }
-
     main nav[aria-label="followers/following-nav"] ul li button.active:hover {
         opacity: 1;
     }
-
-    .add_button {
-        padding-top: 5px;
-        margin-left: 3.5vw;
-    }
-
-    .add_icon {
-        width: 2.6em;
-    }
-
-    #drawer {
-        border-radius: 0 30px;
-        width: 69.5vw;
-        top: calc(30% + 5vw + 1vmin);
-    }
-
+    
     .propic {
         width: 70%;
         margin-top: 2vh;
@@ -1263,69 +1485,39 @@ input[type="search"]::-webkit-search-cancel-button {
         max-width: 220px;
         margin-left: 15%;
     }
-
     .username {
         margin-top: -3%;
         font-size: 4.2vmin;
         margin-bottom: 0;
         height: 100%;
         padding-top: 0;
+        padding-bottom: 4%;
+        padding-right: 0;
     }
-
     .bio {
         font-size: 2vmin;
         margin-top: 0%;
         padding-left: 0 !important;
         width: 100%;
         padding-bottom: 0;
-        height: 100%;
+        height: 100px;
     }
-
     .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: 2%;
     }
-
     .user_header {
-        margin: 0;
         width: 100%;
         padding-top: 0.6vh;
-        margin-top: 0px;
+        height: 100%;
     }
-
-    .posts_count {
-        font-size: 1.2em;
-        padding-top: 1%;
-        margin-left: 10%;
-    }
-
     #followers_button {
         font-size: 2vmin;
     }
-
     #following_button {
         font-size: 2vmin;
     }
-
-    .slide_button {
-        height: 10px;
-    }
-
-    .scrollable_el {
-        padding-left: 40px;
-        padding-right: 20px;
-    }
-
-    .swipe_div {
-        margin-left: 3vw !important;
-        margin: 0;
-    }
-
-    main section#posts_section article {
-        padding: 0.15vw;
-    }
-
     .user_btn {
         margin-top: 0;
         font-size: 2.3vmin;
@@ -1334,94 +1526,112 @@ input[type="search"]::-webkit-search-cancel-button {
         max-width: 10vw;
         min-width: 150px;
     }
-
     .user_btn img {
         width: 4vmin;
         margin-bottom: 3%;
     }
-
     .follow_btn img {
         width: 2.5vh;
         margin-bottom: 5px;
     }
-
     .settings_btn img {
         margin-left: 6%;
         width: 3vh;
     }
-
     .scrollable_user header {
         height: 25vh;
         margin-top: 1.5vh;
     }
-
     .scrollable_user {
         margin-top: -10px;
         width: 66vw;
         height: 87vmin;
     }
-
-    .swipe_icon {
-        margin-top: -20%;
-    }
-
-    .swipe_down-btn img {
-        margin-top: -3%;
-        margin-left: 3vw;
-        width: 20px;
-    }
-
     .following_btn img {
         width: 4.6vmin;
         margin-top: 2px;
     }
-
-    .swipe_div pre {
-        font-size: 0.8em;
-    }
-
-    .swipe_icon {
-        margin-top: 1vh;
-    }
-
-    main div.scrollable_div footer button img {
-        width: 100%;
-        max-width: 40px;
-    }
-
-    main div.scrollable_div footer button[disabled] img {
-        max-width: 55px;
-        margin-left: -0.5vw;
-        margin-top: -0.1vw;
-    }
-
     .following_btn:hover {
         background-color: rgb(192, 192, 199);
     }
-
     .follow_btn:hover {
         background-color: rgb(0, 100, 199);
         color: white;
     }
-
     .settings_btn:hover {
         background-color: rgb(195, 88, 0);
     }
-
-    main div.scrollable_div footer button:hover {
-        background-color: rgb(174, 174, 178);
+    
+    .scrollable_feed{
+        margin-top: -1vh;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        width: 70vw;
     }
-
-    main div.scrollable_div footer button {
+    main nav[aria-label="feed-menu"] ul li button:hover{
+        opacity: 0.7;
+    }
+    main nav[aria-label="feed-menu"] {
+        max-width: 300px;
+        margin: calc(2vmin + 1vh) auto 10px;
+        top: calc(2vmin + 1vh);
+    }
+    main section.followers article header img {
+        height: 7vh;
+        margin-left: 2vw;
+        margin-top: 1vw;
+    }
+    main section.followers article header .col-8 {
+        margin-left: -7vw;
+        font-size: 1.2em;
+        padding-top: calc(1.4vh + 0.35vw);
+    }
+    main section.followers article section:nth-child(2) img {
+        margin-top: 1vw;
+    }
+    .like_block button img{
+        height: 5vmin;
+    }
+    .like_block button:nth-child(1) {
+        margin-left: 4vh;
+    }
+    .like_block button:nth-child(2) {
         font-size: 1.3em;
-        max-height: 70px;
-        max-width: 260px;
-        border-radius: 100px;
-        font-size: 1.4em;
-        margin-bottom: 20vh;
+    }
+    .comments_block img{
+        height: 5.5vmin;
+    }
+    .comments_block button {
+        font-size: 1.3em;
+        margin-right: 4vh !important;
+    }
+    .comments_block span{
+        font-size: 0.9em !important;
+    }
+    main section.followers article section:nth-child(4) p {
+        font-size: 1.2em;
+        margin-left: 2vh;
+    }
+    main section.followers article footer pre {
+        font-size: 0.9em;
+        margin-left: 2vh;
+    }
+    main div.scrollable_feed > footer button{
+        width: 40vh;
+        max-width: 300px;
+        height: 7vh;
+        margin-bottom: 18%;
+        padding-bottom: 0;
+        padding-top: 0%;
+    }
+    main div.scrollable_feed > footer button img{
+        margin: 0%;
+        padding: 0;
+        width: 6vh;
+        height: auto;
+        margin-left: 5%;
     }
 
-    /* aside */
 
     .inactiveTab {
         background-color: white !important;
@@ -1465,8 +1675,11 @@ input[type="search"]::-webkit-search-cancel-button {
         transition-timing-function: ease-in-out;
         padding-top: 10vh;
         margin-top: 0vh;
-        max-width: 35.37vw !important;
+        max-width: 34% !important;
         padding-left: 5vw !important
     }
-
+    .row_back{
+        transition-duration: 0.1s;
+        transition-timing-function: ease-in-out;
+    }
 }

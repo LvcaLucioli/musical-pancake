@@ -73,9 +73,33 @@ class DatabaseHelper
         return $result;
     }
 
-    public function getLikeList($postId)
+    public function getPostById($id)
+    {
+        $query = "SELECT p.*, u.propic
+        FROM posts p, users u
+        WHERE p.user = u.username
+        AND p.id = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getLikes($postId)
     {
         $query = "SELECT user FROM likes WHERE post = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getNComments($postId)
+    {
+        $query = "SELECT COUNT(*) FROM comments WHERE post = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $postId);
         $stmt->execute();

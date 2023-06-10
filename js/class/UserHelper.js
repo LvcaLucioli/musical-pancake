@@ -6,21 +6,21 @@ class UserHelper{
 
     static USER_BTN = {
         "following" : `
-                                        <button class="user_btn following_btn" onCLick="clickUserBtn()">
-                                            following
-                                        <img src="./resources/following.png">
+                                    <button title="click to unfollow" class="user_btn following_btn" onCLick="clickUserBtn()">
+                                        following
+                                        <img src="./resources/following.png" alt="user followd icon">
                                     </button>`,
                             
         "follow" : `
-                                        <button class="user_btn follow_btn" onCLick="clickUserBtn()">
+                                    <button title="click to follow" class="user_btn follow_btn" onCLick="clickUserBtn()">
                                         follow
-                                        <img src="./resources/follow.png">
+                                        <img src="./resources/follow.png" alt="click to follow icon">
                                     </button>`,
 
         "settings" : `
-                                    <button class="user_btn settings_btn" onCLick="clickUserBtn()">
+                                    <button title="edit personal profile settings" class="user_btn settings_btn" onCLick="clickUserBtn()">
                                             settings
-                                            <img src="./resources/settings.png">
+                                            <img src="./resources/settings.png" alt="user settings icon">
                                     </button>`
     };
     
@@ -131,16 +131,21 @@ class UserHelper{
                 <div class="user_header">
                     <div class="row ">
                         <div class="col-5 col-md-3">
+                        <a title="create a new post" href='./new_post.php'>
                             <img class="propic" src="${user["propic"]}" alt="Profile picture" />
+                            <div class="add_button ${user["btn"] != "settings" ? "d-none" : ""}">
+                                <img class="add_icon" src="./resources/add_icon.png" alt="add a new post" />
+                            </div>
+                        </a>
                         </div>
                         <div class="col-7 col-md-9 user_info">
                             <div class="row">
                                 <div class="col-12 col-md-6">
-                                    <p class="text-wrap text-break username">${user["username"]}</p>
+                                    <h1 class="text-wrap text-break username">${user["username"]}</h1>
                                 </div>
                                                            
                                 <div class="col-12 col-md-6">
-                                    <pre class="bio">${user["bio"]}</pre>
+                                    <pre class="bio" style="-webkit-line-clamp: 4;">${user["bio"]}</pre>
                                 </div>
 
                                 <div class="col-12 col-lg-6" id="btn_space">`
@@ -168,27 +173,14 @@ class UserHelper{
     
         this.userBtn = user["btn"];
 
-        if (user["btn"] == "settings"){
-            if (window.innerWidth < 768) {
+        if (user["btn"] == "settings" && window.innerWidth < 768) {
                 document.getElementsByClassName("nav-item")[1].innerHTML = `
                 <div>
                     <a class="nav-link" href="logout.php">
                         <img src="./resources/logout.png" alt="Logout from your account" class="logout">
                     </a>
                     <span class="label d-none d-md-inline">logout</span>
-                </div>`;
-            } else {
-                document.getElementsByClassName("navbar-nav")[0].innerHTML += `
-                <li class="nav-item">
-                    <div>
-                        <a class="nav-link logout_lg" href="logout.php">
-                            <img src="./resources/logout.png" alt="">
-                            <span class="label d-none d-md-inline">logout</span>
-                        </a>
-                    </div>
-                </li>`;
-            }
-            
+                </div>`;  
         }
         return header;
     }

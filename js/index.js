@@ -3,7 +3,7 @@ const DICT = {
     false: "#discovery"
 }
 
-const N_POST = 1;
+const N_POST = 2;
 const N_BLOCK_DISC = 2;
 
 const LOAD_BTN = ` 
@@ -27,6 +27,14 @@ function iOS() {
             'iPod'
         ].includes(navigator.userAgent) ||
         (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
+function alt_like_btn(state){
+    if (state) {
+        return "liked post, click to unlike";
+    } else {
+        return "click to like the post"
+    }
 }
 
 async function switchHome(tab) {
@@ -85,20 +93,21 @@ function likeClick(button, isLiked, postId) {
         button.setAttribute("onClick", "likeClick(this, true, " + postId + ")");
     }
     button.querySelector("img").setAttribute("src", path);
+    button.querySelector("img").setAttribute("alt", alt_like_btn(!isLiked));
     axios.post('api/api-like.php', formData).then(response => {});
 }
 
 function generatePosts(posts) {
     let result = '';
-
+    
     for (let i = 0; i < posts.length - 1; i++) {
         let post = `
-        <article>
+        <article class="shadow-lg">
             <header>
                 <div class="row">
                     <div class="col-3">
                         <a href="user.php?username=${posts[i]["user"]}">
-                            <img src="${posts[i]["propic"]}" alt="Profile picture" />
+                            <img src="${posts[i]["propic"]}" alt="profile picture" />
                         </a>
                     </div>
                     <div class="col-8">
@@ -107,27 +116,25 @@ function generatePosts(posts) {
                 </div>
             </header>
             <section>
-                <a href="./post.php?id=${posts[i]["id"]}&target=post" >
-                    <img src="${posts[i]["img_name"]}" alt="Post picture" />
-                </a>
+                <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-target="post">
+                    <img src="${posts[i]["img_name"]}" alt="post picture" />
+                </button>
             </section>
             <section>
                 <div class="row">
-                    <div class="col-4">
-                        <button class="like_btn" onClick="likeClick(this, ${posts[i]["is_liked"]}, ${posts[i]["id"]})">
-                            <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="Like button" />
+                    <div class="col-6 like_block">
+                        <button onClick="likeClick(this, ${posts[i]["is_liked"]}, ${posts[i]["id"]})">
+                            <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="${alt_like_btn(posts[i]["is_liked"])}">
                         </button>
-                        <a href="./post.php?id=${posts[i]["id"]}&target=like" >
+                        <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-target="like">
                             ${posts[i]["n_likes"]} likes
-                        </a>
+                        </button>
                     </div>
-                    <div class="col-4">
-                    </div>
-                    <div class="col-4">
-                        <a href="./post.php?id=${posts[i]["id"]}&target=comments" >
-                            ${posts[i]["n_likes"]} likes
-                            <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="Like button" />
-                        </a>
+                    <div class="col-6 comments_block text-right">
+                        <button type="button" data-toggle="modal" data-target="#postModal"  data-postid="${posts[i]["id"]}" data-target="comments">
+                            <span>add comment</span> &nbsp;&nbsp;${posts[i]["n_comments"]}
+                            <img src="resources/comment.png" alt="view and add commens">
+                        </button>
                     </div>
                 </div>
             </section>
@@ -135,7 +142,7 @@ function generatePosts(posts) {
                 <p>${posts[i]["description"]}</p>
             </section>
             <footer>
-                <pre>Published on ${posts[i]["date"]}</pre>
+                <pre>Published on ${posts[i]["date"].split(" ")[0]}</pre>
             </footer>
         </article>
         `;
@@ -251,18 +258,12 @@ axios.post('api/api-discovery.php', formData).then(response => {
 
 loadMore();
 
-// set posts scrollbar
+// set posts scroll shadow 
 let scrollableDivMain = document.querySelectorAll('.scrollable_feed')[0];
 let isScrollingMain;
 const screenWidth = window.innerWidth;
 
 scrollableDivMain.addEventListener('scroll', function() {
-    window.clearTimeout(isScrollingMain);
-    scrollableDivMain.classList.add('show-scrollbar');
-    isScrollingMain = setTimeout(function() {
-        scrollableDivMain.classList.remove('show-scrollbar');
-    }, 700);
-
     let header = document.querySelector('header[aria-label="primary-menu"]');
     let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
     if (IS_MOBILE) {
@@ -274,8 +275,6 @@ scrollableDivMain.addEventListener('scroll', function() {
     }
 });
 
-if (iOS()) {
-    if (IS_MOBILE) {
-        document.querySelector(".scrollable_feed").style.paddingRight = "21px";
-    }
+if (iOS() && window.innerWidth < 768){
+    document.querySelector("main div.scrollable_feed > footer button").style.marginBottom = "40%";
 }
