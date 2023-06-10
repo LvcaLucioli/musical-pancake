@@ -1032,28 +1032,17 @@ main div.scrollable_div footer button[disabled] img {
     color: black;
 }
 
-.row .search .content {
-    display: flex;
-    min-width: 33%;
-    max-width: 66%;
-    align-items: flex-end;
-    /* justify-content: space-around; */
-}
-
-.row .notifications .content {
-    display: flex;
-    min-width: 70%;
-    max-width: 70%;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding-left: 5px;
-    font-size: 14px;
-}
-
 .row .content img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+.row .content p {
+    margin-left: 10px;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
 }
 
 /* notifications section */
@@ -1074,6 +1063,15 @@ main div.scrollable_div footer button[disabled] img {
     padding: 5px;
     align-items: center;
     justify-content: space-between;
+}
+
+.row .notifications .content {
+    display: flex;
+    min-width: 70%;
+    max-width: 70%;
+    align-items: center;
+    padding-left: 5px;
+    font-size: 14px;
 }
 
 .read_btn {
@@ -1137,12 +1135,12 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .row .search .content {
+    display: flex;
+    min-width: 33%;
+    max-width: 66%;
     font-weight: bold;
 }
 
-.row .search .content p {
-    margin-left: 10px;
-}
 
 /* Tablet rules */
 
