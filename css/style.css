@@ -88,6 +88,11 @@ header[aria-label="primary-menu"] nav ul li {
     padding: 10px;
 }
 
+header[aria-label="primary-menu"] nav ul li button{
+    background-color: transparent;
+    padding-top: 10px;
+}
+
 header[aria-label="primary-menu"] nav ul li a {
     padding: 10px;
 }
@@ -970,17 +975,9 @@ main div.scrollable_div footer button[disabled] img {
     display: none;
 }
 
-/* .navbar-nav .nav-link {
-    background-color: transparent;
-} */
-
 .profile-aside .navbar button:focus {
     outline: none;
 }
-
-/* .profile-aside .navbar button.active {
-    background-color: #fafafa;
-} */
 
 .profile-aside .navbar {
     padding: 0;
@@ -1340,7 +1337,6 @@ input[type="search"]::-webkit-search-cancel-button {
         height: auto;
         margin-left: 5%;
     }
-
     
 }
 
