@@ -70,25 +70,6 @@
         <div>
             <img src="./resources/header.png" alt="">
         </div>
-        <!-- <nav class="navbar navbar-expand-md d-md-none" aria-label="profile-nav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <div>
-                        <button title="notifications" class="nav-link" onClick="showNotificationSection()">
-                            <img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt="notifications">
-                        </button>
-                    </div>
-                </li>
-                <li class="nav-item ">
-                    <div>
-                        <button title="user search" class="nav-link" onclick="showSearchSection()">
-                            <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="user search">
-                        </button>
-                    </div>
-
-                </li>
-            </ul>
-        </nav> -->
     </header>
     <div class="row row_back">
         <div class="col-lg-7">

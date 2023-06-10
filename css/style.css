@@ -971,6 +971,11 @@ main div.scrollable_div footer button[disabled] img {
 
 /* aside */
 
+.profile-aside{
+    min-width: 30%;
+    max-width: 40%;
+}
+
 .profile-aside-container {
     display: none;
 }
@@ -1671,7 +1676,7 @@ input[type="search"]::-webkit-search-cancel-button {
         transition-timing-function: ease-in-out;
         padding-top: 10vh;
         margin-top: 0vh;
-        max-width: 34% !important;
+        max-width: 39% !important;
         padding-left: 5vw !important
     }
     .row_back{
