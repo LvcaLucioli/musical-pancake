@@ -179,13 +179,14 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getSearchUser($username){
+    public function getSearchUser($username)
+    {
         $query = "SELECT u.username, u.propic, u.bio FROM users u WHERE u.username = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('s', $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getUserPosts($username, $id, $n)
@@ -365,6 +366,7 @@ class DatabaseHelper
 
     private function notifyLike($user, $targetPost)
     {
+
         $query = "SELECT `user` FROM `posts` WHERE `id` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $targetPost);
@@ -372,12 +374,14 @@ class DatabaseHelper
         $result = $stmt->get_result();
         $row = $result->fetch_row();
         $targetUser = $row[0];
+        
+        if ($user != $targetUser) {
+            $content = $user . " liked your post";
 
-        $content = $user . " liked your post";
-
-        $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, NOW(), ?);";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sssi', $targetUser, $content, $user, $targetPost);
-        $stmt->execute();
+            $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, NOW(), ?);";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssi', $targetUser, $content, $user, $targetPost);
+            $stmt->execute();
+        }
     }
 }
