@@ -72,8 +72,7 @@
         </div>
     </header>
     <div class="row row_back">
-        <div class="col-lg-7">
-            <main>
+            <main class="col-lg-7">
                 <?php
                 if (isset($templateParams["main"])) {
                     require __DIR__ . "\\" . $templateParams["main"];
@@ -86,13 +85,13 @@
                 }
                 ?>
             </main>
-        </div>
-        <div class="col-lg-5 d-lg-block profile-aside">
-            <?php
-            if (isset($templateParams["aside"])) {
-                require __DIR__ . "\\" . $templateParams["aside"];
-            } ?>
-        </div>
+            <aside class="col-lg-4 d-lg-block profile-aside">
+                <?php
+                if (isset($templateParams["aside"])) {
+                    require __DIR__ . "\\" . $templateParams["aside"];
+                } ?>
+            </aside>
+        
     </div>
     <?php
     if (isset($templateParams["js"])) :

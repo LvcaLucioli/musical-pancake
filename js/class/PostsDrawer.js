@@ -103,7 +103,7 @@ class PostsDrawer{
           });
         }else{
           $(".row_back").css("transitionDuration", "0.6s");
-          $(".profile-aside").css("backgroundColor", "white");
+          $("aside").css("backgroundColor", "white");
           $("body>div>div.col-lg-8").css("backgroundColor", "white");
           $(".row_back").css("backgroundColor", "white");
         }
@@ -166,7 +166,7 @@ class PostsDrawer{
 
           document.querySelector('header[aria-label="primary-menu"]').style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
         }else{
-          $(".profile-aside").css("backgroundColor", "rgb(210, 210, 210)");
+          $("aside").css("backgroundColor", "rgb(210, 210, 210)");
           $("body>div>div.col-lg-8").css("backgroundColor", "rgb(210, 210, 210)");
           $(".row_back").css("backgroundColor", "rgb(210, 210, 210)");
         }

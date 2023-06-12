@@ -9,7 +9,7 @@ class AsideItem {
     }
 
     getHTMLItem() {
-        return `<div class="row ${this.itemClass}" onclick="${this.itemLink}">
+        return `<div class="row ${this.itemClass}" onClick="location.href='${this.itemLink}'">
                     <div class="content">
                         <img src="./uploads/${this.imageScr}" alt="${this.imageAlt}">
                         <p>${this.copy}</p>

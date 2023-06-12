@@ -42,7 +42,6 @@ class SearchSection extends AbstractSection {
     }
 
     retrieve(container) {
-        // let child = document.querySelector(".profile-aside-container").querySelector("#notifications-section");
         document.querySelector(container).innerHTML += `<section class="search-section">
          <header>
              <div>
@@ -64,7 +63,7 @@ class SearchSection extends AbstractSection {
 
             axios.post('api/api-user.php', formData).then(response => {
                 button = SearchSection.USER_BTN[response.data["btn"]];
-                this.items[i] = new AsideItem(SearchSection.itemClass, element["propic"], element["username"], element["username"], "", button);
+                this.items[i] = new AsideItem(SearchSection.itemClass, element["propic"], element["username"], element["username"], "user.php?username=" + element["username"], button);
                 var child = document.createElement("div");
                 document.querySelector(SearchSection.sectionId).appendChild(child);
                 child.outerHTML = this.items[i].getHTMLItem();

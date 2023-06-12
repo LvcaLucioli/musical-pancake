@@ -1,6 +1,6 @@
 class MyAside {
     constructor() {
-        this.container = document.querySelector(".profile-aside-container");
+        this.container = document.querySelector("aside");
         this.sections = [new SearchSection(), new NotificationsSection()];
         this.activeSection = 1;
     }
@@ -29,7 +29,7 @@ class MyAside {
         while (this.container.childElementCount > 1) {
             this.container.removeChild(this.container.lastChild);
         }
-        this.sections[this.activeSection].retrieve(".profile-aside-container");
+        this.sections[this.activeSection].retrieve(".profile-aside");
     }
 
     removeIconActive(button) {

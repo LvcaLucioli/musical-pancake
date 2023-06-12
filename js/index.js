@@ -218,25 +218,26 @@ async function loadMore() {
 }
 
 function showNotificationSection() {
-    if(document.querySelector(".col-lg-7 .search-section")){
-        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
+    if(document.querySelector("main .search-section")){
+        document.querySelector("main .search-section").outerHTML = "";
     }
-    if (document.querySelector(".col-lg-7 .notifications-section")) {
-        document.querySelector(".col-lg-7 .notifications-section").outerHTML = "";
+    if (document.querySelector("main .notifications-section")) {
+        document.querySelector("main .notifications-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
         aside.sections[1].retrieve(".row main");
         document.querySelector(".scrollable_feed").classList.add("d-none");
+        console.log(document.querySelector("section .notifications-section"));
     }
-
+    
 }
 
 function showSearchSection() {
-    if(document.querySelector(".col-lg-7 .notifications-section")){
-        document.querySelector(".col-lg-7 .notifications-section").outerHTML = "";
+    if(document.querySelector("main .notifications-section")){
+        document.querySelector("main .notifications-section").outerHTML = "";
     }
-    if (document.querySelector(".col-lg-7 .search-section")) {
-        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
+    if (document.querySelector("main .search-section")) {
+        document.querySelector("main .search-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
         aside.sections[0].retrieve(".row main");
@@ -252,11 +253,13 @@ $(document).ready(function() {
         $('.scrollable_feed').removeClass('d-none');
       }
 
-      if ((windowWidth < 992) && (document.querySelector(".col-lg-7 .search-section"))) {
-        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
+      if ((windowWidth > 992) && (document.querySelector("main .search-section"))) {
+        document.querySelector("main .search-section").outerHTML = "";
+        console.log("levo");
       }
-      if ((windowWidth < 992) && (document.querySelector(".col-lg-7 .notifications-section"))) {
-        document.querySelector(".col-lg-7 .search-section").outerHTML = "";
+      if ((windowWidth > 992) && (document.querySelector("main .notifications-section"))) {
+        document.querySelector("main .notifications-section").outerHTML = "";
+        console.log("levo");
       }
     }
     $(window).on('load resize', handleResize);
