@@ -13,7 +13,7 @@
     <script src="js/class/AsideItem.js"></script>
     <script src="js/class/NotificationsSection.js"></script>
     <script src="js/class/NotImplementedError.js"></script>
-    <script src="js/class/SearchSection.js"></script> 
+    <script src="js/class/SearchSection.js"></script>
 </head>
 
 <body>
@@ -48,34 +48,28 @@
                         </a>
                     </div>
                 </li>
-            </ul>
-        </nav>
-        <div>
-            <img src="./resources/header.png" alt="">
-        </div>
-        <nav class="navbar navbar-expand-md d-md-none" aria-label="profile-nav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <div <?php if (isActive("notification.php")) {
-                                echo 'class="active"';
-                            } ?>>
+                <li class="nav-item d-lg-none">
+                    <div>
                         <button title="notifications" class="nav-link" onClick="showNotificationSection()">
-                            <img src="./resources/icon-notification<?php echo isIconActive("notification.php"); ?>.png" alt="notifications">
+                            <img src="./resources/icon-notification.png" alt="notifications">
+                            <span class="label d-none d-md-inline">notifications</span>
                         </button>
                     </div>
                 </li>
-                <li class="nav-item ">
-                    <div <?php if (isActive("search.php")) {
-                                echo 'class="active"';
-                            } ?>>
+                <li class="nav-item d-lg-none">
+                    <div>
                         <button title="user search" class="nav-link" onclick="showSearchSection()">
-                            <img src="./resources/icon-search<?php echo isIconActive("search.php"); ?>.png" alt="user search">
+                            <img src="./resources/icon-search.png" alt="user search">
+                            <span class="label d-none d-md-inline">search</span>
                         </button>
                     </div>
 
                 </li>
             </ul>
         </nav>
+        <div>
+            <img src="./resources/header.png" alt="">
+        </div>
     </header>
     <div class="row row_back">
         <div class="col-lg-7">
@@ -96,7 +90,7 @@
         <div class="col-lg-5 d-lg-block profile-aside">
             <?php
             if (isset($templateParams["aside"])) {
-                require __DIR__ . "\\" .$templateParams["aside"];
+                require __DIR__ . "\\" . $templateParams["aside"];
             } ?>
         </div>
     </div>
@@ -109,7 +103,7 @@
         endforeach;
     endif;
     ?>
-   
+
 
 </body>
 
