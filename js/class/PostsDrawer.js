@@ -11,6 +11,7 @@ class PostsDrawer{
         this.currentState = PostsDrawer.STATES[1];
         this.topHeight =  document.querySelector("body header").getBoundingClientRect().bottom + (IS_MOBILE ? 40 : 40);
         this.duration = 300;
+        this.isLoading = false;
 
         const button = document.querySelector("#slide_button .num_posts");
         const formData = new FormData();
@@ -37,6 +38,8 @@ class PostsDrawer{
           targetPosition -= 50;
         }else{
           targetPosition -= window.innerWidth/100;
+          if (iOS())
+            targetPosition += 3;
         }
         $(".swipe_down-btn").animate({ 
           opacity: "0"
@@ -105,8 +108,7 @@ class PostsDrawer{
           $(".row_back").css("backgroundColor", "white");
         }
 
-        
-        document.querySelector("main header nav").classList.add("active");
+        document.querySelector("main nav[aria-label='followers/following-nav']").classList.add("active");
         this.currentState = PostsDrawer.STATES[0];
         this.duration = 400;
     } 
@@ -171,7 +173,6 @@ class PostsDrawer{
         
         $(".scrollable_user").css("paddingTop", "30%");
 
-        document.querySelector("main header nav").classList.remove("active");
         this.currentState = PostsDrawer.STATES[1];
 
         setTimeout(function() {
@@ -180,8 +181,6 @@ class PostsDrawer{
             }, { 
               duration : 500, 
               step: function(now, fx) {
-                $(".scrollable_user").css("overflow-y", "hidden");
-                $(".scrollable_user").css("padding-right", "20px");
                 $(this).css('opacity', now);
               },
               queue : false,
@@ -194,14 +193,47 @@ class PostsDrawer{
     }      
 
     loadMore(){
+      if(!this.isLoading) {
+        this.isLoading = true;
+        document.getElementById('posts_section')
+                .closest('.scrollable_div')
+                .querySelector('footer button')
+                .innerHTML = `
+                  loading...
+                  <div class="spinner-border text-dark" role="status">
+                    <span class="sr-only">loading...</span>
+                  </div>`;
+
         const section = document.querySelector("#posts_section");
         const formData = new FormData();
         formData.append('username', this.user);
         formData.append('n_posts', PostsDrawer.N_POST);
         formData.append('last_id', this.lastPost);
         axios.post('api/api-user-posts.php', formData).then(response => {
-            section.innerHTML = section.innerHTML + this._generatePosts(response.data);
+            const posts = response.data;
+            section.innerHTML = section.innerHTML + this._generatePosts(posts);
+
+            if(posts[posts.length-1]){
+              document.getElementById('posts_section')
+                      .closest('.scrollable_div')
+                      .querySelector('footer')
+                      .innerHTML = `
+                      <button aria-label="no more item to view" disabled>
+                          <img src="./resources/nomore_white.png" alt="no more item to view">
+                      </button>`;
+            } else {
+              document.getElementById('posts_section')
+                .closest('.scrollable_div')
+                .querySelector('footer button')
+                .innerHTML = `
+                  view more
+                  <img src="./resources/load.png" alt="load more items">`;    
+            }
+      
+            this.lastPost = posts[posts.length-2]["id"];
+            this.isLoading = false;
         });
+      }
     }
 
     _generatePosts(posts){
@@ -240,17 +272,6 @@ class PostsDrawer{
         result += `</div>`
       }
 
-      if(posts[posts.length-1]){
-        document.getElementById('posts_section')
-                .closest('.scrollable_div')
-                .querySelector('footer')
-                .innerHTML = `
-                <button disabled>
-                    <img src="./resources/nomore_white.png" alt="no more item to view">
-                </button>`;
-      }
-
-      this.lastPost = posts[posts.length-2]["id"];
       return result;
     }
 }

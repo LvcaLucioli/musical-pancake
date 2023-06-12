@@ -11,6 +11,7 @@
     $templateParams["js"] = array(
         "https://unpkg.com/axios/dist/axios.min.js",
         "js/base.js",
+        "js/class/ModalPostHelper.js",
         "js/index.js",
         "js/post_modal.js",
         "js/aside.js"

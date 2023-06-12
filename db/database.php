@@ -63,10 +63,11 @@ class DatabaseHelper
         AND p.user = u.username
         AND p.id < ? 
         ORDER BY p.date DESC
-        LIMIT ?;";
+        LIMIT 1";
+
         $stmt = $this->db->prepare($query);
         $id = $result[count($result) - 1]["id"];
-        $stmt->bind_param('sii', $current_user, $id, $n);
+        $stmt->bind_param('si', $current_user, $id);
         $stmt->execute();
         $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
 
@@ -106,6 +107,40 @@ class DatabaseHelper
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getComments($postID, $lastID, $n)
+    {
+        $query = "SELECT c.*, u.propic
+        FROM comments c, users u
+        WHERE c.post = ?
+        AND c.to_comment IS NULL
+        AND c.user = u.username
+        AND c.id > ? 
+        ORDER BY c.datetime ASC
+        LIMIT ?;";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('iii', $postID, $lastID, $n);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT c.*, u.propic
+        FROM comments c, users u
+        WHERE c.post = ?
+        AND c.to_comment IS NULL
+        AND c.user = u.username
+        AND c.id > ? 
+        ORDER BY c.datetime ASC
+        LIMIT 1";
+
+        $stmt = $this->db->prepare($query);
+        $id = $result[count($result) - 1]["id"];
+        $stmt->bind_param('ii', $postID, $id);
+        $stmt->execute();
+        $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
+
+        return $result;
     }
 
     public function getUser($username)
@@ -187,10 +222,11 @@ class DatabaseHelper
         AND p.user = u.username
         AND p.id < ? 
         ORDER BY date DESC
-        LIMIT ?;";
+        LIMIT 1";
+
         $stmt = $this->db->prepare($query);
         $id = $result[count($result) - 1]["id"];
-        $stmt->bind_param('sii', $username, $id, $n);
+        $stmt->bind_param('si', $username, $id);
         $stmt->execute();
         $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
 
@@ -255,15 +291,6 @@ class DatabaseHelper
 
         return count($result->fetch_all(MYSQLI_ASSOC)) == 0;
     }
-    private function notifyFollow($user, $targetUser)
-    {
-        $content = $user . " started following you";
-
-        $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`) VALUES (?, ?, ?, NOW());";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sss', $targetUser, $content, $user);
-        $stmt->execute();
-    }
 
     public function follow($user, $target)
     {
@@ -279,7 +306,6 @@ class DatabaseHelper
 
     public function unfollow($user, $target)
     {
-        // aggiungere gestione notifiche
         $query = "DELETE
         FROM followers
         WHERE follower = ?
@@ -312,6 +338,32 @@ class DatabaseHelper
         $stmt->bind_param('ssss', $targetUser, $content, $date, $userPropic);
         $stmt->execute();
     }
+
+    public function like_unlike($user, $action, $postId)
+    {
+        if ($action == 'add') {
+            $query = "INSERT INTO `likes` (`post`, `user`) VALUES (?, ?);";
+            $this->notifyLike($user, $postId);
+        } else if ($action = 'remove') {
+            $query = "DELETE FROM `likes` WHERE  post = ? AND user = ?";
+        }
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('is', $postId, $user);
+        $stmt->execute();
+    }
+
+
+
+    private function notifyFollow($user, $targetUser)
+    {
+        $content = $user . " started following you";
+
+        $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`) VALUES (?, ?, ?, NOW());";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sss', $targetUser, $content, $user);
+        $stmt->execute();
+    }
+
     private function notifyLike($user, $targetPost)
     {
         $query = "SELECT `user` FROM `posts` WHERE `id` = ?";
@@ -327,18 +379,6 @@ class DatabaseHelper
         $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, NOW(), ?);";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('sssi', $targetUser, $content, $user, $targetPost);
-        $stmt->execute();
-    }
-    public function like_unlike($user, $action, $postId)
-    {
-        if ($action == 'add') {
-            $query = "INSERT INTO `likes` (`post`, `user`) VALUES (?, ?);";
-            $this->notifyLike($user, $postId);
-        } else if ($action = 'remove') {
-            $query = "DELETE FROM `likes` WHERE  post = ? AND user = ?";
-        }
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('is', $postId, $user);
         $stmt->execute();
     }
 }

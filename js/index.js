@@ -12,8 +12,8 @@ const LOAD_BTN = `
         <img src="./resources/load_white.png" alt="load more item">
     </button>`;
 const LOAD_BTN_DISABLED = `
-    <button disabled>
-        <img src="./resources/nomore.png" alt="No more item to view">
+    <button aria-label="no more item to view" disabled>
+        <img src="./resources/nomore.png" alt="no more item to view">
     </button>`;
 
 
@@ -63,16 +63,18 @@ async function switchHome(tab) {
             }
             section.classList.remove("discovery");
             section.classList.add("followers");
+            section.setAttribute("aria-label", "posts from followed users");
         } else {
             prevPosts[0] = section.innerHTML;
             prevPosts[1] = scrollable.scrollTop;
             prevPosts[2] = scrollable.clientHeight * 2 / 1000 + scrollable.clientWidth * 2 / 1000;
             section.innerHTML = prevDisc[0];
             scrollable.scrollTop = prevDisc[1] - prevDisc[2];
-            document.querySelector('.scrollable_el > footer')
+            document.querySelector('.scrollable_feed > footer')
                 .innerHTML = LOAD_BTN;
             section.classList.remove("followers");
             section.classList.add("discovery");
+            section.setAttribute("aria-label", "discover posts");
         }
     }
 }
@@ -155,6 +157,8 @@ function generatePosts(posts) {
         lastPost = "finish";
     } else {
         lastPost = posts[posts.length - 2]["id"];
+        document.querySelector('.scrollable_feed > footer')
+            .innerHTML = LOAD_BTN;
     }
     return result;
 }
@@ -185,18 +189,31 @@ function generateDiscovery(posts) {
 }
 
 async function loadMore() {
-    const section = document.querySelector("main section");
-    const formData = new FormData();
+    if (!isLoading) {
+        isLoading = true;
+        document.querySelector('.scrollable_feed > footer button')
+            .innerHTML = `
+            loading...
+            <div class="spinner-border text-light" role="status">
+              <span class="sr-only">loading...</span>
+            </div>`;
 
-    if (homeStatus) {
-        formData.append('n', N_POST);
-        formData.append('last_id', lastPost);
-        const response = await axios.post('api/api-posts-followed.php', formData);
-        section.innerHTML = section.innerHTML + generatePosts(response.data);
-    } else {
-        formData.append('n_block_disc', N_BLOCK_DISC);
-        const response = await axios.post('api/api-discovery.php', formData);
-        section.innerHTML = section.innerHTML + generateDiscovery(response.data);
+        const section = document.querySelector("main section");
+        const formData = new FormData();
+
+        if (homeStatus) {
+            formData.append('n', N_POST);
+            formData.append('last_id', lastPost);
+            const response = await axios.post('api/api-posts-followed.php', formData);
+            section.innerHTML = section.innerHTML + generatePosts(response.data);
+        } else {
+            formData.append('n_block_disc', N_BLOCK_DISC);
+            const response = await axios.post('api/api-discovery.php', formData);
+            section.innerHTML = section.innerHTML + generateDiscovery(response.data);
+            document.querySelector('.scrollable_feed > footer')
+                .innerHTML = LOAD_BTN;
+        }
+        isLoading = false;
     }
 }
 
@@ -249,6 +266,7 @@ let homeStatus = true;
 let prevPosts = [``, 0, 0];
 let prevDisc = [``, 0, 0];
 let lastPost = -1;
+let isLoading = false;
 
 const formData = new FormData();
 formData.append('n_block_disc', N_BLOCK_DISC);
@@ -276,5 +294,5 @@ scrollableDivMain.addEventListener('scroll', function() {
 });
 
 if (iOS() && window.innerWidth < 768){
-    document.querySelector("main div.scrollable_feed > footer button").style.marginBottom = "40%";
+    document.querySelector("main div.scrollable_feed > footer button").style.marginBottom = "50%";
 }

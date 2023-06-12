@@ -1,7 +1,7 @@
-
         <div class="modal d-none fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
+                
                 <div class="modal-header sticky-top">
                     <div class="row" id="postModalLabel">
                         <div class="col-2 profile_pic">
@@ -21,25 +21,52 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <img alt="post picture">
 
-                    <nav aria-label="comments/likes-menu">
+                <div class="modal-body">
+                    <section aria-label="posts section">
+                        <img alt="post picture">
+                        <p></p>
+                    </section>
+
+                    <nav aria-label="comments/likes-menu" class="sticky-top">
                         <ul>
-                            <li id='followers_button'>
-                                <button onClick="switchSection('followers')" class="active" aria-pressed="true">
-                                <span class="num">11</span> followers
-                                </a>
+                            <li id='comments_button'>
+                                <button title="comments area" class="active" aria-pressed="true" data-target="comments" onclick="switchPostSection(this)">
+                                <span class="num"></span> comments
+                                </button>
                             </li>
-                            <li id='following_button'>
-                                <button onClick="switchSection('following')" aria-pressed="false">
-                                <span class="num">12</span> following
-                                </a>
+                            <li id='likes_button'>
+                                <button title="likes area" aria-pressed="false" data-target="likes" onclick="switchPostSection(this)">
+                                <span class="num"></span> likes
+                                </button>
                             </li>
                         </ul>
                     </nav>
-                    <br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf<br>jfsdf
+
+                    <div class="comments-input comments-base">
+                        <div class="row reply-wrapper">
+                            <pre><a aria-label="return to the selected to reply comment"></a></pre>
+
+                            <button type="button" class="close" aria-label="clear reply selection">
+                                <span aria-hidden="true" class="text-white">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10">
+                                <textarea id="comment_textarea" placeholder="Leave your comment"></textarea>
+                            </div>
+                            <div class="col-2 pl-0">
+                                <button type="button" class="send-btn" aria-label="post your comment">
+                                <img src="./resources/send.png" alt="leave comment">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section id="switchable" class="comments-section" aria-label="users comments"></section>
                 </div>
+
             </div>
         </div>
         </div>

@@ -84,12 +84,6 @@ let isScrollingUser;
 
 let header = document.querySelector('header[aria-label="primary-menu"]');
 scrollableUser.addEventListener('scroll', function() {
-    window.clearTimeout(isScrollingUser);
-    scrollableUser.classList.add('show-scrollbar');
-    isScrollingUser = setTimeout(function() {
-        scrollableUser.classList.remove('show-scrollbar');
-    }, 700);
-
     if (IS_MOBILE){
         if (scrollableUser.scrollTop > 10){
             header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
