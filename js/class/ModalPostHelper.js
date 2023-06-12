@@ -17,11 +17,20 @@ class ModalPostHelper{
             <img src="./resources/nomore.png" alt="no more item to view">
             </button>
         </footer>`;
+    static LIKE_BTN = `
+        <button onClick="modalLikeClick(false)" aria-pressed="false" alt="click to like the post">
+            <img src="resources/like_button_white_false.png" alt="post not liked">
+        </button>`;
+    static LIKED_BTN = `
+        <button onClick="modalLikeClick(true)" aria-pressed="true" alt="liked post, click to unlike">
+            <img src="resources/like_button_white_true.png" alt="liked post">
+        </button>`;
     
 
     constructor(postID, modal){
         this.state = ModalPostHelper.STATES[0];
         this.reply = ["img", postID];
+        this.isLiked = false;
         this.prevSwitchable = {
             "comments" : {
                 "body" : ``,
@@ -57,6 +66,11 @@ class ModalPostHelper{
             body.find('nav[aria-label="comments/likes-menu"] #comments_button .num').text(response.data["n_likes"]);
             body.find('nav[aria-label="comments/likes-menu"] #likes_button .num').text(response.data["n_comments"]);
 
+            body.find("#like_click_btn").html(response.data["is_liked"]
+                ? ModalPostHelper.LIKED_BTN
+                : ModalPostHelper.LIKE_BTN);
+            
+            this.isLiked = response.data["is_liked"];
             modal.removeClass('d-none');
         });
 
@@ -74,7 +88,6 @@ class ModalPostHelper{
             let append = "";
             switch (this.state) {
                 case ModalPostHelper.STATES[0]:
-                    console.log(response.data);
                     append = this._generateComments(response.data);
                     break;
                 case ModalPostHelper.STATES[1]:
@@ -88,6 +101,7 @@ class ModalPostHelper{
                 append += ModalPostHelper.LOAD_BTN;
             }
         
+            document.querySelector(`#switchable`).removeChild(document.querySelector(`#switchable footer`));
             document.querySelector(`#switchable`).innerHTML += append;
             this.prevSwitchable[this.state]["last_id"] = elemetns[elemetns.length-2]["id"];
         });
@@ -125,8 +139,31 @@ class ModalPostHelper{
     }
 
     clear() {
-        // resetta tutto (nav, section...sfrutta i metodi che hai e la classe)
-        document.querySelector(`#switchable`).innerHTML = "";
+        let btn = document.createElement("button");
+        btn.setAttribute("data-target", "comments");
+        this.switchSection(btn);
+        document.querySelector(`#switchable`).innerHTML = "<footer></footer>";
+    }
+
+    likeClick(modifyDB) {
+        if (modifyDB) {
+            const formData = new FormData();
+            formData.append('id', this.postID);
+            if (this.isLiked) {
+                formData.append('action', 'remove');
+            } else {
+                formData.append('action', 'add');
+            }
+            axios.post('api/api-like.php', formData).then(response => {});
+        }
+        this.isLiked = !this.isLiked;
+        this.modal.find("#like_click_btn").html(this.isLiked
+                ? ModalPostHelper.LIKED_BTN
+                : ModalPostHelper.LIKE_BTN);
+    }
+    
+    getPostId() {
+        return this.postID;
     }
     
     _generateComments(comments){

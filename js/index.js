@@ -83,84 +83,96 @@ function likeClick(button, isLiked, postId) {
     const formData = new FormData();
     formData.append('id', postId);
     let path = button.querySelector("img").getAttribute("src");
+    let text = document.querySelectorAll(".like_block button")[1];
+    console.log(text.innerHTML.trim());
+    let n_likes = parseInt(text.innerHTML.trim().split(" ")[0]);
 
     if (isLiked) {
         formData.append('action', 'remove');
         path = path.replace("true", "false");
         button.setAttribute("onClick", "likeClick(this, false, " + postId + ")");
-
+        text.innerHTML = (n_likes-1) + " likes";
     } else {
         formData.append('action', 'add');
         path = path.replace("false", "true");
         button.setAttribute("onClick", "likeClick(this, true, " + postId + ")");
+        text.innerHTML = (n_likes+1) + " likes";
     }
+    button.setAttribute("aria-pressed", !isLiked);
+    button.setAttribute("aria-label", alt_like_btn(!isLiked));
     button.querySelector("img").setAttribute("src", path);
     button.querySelector("img").setAttribute("alt", alt_like_btn(!isLiked));
     axios.post('api/api-like.php', formData).then(response => {});
 }
 
 function generatePosts(posts) {
-    let result = '';
-    
-    for (let i = 0; i < posts.length - 1; i++) {
-        let post = `
-        <article class="shadow-lg">
-            <header>
-                <div class="row">
-                    <div class="col-3">
-                        <a href="user.php?username=${posts[i]["user"]}">
-                            <img src="${posts[i]["propic"]}" alt="profile picture" />
-                        </a>
+    if (posts.length > 1) {
+        let result = '';
+        
+        for (let i = 0; i < posts.length - 1; i++) {
+            let post = `
+            <article class="shadow-lg" aria-labe="post by ${posts[i]["user"]}">
+                <header>
+                    <div class="row">
+                        <div class="col-3">
+                            <a href="user.php?username=${posts[i]["user"]}" alt="view user details">
+                                <img src="${posts[i]["propic"]}" alt="profile picture" />
+                            </a>
+                        </div>
+                        <div class="col-8">
+                            <a href="user.php?username=${posts[i]["user"]}" alt="view user details">${posts[i]["user"]}</a>
+                        </div>
                     </div>
-                    <div class="col-8">
-                        <a href="user.php?username=${posts[i]["user"]}">${posts[i]["user"]}</a>
+                </header>
+                <section>
+                    <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-target="post" alt="open post pop-up page">
+                        <img src="${posts[i]["img_name"]}" alt="post picture" />
+                    </button>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="col-6 like_block">
+                            <button onClick="likeClick(this, ${posts[i]["is_liked"]}, ${posts[i]["id"]})" aria-pressed="${posts[i]["is_liked"]}" alt="${alt_like_btn(posts[i]["is_liked"])}">
+                                <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="${alt_like_btn(posts[i]["is_liked"])}">
+                            </button>
+                            <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-target="like" alt="show post likes">
+                                ${posts[i]["n_likes"]} likes
+                            </button>
+                        </div>
+                        <div class="col-6 comments_block text-right">
+                            <button type="button" data-toggle="modal" data-target="#postModal"  data-postid="${posts[i]["id"]}" data-target="comments" alt="show post comments">
+                                <span>add comment</span> &nbsp;&nbsp;${posts[i]["n_comments"]}
+                                <img src="resources/comment.png" alt="view and add commens">
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </header>
-            <section>
-                <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-target="post">
-                    <img src="${posts[i]["img_name"]}" alt="post picture" />
-                </button>
-            </section>
-            <section>
-                <div class="row">
-                    <div class="col-6 like_block">
-                        <button onClick="likeClick(this, ${posts[i]["is_liked"]}, ${posts[i]["id"]})">
-                            <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="${alt_like_btn(posts[i]["is_liked"])}">
-                        </button>
-                        <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-target="like">
-                            ${posts[i]["n_likes"]} likes
-                        </button>
-                    </div>
-                    <div class="col-6 comments_block text-right">
-                        <button type="button" data-toggle="modal" data-target="#postModal"  data-postid="${posts[i]["id"]}" data-target="comments">
-                            <span>add comment</span> &nbsp;&nbsp;${posts[i]["n_comments"]}
-                            <img src="resources/comment.png" alt="view and add commens">
-                        </button>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <p>${posts[i]["description"]}</p>
-            </section>
-            <footer>
-                <pre>Published on ${posts[i]["date"].split(" ")[0]}</pre>
-            </footer>
-        </article>
-        `;
-        result += post;
-    }
+                </section>
+                <section>
+                    <p>${posts[i]["description"]}</p>
+                </section>
+                <footer>
+                    <pre>Published on ${posts[i]["date"].split(" ")[0]}</pre>
+                </footer>
+            </article>
+            `;
+            result += post;
+        }
 
-    if (posts[posts.length - 1]) {
-        document.querySelector('.scrollable_feed > footer')
-            .innerHTML = LOAD_BTN_DISABLED;
-        lastPost = "finish";
+        if (posts[posts.length - 1]) {
+            document.querySelector('.scrollable_feed > footer')
+                .innerHTML = LOAD_BTN_DISABLED;
+            lastPost = "finish";
+        } else {
+            lastPost = posts[posts.length - 2]["id"];
+            document.querySelector('.scrollable_feed > footer')
+                .innerHTML = LOAD_BTN;
+        }
+        return result;
     } else {
-        lastPost = posts[posts.length - 2]["id"];
         document.querySelector('.scrollable_feed > footer')
-            .innerHTML = LOAD_BTN;
+                .innerHTML = ``;
+        return "<pre class='no-feed-posts text-center'>no posts to view</pre>";
     }
-    return result;
 }
 
 function generateDiscovery(posts) {
@@ -294,5 +306,5 @@ scrollableDivMain.addEventListener('scroll', function() {
 });
 
 if (iOS() && window.innerWidth < 768){
-    document.querySelector("main div.scrollable_feed > footer button").style.marginBottom = "50%";
+    document.querySelector("main div.scrollable_feed > footer").style.marginBottom = "50%";
 }
