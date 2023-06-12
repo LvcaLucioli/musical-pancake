@@ -11,6 +11,7 @@ class PostsDrawer{
         this.currentState = PostsDrawer.STATES[1];
         this.topHeight =  document.querySelector("body header").getBoundingClientRect().bottom + (IS_MOBILE ? 40 : 40);
         this.duration = 300;
+        this.isLoading = false;
 
         const button = document.querySelector("#slide_button .num_posts");
         const formData = new FormData();
@@ -192,6 +193,17 @@ class PostsDrawer{
     }      
 
     loadMore(){
+      if(!this.isLoading) {
+        this.isLoading = true;
+        document.getElementById('posts_section')
+                .closest('.scrollable_div')
+                .querySelector('footer button')
+                .innerHTML = `
+                  loading...
+                  <div class="spinner-border text-dark" role="status">
+                    <span class="sr-only">loading...</span>
+                  </div>`;
+
         const section = document.querySelector("#posts_section");
         const formData = new FormData();
         formData.append('username', this.user);
@@ -199,7 +211,6 @@ class PostsDrawer{
         formData.append('last_id', this.lastPost);
         axios.post('api/api-user-posts.php', formData).then(response => {
             const posts = response.data;
-            console.log(posts);
             section.innerHTML = section.innerHTML + this._generatePosts(posts);
 
             if(posts[posts.length-1]){
@@ -210,10 +221,19 @@ class PostsDrawer{
                       <button aria-label="no more item to view" disabled>
                           <img src="./resources/nomore_white.png" alt="no more item to view">
                       </button>`;
+            } else {
+              document.getElementById('posts_section')
+                .closest('.scrollable_div')
+                .querySelector('footer button')
+                .innerHTML = `
+                  view more
+                  <img src="./resources/load.png" alt="load more items">`;    
             }
       
             this.lastPost = posts[posts.length-2]["id"];
+            this.isLoading = false;
         });
+      }
     }
 
     _generatePosts(posts){

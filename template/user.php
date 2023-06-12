@@ -55,8 +55,10 @@
 
                         <footer>
                             <button onclick="loadMore();">
-                                view more
-                                <img src="./resources/load.png" alt="load more items">
+                                loading...
+                                <div class="spinner-border text-dark" role="status">
+                                    <span class="sr-only">loading...</span>
+                                </div>
                             </button>
                         </footer>
                     </div>

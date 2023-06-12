@@ -157,6 +157,8 @@ function generatePosts(posts) {
         lastPost = "finish";
     } else {
         lastPost = posts[posts.length - 2]["id"];
+        document.querySelector('.scrollable_feed > footer')
+            .innerHTML = LOAD_BTN;
     }
     return result;
 }
@@ -187,18 +189,31 @@ function generateDiscovery(posts) {
 }
 
 async function loadMore() {
-    const section = document.querySelector("main section");
-    const formData = new FormData();
+    if (!isLoading) {
+        isLoading = true;
+        document.querySelector('.scrollable_feed > footer button')
+            .innerHTML = `
+            loading...
+            <div class="spinner-border text-light" role="status">
+              <span class="sr-only">loading...</span>
+            </div>`;
 
-    if (homeStatus) {
-        formData.append('n', N_POST);
-        formData.append('last_id', lastPost);
-        const response = await axios.post('api/api-posts-followed.php', formData);
-        section.innerHTML = section.innerHTML + generatePosts(response.data);
-    } else {
-        formData.append('n_block_disc', N_BLOCK_DISC);
-        const response = await axios.post('api/api-discovery.php', formData);
-        section.innerHTML = section.innerHTML + generateDiscovery(response.data);
+        const section = document.querySelector("main section");
+        const formData = new FormData();
+
+        if (homeStatus) {
+            formData.append('n', N_POST);
+            formData.append('last_id', lastPost);
+            const response = await axios.post('api/api-posts-followed.php', formData);
+            section.innerHTML = section.innerHTML + generatePosts(response.data);
+        } else {
+            formData.append('n_block_disc', N_BLOCK_DISC);
+            const response = await axios.post('api/api-discovery.php', formData);
+            section.innerHTML = section.innerHTML + generateDiscovery(response.data);
+            document.querySelector('.scrollable_feed > footer')
+                .innerHTML = LOAD_BTN;
+        }
+        isLoading = false;
     }
 }
 
@@ -251,6 +266,7 @@ let homeStatus = true;
 let prevPosts = [``, 0, 0];
 let prevDisc = [``, 0, 0];
 let lastPost = -1;
+let isLoading = false;
 
 const formData = new FormData();
 formData.append('n_block_disc', N_BLOCK_DISC);

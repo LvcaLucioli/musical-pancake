@@ -1000,6 +1000,13 @@ main div.scrollable_div footer button {
     transition-timing-function: ease-in-out;
 }
 
+.spinner-border {
+    width: 3.2vh !important;
+    height: 3.2vh !important;
+    margin-left: 5%;
+    margin-bottom: 0.5%;
+}
+
 main div.scrollable_div footer button img {
     margin: 0%;
     padding: 0;
@@ -1400,7 +1407,11 @@ input[type="search"]::-webkit-search-cancel-button {
         height: auto;
         margin-left: 5%;
     }
-    
+    main div.scrollable_feed > footer button[disabled] img {
+        max-width: 55px;
+        margin-left: -0.9vmin;
+        margin-top: -0.1vw;
+    }
 }
 
 
@@ -1503,6 +1514,10 @@ input[type="search"]::-webkit-search-cancel-button {
     main div.scrollable_div footer button img {
         width: 100%;
         max-width: 40px;
+    }
+    main div.scrollable_div footer button .spinner-border {
+        width: 4vh;
+        height: 4vh;
     }
     main div.scrollable_div footer button[disabled] img {
         max-width: 55px;
@@ -1626,7 +1641,7 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-top: -1vh;
         padding-left: 5vw;
         padding-right: 5vw;
-        width: 70vw;
+        width: 68vw;
     }
     main nav[aria-label="feed-menu"] ul li button:hover{
         opacity: 0.7;
@@ -1676,6 +1691,11 @@ input[type="search"]::-webkit-search-cancel-button {
         font-size: 0.9em;
         margin-left: 2vh;
     }
+    main div.scrollable_feed > footer button .spinner-border{
+        width: 4vh !important;
+        height: 4vh !important;
+        margin-bottom: -1%;
+    }
     main div.scrollable_feed > footer button{
         width: 40vh;
         max-width: 300px;
@@ -1690,6 +1710,11 @@ input[type="search"]::-webkit-search-cancel-button {
         width: 6vh;
         height: auto;
         margin-left: 5%;
+    }
+    main div.scrollable_feed > footer button[disabled] img{
+        max-width: 55px;
+        margin-left: -0.5vw;
+        margin-top: 0.2vw;
     }
 
 
@@ -1735,7 +1760,7 @@ input[type="search"]::-webkit-search-cancel-button {
         transition-timing-function: ease-in-out;
         padding-top: 10vh;
         margin-top: 0vh;
-        max-width: 39% !important;
+        max-width: 38vw !important;
         padding-left: 5vw !important
     }
     .row_back{
