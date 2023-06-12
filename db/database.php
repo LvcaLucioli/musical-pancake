@@ -176,17 +176,16 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($result->num_rows == 0) {
-            error_log(var_export($result, true));
-            $query = "SELECT u.username, u.propic, u.bio FROM users u WHERE u.username = ?";
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getSearchUser($username){
+        $query = "SELECT u.username, u.propic, u.bio FROM users u WHERE u.username = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('s', $username);
             $stmt->execute();
             $result = $stmt->get_result();
-            error_log(var_export($result, true));
-        }
-
-        return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getUserPosts($username, $id, $n)
