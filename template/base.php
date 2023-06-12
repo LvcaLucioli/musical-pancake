@@ -86,7 +86,9 @@
                 }
 
                 if (isset($templateParams["modal"])) {
+                    echo '<div id="modal-wrapper">';
                     require __DIR__ . "\\" . $templateParams["modal"];
+                    echo '</div>';
                 }
                 ?>
             </main>

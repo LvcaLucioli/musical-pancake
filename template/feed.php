@@ -15,12 +15,12 @@
                     </ul>
                 </nav>
 
-                <section class="followers"></section>
+                <section class="followers" aria-label="posts from followed users"></section>
 
                 <footer>
                     <button onclick="loadMore();">
                         view more
-                        <img src="./resources/load_white.png">
+                        <img src="./resources/load_white.png" alt="load more items">
                     </button>
                 </footer>
             </div>

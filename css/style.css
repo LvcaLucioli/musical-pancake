@@ -143,59 +143,6 @@ header[aria-label="primary-menu"] nav ul li div img {
 }
 
 
-/* userpage fallows navbar */
-
-main nav[aria-label="followers/following-nav"] {
-    background-color: white;
-    box-shadow: none;
-    display: flex;
-    align-items: center;
-    border-radius: 20px;
-    height: 40px;
-    margin: 15px 10% 10px;
-    top: 15px;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
-}
-
-main nav[aria-label="followers/following-nav"].active {
-    background-color: black;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
-}
-
-main nav[aria-label="followers/following-nav"].active ul li a {
-    opacity: 0.5;
-    font-weight: normal;
-    color: white !important;
-}
-
-main nav[aria-label="followers/following-nav"] ul {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    width: 100%;
-    padding: 0 5%;
-    margin-bottom: auto;
-    margin-top: auto;
-}
-
-main nav[aria-label="followers/following-nav"] ul li a {
-    text-decoration: none;
-    transition-property: opacity;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
-    color: black !important;
-    opacity: 1;
-    font-weight: bold;
-}
-
-main nav[aria-label="followers/following-nav"] ul li a.active {
-    font-weight: bold;
-    opacity: 1;
-}
-
 
 /* feed navbar */
 
@@ -257,6 +204,7 @@ main nav[aria-label="feed-menu"] ul li button.active {
     margin-top: 1vw;
 }
 
+.modal-body #switchable footer button,
 main div.scrollable_feed > footer button{
     margin-top: 0;
     width: 40vw;
@@ -276,6 +224,7 @@ main div.scrollable_feed > footer button{
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+.modal-body #switchable footer button img,
 main div.scrollable_feed>footer button img {
     margin: 0%;
     padding: 0;
@@ -284,6 +233,7 @@ main div.scrollable_feed>footer button img {
     margin-left: 3%;
 }
 
+.modal-body #switchable footer button[disabled],
 main div.scrollable_feed>footer button[disabled] {
     width: 60px;
     height: 60px;
@@ -293,6 +243,7 @@ main div.scrollable_feed>footer button[disabled] {
     box-shadow: none;
 }
 
+.modal-body #switchable footer button[disabled] img,
 main div.scrollable_feed>footer button[disabled] img {
     margin-left: -1vh;
     margin-top: -0.5vw;
@@ -504,7 +455,11 @@ main section.followers article footer pre {
     margin-top: 0.2rem;
 }
 
-.modal-body > img {
+.modal-body {
+    padding-bottom: 0 !important;
+}
+
+.modal-body section[aria-label="posts section"] img {
     width: calc(100% + 2rem);
     height: auto;
     margin-left: -1rem;
@@ -518,21 +473,14 @@ main section.followers article footer pre {
     align-items: center;
     border-radius: 20px;
     height: 40px;
-    margin: 15px 10% 10px;
-    top: 15px;
+    margin: 7% 10% 10px;
+    top: 15%;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3);
-}
-
-.modal-body nav[aria-label="comments/likes-menu"] ul li button {
-    opacity: 0.5;
-    font-weight: normal;
-    color: white !important;
-    padding: 0;
 }
 
 .modal-body nav[aria-label="comments/likes-menu"] ul {
@@ -562,6 +510,114 @@ main section.followers article footer pre {
     opacity: 1;
 }
 
+.modal-body section[aria-label="posts section"] p {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
+    margin-top: 3%;
+}
+
+.modal-body section.comments-section {
+    margin-top: calc(-30vh - 7vw);
+    margin-bottom: calc(14% + 12vh);
+}
+
+.modal-body .comments-input {
+    position: sticky;
+    background-color: white;
+    box-shadow: 0 -6px 4px -5px rgba(0, 0, 0, 0.2);
+    width: calc(100% + 1rem);
+    margin-left: -0.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 20vh;
+    border-radius:  0 0 20px 20px;
+    padding-left: 0.4rem;
+    padding-top: 0.3rem;
+    z-index: 1000;
+}
+
+.modal-body .comments-reply {
+    top: 83.2%;
+    height: 117px;
+}
+
+.modal-body .comments-base {
+    top: 84.5%;
+    height: 110px;
+}
+
+.modal-body .comments-input textarea {
+    border: 3px solid rgb(230, 230, 230);
+    width: 100%;
+    height: auto;
+    resize: none; 
+    white-space: pre-wrap;
+    font-size: 1.1em;
+    border-radius: 15px;
+    padding: 0.5rem;
+    margin-top: 0.65rem;
+    padding-top: 0.35rem;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.modal-body .comments-input textarea:focus {
+    border: 3px solid rgb(0, 128, 255);
+    outline: none !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.modal-body .comments-input .send-btn {
+    padding: 0 12px;
+    width: 50px;
+    height: 50px;
+    margin-top: calc(1.5vw + 2vh);
+    margin-left: calc(2vw - 2vh);
+    background-color: rgb(47, 188, 82);
+    border-radius: 2000px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.modal-body .comments-input .send-btn img {
+    width: 26px;
+    height: auto;
+}
+
+.modal-body .comments-input .reply-wrapper {
+    display: none;
+    margin-bottom: -0.3rem;
+    margin-left: 0.5rem;
+    background-color: rgb(0, 128, 255);
+    padding: 1px 0.5rem 1px;
+    border-radius: 100px;
+    width: fit-content;
+    height: 1.3rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.modal-body .comments-input .reply-wrapper pre {
+    color: white;
+    font-weight: bold;
+    max-width: 70vw;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.modal-body .comments-input .reply-wrapper button {
+    height: 1.3rem;
+    margin-left: 0.8rem;
+}
+
+.modal-body .comments-input .reply-wrapper button span {
+    height: 1.3rem;
+    display: block;
+    margin-top: -2.1vw;
+}
+
 
 
 /* userpage follows navbar */
@@ -574,12 +630,13 @@ main nav[aria-label="followers/following-nav"] {
     border-radius: 20px;
     height: 40px;
     margin: 15px 10% 10px;
-    top: 15px;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    position: sticky;
+    top: 7%;
 }
 
 main nav[aria-label="followers/following-nav"].active {
@@ -631,7 +688,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     height: 85%;
     width: 100%;
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: unset;
     position: fixed;
     margin-top: 0;
     transition-duration: 0.6s;
@@ -1248,6 +1305,7 @@ main div.scrollable_div footer button[disabled] img {
         margin-left: auto;
         height: 45px;
         border-radius: 100px;
+        top: 5%;
     }
     #followers_button {
         font-size: 2.3vmin;
@@ -1453,6 +1511,7 @@ main div.scrollable_div footer button[disabled] img {
         border-radius: 100px;
         margin-top: -1%;
         max-height: 5vh;
+        top: 5%;
     }
     main nav[aria-label="followers/following-nav"] ul li button:hover {
         opacity: 0.7;

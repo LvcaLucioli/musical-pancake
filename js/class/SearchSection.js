@@ -56,22 +56,11 @@ class SearchSection extends AbstractSection {
         var i = 0;
 
         searchResult.forEach(element => {
-            var button;
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-
-            this.date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
             this.user = element["username"];
+            var button;
 
             const formData = new FormData();
-
             formData.append('username', this.user);
-            formData.append('date', this.date);
 
             axios.post('api/api-user.php', formData).then(response => {
                 button = SearchSection.USER_BTN[response.data["btn"]];

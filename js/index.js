@@ -12,8 +12,8 @@ const LOAD_BTN = `
         <img src="./resources/load_white.png" alt="load more item">
     </button>`;
 const LOAD_BTN_DISABLED = `
-    <button disabled>
-        <img src="./resources/nomore.png" alt="No more item to view">
+    <button aria-label="no more item to view" disabled>
+        <img src="./resources/nomore.png" alt="no more item to view">
     </button>`;
 
 
@@ -63,16 +63,18 @@ async function switchHome(tab) {
             }
             section.classList.remove("discovery");
             section.classList.add("followers");
+            section.setAttribute("aria-label", "posts from followed users");
         } else {
             prevPosts[0] = section.innerHTML;
             prevPosts[1] = scrollable.scrollTop;
             prevPosts[2] = scrollable.clientHeight * 2 / 1000 + scrollable.clientWidth * 2 / 1000;
             section.innerHTML = prevDisc[0];
             scrollable.scrollTop = prevDisc[1] - prevDisc[2];
-            document.querySelector('.scrollable_el > footer')
+            document.querySelector('.scrollable_feed > footer')
                 .innerHTML = LOAD_BTN;
             section.classList.remove("followers");
             section.classList.add("discovery");
+            section.setAttribute("aria-label", "discover posts");
         }
     }
 }
@@ -276,5 +278,5 @@ scrollableDivMain.addEventListener('scroll', function() {
 });
 
 if (iOS() && window.innerWidth < 768){
-    document.querySelector("main div.scrollable_feed > footer button").style.marginBottom = "40%";
+    document.querySelector("main div.scrollable_feed > footer button").style.marginBottom = "50%";
 }

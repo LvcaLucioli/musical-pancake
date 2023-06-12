@@ -154,23 +154,11 @@ class UserHelper{
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>`;
     
-                <nav aria-label="followers/following-nav">
-                    <ul>
-                        <li id='followers_button'>
-                            <button onClick="switchSection('followers')" class="active" aria-pressed="true">
-                            <span class="num">${user["followers"]}</span> followers
-                            </a>
-                        </li>
-                        <li id='following_button'>
-                            <button onClick="switchSection('following')" aria-pressed="false">
-                            <span class="num">${user["following"]}</span> following
-                            </a>
-                        </li>
-                    </ul>
-                </nav>`;
-    
+        document.querySelector("#followers_button span").innerHTML = user["followers"];
+        document.querySelector("#following_button span").innerHTML = user["following"];
+        
         this.userBtn = user["btn"];
 
         if (user["btn"] == "settings" && window.innerWidth < 768) {

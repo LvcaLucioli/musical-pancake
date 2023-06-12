@@ -2,6 +2,20 @@
             <div class="scrollable_el">
 
             <header></header>
+            <nav aria-label="followers/following-nav">
+                <ul>
+                    <li id='followers_button'>
+                        <button onClick="switchSection('followers')" class="active" aria-pressed="true">
+                        <span class="num"></span> followers
+                        </button>
+                    </li>
+                    <li id='following_button'>
+                        <button onClick="switchSection('following')" aria-pressed="false">
+                        <span class="num"></span> following
+                        </button>
+                    </li>
+                </ul>
+            </nav>
 
             <section id="userlist_section">
                 dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb<br>dhgb
@@ -42,7 +56,7 @@
                         <footer>
                             <button onclick="loadMore();">
                                 view more
-                                <img src="./resources/load.png" alt="load more item">
+                                <img src="./resources/load.png" alt="load more items">
                             </button>
                         </footer>
                     </div>
