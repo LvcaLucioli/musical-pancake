@@ -341,10 +341,11 @@ class DatabaseHelper
 
     public function like_unlike($user, $action, $postId)
     {
+        $query = "";
         if ($action == 'add') {
-            $query = "INSERT INTO `likes` (`post`, `user`) VALUES (?, ?);";
+            $query = "INSERT INTO `likes` (`post`, `user`, `date`) VALUES (?, ?, '".date('Y-m-d H:i:s')."');";
             $this->notifyLike($user, $postId);
-        } else if ($action = 'remove') {
+        } else if ($action == 'remove') {
             $query = "DELETE FROM `likes` WHERE  post = ? AND user = ?";
         }
         $stmt = $this->db->prepare($query);

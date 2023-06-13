@@ -41,6 +41,9 @@
                                 </button>
                             </li>
                         </ul>
+                        <ul>
+                            <li id='like_click_btn'></li>
+                        </ul>
                     </nav>
 
                     <div class="comments-input comments-base">
@@ -64,7 +67,9 @@
                         </div>
                     </div>
 
-                    <section id="switchable" class="comments-section" aria-label="users comments"></section>
+                    <section id="switchable" class="comments-section" aria-label="users comments">
+                        <footer></footer>
+                    </section>
                 </div>
 
             </div>

@@ -6,6 +6,17 @@ function switchPostSection(btn) {
     modalHelper.switchSection(btn);
 }
 
+function modalLikeClick(isLiked) {
+    if (document.querySelector("main .scrollable_feed .followers") != null) { 
+        likeClick(document.querySelectorAll(".like_block button")[0],
+            isLiked,
+            modalHelper.getPostId());
+        modalHelper.likeClick(false);
+    } else {
+        modalHelper.likeClick(true);
+    }
+}
+
 
 
 let modalHelper = undefined;
@@ -14,7 +25,6 @@ $('#postModal').on('show.bs.modal', function (event) {
     let button = $(event.relatedTarget);
     let postId = button.data('postid');
     let modal = $(this);
-    console.log("ciao"),
     modalHelper = new ModalPostHelper(postId, modal);
 })
 

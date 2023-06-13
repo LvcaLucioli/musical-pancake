@@ -21,9 +21,17 @@ class PostsDrawer{
 
         axios.post('api/api-user-posts.php', formData).then(response => {
             button.innerHTML = response.data;
+            if (response.data != 0) {
+              this.loadMore();
+              this.swipable = true;
+            } else {
+              document.getElementById('posts_section')
+                .closest('.scrollable_div')
+                .querySelector('footer')
+                .innerHTML = "";
+                this.swipable = false;
+            }
         });
-        
-        this.loadMore();
     }
 
     slideDownDrawer() {
@@ -50,15 +58,17 @@ class PostsDrawer{
           },
           queue : false
         });
-        $(".swipe_div").animate({ 
-          opacity: "1"
-        }, { 
-          duration : 500, 
-          step: function(now, fx) {
-            $(this).css('opacity', now);
-          },
-          queue : false
-        });
+        if (this.swipable) {
+          $(".swipe_div").animate({ 
+            opacity: "1"
+          }, { 
+            duration : 500, 
+            step: function(now, fx) {
+              $(this).css('opacity', now);
+            },
+            queue : false
+          });
+        }
         div.animate({ 
           top: targetPosition
         }, {
@@ -114,6 +124,7 @@ class PostsDrawer{
     } 
       
     slideUpDrawer() {
+      if (this.swipable) {
         let div = $("#drawer");
         let duration = this.duration;
       
@@ -190,6 +201,7 @@ class PostsDrawer{
             });
         }, 450);
         $(".scrollable_user").css("backgroundColor", "rgb(210, 210, 210)");
+      }
     }      
 
     loadMore(){
