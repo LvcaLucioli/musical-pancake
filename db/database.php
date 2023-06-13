@@ -235,7 +235,7 @@ class DatabaseHelper
 
     public function getNotifications($username)
     {
-        $query = "SELECT n.user, n.content, u.propic, n.date
+        $query = "SELECT n.user, n.content, u.propic, n.date, n.targetPost
         FROM notifications n
         JOIN users u ON n.user = u.username
         WHERE n.targetUser = ?

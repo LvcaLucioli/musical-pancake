@@ -10,7 +10,8 @@ class NotificationsSection extends AbstractSection {
             if (response.data.length > 0) {
                 var i = 0;
                 response.data.forEach(element => {
-                    this.items[i] = new AsideItem(NotificationsSection.itemClass, element["propic"], element["user"] + " propic", [element["content"], element["date"]], "link", NotificationsSection.readButton);
+                    // TODO: linkare il box del post
+                    this.items[i] = new AsideItem(NotificationsSection.itemClass, element["propic"], element["user"] + " propic", [element["content"], element["date"]], element["targetPost"], NotificationsSection.readButton);
                     markup += this.items[i].getHTMLItem();
                     i++;
                 });
