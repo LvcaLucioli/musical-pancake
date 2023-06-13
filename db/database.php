@@ -316,12 +316,8 @@ class DatabaseHelper
         $stmt->execute();
     }
 
-    public function deleteNotification($targetUser, $userPropic, $contentDate)
+    public function deleteNotification($targetUser, $userPropic, $content, $date)
     {
-        $splitted = explode(".", $contentDate);
-        $content = $splitted[0];
-        $date = $splitted[1];
-
         $userPropic = str_replace("./uploads/", "", $userPropic);;
         $query = "DELETE FROM notifications
         WHERE targetUser = ?
@@ -337,6 +333,10 @@ class DatabaseHelper
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssss', $targetUser, $content, $date, $userPropic);
         $stmt->execute();
+        error_log($targetUser);
+        error_log($content);
+        error_log($date);
+        error_log($userPropic);
     }
 
     public function like_unlike($user, $action, $postId)
