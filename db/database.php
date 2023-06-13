@@ -322,7 +322,7 @@ class DatabaseHelper
         $content = $splitted[0];
         $date = $splitted[1];
 
-
+        $userPropic = str_replace("./uploads/", "", $userPropic);;
         $query = "DELETE FROM notifications
         WHERE targetUser = ?
           AND content = ?
