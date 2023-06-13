@@ -22,6 +22,8 @@ class NotificationsSection extends AbstractSection {
     }
 
     markAsRead(button) {
+        event.cancelBubble = true;
+        if(event.stopPropagation) event.stopPropagation();
         const formData = new FormData();
         var targetNotification = button.closest(".row.notifications");
         formData.append("userPropic", targetNotification.querySelector("img").getAttribute("src"));

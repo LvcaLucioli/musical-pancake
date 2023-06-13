@@ -255,11 +255,9 @@ $(document).ready(function() {
 
       if ((windowWidth > 992) && (document.querySelector("main .search-section"))) {
         document.querySelector("main .search-section").outerHTML = "";
-        console.log("levo");
       }
       if ((windowWidth > 992) && (document.querySelector("main .notifications-section"))) {
         document.querySelector("main .notifications-section").outerHTML = "";
-        console.log("levo");
       }
     }
     $(window).on('load resize', handleResize);

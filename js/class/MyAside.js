@@ -10,7 +10,7 @@ class MyAside {
             document.querySelector(".notifications-button"),
             document.querySelector(".search-button")
         ];
-        if (!triggerButton.closest(".nav-item").classList.contains("inactiveTab")) {
+        if (triggerButton.classList.contains("active-button")) {
             return;
         }
         if (this.activeSection == 1) {
@@ -40,7 +40,7 @@ class MyAside {
         let offset = path.length - 4;
         new_path = path.slice(0, offset - substring.length) + path.slice(offset);
         icon.setAttribute('src', new_path);
-        button.closest(".nav-item").classList.add("inactiveTab");
+        button.classList.remove("active-button");
     }
 
     addIconActive(button) {
@@ -51,6 +51,6 @@ class MyAside {
         let offset = path.length - 4;
         new_path = path.slice(0, offset) + substring + path.slice(offset);
         icon.setAttribute('src', new_path);
-        button.closest(".nav-item").classList.remove("inactiveTab");
+        button.classList.add("active-button");
     }
 }

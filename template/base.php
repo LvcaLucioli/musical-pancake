@@ -63,7 +63,6 @@
                             <span class="label d-none d-md-inline">search</span>
                         </button>
                     </div>
-
                 </li>
             </ul>
         </nav>
