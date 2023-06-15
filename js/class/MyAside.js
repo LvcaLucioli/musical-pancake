@@ -25,11 +25,11 @@ class MyAside {
             this.removeIconActive(this.buttons[0]);
             this.addIconActive(this.buttons[1]);
         }
-        
+
         while (this.container.childElementCount > 1) {
             this.container.removeChild(this.container.lastChild);
         }
-        this.sections[this.activeSection].retrieve(".profile-aside");
+        this.sections[this.activeSection].show(".profile-aside");
     }
 
     removeIconActive(button) {

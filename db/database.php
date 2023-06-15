@@ -233,16 +233,32 @@ class DatabaseHelper
         return $result;
     }
 
-    public function getNotifications($username)
+    public function getNotifications($username, $n, $lastId)
     {
-        $query = "SELECT n.user, n.content, u.propic, n.date, n.targetPost
-        FROM notifications n
-        JOIN users u ON n.user = u.username
-        WHERE n.targetUser = ?
-        ORDER BY n.date DESC";
+        if ($lastId != -1) {
+            $query = "SELECT n.id, n.user, n.content, u.propic, n.date, n.targetPost
+            FROM notifications n
+            JOIN users u ON n.user = u.username
+            WHERE n.targetUser = ?
+            AND n.id < ?
+            ORDER BY n.date DESC
+            LIMIT ?";
 
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $username);
+            $stmt = $this->db->prepare($query);
+            $n = $n + 1;
+            $stmt->bind_param('sii', $username, $lastId, $n);
+        } else {
+            $query = "SELECT n.id, n.user, n.content, u.propic, n.date, n.targetPost, n.id
+            FROM notifications n
+            JOIN users u ON n.user = u.username
+            WHERE n.targetUser = ?
+            ORDER BY n.date DESC
+            LIMIT ?";
+
+            $stmt = $this->db->prepare($query);
+            $n = $n + 1;
+            $stmt->bind_param('si', $username, $n);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -343,7 +359,7 @@ class DatabaseHelper
     {
         $query = "";
         if ($action == 'add') {
-            $query = "INSERT INTO `likes` (`post`, `user`, `date`) VALUES (?, ?, '".date('Y-m-d H:i:s')."');";
+            $query = "INSERT INTO `likes` (`post`, `user`, `date`) VALUES (?, ?, '" . date('Y-m-d H:i:s') . "');";
             $this->notifyLike($user, $postId);
         } else if ($action == 'remove') {
             $query = "DELETE FROM `likes` WHERE  post = ? AND user = ?";
@@ -375,7 +391,7 @@ class DatabaseHelper
         $result = $stmt->get_result();
         $row = $result->fetch_row();
         $targetUser = $row[0];
-        
+
         if ($user != $targetUser) {
             $content = $user . " liked your post";
 

@@ -179,7 +179,7 @@ main nav[aria-label="feed-menu"] ul {
 main nav[aria-label="feed-menu"] ul li button {
     background-color: rgb(0, 0, 0);
     opacity: 0.5;
-    font-weight: normal;
+    font-weight: bold;
     color: white;
     text-decoration: none;
     transition-property: opacity;
@@ -209,7 +209,9 @@ main nav[aria-label="feed-menu"] ul li button.active {
 }
 
 .modal-body #switchable footer button,
-main div.scrollable_feed>footer button {
+main div.scrollable_feed>footer button,
+.profile-aside section footer button,
+.notifications-section footer button {
     margin-top: 0;
     width: 40vw;
     padding: 0.5%;
@@ -229,7 +231,9 @@ main div.scrollable_feed>footer button {
 }
 
 .modal-body #switchable footer button img,
-main div.scrollable_feed>footer button img {
+main div.scrollable_feed>footer button img,
+.profile-aside section footer button img,
+.notifications-section footer button img {
     margin: 0%;
     padding: 0;
     width: 4vh;
@@ -238,7 +242,9 @@ main div.scrollable_feed>footer button img {
 }
 
 .modal-body #switchable footer button[disabled],
-main div.scrollable_feed>footer button[disabled] {
+main div.scrollable_feed>footer button[disabled],
+.profile-aside section footer button[disabled],
+.notifications-section footer button[disabled] {
     width: 60px;
     height: 60px;
     background-color: rgb(224, 224, 228);
@@ -248,7 +254,9 @@ main div.scrollable_feed>footer button[disabled] {
 }
 
 .modal-body #switchable footer button[disabled] img,
-main div.scrollable_feed>footer button[disabled] img {
+main div.scrollable_feed>footer button[disabled] img,
+.profile-aside section footer button[disabled] img,
+.notifications-section footer button[disabled] img {
     margin-left: -1vh;
     margin-top: -0.5vw;
     padding: 0;
@@ -1126,6 +1134,7 @@ main div.scrollable_div footer button[disabled] img {
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+    flex-wrap: nowrap;
 }
 
 .row .notifications .content-copy {
@@ -1155,6 +1164,24 @@ main div.scrollable_div footer button[disabled] img {
     padding-right: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.notifications-section footer button {
+    /* margin-top: 7%; */
+    /* width: 40vw; */
+    /* padding: 0.5%; */
+    /* font-size: 1.1em; */
+    /* font-weight: bold; */
+    /* border-radius: 30px; */
+    /* margin-left: auto; */
+    /* margin-bottom: 15%; */
+    /* margin-right: auto; */
+    /* background-color: white; */
+    /* border: 4px solid rgb(174, 174, 178); */
+    /* max-width: 200px; */
+    /* color: black; */
+    /* transition-duration: 0.3s; */
+    /* transition-timing-function: ease-in-out; */
 }
 
 
@@ -1199,7 +1226,8 @@ input[type="search"]::-webkit-search-cancel-button {
     padding: 0;
     padding: 5px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: nowrap;
 }
 
 .row .search .content {
@@ -1771,6 +1799,8 @@ input[type="search"]::-webkit-search-cancel-button {
     }
     .profile-aside .navbar ul li .active-button span {
         color: white;
+        font-size: 1.1em;
+        font-weight: bold;
     }
     .profile-aside .navbar ul li button img {
         height: 24px;
@@ -1788,5 +1818,32 @@ input[type="search"]::-webkit-search-cancel-button {
     .row_back {
         transition-duration: 0.1s;
         transition-timing-function: ease-in-out;
+    }
+    /* .notifications-section footer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    } */
+    /* .notifications-section footer button {
+        display: flex;
+        width: 100%;
+        max-width: 15vh;
+        height: 4vh;
+        margin-bottom: 15%;
+        padding-bottom: 0;
+        padding-top: 0%;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        border-left: 0 !important;
+    } */
+    .profile-aside section footer button {
+        width: 100%;
+        min-width: 13vh;
+        max-width: 15vh;
+        font-size: 0.9em;
+    }
+    .profile-aside section footer button img {
+        width: 4vh;
     }
 }

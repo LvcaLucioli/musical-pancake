@@ -1,5 +1,5 @@
 class SearchSection extends AbstractSection {
-    static sectionId = ".search-section";
+    static class = ".search-section";
     static itemClass = "search";
     static buttonText = "button";
 
@@ -41,55 +41,59 @@ class SearchSection extends AbstractSection {
         }
     }
 
-    retrieve(container) {
+    retrieve(searchQuery) {
+
+        // reset search area
+        let rows = document.querySelector(SearchSection.class).querySelectorAll("." + SearchSection.itemClass);
+        rows.forEach(function(row) {
+            row.remove();
+        });
+        // reset if nothing is found
+        if (searchQuery == "") return;
+        let toRemove = document.querySelector(SearchSection.class).querySelectorAll("." + SearchSection.itemClass);
+        toRemove.forEach(function(element) {
+            element.remove();
+        });
+
+
+
+        formData.append('q', searchQuery);
+        axios.post('api/api-search.php', formData).then(response => {
+            if (response.data.length > 0) {
+                response.data.forEach(element => {
+                    var button;
+
+                    const formData = new FormData();
+                    formData.append('username', element["username"]);
+
+                    axios.post('api/api-user.php', formData).then(response => {
+                        button = SearchSection.USER_BTN[response.data["btn"]];
+                        var item = new AsideItem(SearchSection.itemClass, element["propic"], element["username"], [element["username"]], "user.php?username=" + element["username"], button);
+                        var child = document.createElement("div");
+                        document.querySelector(SearchSection.class).appendChild(child);
+                        child.outerHTML = item.getHTMLItem();
+
+                    });
+                });
+            }
+        });
+    }
+
+    show(container) {
         document.querySelector(container).innerHTML += `<section class="search-section">
          <header>
              <div>
                  <input type="search" placeholder="search" aria-label="search" oninput="aside.sections[0].search(this); ">
              </div>
          </header></section>`;
-
-    }
-
-    displaySearchResult(searchResult) {
-        var i = 0;
-
-        searchResult.forEach(element => {
-            this.user = element["username"];
-            var button;
-
-            const formData = new FormData();
-            formData.append('username', this.user);
-
-            axios.post('api/api-user.php', formData).then(response => {
-                button = SearchSection.USER_BTN[response.data["btn"]];
-                this.items[i] = new AsideItem(SearchSection.itemClass, element["propic"], element["username"], [element["username"]], "user.php?username=" + element["username"], button);
-                var child = document.createElement("div");
-                document.querySelector(SearchSection.sectionId).appendChild(child);
-                child.outerHTML = this.items[i].getHTMLItem();
-            });
-            i++;
-        });
+        this.retrieve("");
     }
 
     search(querySection) {
         const formData = new FormData();
         let searchQuery = querySection.value;
-        // reset search area
-        let allSections = document.querySelector(SearchSection.sectionId).querySelectorAll(".row.search");
-        allSections.forEach(function(section) {
-            section.remove();
-        });
 
-        if (searchQuery === "") return;
-        let toRemove = document.querySelector(SearchSection.sectionId).querySelectorAll(".row.search");
-        toRemove.forEach(function(element) {
-            element.remove();
-        });
-        formData.append('q', searchQuery);
-        axios.post('api/api-search.php', formData).then(response => {
-            this.displaySearchResult(response.data);
-        });
+        this.retrieve(searchQuery);
     }
 
 }

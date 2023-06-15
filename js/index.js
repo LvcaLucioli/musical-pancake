@@ -29,7 +29,7 @@ function iOS() {
         (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
-function alt_like_btn(state){
+function alt_like_btn(state) {
     if (state) {
         return "liked post, click to unlike";
     } else {
@@ -91,12 +91,12 @@ function likeClick(button, isLiked, postId) {
         formData.append('action', 'remove');
         path = path.replace("true", "false");
         button.setAttribute("onClick", "likeClick(this, false, " + postId + ")");
-        text.innerHTML = (n_likes-1) + " likes";
+        text.innerHTML = (n_likes - 1) + " likes";
     } else {
         formData.append('action', 'add');
         path = path.replace("false", "true");
         button.setAttribute("onClick", "likeClick(this, true, " + postId + ")");
-        text.innerHTML = (n_likes+1) + " likes";
+        text.innerHTML = (n_likes + 1) + " likes";
     }
     button.setAttribute("aria-pressed", !isLiked);
     button.setAttribute("aria-label", alt_like_btn(!isLiked));
@@ -108,7 +108,7 @@ function likeClick(button, isLiked, postId) {
 function generatePosts(posts) {
     if (posts.length > 1) {
         let result = '';
-        
+
         for (let i = 0; i < posts.length - 1; i++) {
             let post = `
             <article class="shadow-lg" aria-labe="post by ${posts[i]["user"]}">
@@ -170,7 +170,7 @@ function generatePosts(posts) {
         return result;
     } else {
         document.querySelector('.scrollable_feed > footer')
-                .innerHTML = ``;
+            .innerHTML = ``;
         return "<pre class='no-feed-posts text-center'>no posts to view</pre>";
     }
 }
@@ -230,50 +230,50 @@ async function loadMore() {
 }
 
 function showNotificationSection() {
-    if(document.querySelector("main .search-section")){
+    if (document.querySelector("main .search-section")) {
         document.querySelector("main .search-section").outerHTML = "";
     }
     if (document.querySelector("main .notifications-section")) {
         document.querySelector("main .notifications-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
-        aside.sections[1].retrieve(".row main");
+        aside.sections[1].show(".row main");
         document.querySelector(".scrollable_feed").classList.add("d-none");
-        console.log(document.querySelector("section .notifications-section"));
+        console.log(document.querySelector(".notifications-section"));
     }
-    
+
 }
 
 function showSearchSection() {
-    if(document.querySelector("main .notifications-section")){
+    if (document.querySelector("main .notifications-section")) {
         document.querySelector("main .notifications-section").outerHTML = "";
     }
     if (document.querySelector("main .search-section")) {
         document.querySelector("main .search-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
-        aside.sections[0].retrieve(".row main");
+        aside.sections[0].show(".row main");
         document.querySelector(".scrollable_feed").classList.add("d-none");
     }
 }
 
 $(document).ready(function() {
     function handleResize() {
-      var windowWidth = $(window).width();
+        var windowWidth = $(window).width();
 
-      if ((windowWidth > 992) && (document.querySelector(".scrollable_feed").classList.contains("d-none"))) {
-        $('.scrollable_feed').removeClass('d-none');
-      }
+        if ((windowWidth > 992) && (document.querySelector(".scrollable_feed").classList.contains("d-none"))) {
+            $('.scrollable_feed').removeClass('d-none');
+        }
 
-      if ((windowWidth > 992) && (document.querySelector("main .search-section"))) {
-        document.querySelector("main .search-section").outerHTML = "";
-      }
-      if ((windowWidth > 992) && (document.querySelector("main .notifications-section"))) {
-        document.querySelector("main .notifications-section").outerHTML = "";
-      }
+        if ((windowWidth > 992) && (document.querySelector("main .search-section"))) {
+            document.querySelector("main .search-section").outerHTML = "";
+        }
+        if ((windowWidth > 992) && (document.querySelector("main .notifications-section"))) {
+            document.querySelector("main .notifications-section").outerHTML = "";
+        }
     }
     $(window).on('load resize', handleResize);
-  });
+});
 
 let homeStatus = true;
 let prevPosts = [``, 0, 0];
@@ -306,6 +306,6 @@ scrollableDivMain.addEventListener('scroll', function() {
     }
 });
 
-if (iOS() && window.innerWidth < 768){
+if (iOS() && window.innerWidth < 768) {
     document.querySelector("main div.scrollable_feed > footer").style.marginBottom = "50%";
 }
