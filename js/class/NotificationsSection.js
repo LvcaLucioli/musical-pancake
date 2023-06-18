@@ -11,18 +11,16 @@ class NotificationsSection extends AbstractSection {
     loadMore() {
         if (!isLoading) {
             isLoading = true;
-            document.querySelector('.profile-aside section footer button')
+            document.querySelector('.' + NotificationsSection.class + ' footer button')
                 .innerHTML = `
                 loading...
                 <div class="spinner-border text-light" role="status">
                   <span class="sr-only">loading...</span>
                 </div>`;
 
-            console.log("show");
             this.show(this.container, this.lastNotification);
 
             isLoading = false;
-
         }
     }
 
@@ -63,6 +61,8 @@ class NotificationsSection extends AbstractSection {
         document.querySelector(container).innerHTML += `<section class="` + NotificationsSection.class + `"></section>`;
         this.lastNotification = lastNotification;
         this.container = container;
+
+        // remove footer
         if (document.querySelector(this.container + ' section>footer')) {
             document.querySelector(this.container + ' section>footer').outerHTML = "";
         }

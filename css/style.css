@@ -210,7 +210,7 @@ main nav[aria-label="feed-menu"] ul li button.active {
 
 .modal-body #switchable footer button,
 main div.scrollable_feed>footer button,
-.profile-aside section footer button,
+.search-section footer button,
 .notifications-section footer button {
     margin-top: 0;
     width: 40vw;
@@ -232,7 +232,7 @@ main div.scrollable_feed>footer button,
 
 .modal-body #switchable footer button img,
 main div.scrollable_feed>footer button img,
-.profile-aside section footer button img,
+.search-section footer button img,
 .notifications-section footer button img {
     margin: 0%;
     padding: 0;
@@ -243,7 +243,7 @@ main div.scrollable_feed>footer button img,
 
 .modal-body #switchable footer button[disabled],
 main div.scrollable_feed>footer button[disabled],
-.profile-aside section footer button[disabled],
+.search-section footer button[disabled],
 .notifications-section footer button[disabled] {
     width: 60px;
     height: 60px;
@@ -255,7 +255,7 @@ main div.scrollable_feed>footer button[disabled],
 
 .modal-body #switchable footer button[disabled] img,
 main div.scrollable_feed>footer button[disabled] img,
-.profile-aside section footer button[disabled] img,
+.search-section footer button[disabled] img,
 .notifications-section footer button[disabled] img {
     margin-left: -1vh;
     margin-top: -0.5vw;
@@ -1119,6 +1119,7 @@ main div.scrollable_div footer button[disabled] img {
 
 .notifications-section {
     width: 100%;
+    height: 96vh;
     /* background-color: #F2F2F2; */
     display: flex;
     flex-direction: column;
@@ -1166,33 +1167,67 @@ main div.scrollable_div footer button[disabled] img {
     padding-bottom: 5px;
 }
 
-.notifications-section footer button {
-    /* margin-top: 7%; */
-    /* width: 40vw; */
-    /* padding: 0.5%; */
-    /* font-size: 1.1em; */
-    /* font-weight: bold; */
-    /* border-radius: 30px; */
-    /* margin-left: auto; */
-    /* margin-bottom: 15%; */
-    /* margin-right: auto; */
-    /* background-color: white; */
-    /* border: 4px solid rgb(174, 174, 178); */
-    /* max-width: 200px; */
-    /* color: black; */
-    /* transition-duration: 0.3s; */
-    /* transition-timing-function: ease-in-out; */
-}
+
+/* .notifications-section footer button { */
+
+
+/* margin-top: 7%; */
+
+
+/* width: 40vw; */
+
+
+/* padding: 0.5%; */
+
+
+/* font-size: 1.1em; */
+
+
+/* font-weight: bold; */
+
+
+/* border-radius: 30px; */
+
+
+/* margin-left: auto; */
+
+
+/* margin-bottom: 15%; */
+
+
+/* margin-right: auto; */
+
+
+/* background-color: white; */
+
+
+/* border: 4px solid rgb(174, 174, 178); */
+
+
+/* max-width: 200px; */
+
+
+/* color: black; */
+
+
+/* transition-duration: 0.3s; */
+
+
+/* transition-timing-function: ease-in-out; */
+
+
+/* } */
 
 
 /* search section */
 
 .search-section {
     width: 100%;
+    height: 96vh;
     /* background-color: #F2F2F2; */
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 .search-section>header>div>input {
