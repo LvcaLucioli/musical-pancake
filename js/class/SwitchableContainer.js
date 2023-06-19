@@ -1,11 +1,10 @@
-class MyAside {
-    constructor() {
-        this.container = document.querySelector("aside");
-        this.sections = [new SearchSection(), new NotificationsSection()];
-        this.activeSection = 1;
+class SwitchableContainer extends Container {
+    activeSection = 1;
+    constructor(container, sections) {
+        super(container, sections);
     }
 
-    switch (triggerButton) {
+    switch(triggerButton) {
         this.buttons = [
             document.querySelector(".notifications-button"),
             document.querySelector(".search-button")
@@ -26,10 +25,13 @@ class MyAside {
             this.addIconActive(this.buttons[1]);
         }
 
-        while (this.container.childElementCount > 1) {
-            this.container.removeChild(this.container.lastChild);
-        }
-        this.sections[this.activeSection].show(".profile-aside");
+        // while (this.container.childElementCount > 1) {
+        //     this.container.removeChild(this.container.lastChild);
+        // }
+        // TODO: change class from static to property
+        if (document.querySelector(SearchSection.class)) document.querySelector(SearchSection.class).outerHTML = "";
+        if (document.querySelector('.' + NotificationsSection.class)) document.querySelector('.' + NotificationsSection.class).outerHTML = "";
+        this.sections[this.activeSection].show();
     }
 
     removeIconActive(button) {

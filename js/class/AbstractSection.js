@@ -1,7 +1,7 @@
 class AbstractSection {
 
     static LOAD_BTN = ` 
-    <button onclick="aside.sections[aside.activeSection].loadMore();">
+    <button onclick="container.sections[container.activeSection].loadMore();">
         view more
         <img src="./resources/load_white.png" alt="load more item">
     </button>`;
@@ -12,6 +12,10 @@ class AbstractSection {
     </button>`;
     constructor() {
         this.items = [];
+    }
+
+    bind(container){
+        this.container = container;
     }
 
     show() {

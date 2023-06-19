@@ -1,31 +1,52 @@
 class NotificationsSection extends AbstractSection {
     static class = "notifications-section";
     static itemClass = "notifications";
-    static readButton = `<button class="read_btn" onClick="aside.sections[1].markAsRead(this)">
+    static readButton = `<button class="read_btn" onClick="container.sections[1].markAsRead(this)">
                             <p>read</p>
                         </button>`;
     static N_NOTIFICATIONS = 10;
     lastNotification = -1;
     isLoading = false;
 
+    // constructor(container){
+    //     super();
+    //     this.container = container;
+    // }
+
     loadMore() {
         if (!isLoading) {
+            // // remove footer
+            // if (document.querySelector('.' + NotificationsSection.class + '>footer')) {
+            //     console.log(document.querySelector('.' + NotificationsSection.class + '>footer'));
+            //     document.querySelector('.' + NotificationsSection.class + '>footer').outerHTML = "";
+            // }
             isLoading = true;
-            document.querySelector('.' + NotificationsSection.class + ' footer button')
-                .innerHTML = `
-                loading...
-                <div class="spinner-border text-light" role="status">
-                  <span class="sr-only">loading...</span>
-                </div>`;
+            // document.querySelector('.' + NotificationsSection.class + '>footer button')
+            //     .innerHTML = `
+            //     loading...
+            //     <div class="spinner-border text-light" role="status">
+            //       <span class="sr-only">loading...</span>
+            //     </div>`;
 
-            this.show(this.container, this.lastNotification);
+            this.retrieve();
 
+            if (document.querySelector('.' + NotificationsSection.class + '>footer')) {
+                document.querySelector('.' + NotificationsSection.class + '>footer').outerHTML = "";
+            }
+
+            // var child = document.createElement("footer");
+            // document.querySelector('.' + NotificationsSection.class).appendChild(child);
+            // if (this.searchResults.length == 0) {
+            //     child.innerHTML = NotificationsSection.LOAD_BTN_DISABLED;
+            // } else {
+            //     console.log(this.searchResults);
+            //     child.innerHTML = NotificationsSection.LOAD_BTN;
+            // }
             isLoading = false;
         }
     }
 
     retrieve() {
-        const section = document.querySelector(this.container);
 
         const formData = new FormData();
         formData.append('n', NotificationsSection.N_NOTIFICATIONS);
@@ -57,15 +78,9 @@ class NotificationsSection extends AbstractSection {
         });
     }
 
-    show(container, lastNotification = -1) {
-        document.querySelector(container).innerHTML += `<section class="` + NotificationsSection.class + `"></section>`;
-        this.lastNotification = lastNotification;
-        this.container = container;
-
-        // remove footer
-        if (document.querySelector(this.container + ' section>footer')) {
-            document.querySelector(this.container + ' section>footer').outerHTML = "";
-        }
+    show() {
+        this.container.innerHTML += `<section class="` + NotificationsSection.class + `"></section>`;
+        this.lastNotification = -1; // reset head
         this.retrieve();
     }
 

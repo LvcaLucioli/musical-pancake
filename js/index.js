@@ -237,9 +237,9 @@ function showNotificationSection() {
         document.querySelector("main .notifications-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
-        aside.sections[1].show(".row main");
+        container = new Container(".row main", [new NotificationsSection()]);
+        container.sections[0].show();
         document.querySelector(".scrollable_feed").classList.add("d-none");
-        console.log(document.querySelector(".notifications-section"));
     }
 
 }
@@ -252,7 +252,8 @@ function showSearchSection() {
         document.querySelector("main .search-section").outerHTML = "";
         document.querySelector(".scrollable_feed").classList.remove("d-none");
     } else {
-        aside.sections[0].show(".row main");
+        container = new Container(".row main", [new SearchSection()]);
+        container.sections[0].show();
         document.querySelector(".scrollable_feed").classList.add("d-none");
     }
 }
