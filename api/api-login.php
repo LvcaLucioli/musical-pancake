@@ -10,6 +10,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
     }
     else{
         logUserIn($_POST["username"]);
+        header("Location: ../user.php?username=" . $_POST["username"]);
     }
 }
 

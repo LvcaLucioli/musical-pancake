@@ -401,4 +401,23 @@ class DatabaseHelper
             $stmt->execute();
         }
     }
+
+    public function checkLogin($username, $password){
+        $query = "SELECT `username`, `password` FROM `users` WHERE `username` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_row();
+        return password_verify($password, $row[1]);
+    }
+
+    public function signup($username, $password, $email){
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $propic = "propic_".$username;
+        $query = "INSERT INTO `users` (`username`, `password`, `email`, `propic`) VALUES (?, ?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssss', $username, $hashedPassword, $email, $propic);
+        return $stmt->execute();      
+    }
 }
