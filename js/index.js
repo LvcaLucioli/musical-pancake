@@ -15,17 +15,18 @@ const LOAD_BTN_DISABLED = `
     <button aria-label="no more item to view" disabled>
         <img src="./resources/nomore.png" alt="no more item to view">
     </button>`;
-
+scrollPosition = document.querySelector(".row>main").scrollTop;
+index = document.querySelector(".row>main");
 
 function iOS() {
     return [
-            'iPad Simulator',
-            'iPhone Simulator',
-            'iPod Simulator',
-            'iPad',
-            'iPhone',
-            'iPod'
-        ].includes(navigator.userAgent) ||
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+    ].includes(navigator.userAgent) ||
         (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
@@ -102,7 +103,7 @@ function likeClick(button, isLiked, postId) {
     button.setAttribute("aria-label", alt_like_btn(!isLiked));
     button.querySelector("img").setAttribute("src", path);
     button.querySelector("img").setAttribute("alt", alt_like_btn(!isLiked));
-    axios.post('api/api-like.php', formData).then(response => {});
+    axios.post('api/api-like.php', formData).then(response => { });
 }
 
 function generatePosts(posts) {
@@ -111,7 +112,7 @@ function generatePosts(posts) {
 
         for (let i = 0; i < posts.length - 1; i++) {
             let post = `
-            <article class="shadow-lg" aria-labe="post by ${posts[i]["user"]}">
+            <article class="shadow-lg" aria-label="post by ${posts[i]["user"]}">
                 <header>
                     <div class="row">
                         <div class="col-3">
@@ -229,48 +230,50 @@ async function loadMore() {
     }
 }
 
-function showNotificationSection() {
-    if (document.querySelector("main .search-section")) {
-        document.querySelector("main .search-section").outerHTML = "";
+function notificationsSectionClick() {
+    if (document.querySelector(".row>main .search-section")) {
+        document.querySelector(".row>main").innerHTML = index;
+
+        document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
     }
-    if (document.querySelector("main .notifications-section")) {
-        document.querySelector("main .notifications-section").outerHTML = "";
-        document.querySelector(".scrollable_feed").classList.remove("d-none");
+    if (document.querySelector(".row>main .notifications-section")) {
+        document.querySelector(".row>main").innerHTML = index;
+
+        document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
     } else {
-        container = new Container(".row main", [new NotificationsSection()]);
+        scrollPosition = document.querySelector(".scrollable_feed").scrollTop;
+        index = document.querySelector(".row>main").innerHTML;
+        container = new Container(".row>main", [new NotificationsSection()]);
         container.sections[0].show();
-        document.querySelector(".scrollable_feed").classList.add("d-none");
     }
 
 }
 
-function showSearchSection() {
-    if (document.querySelector("main .notifications-section")) {
-        document.querySelector("main .notifications-section").outerHTML = "";
+function searchSectionClick() {
+    if (document.querySelector(".row>main .notifications-section")) {
+        document.querySelector(".row>main").innerHTML = index;
+        document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
     }
-    if (document.querySelector("main .search-section")) {
-        document.querySelector("main .search-section").outerHTML = "";
-        document.querySelector(".scrollable_feed").classList.remove("d-none");
+    if (document.querySelector(".row>main .search-section")) {
+        document.querySelector(".row>main").innerHTML = index;
+        document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
     } else {
-        container = new Container(".row main", [new SearchSection()]);
+        scrollPosition = document.querySelector(".scrollable_feed").scrollTop;
+        index = document.querySelector(".row>main").innerHTML;
+        container = new Container(".row>main", [new SearchSection()]);
         container.sections[0].show();
-        document.querySelector(".scrollable_feed").classList.add("d-none");
     }
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     function handleResize() {
         var windowWidth = $(window).width();
 
-        if ((windowWidth > 992) && (document.querySelector(".scrollable_feed").classList.contains("d-none"))) {
-            $('.scrollable_feed').removeClass('d-none');
-        }
-
-        if ((windowWidth > 992) && (document.querySelector("main .search-section"))) {
-            document.querySelector("main .search-section").outerHTML = "";
-        }
-        if ((windowWidth > 992) && (document.querySelector("main .notifications-section"))) {
-            document.querySelector("main .notifications-section").outerHTML = "";
+        if (((windowWidth > 992) && ((document.querySelector(".row>main .notifications-section"))) || (document.querySelector(".row>main .search-section")))) {
+            document.querySelector(".row>main").innerHTML = index;
+            document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
+            container = new SwitchableContainer("aside", [new SearchSection(), new NotificationsSection()]);
+            container.sections[container.activeSection].show();
         }
     }
     $(window).on('load resize', handleResize);
@@ -295,7 +298,7 @@ let scrollableDivMain = document.querySelectorAll('.scrollable_feed')[0];
 let isScrollingMain;
 const screenWidth = window.innerWidth;
 
-scrollableDivMain.addEventListener('scroll', function() {
+scrollableDivMain.addEventListener('scroll', function () {
     let header = document.querySelector('header[aria-label="primary-menu"]');
     let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
     if (IS_MOBILE) {
