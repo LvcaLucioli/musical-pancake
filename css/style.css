@@ -81,7 +81,9 @@ header[aria-label="primary-menu"] nav ul {
     padding: 0;
     margin: 0;
     display: flex;
+    height: 100%;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 header[aria-label="primary-menu"] nav ul li {
@@ -106,20 +108,17 @@ header[aria-label="primary-menu"] a:active {
 }
 
 header[aria-label="primary-menu"] nav ul li div {
-    display: flex;
+    /* display: flex; */
     flex-direction: row;
-    align-items: center;
+    /* height: 100%; */
 }
 
-header[aria-label="primary-menu"] nav ul li div span {
-    padding: 10px;
-    padding-top: 20px;
-}
+
 
 header[aria-label="primary-menu"]>div {
     display: flex;
     align-items: center;
-    height: 80px;
+    /* height: 80px; */
 }
 
 .logout {
@@ -1098,7 +1097,7 @@ main div.scrollable_div footer button[disabled] img {
 .row .content-copy footer p {
     color: black;
     width: 100%;
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .row .content img {
@@ -1119,8 +1118,7 @@ main div.scrollable_div footer button[disabled] img {
 
 .notifications-section {
     width: 100%;
-    height: 96vh;
-    /* background-color: #F2F2F2; */
+    height: 80vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -1133,7 +1131,7 @@ main div.scrollable_div footer button[disabled] img {
     padding: 0;
     padding: 5px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: row;
     flex-wrap: nowrap;
 }
@@ -1153,7 +1151,6 @@ main div.scrollable_div footer button[disabled] img {
     color: white;
     border-radius: 25px;
     padding: 0%;
-    /* padding: 10px 20px; */
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -1167,64 +1164,11 @@ main div.scrollable_div footer button[disabled] img {
     padding-bottom: 5px;
 }
 
-
-/* .notifications-section footer button { */
-
-
-/* margin-top: 7%; */
-
-
-/* width: 40vw; */
-
-
-/* padding: 0.5%; */
-
-
-/* font-size: 1.1em; */
-
-
-/* font-weight: bold; */
-
-
-/* border-radius: 30px; */
-
-
-/* margin-left: auto; */
-
-
-/* margin-bottom: 15%; */
-
-
-/* margin-right: auto; */
-
-
-/* background-color: white; */
-
-
-/* border: 4px solid rgb(174, 174, 178); */
-
-
-/* max-width: 200px; */
-
-
-/* color: black; */
-
-
-/* transition-duration: 0.3s; */
-
-
-/* transition-timing-function: ease-in-out; */
-
-
-/* } */
-
-
 /* search section */
 
 .search-section {
     width: 100%;
-    height: 96vh;
-    /* background-color: #F2F2F2; */
+    height: 85vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -1260,9 +1204,9 @@ input[type="search"]::-webkit-search-cancel-button {
     margin: 0 0;
     padding: 0;
     padding: 5px;
-    align-items: center;
-    justify-content: center;
     flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .row .search .content {
@@ -1272,37 +1216,124 @@ input[type="search"]::-webkit-search-cancel-button {
     font-weight: bold;
 }
 
+.search-section .user_btn {
+    margin-top: 0;
+    font-size: 1em;
+}
+
+.login form{
+    width: 30vh;
+}
+
+.login form label {
+    position: relative;
+    width: 30vh;
+    overflow: hidden;
+    border-radius: 25px;
+    border: 1px solid #aaa;
+    box-shadow: 2px 2px 4px #aaa;
+}
+
+.login form label .label {
+    position: absolute;
+    top: 6px;
+    left: 16px;
+    transform-origin: 0 0;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.login form label input {
+    font-size: 12px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    border: 0;
+    border-radius: 25px;
+    height: 40px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 15px;
+    color: black;
+    transition: all 0.15s ease;
+}
+
+.login form label input:not(:placeholder-shown)+.label {
+    top: 13px;
+    font-size: 13px;
+    opacity: 0.8;
+    transform: translate3d(0, -12px, 0) scale(0.75);
+}
+
+.login form label input:not(:placeholder-shown){
+    padding-bottom: 0px;
+    font-size: 14px;
+}
+
+.login form .invalid-input {
+    box-shadow: 0px 0px 0px 2px red;
+}
+
+.login form .invalid-input input{
+    outline: 0;
+}
+
+.login button {
+    color: white;
+    background-color: black;
+    border-radius: 25px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
 /* Tablet rules */
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
+        /* justify-content: center; */
     }
+
+    header[aria-label="primary-menu"] nav ul li div span {
+        font-size: 1.5vw;
+        padding: 10px;
+        padding-top: 20px;
+    }
+
     header[aria-label="primary-menu"]>div {
         justify-content: center;
+        /* height: 100%; */
         flex-grow: 2;
     }
+
     .logout_lg img {
         height: 30px !important;
         width: auto !important;
     }
+
     .logout_lg span {
-        color: rgb(255, 59, 48);
+        color: rgb(179, 0, 0);
     }
+
     .logout_lg {
         padding-bottom: 7px !important;
         margin-top: -2px;
     }
+
     .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: -1%;
     }
+
     .user_header {
         width: 100vw;
         height: 100%;
     }
+
     .username {
         padding-top: 4%;
         font-size: 4vmin;
@@ -1311,6 +1342,7 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-bottom: 2%;
         padding-right: 0;
     }
+
     .bio {
         font-size: 2vmin;
         margin-top: 6%;
@@ -1319,12 +1351,14 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-bottom: 0;
         height: 100%;
     }
+
     .propic {
         width: 100%;
         margin-top: 5%;
         margin-left: 12%;
         max-width: 18vw;
     }
+
     .user_btn {
         margin-top: 0;
         font-size: 2.3vmin;
@@ -1334,58 +1368,72 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-left: -0.2vmin;
         height: 4vmin;
     }
+
     .scrollable_user {
         margin-top: calc(-10.5vh + 9vw);
         height: 90%;
     }
+
     .scrollable_user header {
         height: calc(21vw);
         margin-top: 1.5vmin;
     }
+
     .user_btn img {
         width: 4vmin;
         margin-bottom: 3%;
     }
+
     .follow_btn img {
         width: 2.5vmin;
     }
+
     .settings_btn img {
         margin-left: 6%;
         width: 2.5vw;
     }
+
     .following_btn img {
         width: 4.5vmin;
         margin-bottom: 0;
     }
+
     .add_button {
         margin-left: 3.2vw;
         margin-top: -6.2vw;
     }
+
     .posts_count {
         padding-left: 16%;
     }
+
     .swipe_div {
         margin-top: 1vw;
     }
+
     #drawer {
         top: calc(37vw + 1%);
         width: 102vw;
         margin-left: -1vw;
         border-radius: 60px;
     }
+
     #drawer .scrollable_div {
         width: 101.5vw;
         padding-left: 4vw;
         height: 84vh;
     }
+
     .slide_button {
         height: 80px;
     }
+
     .posts_count {
         font-size: 1.4em;
         padding-top: 4%;
         margin-left: 5vw;
     }
+
     main nav[aria-label="followers/following-nav"] {
         max-width: 50%;
         margin-right: auto;
@@ -1394,73 +1442,92 @@ input[type="search"]::-webkit-search-cancel-button {
         border-radius: 100px;
         top: 5%;
     }
+
     #followers_button {
         font-size: 2.3vmin;
     }
+
     #following_button {
         font-size: 2.3vmin;
     }
+
     .swipe_down-btn img {
         width: 20px;
     }
+
     main div.scrollable_div footer button[disabled] img {
         max-width: 40px;
         margin-left: 0;
         margin-top: 0.5vw;
     }
+
     main div.scrollable_div footer button {
         max-height: 55px;
         margin-bottom: 30vw;
     }
+
     main div.scrollable_div footer button img {
         width: 4vmin;
     }
+
     .scrollable_feed {
         margin-top: calc(-15vh + 13vw);
         padding-left: 10vw;
         padding-right: 10vw;
     }
+
     main nav[aria-label="feed-menu"] {
         max-width: 300px;
         margin: calc(2vmin + 1vh) auto 10px;
         top: calc(2vmin + 1vh);
     }
+
     main section.followers article header img {
         max-height: 50px;
         height: 100%;
     }
+
     main section.followers article header .col-8 {
         margin-left: calc(-5vw - 2vh + 1%);
         font-size: 1.2em;
         padding-top: 3vw;
     }
+
     .like_block button img {
         height: 4vmin;
     }
+
     .like_block button:nth-child(2) {
         font-size: 1.3em;
     }
+
     .comments_block img {
         height: 4.5vw;
     }
+
     .comments_block button {
         font-size: 1.3em;
     }
+
     .comments_block span {
         font-size: 0.9em !important;
     }
+
     main section.followers article section:nth-child(4) p {
         font-size: 1.2em;
     }
+
     main section.followers article footer pre {
         font-size: 0.9em;
     }
+
     main div.scrollable_feed>footer button {
         width: 40vh;
         max-width: 300px;
         height: 5vw;
         margin-bottom: 18%;
     }
+
     main div.scrollable_feed>footer button img {
         margin: 0%;
         padding: 0;
@@ -1468,10 +1535,16 @@ input[type="search"]::-webkit-search-cancel-button {
         height: auto;
         margin-left: 5%;
     }
+
     main div.scrollable_feed>footer button[disabled] img {
         max-width: 40px;
         margin-left: 0;
         margin-top: 0.5vw;
+    }
+
+    .search-section .user_btn {
+        min-width: 16vh;
+        max-width: 18vh;
     }
 }
 
@@ -1483,39 +1556,55 @@ input[type="search"]::-webkit-search-cancel-button {
         height: 10vh;
         max-height: 65px;
     }
+
     header[aria-label="primary-menu"] nav ul li {
         padding: 10px;
     }
+
+    header[aria-label="primary-menu"] nav ul li div span {
+        font-size: 1.2em;
+        padding: 10px;
+        padding-top: 20px;
+    }
+
     header[aria-label="primary-menu"]>div {
         margin-right: 50px;
         margin-top: -10px;
         position: relative;
     }
+
     header[aria-label="primary-menu"] {
         box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
     }
+
     header[aria-label="primary-menu"] a {
         transition-duration: 0.3s;
         transition-timing-function: ease-in-out;
         border-radius: 10px;
     }
+
     header[aria-label="primary-menu"] a:hover {
         background-color: rgb(237, 237, 240);
     }
+
     .logout_lg img {
         height: 30px !important;
         width: auto !important;
     }
+
     .logout_lg span {
-        color: rgb(255, 59, 48);
+        color: rgb(179, 0, 0);
     }
+
     .logout_lg {
         padding-bottom: 7px !important;
         margin-top: -2px;
     }
+
     .logout_lg:hover {
         background-color: rgb(255, 237, 237) !important;
     }
+
     #drawer .scrollable_div {
         height: 85%;
         width: 69.5vw;
@@ -1525,70 +1614,88 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-left: 1.5%;
         padding-right: 1.5%;
     }
+
     #drawer .scrollable_el {
         padding-right: 0;
     }
+
     .add_button {
         margin-left: 13%;
         margin-top: -28%;
     }
+
     #drawer {
         border-radius: 0 30px;
         width: 69.5vw;
         top: calc(30% + 5vw + 1vmin);
     }
+
     .posts_count {
         font-size: 1.2em;
         padding-top: 1%;
         margin-left: 10%;
     }
+
     .slide_button {
         height: 10px;
     }
+
     .scrollable_el {
         padding-left: 40px;
         padding-right: 20px;
     }
+
     .swipe_div {
         margin: 0;
         padding-left: 35vw !important;
     }
+
     .swipe_icon {
         margin-top: -20%;
     }
+
     .swipe_down-btn img {
         margin-top: -3%;
         margin-left: 3vw;
         width: 20px;
     }
+
     .swipe_div pre {
         font-size: 0.8em;
     }
+
     .swipe_icon {
         margin-top: 1vh;
     }
+
     main section#posts_section article {
         padding: 0.15vw;
     }
+
     main div.scrollable_div footer button img {
         width: 100%;
         max-width: 35px;
     }
+
     main div.scrollable_div footer button .spinner-border {
         width: 4vh;
         height: 4vh;
     }
+
     main div.scrollable_div footer button[disabled] img {
         max-width: 40px;
         margin-left: 0;
         margin-top: 0;
     }
+
     main div.scrollable_div footer button:hover {
         background-color: rgb(174, 174, 178);
     }
+
     main div.scrollable_div footer button[disabled]:hover {
         background-color: #1c1c1c;
     }
+
     main div.scrollable_div footer button {
         font-size: 1.3em;
         max-height: 50px;
@@ -1597,6 +1704,7 @@ input[type="search"]::-webkit-search-cancel-button {
         font-size: 1.2em;
         margin-bottom: 20vh;
     }
+
     main nav[aria-label="followers/following-nav"] {
         max-width: 50%;
         margin-right: auto;
@@ -1607,12 +1715,15 @@ input[type="search"]::-webkit-search-cancel-button {
         max-height: 5vh;
         top: 5%;
     }
+
     main nav[aria-label="followers/following-nav"] ul li button:hover {
         opacity: 0.7;
     }
+
     main nav[aria-label="followers/following-nav"] ul li button.active:hover {
         opacity: 1;
     }
+
     .propic {
         width: 70%;
         margin-top: 2vh;
@@ -1620,6 +1731,7 @@ input[type="search"]::-webkit-search-cancel-button {
         max-width: 220px;
         margin-left: 15%;
     }
+
     .username {
         margin-top: -3%;
         font-size: 4.2vmin;
@@ -1629,6 +1741,7 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-bottom: 4%;
         padding-right: 0;
     }
+
     .bio {
         font-size: 2vmin;
         margin-top: 0%;
@@ -1637,22 +1750,27 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-bottom: 0;
         height: 100px;
     }
+
     .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: 2%;
     }
+
     .user_header {
         width: 100%;
         padding-top: 0.6vh;
         height: 100%;
     }
+
     #followers_button {
         font-size: 2vmin;
     }
+
     #following_button {
         font-size: 2vmin;
     }
+
     .user_btn {
         margin-top: 0;
         font-size: 2.3vmin;
@@ -1661,100 +1779,125 @@ input[type="search"]::-webkit-search-cancel-button {
         max-width: 10vw;
         min-width: 150px;
     }
+
     .user_btn img {
         width: 4vmin;
         margin-bottom: 3%;
     }
+
     .follow_btn img {
         width: 2.5vh;
         margin-bottom: 5px;
     }
+
     .settings_btn img {
         margin-left: 6%;
         width: 3vh;
     }
+
     .scrollable_user header {
         height: 25vh;
         margin-top: 1.5vh;
     }
+
     .scrollable_user {
         margin-top: -10px;
         width: 66vw;
         height: 87vmin;
     }
+
     .following_btn img {
         width: 4.6vmin;
         margin-top: 2px;
     }
+
     .following_btn:hover {
         background-color: rgb(192, 192, 199);
     }
+
     .follow_btn:hover {
         background-color: rgb(0, 100, 199);
         color: white;
     }
+
     .settings_btn:hover {
         background-color: rgb(195, 88, 0);
     }
+
     .scrollable_feed {
         margin-top: -1vh;
         padding-left: 5vw;
         padding-right: 5vw;
         width: 68vw;
     }
+
     main nav[aria-label="feed-menu"] ul li button:hover {
         opacity: 0.7;
     }
+
     main nav[aria-label="feed-menu"] {
         max-width: 300px;
         margin: calc(2vmin + 1vh) auto 10px;
         top: calc(2vmin + 1vh);
     }
+
     main section.followers article header img {
         height: 7vh;
         margin-left: 2vw;
         margin-top: 1vw;
     }
+
     main section.followers article header .col-8 {
         margin-left: -7vw;
         font-size: 1.2em;
         padding-top: calc(1.4vh + 0.35vw);
     }
+
     main section.followers article section:nth-child(2) img {
         margin-top: 1vw;
     }
+
     .like_block button img {
         height: 5vmin;
     }
+
     .like_block button:nth-child(1) {
         margin-left: 4vh;
     }
+
     .like_block button:nth-child(2) {
         font-size: 1.3em;
     }
+
     .comments_block img {
         height: 5.5vmin;
     }
+
     .comments_block button {
         font-size: 1.3em;
         margin-right: 4vh !important;
     }
+
     .comments_block span {
         font-size: 0.9em !important;
     }
+
     main section.followers article section:nth-child(4) p {
         font-size: 1.2em;
         margin-left: 2vh;
     }
+
     main section.followers article footer pre {
         font-size: 0.9em;
         margin-left: 2vh;
     }
+
     main div.scrollable_feed>footer button .spinner-border {
         width: 4vh !important;
         height: 4vh !important;
         margin-bottom: -1%;
     }
+
     main div.scrollable_feed>footer button {
         width: 40vh;
         max-width: 300px;
@@ -1763,6 +1906,7 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-bottom: 0;
         padding-top: 0%;
     }
+
     main div.scrollable_feed>footer button img {
         margin: 0%;
         padding: 0;
@@ -1770,41 +1914,49 @@ input[type="search"]::-webkit-search-cancel-button {
         height: auto;
         margin-left: 5%;
     }
+
     main div.scrollable_feed>footer button[disabled] img {
         max-width: 55px;
         margin-left: -0.5vw;
         margin-top: 0.2vw;
     }
+
     .scrollable_feed .d-none {
         display: block !important;
     }
-    main>.notifications-section {
+
+    .row>main .notifications-section {
         display: none;
     }
-    main>.search-section {
+
+    .row>main .search-section {
         display: none;
     }
+
     /*aside*/
     .profile-aside {
         display: block;
         height: 100vh !important;
         box-shadow: -4px 0 4px -2px rgba(0, 0, 0, 0.2);
-        color: white;
         transition-duration: 0.6s;
         transition-timing-function: ease-in-out;
         padding-top: 10vh;
-        margin-top: 0vh;
+        top: 1vmin;
         max-width: 33vw !important;
     }
+
     .profile-aside .navbar button:focus {
         outline: none;
     }
+
     .profile-aside .navbar {
         padding: 0;
     }
+
     .profile-aside.navbar-nav {
         border-radius: 10px;
     }
+
     .profile-aside .navbar ul {
         display: flex;
         flex-direction: row;
@@ -1813,13 +1965,12 @@ input[type="search"]::-webkit-search-cancel-button {
         padding: 0;
         border-radius: 10px;
     }
+
     .profile-aside .navbar ul li {
         margin: 0;
         width: 100%;
-        /* background-color: #F2F2F2;
-        border-top-left-radius: 25px;
-        border-top-right-radius: 25px; */
     }
+
     .profile-aside .navbar ul li button {
         padding-bottom: 4px !important;
         padding-top: 4px !important;
@@ -1828,32 +1979,41 @@ input[type="search"]::-webkit-search-cancel-button {
         padding: 0;
         background-color: transparent;
     }
+
     .profile-aside .navbar ul li button span {
         color: black;
         padding-left: 10px;
     }
+
     .profile-aside .navbar ul li .active-button span {
         color: white;
         font-size: 1.1em;
         font-weight: bold;
     }
+
     .profile-aside .navbar ul li button img {
         height: 24px;
         width: 24px;
     }
-    .profile-aside>section {
+
+    .profile-aside main section {
         margin-top: 5px;
-        /* border: 2px solid rgba(0, 0, 0, 0.1); */
         overflow-y: scroll;
-        height: 60vh;
+        height: 80vh;
     }
+
     .inactiveTab {
         background-color: white !important;
     }
+
     .row_back {
         transition-duration: 0.1s;
         transition-timing-function: ease-in-out;
     }
+
+    /* .notifications-section{
+        height: 100vh;
+    } */
     /* .notifications-section footer {
         width: 100%;
         display: flex;
@@ -1872,13 +2032,18 @@ input[type="search"]::-webkit-search-cancel-button {
         font-size: 14px;
         border-left: 0 !important;
     } */
-    .profile-aside section footer button {
+    .profile-aside main section footer button {
         width: 100%;
         min-width: 13vh;
         max-width: 15vh;
         font-size: 0.9em;
     }
-    .profile-aside section footer button img {
+
+    .profile-aside main section footer button img {
         width: 4vh;
+    }
+
+    aside>main {
+        margin-top: 0;
     }
 }

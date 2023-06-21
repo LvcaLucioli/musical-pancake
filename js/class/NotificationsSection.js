@@ -59,7 +59,7 @@ class NotificationsSection extends AbstractSection {
                     // TODO: linkare il box del post
                     this.items[i] = new AsideItem(NotificationsSection.itemClass, element["propic"], element["user"] + " propic", [element["content"], element["date"]], element["targetPost"], NotificationsSection.readButton);
                     var child = document.createElement("div");
-                    document.querySelector("." + NotificationsSection.class).appendChild(child);
+                    document.querySelector(this.container + " ." + NotificationsSection.class).appendChild(child);
                     child.outerHTML = this.items[i].getHTMLItem();
                     i++;
                 });
@@ -79,7 +79,7 @@ class NotificationsSection extends AbstractSection {
     }
 
     show() {
-        this.container.innerHTML += `<section class="` + NotificationsSection.class + `"></section>`;
+        document.querySelector(this.container).innerHTML = `<section class="${NotificationsSection.class}"></section>`;
         this.lastNotification = -1; // reset head
         this.retrieve();
     }

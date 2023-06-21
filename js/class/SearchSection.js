@@ -149,7 +149,7 @@ class SearchSection extends AbstractSection {
 
 
     show() {
-        this.container.innerHTML += `<section class="search-section">
+        document.querySelector(this.container).innerHTML = `<section class="search-section">
          <header>
              <div>
                  <input type="search" placeholder="search" aria-label="search" oninput="container.sections[0].search(this); ">

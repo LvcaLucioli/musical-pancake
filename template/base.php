@@ -20,7 +20,7 @@
 
 <body>
     <header aria-label="primary-menu">
-        <nav class="navbar navbar-expand-md" aria-label="explore-nav">
+        <nav class="navbar-expand-md" aria-label="explore-nav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <div <?php if (isActive("index.php")) {
@@ -36,7 +36,7 @@
                     <div <?php if (isActive("user.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a title="personal profile" class="nav-link" href="user.php?username=<?php echo $_SESSION['username']; ?>">
+                        <a title="personal profile" class="nav-link" href="<?php if(isset($_SESSION['username'])){echo "user.php?username=" . $_SESSION['username'];}else{echo "login.php";} ?>">
                             <img src="./resources/icon-profile<?php echo isIconActive("user.php"); ?>.png" alt="personal profile">
                             <span class="label d-none d-md-inline">profile</span>
                         </a>
@@ -91,6 +91,7 @@
                 if (isset($templateParams["aside"])) {
                     require __DIR__ . "\\" . $templateParams["aside"];
                 } ?>
+                <main></main>
             </aside>
         
     </div>

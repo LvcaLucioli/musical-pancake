@@ -15,7 +15,7 @@ class AsideItem {
             myCopy += `<footer><p>${this.copy[1]}</p></footer>`;
         }
 
-        return `<div class="row ${this.itemClass}" onClick="location.href='${this.itemLink}'">
+        return `<div tabindex="0" class="row ${this.itemClass}" onClick="location.href='${this.itemLink}'">
                     <div class="content">
                             <img src="./uploads/${this.imageScr}" alt="${this.imageAlt}">
                             <div class="content-copy">${myCopy}</div>
