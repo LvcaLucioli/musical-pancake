@@ -57,7 +57,7 @@
 
                         <div class="row">
                             <div class="col-10">
-                                <textarea id="comment_textarea" placeholder="Leave your comment"></textarea>
+                                <textarea aria-label="leave your comment" id="comment_textarea" placeholder="Leave your comment"></textarea>
                             </div>
                             <div class="col-2 pl-0">
                                 <button type="button" class="send-btn" aria-label="post your comment">
