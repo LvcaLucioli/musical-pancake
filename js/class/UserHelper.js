@@ -156,6 +156,7 @@ class UserHelper{
                     </div>
                 </div>`;
     
+                console.log(user["followers"]);
         document.querySelector("#followers_button span").innerHTML = user["followers"];
         document.querySelector("#following_button span").innerHTML = user["following"];
         
