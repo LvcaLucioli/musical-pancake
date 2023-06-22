@@ -6,9 +6,15 @@ function switchPostSection(btn) {
     modalHelper.switchSection(btn);
 }
 
+function postComment() {
+    modalHelper.postComment();
+}
+
 function modalLikeClick(isLiked) {
-    if (document.querySelector("main .scrollable_feed .followers") != null) { 
-        likeClick(document.querySelectorAll(".like_block button")[0],
+    let indexBtn = document.querySelectorAll(`main .scrollable_feed 
+        .followers #post-${modalHelper.getPostId()} .like_block button`)[0];
+    if (indexBtn != null) { 
+        likeClick(indexBtn,
             isLiked,
             modalHelper.getPostId());
         modalHelper.likeClick(false);
@@ -29,6 +35,13 @@ $('#postModal').on('show.bs.modal', function (event) {
 })
 
 $('#postModal').on('hidden.bs.modal', function (event) {
+    let commentsBtn = document.querySelector(`main .scrollable_feed 
+        .followers #post-${modalHelper.getPostId()} .comments_block button`);
+    if (commentsBtn != null) {
+        commentsBtn.innerHTML = "<span>add comment</span> &nbsp;&nbsp;" 
+            + modalHelper.getNComments()
+            + ' <img src="resources/comment.png" alt="view and add commens">';
+    }
     modalHelper.clear();
     modalHelper = undefined;
 });

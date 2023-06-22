@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-12 date">
                         <pre></pre>
-                    </div>
+                        </div>
                     </div>
                     <button title="close post pop-up" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -23,9 +23,9 @@
                 </div>
 
                 <div class="modal-body">
-                    <section aria-label="posts section">
+                    <section aria-label="post section">
                         <img alt="post picture">
-                        <p></p>
+                        <pre></pre>
                     </section>
 
                     <nav aria-label="comments/likes-menu" class="sticky-top">
@@ -60,7 +60,7 @@
                                 <textarea aria-label="leave your comment" id="comment_textarea" placeholder="Leave your comment"></textarea>
                             </div>
                             <div class="col-2 pl-0">
-                                <button type="button" class="send-btn" aria-label="post your comment">
+                                <button type="button" class="send-btn" aria-label="post your comment" onclick="postComment()">
                                 <img src="./resources/send.png" alt="leave comment">
                                 </button>
                             </div>

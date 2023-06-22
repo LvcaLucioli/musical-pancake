@@ -157,8 +157,8 @@ main nav[aria-label="feed-menu"] {
     border-radius: 20px;
     overflow: hidden;
     height: 40px;
-    margin: calc(10vw - 3vh) auto 10px;
-    top: calc(10vw - 3vh);
+    margin: calc(3% + 1vh) auto 10px;
+    top: calc(3% + 1vh);
     z-index: 101;
     min-width: 200px;
     max-width: 200px;
@@ -204,7 +204,7 @@ main nav[aria-label="feed-menu"] ul li button.active {
     overflow-y: scroll;
     overflow-x: hidden;
     position: fixed;
-    margin-top: 1vw;
+    margin-top: -2vw;
 }
 
 .modal-body #switchable footer button,
@@ -382,13 +382,14 @@ main section.followers article section:nth-child(4) {
     padding-left: 2vh;
 }
 
-main section.followers article section:nth-child(4) p {
+main section.followers article section:nth-child(4) pre {
     white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
     word-wrap: break-word;
     overflow-x: auto;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 1em;
 }
 
 main section.followers article footer {
@@ -403,10 +404,11 @@ main section.followers article footer pre {
     font-size: 0.8em;
 }
 
-.no-feed-posts {
+.no-element {
     font-size: 1.1em;
     font-weight: bold;
     margin-top: 20%;
+    margin-bottom: 25vh;
 }
 
 
@@ -452,6 +454,9 @@ main section.followers article footer pre {
     font-weight: bold;
     margin-left: calc(50px - 13vw);
     font-size: 1.1em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .modal-header .date {
@@ -471,10 +476,9 @@ main section.followers article footer pre {
 
 .modal-body {
     padding-bottom: 0 !important;
-    min-height: 900px;
 }
 
-.modal-body section[aria-label="posts section"] img {
+.modal-body section[aria-label="post section"] img {
     width: calc(100% + 2rem);
     height: auto;
     margin-left: -1rem;
@@ -489,7 +493,7 @@ main section.followers article footer pre {
     border-radius: 20px;
     height: 40px;
     margin: 7% 10% 10px;
-    top: 15%;
+    top: 100px;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
     width: 90%;
@@ -544,20 +548,104 @@ main section.followers article footer pre {
     height: auto;
 }
 
-.modal-body section[aria-label="posts section"] p {
+.modal-body section[aria-label="post section"] pre {
     white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
     word-wrap: break-word;
     overflow-x: auto;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 1em;
     margin-top: 3%;
 }
 
+.modal-body #switchable > footer {
+    margin-top: 10%; 
+}
+
+
+
+/* comments */
+
 .modal-body section.comments-section {
-    margin-top: calc(-30vh - 7vw);
+    margin-top: calc(-20vh - 110px);
     margin-bottom: calc(14% + 12vh);
 }
+
+.modal-body section.comments-section article {
+    margin: 1rem 0;
+    border-radius: 15px;
+    background-color: rgb(230, 230, 231);
+    min-height: 8vh;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+.modal-body section.comments-section article .row {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.modal-body section.comments-section article .comment-body > div{
+    margin-top: 0.7rem;
+    padding: 0;
+}
+
+.modal-body section.comments-section article .propic {
+    padding-left: 0.8rem !important;
+}
+
+.modal-body section.comments-section article .propic img {
+    height: auto;
+    width: 100%;
+    max-width: 67px;
+    border-radius: 1000px;
+}
+
+.modal-body section.comments-section article .comment-username {
+    padding-right: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+.modal-body section.comments-section article .comment-username p {
+    margin-bottom: 0;
+    margin-top: -0.5vh;
+}
+
+.modal-body section.comments-section article .comment-date {
+    padding-left: 0;
+}
+
+.modal-body section.comments-section article .comment-date pre {
+    text-align: right;
+    color: rgb(116, 116, 118);
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.modal-body section.comments-section article .comment-text {
+    padding-right: 0;
+}
+
+.modal-body section.comments-section article .comment-text pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 1em;
+    padding-right: 0.7rem;
+}
+
+
+
+/* modal comment form */
 
 .modal-body .comments-input {
     position: sticky;
@@ -574,12 +662,12 @@ main section.followers article footer pre {
 }
 
 .modal-body .comments-reply {
-    top: 83.2%;
+    top: calc(100% - 112px);
     height: 117px;
 }
 
 .modal-body .comments-base {
-    top: 84.5%;
+    top: calc(100% - 100px);
     height: 110px;
 }
 
@@ -608,7 +696,7 @@ main section.followers article footer pre {
     padding: 0 12px;
     width: 50px;
     height: 50px;
-    margin-top: calc(1.3vw + 2vh);
+    margin-top: calc(3.5vh - 1.4vw);
     margin-left: calc(2vw - 2vh);
     background-color: rgb(31, 151, 61);
     border-radius: 2000px;
@@ -736,7 +824,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     display: table-footer-group;
 }
 
-.user_header {
+.scrollable_user .user_header {
     margin: 2vh auto 0;
     width: 100%;
     overflow: hidden;
@@ -746,14 +834,14 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     height: calc(20vh + 15vw);
 }
 
-#userlist_section {
+.scrollable_user #userlist_section {
     transition-duration: 0.6s;
     transition-timing-function: ease-in-out;
     margin-top: 3vmin;
     display: inline-block;
 }
 
-.propic {
+.scrollable_user .propic {
     width: 22vh;
     max-width: 100px;
     height: auto;
@@ -764,11 +852,11 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     margin-left: 30%;
 }
 
-#btn_space {
+.scrollable_user #btn_space {
     padding-bottom: 2%;
 }
 
-.username {
+.scrollable_user .username {
     padding-top: 2vw;
     margin-left: 0px;
     font-weight: bold;
@@ -777,7 +865,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     padding-right: 10%;
 }
 
-.bio {
+.scrollable_user .bio {
     font-size: 1em;
     margin-bottom: 0;
     white-space: pre-wrap;
@@ -787,17 +875,16 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
     padding-right: 10%;
 }
 
-.edit_user_btn {
+.scrollable_user .edit_user_btn {
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
-.user_info {
+.scrollable_user .user_info {
     padding-left: 5% !important;
 }
 
@@ -1323,18 +1410,18 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-top: -2px;
     }
 
-    .user_info {
+    .scrollable_user .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: -1%;
     }
 
-    .user_header {
+    .scrollable_user .user_header {
         width: 100vw;
         height: 100%;
     }
 
-    .username {
+    .scrollable_user .username {
         padding-top: 4%;
         font-size: 4vmin;
         margin-bottom: 0;
@@ -1343,7 +1430,7 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-right: 0;
     }
 
-    .bio {
+    .scrollable_user .bio {
         font-size: 2vmin;
         margin-top: 6%;
         padding-left: 0 !important;
@@ -1352,7 +1439,7 @@ input[type="search"]::-webkit-search-cancel-button {
         height: 100%;
     }
 
-    .propic {
+    .scrollable_user .propic {
         width: 100%;
         margin-top: 5%;
         margin-left: 12%;
@@ -1723,8 +1810,8 @@ input[type="search"]::-webkit-search-cancel-button {
     main nav[aria-label="followers/following-nav"] ul li button.active:hover {
         opacity: 1;
     }
-
-    .propic {
+    
+    .scrollable_user .propic {
         width: 70%;
         margin-top: 2vh;
         margin-right: auto;
@@ -1732,7 +1819,7 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-left: 15%;
     }
 
-    .username {
+    .scrollable_user .username {
         margin-top: -3%;
         font-size: 4.2vmin;
         margin-bottom: 0;
@@ -1742,7 +1829,7 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-right: 0;
     }
 
-    .bio {
+    .scrollable_user .bio {
         font-size: 2vmin;
         margin-top: 0%;
         padding-left: 0 !important;
@@ -1751,13 +1838,13 @@ input[type="search"]::-webkit-search-cancel-button {
         height: 100px;
     }
 
-    .user_info {
+    .scrollable_user .user_info {
         padding-left: 1.5% !important;
         width: 100%;
         margin-top: 2%;
     }
 
-    .user_header {
+    .scrollable_user .user_header {
         width: 100%;
         padding-top: 0.6vh;
         height: 100%;
