@@ -9,10 +9,16 @@ class AsideItem {
     }
 
     getHTMLItem() {
-        return `<div class="row ${this.itemClass}" onclick="${this.itemLink}">
+
+        let myCopy = `<p>${this.copy[0]}</p>`;
+        if (this.copy.length == 2) {
+            myCopy += `<footer><p>${this.copy[1]}</p></footer>`;
+        }
+
+        return `<div tabindex="0" class="row ${this.itemClass}" onClick="location.href='${this.itemLink}'">
                     <div class="content">
-                        <img src="./uploads/${this.imageScr}" alt="${this.imageAlt}">
-                        <p>${this.copy}</p>
+                            <img src="./uploads/${this.imageScr}" alt="${this.imageAlt}">
+                            <div class="content-copy">${myCopy}</div>
                     </div>
                     ${this.button}
                 </div>`;

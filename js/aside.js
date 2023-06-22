@@ -1,2 +1,2 @@
-const aside = new MyAside();
-aside.sections[aside.activeSection].retrieve(".profile-aside-container");
+    var container = new SwitchableContainer("aside", [new SearchSection(), new NotificationsSection()]);
+    container.sections[container.activeSection].show();

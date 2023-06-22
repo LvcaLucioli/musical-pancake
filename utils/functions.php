@@ -20,3 +20,7 @@ function isActive($pagename)
         }
     }
 }
+
+function logUserIn($username){
+    $_SESSION["username"] = $username;
+}

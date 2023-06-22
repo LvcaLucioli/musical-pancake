@@ -8,17 +8,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/class/MyAside.js"></script>
+    <script src="js/class/Container.js"></script>
+    <script src="js/class/SwitchableContainer.js"></script>
     <script src="js/class/AbstractSection.js"></script>
     <script src="js/class/AsideItem.js"></script>
     <script src="js/class/NotificationsSection.js"></script>
     <script src="js/class/NotImplementedError.js"></script>
     <script src="js/class/SearchSection.js"></script>
+    
 </head>
 
 <body>
     <header aria-label="primary-menu">
-        <nav class="navbar navbar-expand-md" aria-label="explore-nav">
+        <nav class="navbar-expand-md" aria-label="explore-nav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <div <?php if (isActive("index.php")) {
@@ -34,7 +36,7 @@
                     <div <?php if (isActive("user.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a title="personal profile" class="nav-link" href="user.php?username=<?php echo $_SESSION['username']; ?>">
+                        <a title="personal profile" class="nav-link" href="<?php if(isset($_SESSION['username'])){echo "user.php?username=" . $_SESSION['username'];}else{echo "login.php";} ?>">
                             <img src="./resources/icon-profile<?php echo isIconActive("user.php"); ?>.png" alt="personal profile">
                             <span class="label d-none d-md-inline">profile</span>
                         </a>
@@ -50,7 +52,7 @@
                 </li>
                 <li class="nav-item d-lg-none">
                     <div>
-                        <button title="notifications" class="nav-link" onClick="showNotificationSection()">
+                        <button title="notifications" class="nav-link" onClick="notificationsSectionClick()">
                             <img src="./resources/icon-notification.png" alt="notifications">
                             <span class="label d-none d-md-inline">notifications</span>
                         </button>
@@ -58,12 +60,11 @@
                 </li>
                 <li class="nav-item d-lg-none">
                     <div>
-                        <button title="user search" class="nav-link" onclick="showSearchSection()">
+                        <button title="user search" class="nav-link" onclick="searchSectionClick()">
                             <img src="./resources/icon-search.png" alt="user search">
                             <span class="label d-none d-md-inline">search</span>
                         </button>
                     </div>
-
                 </li>
             </ul>
         </nav>
@@ -72,8 +73,7 @@
         </div>
     </header>
     <div class="row row_back">
-        <div class="col-lg-7">
-            <main>
+            <main class="col-lg-7">
                 <?php
                 if (isset($templateParams["main"])) {
                     require __DIR__ . "\\" . $templateParams["main"];
@@ -84,13 +84,14 @@
                 }
                 ?>
             </main>
-        </div>
-        <div class="col-lg-5 d-lg-block profile-aside">
-            <?php
-            if (isset($templateParams["aside"])) {
-                require __DIR__ . "\\" . $templateParams["aside"];
-            } ?>
-        </div>
+            <aside class="col-lg-4 d-lg-block profile-aside">
+                <?php
+                if (isset($templateParams["aside"])) {
+                    require __DIR__ . "\\" . $templateParams["aside"];
+                } ?>
+                
+            </aside>
+        
     </div>
     <?php
     if (isset($templateParams["js"])) :

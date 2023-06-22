@@ -113,7 +113,7 @@ class PostsDrawer{
           });
         }else{
           $(".row_back").css("transitionDuration", "0.6s");
-          $(".profile-aside").css("backgroundColor", "white");
+          $("aside").css("backgroundColor", "white");
           $("body>div>div.col-lg-8").css("backgroundColor", "white");
           $(".row_back").css("backgroundColor", "white");
         }

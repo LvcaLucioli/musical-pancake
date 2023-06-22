@@ -224,16 +224,16 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($result->num_rows == 0) {
-            error_log(var_export($result, true));
-            $query = "SELECT u.username, u.propic, u.bio FROM users u WHERE u.username = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('s', $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            error_log(var_export($result, true));
-        }
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
+    public function getSearchUser($username)
+    {
+        $query = "SELECT u.username, u.propic, u.bio FROM users u WHERE u.username = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -281,16 +281,32 @@ class DatabaseHelper
         return $result;
     }
 
-    public function getNotifications($username)
+    public function getNotifications($username, $n, $lastId)
     {
-        $query = "SELECT n.user, n.content, u.propic, n.date
-        FROM notifications n
-        JOIN users u ON n.user = u.username
-        WHERE n.targetUser = ?
-        ORDER BY n.date DESC";
+        if ($lastId != -1) {
+            $query = "SELECT n.id, n.user, n.content, u.propic, n.date, n.targetPost
+            FROM notifications n
+            JOIN users u ON n.user = u.username
+            WHERE n.targetUser = ?
+            AND n.id < ?
+            ORDER BY n.date DESC
+            LIMIT ?";
 
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $username);
+            $stmt = $this->db->prepare($query);
+            $n = $n + 1;
+            $stmt->bind_param('sii', $username, $lastId, $n);
+        } else {
+            $query = "SELECT n.id, n.user, n.content, u.propic, n.date, n.targetPost, n.id
+            FROM notifications n
+            JOIN users u ON n.user = u.username
+            WHERE n.targetUser = ?
+            ORDER BY n.date DESC
+            LIMIT ?";
+
+            $stmt = $this->db->prepare($query);
+            $n = $n + 1;
+            $stmt->bind_param('si', $username, $n);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -364,13 +380,9 @@ class DatabaseHelper
         $stmt->execute();
     }
 
-    public function deleteNotification($targetUser, $userPropic, $contentDate)
+    public function deleteNotification($targetUser, $userPropic, $content, $date)
     {
-        $splitted = explode(".", $contentDate);
-        $content = $splitted[0];
-        $date = $splitted[1];
-
-
+        $userPropic = str_replace("./uploads/", "", $userPropic);;
         $query = "DELETE FROM notifications
         WHERE targetUser = ?
           AND content = ?
@@ -385,12 +397,16 @@ class DatabaseHelper
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssss', $targetUser, $content, $date, $userPropic);
         $stmt->execute();
+        error_log($targetUser);
+        error_log($content);
+        error_log($date);
+        error_log($userPropic);
     }
 
     public function like_unlike($user, $action, $postId)
     {
         if ($action == 'add') {
-            $query = "INSERT INTO `likes` (`post`, `user`, `date`) VALUES (?, ?, '".date('Y-m-d H:i:s')."');";
+            $query = "INSERT INTO `likes` (`post`, `user`, `date`) VALUES (?, ?, '" . date('Y-m-d H:i:s') . "');";
             $this->notifyLike($user, $postId);
         } else if ($action == 'remove') {
             $query = "DELETE FROM `likes` WHERE  post = ? AND user = ?";
@@ -414,6 +430,7 @@ class DatabaseHelper
 
     private function notifyLike($user, $targetPost)
     {
+
         $query = "SELECT `user` FROM `posts` WHERE `id` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $targetPost);
@@ -422,11 +439,32 @@ class DatabaseHelper
         $row = $result->fetch_row();
         $targetUser = $row[0];
 
-        $content = $user . " liked your post";
+        if ($user != $targetUser) {
+            $content = $user . " liked your post";
 
-        $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, NOW(), ?);";
+            $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, NOW(), ?);";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssi', $targetUser, $content, $user, $targetPost);
+            $stmt->execute();
+        }
+    }
+
+    public function checkLogin($username, $password){
+        $query = "SELECT `username`, `password` FROM `users` WHERE `username` = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sssi', $targetUser, $content, $user, $targetPost);
+        $stmt->bind_param('s', $username);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_row();
+        return password_verify($password, $row[1]);
+    }
+
+    public function signup($username, $password, $email){
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $propic = "propic_".$username;
+        $query = "INSERT INTO `users` (`username`, `password`, `email`, `propic`) VALUES (?, ?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssss', $username, $hashedPassword, $email, $propic);
+        return $stmt->execute();      
     }
 }
