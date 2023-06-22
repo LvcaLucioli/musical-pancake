@@ -2,11 +2,11 @@
     <h2>signup</h2>
     <form action="api/api-signup.php" method="POST">
         <label for="username">
-            <input type="text" id="username" name="username" placeholder="&nbsp;" required minlength="8" maxlength="50">
+            <input type="text" id="username" name="username" placeholder="&nbsp;" value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>" required minlength="8" maxlength="50">
             <span class="label">username</span>
         </label>
         <label for="email">
-            <input type="email" id="email" name="email" placeholder="&nbsp;" required>
+            <input type="email" id="email" name="email" placeholder="&nbsp;" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" required>
             <span class="label">email</span>
         </label>
         <label for="password">
