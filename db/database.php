@@ -111,17 +111,32 @@ class DatabaseHelper
 
     public function getComments($postID, $lastID, $n)
     {
-        $query = "SELECT c.*, u.propic
-        FROM comments c, users u
-        WHERE c.post = ?
-        AND c.to_comment IS NULL
-        AND c.user = u.username
-        AND c.id > ? 
-        ORDER BY c.datetime ASC
-        LIMIT ?;";
+        if ($lastID != -1) {
+            $query = "SELECT c.*, u.propic,
+            CASE WHEN EXISTS (SELECT 1 FROM comments WHERE to_comment = c.id) THEN 1 ELSE 0 END AS has_replies
+            FROM comments c, users u
+            WHERE c.post = ?
+            AND c.to_comment IS NULL
+            AND c.user = u.username
+            AND c.id < ? 
+            ORDER BY c.datetime DESC
+            LIMIT ?;";
 
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('iii', $postID, $lastID, $n);
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('iii', $postID, $lastID, $n);
+        } else {
+            $query = "SELECT c.*, u.propic
+            FROM comments c, users u
+            WHERE c.post = ?
+            AND c.to_comment IS NULL
+            AND c.user = u.username
+            ORDER BY c.datetime DESC
+            LIMIT ?;";
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $postID, $n);
+        }
+
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
@@ -130,8 +145,8 @@ class DatabaseHelper
         WHERE c.post = ?
         AND c.to_comment IS NULL
         AND c.user = u.username
-        AND c.id > ? 
-        ORDER BY c.datetime ASC
+        AND c.id < ? 
+        ORDER BY c.datetime DESC
         LIMIT 1";
 
         $stmt = $this->db->prepare($query);
@@ -140,6 +155,39 @@ class DatabaseHelper
         $stmt->execute();
         $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
 
+        return $result;
+    }
+
+    public function leaveComment($date, $text, $user, $postID, $repliedID) {
+        if ($repliedID != -1) {
+            $query = "INSERT INTO `comments`
+            (`datetime`, `text`, `user`, `post`, `to_comment`)
+            VALUES (?, ?, ?, ?, ?);";
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssii', $date, $text, $user, $postID, $repliedID);
+            $stmt->execute();
+        } else {
+            $query = "INSERT INTO `comments`
+            (`datetime`, `text`, `user`, `post`, `to_comment`)
+            VALUES (?, ?, ?, ?, NULL);";
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssi', $date, $text, $user, $postID);
+            $stmt->execute();
+        }
+
+        $commentID = $this->db->insert_id;
+        $query = "SELECT c.*, u.propic
+        FROM comments c, users u
+        WHERE c.id = ?
+        LIMIT 2;";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $commentID);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        // notifica commento
         return $result;
     }
 
@@ -341,7 +389,6 @@ class DatabaseHelper
 
     public function like_unlike($user, $action, $postId)
     {
-        $query = "";
         if ($action == 'add') {
             $query = "INSERT INTO `likes` (`post`, `user`, `date`) VALUES (?, ?, '".date('Y-m-d H:i:s')."');";
             $this->notifyLike($user, $postId);

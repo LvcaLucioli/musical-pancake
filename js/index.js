@@ -83,8 +83,8 @@ function likeClick(button, isLiked, postId) {
     const formData = new FormData();
     formData.append('id', postId);
     let path = button.querySelector("img").getAttribute("src");
-    let text = document.querySelectorAll(".like_block button")[1];
-    console.log(text.innerHTML.trim());
+    let text = document.querySelectorAll(`main .scrollable_feed 
+        .followers #post-${postId} .like_block button`)[1];
     let n_likes = parseInt(text.innerHTML.trim().split(" ")[0]);
 
     if (isLiked) {
@@ -111,7 +111,7 @@ function generatePosts(posts) {
         
         for (let i = 0; i < posts.length - 1; i++) {
             let post = `
-            <article class="shadow-lg" aria-labe="post by ${posts[i]["user"]}">
+            <article id="post-${posts[i]["id"]}" class="shadow-lg" aria-labe="post by ${posts[i]["user"]}">
                 <header>
                     <div class="row">
                         <div class="col-3">
@@ -148,7 +148,7 @@ function generatePosts(posts) {
                     </div>
                 </section>
                 <section>
-                    <p>${posts[i]["description"]}</p>
+                    <pre>${posts[i]["description"]}</pre>
                 </section>
                 <footer>
                     <pre>Published on ${posts[i]["date"].split(" ")[0]}</pre>
@@ -171,7 +171,7 @@ function generatePosts(posts) {
     } else {
         document.querySelector('.scrollable_feed > footer')
                 .innerHTML = ``;
-        return "<pre class='no-feed-posts text-center'>no posts to view</pre>";
+        return "<pre class='no-element text-center'>no posts to view</pre>";
     }
 }
 
