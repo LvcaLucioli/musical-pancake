@@ -13,14 +13,16 @@ class NotificationsSection extends AbstractSection {
     //     this.container = container;
     // }
 
-    loadMore() {
+    loadMore(n = NotificationsSection.N_NOTIFICATIONS) {
         if (!this.isLoading) {
+
             // // remove footer
             // if (document.querySelector('.' + NotificationsSection.class + '>footer')) {
             //     console.log(document.querySelector('.' + NotificationsSection.class + '>footer'));
             //     document.querySelector('.' + NotificationsSection.class + '>footer').outerHTML = "";
             // }
             this.isLoading = true;
+
             // document.querySelector('.' + NotificationsSection.class + '>footer button')
             //     .innerHTML = `
             //     loading...
@@ -28,7 +30,7 @@ class NotificationsSection extends AbstractSection {
             //       <span class="sr-only">loading...</span>
             //     </div>`;
 
-            this.retrieve();
+            this.retrieve(n);
 
             if (document.querySelector('.' + NotificationsSection.class + '>footer')) {
                 document.querySelector('.' + NotificationsSection.class + '>footer').outerHTML = "";
@@ -46,16 +48,16 @@ class NotificationsSection extends AbstractSection {
         }
     }
 
-    retrieve() {
-
+    retrieve(n = NotificationsSection.N_NOTIFICATIONS) {
+        
         const formData = new FormData();
-        formData.append('n', NotificationsSection.N_NOTIFICATIONS);
+        formData.append('n', n);
         formData.append('last_notifications', this.lastNotification);
 
         axios.post('api/api-notification.php', formData).then(response => {
             if (response.data.length > 0) {
                 var i = 0;
-                response.data.slice(0, NotificationsSection.N_NOTIFICATIONS).forEach(element => {
+                response.data.slice(0, n).forEach(element => {
                     // TODO: linkare il box del post
                     this.items[i] = new AsideItem(NotificationsSection.itemClass, element["propic"], element["user"] + " propic", [element["content"], element["date"]], element["targetPost"], NotificationsSection.readButton);
                     var child = document.createElement("div");
@@ -67,11 +69,11 @@ class NotificationsSection extends AbstractSection {
                 var child = document.createElement("footer");
                 document.querySelector("." + NotificationsSection.class).appendChild(child);
 
-                if (response.data.length <= NotificationsSection.N_NOTIFICATIONS) {
+                if (response.data.length <= n) {
                     child.innerHTML = NotificationsSection.LOAD_BTN_DISABLED;
                     this.lastNotification = response.data[response.data.length - 1]["id"];
                 } else {
-                    this.lastNotification = response.data[NotificationsSection.N_NOTIFICATIONS - 1]["id"];
+                    this.lastNotification = response.data[n - 1]["id"];
                     child.innerHTML = NotificationsSection.LOAD_BTN;
                 }
             }
@@ -90,10 +92,11 @@ class NotificationsSection extends AbstractSection {
         const formData = new FormData();
         var targetNotification = button.closest("." + NotificationsSection.itemClass);
         formData.append("userPropic", targetNotification.querySelector("img").getAttribute("src"));
-        formData.append("content", targetNotification.querySelector("p").textContent);
+        formData.append("content", targetNotification.querySelector("p").innerHTML);
         formData.append("date", targetNotification.querySelector("footer p").textContent);
         axios.post('api/api-mark-as-read.php', formData).then(response => {
             targetNotification.classList.add("d-none");
         })
+        this.loadMore(1);
     }
 }
