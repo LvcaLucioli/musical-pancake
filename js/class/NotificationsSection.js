@@ -14,13 +14,13 @@ class NotificationsSection extends AbstractSection {
     // }
 
     loadMore() {
-        if (!isLoading) {
+        if (!this.isLoading) {
             // // remove footer
             // if (document.querySelector('.' + NotificationsSection.class + '>footer')) {
             //     console.log(document.querySelector('.' + NotificationsSection.class + '>footer'));
             //     document.querySelector('.' + NotificationsSection.class + '>footer').outerHTML = "";
             // }
-            isLoading = true;
+            this.isLoading = true;
             // document.querySelector('.' + NotificationsSection.class + '>footer button')
             //     .innerHTML = `
             //     loading...
@@ -42,7 +42,7 @@ class NotificationsSection extends AbstractSection {
             //     console.log(this.searchResults);
             //     child.innerHTML = NotificationsSection.LOAD_BTN;
             // }
-            isLoading = false;
+            this.isLoading = false;
         }
     }
 
@@ -88,7 +88,7 @@ class NotificationsSection extends AbstractSection {
         event.cancelBubble = true;
         if (event.stopPropagation) event.stopPropagation();
         const formData = new FormData();
-        var targetNotification = button.closest("." + itemClass);
+        var targetNotification = button.closest("." + NotificationsSection.itemClass);
         formData.append("userPropic", targetNotification.querySelector("img").getAttribute("src"));
         formData.append("content", targetNotification.querySelector("p").textContent);
         formData.append("date", targetNotification.querySelector("footer p").textContent);
