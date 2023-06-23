@@ -158,7 +158,8 @@ class DatabaseHelper
         return $result;
     }
 
-    public function leaveComment($date, $text, $user, $postID, $repliedID) {
+    public function leaveComment($date, $text, $user, $postID, $repliedID)
+    {
         if ($repliedID != -1) {
             $query = "INSERT INTO `comments`
             (`datetime`, `text`, `user`, `post`, `to_comment`)
@@ -420,7 +421,7 @@ class DatabaseHelper
 
     private function notifyFollow($user, $targetUser)
     {
-        $content = $user . " started following you";
+        $content = "<b>" . $user . "</b>&nbsp;" . "started following you";
 
         $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`) VALUES (?, ?, ?, NOW());";
         $stmt = $this->db->prepare($query);
@@ -440,7 +441,7 @@ class DatabaseHelper
         $targetUser = $row[0];
 
         if ($user != $targetUser) {
-            $content = $user . " liked your post";
+            $content = "<b>" . $user . "</b>&nbsp;" . "liked your post";
 
             $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, NOW(), ?);";
             $stmt = $this->db->prepare($query);
@@ -449,7 +450,8 @@ class DatabaseHelper
         }
     }
 
-    public function checkLogin($username, $password){
+    public function checkLogin($username, $password)
+    {
         $query = "SELECT `username`, `password` FROM `users` WHERE `username` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
@@ -459,12 +461,13 @@ class DatabaseHelper
         return password_verify($password, $row[1]);
     }
 
-    public function signup($username, $password, $email){
+    public function signup($username, $password, $email)
+    {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $propic = "propic_".$username;
+        $propic = "propic_" . $username;
         $query = "INSERT INTO `users` (`username`, `password`, `email`, `propic`) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssss', $username, $hashedPassword, $email, $propic);
-        return $stmt->execute();      
+        return $stmt->execute();
     }
 }
