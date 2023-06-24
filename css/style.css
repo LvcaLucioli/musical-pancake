@@ -559,8 +559,8 @@ main section.followers article footer pre {
     margin-top: 3%;
 }
 
-.modal-body #switchable > footer {
-    margin-top: 10%; 
+.modal-body #switchable>footer {
+    margin-top: 10%;
 }
 
 
@@ -587,7 +587,7 @@ main section.followers article footer pre {
     margin-left: auto;
 }
 
-.modal-body section.comments-section article .comment-body > div{
+.modal-body section.comments-section article .comment-body>div {
     margin-top: 0.7rem;
     padding: 0;
 }
@@ -1152,7 +1152,8 @@ main div.scrollable_div footer button[disabled] img {
 /* .profile-aside */
 
 .navbar[aria-label="profile-nav"] .navbar-nav {
-    margin-right: 5px;
+    margin-right: 10px;
+    margin-left: 5px;
 }
 
 .active-button {
@@ -1170,21 +1171,9 @@ main div.scrollable_div footer button[disabled] img {
     width: 80%;
 }
 
-.row .content-copy {
-    color: black;
-    width: 100%;
-}
-
-.row .content-copy>p {
-    color: black;
-    width: 100%;
-    font-size: 18px;
-}
-
-.row .content-copy footer p {
-    color: black;
-    width: 100%;
-    font-size: 11px;
+.row .content p {
+    margin-left: 10px;
+    margin-bottom: 0px;
 }
 
 .row .content img {
@@ -1193,12 +1182,28 @@ main div.scrollable_div footer button[disabled] img {
     border-radius: 50%;
 }
 
-.row .content p {
-    margin-left: 10px;
-    margin-bottom: 0px;
-    display: flex;
-    align-items: center;
+.row .content-copy p {
+    color: black;
+    font-size: 14px;
 }
+
+.search-section .row .content-copy p {
+    font-size: 18px;
+}
+
+.row .content-copy p a {
+    font-weight: bold;
+}
+.row .content-copy footer p {
+    color: black;
+    font-size: 11px;
+}
+
+
+
+
+
+
 
 
 /* notifications section */
@@ -1221,32 +1226,29 @@ main div.scrollable_div footer button[disabled] img {
     justify-content: space-around;
     flex-direction: row;
     flex-wrap: nowrap;
+    margin-bottom: 10px;
 }
 
 .row .notifications .content-copy {
-    display: flex;
-    min-width: 70%;
-    max-width: 70%;
-    align-items: stretch;
+    width: 100%;
     padding-left: 5px;
-    flex-direction: column;
-    align-content: stretch;
 }
 
 .read_btn {
     background-color: #8B0000;
     color: white;
     border-radius: 25px;
-    padding: 0%;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .read_btn p {
     font-size: 16px;
     margin: 0;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -1261,6 +1263,10 @@ main div.scrollable_div footer button[disabled] img {
     overflow-y: scroll;
 }
 
+.search-section header div {
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
 .search-section>header>div>input {
     width: 98%;
     padding: 4px 8px;
@@ -1294,6 +1300,8 @@ input[type="search"]::-webkit-search-cancel-button {
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-around;
+    margin-bottom: 10px;
+    align-items: center;
 }
 
 .row .search .content {
@@ -1301,14 +1309,16 @@ input[type="search"]::-webkit-search-cancel-button {
     min-width: 33%;
     max-width: 66%;
     font-weight: bold;
+    align-items: center;
 }
 
 .search-section .user_btn {
     margin-top: 0;
     font-size: 1em;
+    margin-right: 10px;
 }
 
-.login form{
+.login form {
     width: 30vh;
 }
 
@@ -1353,7 +1363,7 @@ input[type="search"]::-webkit-search-cancel-button {
     transform: translate3d(0, -12px, 0) scale(0.75);
 }
 
-.login form label input:not(:placeholder-shown){
+.login form label input:not(:placeholder-shown) {
     padding-bottom: 0px;
     font-size: 14px;
 }
@@ -1362,7 +1372,7 @@ input[type="search"]::-webkit-search-cancel-button {
     box-shadow: 0px 0px 0px 2px red;
 }
 
-.login form .invalid-input input{
+.login form .invalid-input input {
     outline: 0;
 }
 
@@ -1810,7 +1820,7 @@ input[type="search"]::-webkit-search-cancel-button {
     main nav[aria-label="followers/following-nav"] ul li button.active:hover {
         opacity: 1;
     }
-    
+
     .scrollable_user .propic {
         width: 70%;
         margin-top: 2vh;
@@ -2028,7 +2038,7 @@ input[type="search"]::-webkit-search-cancel-button {
         transition-duration: 0.6s;
         transition-timing-function: ease-in-out;
         padding-top: 10vh;
-        top: 1vmin;
+        top: 6vmin;
         max-width: 33vw !important;
     }
 
@@ -2086,7 +2096,7 @@ input[type="search"]::-webkit-search-cancel-button {
     .profile-aside main section {
         margin-top: 5px;
         overflow-y: scroll;
-        height: 80vh;
+        height: 85%;
     }
 
     .inactiveTab {
@@ -2131,6 +2141,6 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     aside>main {
-        margin-top: 0;
+        margin-top: 3vmin;
     }
 }
