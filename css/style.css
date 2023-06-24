@@ -157,8 +157,8 @@ main nav[aria-label="feed-menu"] {
     border-radius: 20px;
     overflow: hidden;
     height: 40px;
-    margin: calc(1% + 1vh) auto 10px;
-    top: calc(1% + 1vh);
+    margin: calc(2% + 1vh) auto 10px;
+    top: calc(2% + 1vh);
     z-index: 101;
     min-width: 200px;
     max-width: 200px;
@@ -203,10 +203,10 @@ main nav[aria-label="feed-menu"] ul li button.active {
     overflow-y: scroll;
     overflow-x: hidden;
     position: fixed;
-    margin-top: -2vh;
+    margin-top: calc(-2vh - 1vw);
 }
 
-.modal-body #switchable footer button,
+.modal-body #switchable>footer button,
 main div.scrollable_feed>footer button,
 .search-section footer button,
 .notifications-section footer button {
@@ -228,7 +228,7 @@ main div.scrollable_feed>footer button,
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.modal-body #switchable footer button img,
+.modal-body #switchable>footer button img,
 main div.scrollable_feed>footer button img,
 .search-section footer button img,
 .notifications-section footer button img {
@@ -239,7 +239,7 @@ main div.scrollable_feed>footer button img,
     margin-left: 3%;
 }
 
-.modal-body #switchable footer button[disabled],
+.modal-body #switchable>footer button[disabled],
 main div.scrollable_feed>footer button[disabled],
 .search-section footer button[disabled],
 .notifications-section footer button[disabled] {
@@ -251,7 +251,7 @@ main div.scrollable_feed>footer button[disabled],
     box-shadow: none;
 }
 
-.modal-body #switchable footer button[disabled] img,
+.modal-body #switchable>footer button[disabled] img,
 main div.scrollable_feed>footer button[disabled] img,
 .search-section footer button[disabled] img,
 .notifications-section footer button[disabled] img {
@@ -284,7 +284,6 @@ main section.followers article {
     margin-right: auto;
     border-radius: 25px;
     margin-top: 7%;
-    border: 0.1px solid rgba(0, 0, 0, 0.1);
 }
 
 main section.followers article header img {
@@ -492,7 +491,7 @@ main section.followers article footer pre {
     border-radius: 20px;
     height: 40px;
     margin: 7% 10% 10px;
-    top: 100px;
+    top: 104px;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
     width: 90%;
@@ -575,7 +574,7 @@ main section.followers article footer pre {
     margin: 1rem 0;
     border-radius: 15px;
     background-color: rgb(230, 230, 231);
-    min-height: 8vh;
+    min-height: 120px;
     transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
 }
@@ -642,7 +641,81 @@ main section.followers article footer pre {
     padding-right: 0.7rem;
 }
 
+.modal-body section.comments-section article div>footer button {
+    width: 25vw;
+    height: 30px;
+    margin-bottom: 0.5rem;
+    border-radius: 100px;
+    font-weight: 700;
+    padding: 0;
+    background-color: white;
+    padding-bottom: 0.3rem;
+    text-decoration: none;
+    color: black;
+    margin-left: 10%;
+}
 
+.modal-body section.comments-section article div>footer button img {
+    width: 18px;
+    height: auto;
+}
+
+.modal-body section.comments-section article section.comment-reply article:last-child{
+    margin-bottom: 1rem !important;
+}
+
+.modal-body section.comments-section article section.comment-reply article:first-child{
+    margin-top: 3rem !important;
+}
+
+.modal-body section.comments-section article div> footer {
+    margin-bottom: calc(-30px - 0.5rem);
+}
+
+.modal-body section.comments-section article section.comment-reply footer button {
+    width: 40vw;
+    height: 30px;
+    margin-bottom: 0.5rem;
+    background-color: transparent;
+    font-weight: 700;
+    margin-left: -10vw;
+    text-decoration: none;
+    color: black;
+}
+
+.modal-body section.comments-section article section.comment-reply footer button span {
+    display: inline-block;
+    width: 20%;
+    border-top: 2px solid black;
+    margin-bottom: 0.2em;
+    margin-right: 2%;
+    margin-left: -9%;
+}
+
+.modal-body section.comments-section article section.comment-reply article {
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 0.7rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.07), 0 -0.5rem 1rem rgba(0,0,0,.07);
+    margin-bottom: 0;
+    min-height: 8vh;
+}
+
+.modal-body section.comments-section article section.comment-reply .comment-date pre {
+    font-size: 2.5vw;
+}
+
+@media (min-width: 490px) {
+    .modal-body section.comments-section article section.comment-reply .comment-date pre {
+        font-size: 12px;
+    }
+}
+
+.modal-body section.comments-section article section.comment-reply .propic img {
+    width: 110%;
+}
 
 /* modal comment form */
 
@@ -661,8 +734,8 @@ main section.followers article footer pre {
 }
 
 .modal-body .comments-reply {
-    top: calc(100% - 112px);
-    height: 117px;
+    top: calc(100% - 118px);
+    height: 120px;
 }
 
 .modal-body .comments-base {
@@ -708,7 +781,6 @@ main section.followers article footer pre {
 }
 
 .modal-body .comments-input .reply-wrapper {
-    display: none;
     margin-bottom: -0.3rem;
     margin-left: 0.5rem;
     background-color: rgb(0, 128, 255);
@@ -736,7 +808,7 @@ main section.followers article footer pre {
 .modal-body .comments-input .reply-wrapper button span {
     height: 1.3rem;
     display: block;
-    margin-top: -2.1vw;
+    margin-top: -11px;
 }
 
 
@@ -1196,8 +1268,12 @@ main div.scrollable_div footer button[disabled] img {
 .row .content p {
     margin-left: 10px;
     margin-bottom: 0px;
-    display: flex;
     align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 70%;
+    margin-top: 1.5%;
 }
 
 
@@ -1306,6 +1382,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .search-section .user_btn {
     margin-top: 0;
     font-size: 1em;
+    margin-top: 1.5%;
 }
 
 .login form{
@@ -1557,15 +1634,16 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_feed {
-        margin-top: calc(-15vh + 13vw);
+        margin-top: calc(-15vh + 10vw);
         padding-left: 10vw;
         padding-right: 10vw;
+        height: 100vh;
     }
 
     main nav[aria-label="feed-menu"] {
         max-width: 300px;
-        margin: calc(2vmin + 1vh) auto 10px;
-        top: calc(2vmin + 1vh);
+        margin: calc(4vmin + 1vh) auto 10px;
+        top: calc(4vmin + 1vh);
     }
 
     main section.followers article header img {
@@ -1713,7 +1791,7 @@ input[type="search"]::-webkit-search-cancel-button {
     #drawer {
         border-radius: 0 30px;
         width: 69.5vw;
-        top: calc(27% + 4.5vw + 1.5vmin);
+        top: calc(30% + 4.5vw + 1.5vmin);
     }
 
     .posts_count {
@@ -1797,7 +1875,7 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-left: auto;
         height: 50px;
         border-radius: 100px;
-        margin-top: -1%;
+        margin-top: 0%;
         max-height: 5vh;
         top: 5%;
     }
@@ -1820,7 +1898,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .scrollable_user .username {
         margin-top: -3%;
-        font-size: 4.2vmin;
+        font-size: 2vmax;
         margin-bottom: 0;
         height: 100%;
         padding-top: 0;
@@ -1829,7 +1907,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_user .bio {
-        font-size: 2vmin;
+        font-size: 1vmax;
         margin-top: 0%;
         padding-left: 0 !important;
         width: 100%;
@@ -1861,9 +1939,8 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-top: 0;
         font-size: 2.3vmin;
         height: 4vmin;
-        width: 100%;
         max-width: 10vw;
-        min-width: 150px;
+        min-width: 100px;
     }
 
     .user_btn img {
@@ -1878,7 +1955,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .settings_btn img {
         margin-left: 6%;
-        width: 3vh;
+        width: 3.5vmin;
     }
 
     .scrollable_user header {
@@ -1890,7 +1967,7 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-top: calc(10.5vh - 6.5vw);
         width: 66vw;
         height: 87vmin;
-        padding-top: calc(1vh - 0.5vw);
+        padding-top: calc(3.3vh - 1.5vw);
     }
 
     .following_btn img {
@@ -1912,10 +1989,11 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_feed {
-        margin-top: calc(10.5vh - 6.5vw);
+        margin-top: calc(-2vh - 3vw);
         padding-left: 5vw;
         padding-right: 5vw;
         width: 68vw;
+        height: 100vh;
     }
 
     main nav[aria-label="feed-menu"] ul li button:hover {
@@ -1924,8 +2002,8 @@ input[type="search"]::-webkit-search-cancel-button {
 
     main nav[aria-label="feed-menu"] {
         max-width: 300px;
-        margin: calc(1vmax + 30px) auto 10px;
-        top: calc(1vmax + 30px);
+        margin: calc(2vmax + 30px) auto 10px;
+        top: calc(2vmax + 30px);
     }
 
     main section.followers article header img {
@@ -2133,5 +2211,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
     aside>main {
         margin-top: 0;
+    }
+
+    .search-section .user_btn {
+        font-size: 1vmax;
     }
 }

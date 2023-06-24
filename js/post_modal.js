@@ -23,6 +23,26 @@ function modalLikeClick(isLiked) {
     }
 }
 
+function replyTo(commentId, user) {
+    modalHelper.replyTo(commentId, user);
+}
+
+function scrollToReply() {
+    setTimeout(function() {
+        document.querySelector(".modal").scrollTop -= 150;
+
+        let targetElement = document.querySelector(`#comment-${modalHelper.getReplyId()}`);
+        targetElement.style.backgroundColor = "rgb(193, 214, 225)";
+        setTimeout(function() {
+            targetElement.style.backgroundColor = "rgb(230, 230, 231)";
+        }, 1500);
+    }, 10);
+}
+
+function clearReply(){
+    modalHelper.clearReply();
+}
+
 
 
 let modalHelper = undefined;
@@ -30,8 +50,10 @@ let modalHelper = undefined;
 $('#postModal').on('show.bs.modal', function (event) {
     let button = $(event.relatedTarget);
     let postId = button.data('postid');
+    let from = button.data('from');
+    let display = button.data('display');
     let modal = $(this);
-    modalHelper = new ModalPostHelper(postId, modal);
+    modalHelper = new ModalPostHelper(postId, modal, from, display);
 })
 
 $('#postModal').on('hidden.bs.modal', function (event) {

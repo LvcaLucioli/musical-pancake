@@ -125,7 +125,8 @@ class DatabaseHelper
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('iii', $postID, $lastID, $n);
         } else {
-            $query = "SELECT c.*, u.propic
+            $query = "SELECT c.*, u.propic,
+            CASE WHEN EXISTS (SELECT 1 FROM comments WHERE to_comment = c.id) THEN 1 ELSE 0 END AS has_replies
             FROM comments c, users u
             WHERE c.post = ?
             AND c.to_comment IS NULL

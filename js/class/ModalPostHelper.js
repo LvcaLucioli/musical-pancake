@@ -27,7 +27,7 @@ class ModalPostHelper{
         </button>`;
     
 
-    constructor(postID, modal){
+    constructor(postID, modal, from, display){
         this.navPos = 0;
         this.commentForm = "";
         this.state = ModalPostHelper.STATES[0];
@@ -47,6 +47,8 @@ class ModalPostHelper{
         };
         this.modal = modal;
         this.postID = postID;
+        this.from = from;
+        this.display = display;
 
         let header = this.modal.find('.modal-header');
         let body = this.modal.find('.modal-body');
@@ -81,9 +83,9 @@ class ModalPostHelper{
             body.find("#like_click_btn").html(response.data["is_liked"]
                 ? ModalPostHelper.LIKED_BTN
                 : ModalPostHelper.LIKE_BTN);
-            
+        
             this.isLiked = response.data["is_liked"];
-            modal.removeClass('d-none');
+            this.modal.removeClass('d-none');          
         });
     }
 
@@ -114,13 +116,42 @@ class ModalPostHelper{
             document.querySelector(`#switchable`).removeChild(document.querySelector(`#switchable > footer`));
             document.querySelector(`#switchable`).innerHTML += append;
             this.prevSwitchable[this.state]["last_id"] = elements[elements.length-2]["id"];
+        
+            switch (this.display) {
+                case "comments":
+                    setTimeout(function() {
+                        document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                            behavior: "smooth",
+                            block: "start",
+                            inline: "nearest",
+                            scrollTimingFunction: "ease-in-out",
+                            scrollDuration: 300
+                        });
+                    }, 500);
+                    this.display = "";
+                    break;
+                case "likes":
+                    let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
+                    this.switchSection(btn);
+                    setTimeout(function() {
+                        document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                            behavior: "smooth",
+                            block: "start",
+                            inline: "nearest",
+                            scrollTimingFunction: "ease-in-out",
+                            scrollDuration: 300
+                        });
+                    }, 500);
+                    this.display = "";
+                    break;
+            }
         });
     }
 
     switchSection(btn) {
         let body = this.modal.find('.modal-body');
-        if (this.navPos == 0) {
-            this.navPos = body.find('section[aria-label="post section"]').position().top + body.find('section[aria-label="post section"]').height() + 50;
+        if (this.navPos < 100) {
+            this.navPos = body.find('section[aria-label="post section"] pre').position().top + body.find('section[aria-label="post section"] pre').height() + 50;
         }
 
         let target = $(btn).data('target');
@@ -140,7 +171,6 @@ class ModalPostHelper{
             this.prevSwitchable[this.state]["body"] = section.innerHTML;
             this.prevSwitchable[this.state]["scroll"] = scrollable.scrollTop - scrollable.clientHeight * 360 / 1000;
 
-                console.log(this.navPos);
             section.innerHTML = this.prevSwitchable[target]["body"];
             scrollable.scrollTop = this.prevSwitchable[target]["scroll"] < this.navPos
                 ? this.navPos
@@ -161,6 +191,12 @@ class ModalPostHelper{
         btn.setAttribute("data-target", "comments");
         this.switchSection(btn);
         document.querySelector(`#switchable`).innerHTML = "<footer></footer>";
+            
+        this.modal.find('.comments-input').addClass('comments-base');
+        this.modal.find('.comments-input').removeClass('comments-reply');
+        this.modal.find('.comments-input .reply-wrapper').addClass("d-none");
+    
+        this.modal.find("#comment_textarea").val("");
     }
 
     likeClick(modifyDB) {
@@ -214,33 +250,70 @@ class ModalPostHelper{
             formData.append("post-id", this.reply[0]);
             formData.append("replied-id", this.reply[1]);
 
-            if (this.reply[1] == -1) {
-                axios.post('api/api-leave-comment.php', formData).then(response => {
-                    console.log(response.data);
-                    document.querySelector(`#switchable`).innerHTML =
-                        this._generateComments(response.data)
-                        + document.querySelector(`#switchable`).innerHTML;
-                    
-                    let targetElement = document.querySelector(`#comment-${response.data[0]["id"]}`);
-                    document.querySelector(`.modal`).scrollTo({
-                        top: targetElement.offsetTop - 50,
-                        behavior: 'smooth'
-                    });
-
-                    targetElement.setAttribute("aria-label", "your new comment");
-                    targetElement.style.backgroundColor = "rgb(193, 214, 225)";
-                    setTimeout(function() {
-                        targetElement.style.backgroundColor = "rgb(230, 230, 231)";
-                    }, 1500);                      
+            axios.post('api/api-leave-comment.php', formData).then(response => {
+                if (this.reply[1] == -1) {
+                    if (this.getNComments() != 0) {
+                        document.querySelector(`#switchable`).innerHTML =
+                            this._generateComments(response.data)
+                            +  document.querySelector(`#switchable`).innerHTML;
+                    } else {
+                        document.querySelector(`#switchable`).innerHTML =
+                            this._generateComments(response.data);
+                    }
+                } else {
+                    document.querySelector(`#comment-${this.reply[1]} .comment-reply`).innerHTML =
+                            this._generateCommentReplies(response.data)
+                            +  document.querySelector(`#comment-${this.reply[1]} .comment-reply`).innerHTML;
+                    this.clearReply();
+                }
+                
+                let targetElement = document.querySelector(`#comment-${response.data[0]["id"]}`);
+                document.querySelector(`.modal`).scrollTo({
+                    top: targetElement.offsetTop - 50,
+                    behavior: 'smooth'
                 });
-            } else {
-                document.querySelector(`#comment-${response.data[0]["id"]}`);
-            }
+
+                targetElement.setAttribute("aria-label", "your new comment");
+                targetElement.style.backgroundColor = "rgb(193, 214, 225)";
+                setTimeout(function() {
+                    targetElement.style.backgroundColor = "rgb(230, 230, 231)";
+                }, 1500);
+                
+                let nComment = this.modal.find('nav[aria-label="comments/likes-menu"] #comments_button .num');
+                nComment.text(parseInt(nComment.text()) + 1);
+            });
 
             textarea.val("");
-            let nComment = this.modal.find('nav[aria-label="comments/likes-menu"] #comments_button .num');
-            nComment.text(parseInt(nComment.text()) + 1);
         }
+    }
+
+    replyTo(commentId, user) {
+        if (this.reply[1] == -1) {
+            this.modal.find('.comments-input').removeClass('comments-base');
+            this.modal.find('.comments-input').addClass('comments-reply');
+            this.modal.find('.comments-input .reply-wrapper').removeClass("d-none");
+        }
+        this.modal.find('.comments-input .reply-wrapper a').html("reply to @" + user);
+            this.modal.find('.comments-input .reply-wrapper a').attr("href", `#comment-${commentId}`); 
+        
+        this.reply[1] = commentId;
+        this.modal.find("#comment_textarea").focus();
+        let targetElement = document.querySelector(`#comment-${commentId}`);
+        targetElement.style.backgroundColor = "rgb(193, 214, 225)";
+        setTimeout(function() {
+            targetElement.style.backgroundColor = "rgb(230, 230, 231)";
+        }, 1500);
+    }
+
+    getReplyId() {
+        return this.reply[1];
+    }
+
+    clearReply() {
+        this.modal.find('.comments-input').addClass('comments-base');
+        this.modal.find('.comments-input').removeClass('comments-reply');
+        this.modal.find('.comments-input .reply-wrapper').addClass("d-none");
+        this.reply[1] = -1;
     }
     
     _generateComments(comments){
@@ -272,24 +345,62 @@ class ModalPostHelper{
 
                     <footer class="col-10 offset-2">
                         <div class="col-6 offset-6">
-                            <button></button>
+                            <button onclick="replyTo(${comments[i]["id"]}, '${comments[i]["user"]}')">reply&nbsp;
+                            <img src="./resources/reply-arrow.png" alt="reply to comment">
+                            </button>
                         </div>
                     </footer>
-                </div>`;
+                </div>
+
+                <section class="row comment-reply" aria-label="replies of ${comments[i]["user"]} comment">`;
 
             if (comments[i]["has_replies"])
                 comment += `
-                <section class="row comment-reply" aria-label="replies of ${comments[i]["user"]} comment">
-                    <footer class="col-10 offset-2">
+                    <footer class="col-5 offset-2">
                         <div class="col-6">
-                            <button></button>
+                            <button><span></span>view replies</button>
                         </div>
-                    </footer>
-                </section>`;
+                    </footer>`;
 
             
             result += comment + `
-            </article>`;;
+                </section>
+            </article>`;
+        }
+
+        return result;
+    }
+
+    _generateCommentReplies(comments){
+        let result = '';
+        
+        for (let i = 0; i < comments.length - 1; i++) {
+            let comment = `
+            <article id="comment-${comments[i]["id"]}" class="col-11" aria-labe="comment by ${comments[i]["user"]}">
+                <div class="row comment-body">
+                    <div class="col-2 propic">
+                        <img src="${comments[i]["propic"]}" alt="profile picture of comment's user">
+                    </div>
+
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-8 comment-username">
+                                <p aria-label="username of comment's user">${comments[i]["user"]}</p>
+                            </div>
+
+                            <div class="col-4 comment-date">
+                                <pre aria-label="date of publication">${comments[i]["datetime"].split(" ")[0]}</pre>
+                            </div>
+
+                            <div class="col-12 comment-text">
+                                <pre aria-label="text of the comment">${comments[i]["text"]}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>`;
+
+            result += comment;
         }
 
         return result;

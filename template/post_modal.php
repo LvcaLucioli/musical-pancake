@@ -47,10 +47,10 @@
                     </nav>
 
                     <div class="comments-input comments-base">
-                        <div class="row reply-wrapper">
-                            <pre><a aria-label="return to the selected to reply comment"></a></pre>
+                        <div class="row reply-wrapper d-none">
+                            <pre><a aria-label="return to the selected to reply comment" onclick="scrollToReply()"></a></pre>
 
-                            <button type="button" class="close" aria-label="clear reply selection">
+                            <button type="button" class="close" aria-label="clear reply selection" onclick="clearReply()">
                                 <span aria-hidden="true" class="text-white">&times;</span>
                             </button>
                         </div>
