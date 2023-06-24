@@ -49,7 +49,7 @@ class NotificationsSection extends AbstractSection {
     }
 
     retrieve(n = NotificationsSection.N_NOTIFICATIONS) {
-        
+
         const formData = new FormData();
         formData.append('n', n);
         formData.append('last_notifications', this.lastNotification);
@@ -57,9 +57,15 @@ class NotificationsSection extends AbstractSection {
         axios.post('api/api-notification.php', formData).then(response => {
             if (response.data.length > 0) {
                 var i = 0;
+                console.log(response.data);
                 response.data.slice(0, n).forEach(element => {
                     // TODO: linkare il box del post
-                    this.items[i] = new AsideItem(NotificationsSection.itemClass, element["propic"], element["user"] + " propic", [element["content"], element["date"]], element["targetPost"], NotificationsSection.readButton);
+                    var img = !element["img_name"] ? element["propic"] : element["img_name"];
+                    var alt = !element["img_name"] ? element["user"] + " propic" : element["user"] + " post";
+                    var target = !element["img_name"] ? "user.php?username=" + element["user"] : "user.php?username=" + element["user"]; // il secondo vuole il modale
+                    var content = element["content"].replace(element["user"], `<a role="button" href="user.php?username=${element["user"]}">${element["user"]}</a>`);
+                    
+                    this.items[i] = new AsideItem(NotificationsSection.itemClass, img, alt, [content, element["date"]], target, NotificationsSection.readButton);
                     var child = document.createElement("div");
                     document.querySelector(this.container + " ." + NotificationsSection.class).appendChild(child);
                     child.outerHTML = this.items[i].getHTMLItem();

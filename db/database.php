@@ -285,24 +285,27 @@ class DatabaseHelper
     public function getNotifications($username, $n, $lastId)
     {
         if ($lastId != -1) {
-            $query = "SELECT n.id, n.user, n.content, u.propic, n.date, n.targetPost
+            $query = "SELECT n.id, n.user, n.content, n.date, n.targetPost, u.propic, p.img_name
             FROM notifications n
             JOIN users u ON n.user = u.username
+            LEFT JOIN posts p ON n.targetPost = p.id
             WHERE n.targetUser = ?
             AND n.id < ?
             ORDER BY n.date DESC
-            LIMIT ?";
+            LIMIT ?;";
 
             $stmt = $this->db->prepare($query);
             $n = $n + 1;
             $stmt->bind_param('sii', $username, $lastId, $n);
         } else {
-            $query = "SELECT n.id, n.user, n.content, u.propic, n.date, n.targetPost, n.id
+            $query = "SELECT n.id, n.user, n.content, n.date, n.targetPost, u.propic, p.img_name
             FROM notifications n
             JOIN users u ON n.user = u.username
+            LEFT JOIN posts p ON n.targetPost = p.id
             WHERE n.targetUser = ?
             ORDER BY n.date DESC
-            LIMIT ?";
+            LIMIT ?;
+            ";
 
             $stmt = $this->db->prepare($query);
             $n = $n + 1;
@@ -402,6 +405,7 @@ class DatabaseHelper
         error_log($content);
         error_log($date);
         error_log($userPropic);
+        error_log($stmt->affected_rows);
     }
 
     public function like_unlike($user, $action, $postId)

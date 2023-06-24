@@ -2,7 +2,7 @@ class SearchSection extends AbstractSection {
     static class = ".search-section";
     static itemClass = "search";
     static buttonText = "button";
-    static N_SEARCH_RESULT = 10;
+    static N_SEARCH_RESULT = 4;
     searchResults = [];
     // lastSearchResult = -1;
     // isLoading = false;
@@ -138,8 +138,9 @@ class SearchSection extends AbstractSection {
 
                     const userResponse = await axios.post('api/api-user.php', formData, { signal: this.abortController.signal });
                     const button = SearchSection.USER_BTN[userResponse.data["btn"]];
+                    
 
-                    this.searchResults.push(new AsideItem(SearchSection.itemClass, element["propic"], element["username"], [element["username"]], "user.php?username=" + element["username"], button));
+                    this.searchResults.push(new AsideItem(SearchSection.itemClass, element["propic"], element["username"] + " propic", [element["username"]], "user.php?username=" + element["username"], button));
                 }
             }
         } catch (error) {}
