@@ -561,7 +561,7 @@ main section.followers article footer pre {
     margin-top: 10%;
 }
 
-.modal-body #switchable > footer .spinner-border {
+.modal-body #switchable>footer .spinner-border {
     width: 1.3rem !important;
     height: 1.3rem !important;
 }
@@ -674,15 +674,15 @@ main section.followers article footer pre {
     height: auto;
 }
 
-.modal-body section.comments-section article section.comment-reply article:last-child{
+.modal-body section.comments-section article section.comment-reply article:last-child {
     margin-bottom: 1rem !important;
 }
 
-.modal-body section.comments-section article section.comment-reply article:first-child{
+.modal-body section.comments-section article section.comment-reply article:first-child {
     margin-top: 3rem !important;
 }
 
-.modal-body section.comments-section article div> footer {
+.modal-body section.comments-section article div>footer {
     margin-bottom: calc(-30px - 0.5rem);
 }
 
@@ -712,7 +712,7 @@ main section.followers article footer pre {
     padding-right: 0;
     padding-left: 0;
     padding-bottom: 0.7rem;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.07), 0 -0.5rem 1rem rgba(0,0,0,.07);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .07), 0 -0.5rem 1rem rgba(0, 0, 0, .07);
     margin-bottom: 0;
     min-height: 8vh;
     background-color: rgb(239, 239, 240);
@@ -1292,6 +1292,7 @@ main div.scrollable_div footer button[disabled] img {
 .row>main:has(.notifications-section, .search-section) {
     display: flex;
     justify-content: center;
+}
 
 .row .content p {
     margin-left: 10px;
