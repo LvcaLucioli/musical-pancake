@@ -1,5 +1,7 @@
 
 // mobile check
-let IS_MOBILE = false;
-if (window.innerWidth < 992)
-    IS_MOBILE = true;
+Object.defineProperty(window, 'IS_MOBILE', {
+    get: function() {
+      return window.innerWidth < 992;
+    }
+});

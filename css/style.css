@@ -1980,7 +1980,7 @@ input[type="search"]::-webkit-search-cancel-button {
         font-size: 2.3vmin;
         height: 4vmin;
         max-width: 10vw;
-        min-width: 100px;
+        min-width: 150px;
     }
 
     .user_btn img {
@@ -2004,7 +2004,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_user {
-        margin-top: calc(10.5vh - 6.5vw);
+        margin-top: calc(-8vmin + 3%);
         width: 66vw;
         height: 87vmin;
         padding-top: calc(3.3vh - 1.5vw);
@@ -2040,22 +2040,31 @@ input[type="search"]::-webkit-search-cancel-button {
         opacity: 0.7;
     }
 
+    main nav[aria-label="feed-menu"] ul li button.active :hover {
+        opacity: 1 !important;
+    }
+
     main nav[aria-label="feed-menu"] {
         max-width: 300px;
         margin: calc(2vmax + 50px) auto 10px;
         top: calc(2vmax + 50px);
     }
 
+    main section.followers article {
+        max-width: 100vh;
+    }
+
     main section.followers article header img {
         height: 7vh;
         margin-left: 2vw;
         margin-top: 1vw;
+        max-height: 50px;
     }
 
     main section.followers article header .col-8 {
-        margin-left: -7vw;
+        margin-left: calc(-5vh - 3vw);
         font-size: 1.2em;
-        padding-top: calc(1.4vh + 0.35vw);
+        padding-top: calc(2.3vw - 2vh);;
     }
 
     main section.followers article section:nth-child(2) img {
@@ -2087,14 +2096,13 @@ input[type="search"]::-webkit-search-cancel-button {
         font-size: 0.9em !important;
     }
 
-    main section.followers article section:nth-child(4) p {
-        font-size: 1.2em;
-        margin-left: 2vh;
+    main section.followers article section:nth-child(4) pre {
+        font-size: 1.1em;
+        margin-bottom: 1%;
     }
 
     main section.followers article footer pre {
         font-size: 0.9em;
-        margin-left: 2vh;
     }
 
     main div.scrollable_feed>footer button .spinner-border {
