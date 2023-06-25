@@ -28,6 +28,7 @@ class ModalPostHelper{
     
 
     constructor(postID, modal, from, display){
+        this.isLoading = false;
         this.navPos = 0;
         this.commentForm = "";
         this.state = ModalPostHelper.STATES[0];
@@ -90,99 +91,145 @@ class ModalPostHelper{
     }
 
     loadMore() {
-        const formData = new FormData();
-        formData.append('post_id', this.postID);
-        formData.append('n', ModalPostHelper.N_ITEMS);
-        formData.append('last_id', this.prevSwitchable[this.state]["last_id"]);
+        if (!this.isLoading) {
+            this.isLoading = true;
+            document.querySelector(`#switchable > footer button`)
+                .innerHTML = `
+                    loading...
+                    <div class="spinner-border text-light" role="status">
+                        <span class="sr-only">loading...</span>
+                    </div>`;
 
-        axios.post(`api/api-post-${this.state}.php`, formData).then(response => {
-            const elements = response.data;
-            let append = "";
-            switch (this.state) {
-                case ModalPostHelper.STATES[0]:
-                    append = this._generateComments(response.data);
-                    break;
-                case ModalPostHelper.STATES[1]:
-                    
-                    break;
-            }
+            const formData = new FormData();
+            formData.append('post_id', this.postID);
+            formData.append('n', ModalPostHelper.N_ITEMS);
+            formData.append('last_id', this.prevSwitchable[this.state]["last_id"]);
 
-            if(elements[elements.length-1]){
-                append += ModalPostHelper.LOAD_DISABLED_BTN;
-            } else {
-                append += ModalPostHelper.LOAD_BTN;
-            }
-        
-            document.querySelector(`#switchable`).removeChild(document.querySelector(`#switchable > footer`));
-            document.querySelector(`#switchable`).innerHTML += append;
-            this.prevSwitchable[this.state]["last_id"] = elements[elements.length-2]["id"];
-        
-            switch (this.display) {
-                case "comments":
-                    setTimeout(function() {
-                        document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
-                            behavior: "smooth",
-                            block: "start",
-                            inline: "nearest",
-                            scrollTimingFunction: "ease-in-out",
-                            scrollDuration: 300
-                        });
-                    }, 500);
-                    this.display = "";
-                    break;
-                case "likes":
-                    let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
-                    this.switchSection(btn);
-                    setTimeout(function() {
-                        document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
-                            behavior: "smooth",
-                            block: "start",
-                            inline: "nearest",
-                            scrollTimingFunction: "ease-in-out",
-                            scrollDuration: 300
-                        });
-                    }, 500);
-                    this.display = "";
-                    break;
-            }
-        });
+            axios.post(`api/api-post-${this.state}.php`, formData).then(response => {
+                const elements = response.data;
+                let append = "";
+                switch (this.state) {
+                    case ModalPostHelper.STATES[0]:
+                        append = this._generateComments(response.data);
+                        break;
+                    case ModalPostHelper.STATES[1]:
+                        
+                        break;
+                }
+
+                if(elements[elements.length-1]){
+                    append += ModalPostHelper.LOAD_DISABLED_BTN;
+                } else {
+                    append += ModalPostHelper.LOAD_BTN;
+                }
+            
+                document.querySelector(`#switchable`).removeChild(document.querySelector(`#switchable > footer`));
+                document.querySelector(`#switchable`).innerHTML += append;
+                this.prevSwitchable[this.state]["last_id"] = elements[elements.length-2]["id"];
+            
+                switch (this.display) {
+                    case "comments":
+                        setTimeout(function() {
+                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                                behavior: "smooth",
+                                block: "start",
+                                inline: "nearest",
+                                scrollTimingFunction: "ease-in-out",
+                                scrollDuration: 300
+                            });
+                        }, 500);
+                        this.display = "";
+                        break;
+                    case "likes":
+                        let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
+                        this.switchSection(btn);
+                        setTimeout(function() {
+                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                                behavior: "smooth",
+                                block: "start",
+                                inline: "nearest",
+                                scrollTimingFunction: "ease-in-out",
+                                scrollDuration: 300
+                            });
+                        }, 500);
+                        this.display = "";
+                        break;
+                }
+                this.isLoading = false;
+            });
+        }
+    }
+
+    loadReplies(commentID, lastID) {
+        if (!this.isLoading) {
+            this.isLoading = true;
+            document.querySelector(`#comment-${commentID} .comment-reply footer div button`)
+                .innerHTML = `
+                <span></span>loading...&nbsp;&nbsp;&nbsp;&nbsp;`;
+
+            const formData = new FormData();
+            formData.append('post_id', this.postID);
+            formData.append('n', ModalPostHelper.N_ITEMS);
+            formData.append('cmt_id', commentID);
+            formData.append('last_id', lastID);
+
+            axios.post(`api/api-comment-replies.php`, formData).then(response => {
+                let elements = response.data;
+                let comments = this._generateCommentReplies(elements);
+
+                document.querySelector(`#comment-${commentID} .comment-reply`).removeChild(document.querySelector(`#comment-${commentID} .comment-reply footer`));;
+                if(!elements[elements.length-1]){
+                    comments += `
+                    <footer class="col-5 offset-2">
+                        <div class="col-6">
+                            <button onclick="loadReplies(this)" data-cmtid="${commentID}" data-lstid="${elements[elements.length-2]["id"]}"><span></span>view replies</button>
+                        </div>
+                    </footer>`;
+                }
+
+                document.querySelector(`#comment-${commentID} .comment-reply`).innerHTML += comments;
+                this.isLoading = false;
+            });
+        }
     }
 
     switchSection(btn) {
-        let body = this.modal.find('.modal-body');
-        if (this.navPos < 100) {
-            this.navPos = body.find('section[aria-label="post section"] pre').position().top + body.find('section[aria-label="post section"] pre').height() + 50;
-        }
-
-        let target = $(btn).data('target');
-        if (this.state != target) {
-            body.find(`nav[aria-label="comments/likes-menu"] #${this.state}_button button`).attr("aria-pressed", false);
-            body.find(`nav[aria-label="comments/likes-menu"] #${this.state}_button button`).removeClass("active");
-            body.find(`nav[aria-label="comments/likes-menu"] #${target}_button button`).addClass("active");
-            body.find(`nav[aria-label="comments/likes-menu"] #${target}_button button`).attr("aria-pressed", true);
-            
-            body.find(`#switchable`).removeClass();
-            body.find(`#switchable`).addClass(`${target}-section`);
-            body.find(`#switchable`).attr("aria-label", `users ${target}`);
-
-            const section = document.querySelector(`#switchable`);
-            const scrollable = document.querySelector(".modal");
-
-            this.prevSwitchable[this.state]["body"] = section.innerHTML;
-            this.prevSwitchable[this.state]["scroll"] = scrollable.scrollTop - scrollable.clientHeight * 360 / 1000;
-
-            section.innerHTML = this.prevSwitchable[target]["body"];
-            scrollable.scrollTop = this.prevSwitchable[target]["scroll"] < this.navPos
-                ? this.navPos
-                : this.prevSwitchable[target]["scroll"];
-
-            if (target == ModalPostHelper.STATES[1]) {
-                body.find(".comments-input").addClass("d-none");
-            } else {
-                body.find(".comments-input").removeClass("d-none")
+        if (!this.isLoading) {
+            let body = this.modal.find('.modal-body');
+            if (this.navPos < 100) {
+                this.navPos = body.find('section[aria-label="post section"] pre').position().top + body.find('section[aria-label="post section"] pre').height() + 50;
             }
-            
-            this.state = target;
+
+            let target = $(btn).data('target');
+            if (this.state != target) {
+                body.find(`nav[aria-label="comments/likes-menu"] #${this.state}_button button`).attr("aria-pressed", false);
+                body.find(`nav[aria-label="comments/likes-menu"] #${this.state}_button button`).removeClass("active");
+                body.find(`nav[aria-label="comments/likes-menu"] #${target}_button button`).addClass("active");
+                body.find(`nav[aria-label="comments/likes-menu"] #${target}_button button`).attr("aria-pressed", true);
+                
+                body.find(`#switchable`).removeClass();
+                body.find(`#switchable`).addClass(`${target}-section`);
+                body.find(`#switchable`).attr("aria-label", `users ${target}`);
+
+                const section = document.querySelector(`#switchable`);
+                const scrollable = document.querySelector(".modal");
+
+                this.prevSwitchable[this.state]["body"] = section.innerHTML;
+                this.prevSwitchable[this.state]["scroll"] = scrollable.scrollTop - scrollable.clientHeight * 360 / 1000;
+
+                section.innerHTML = this.prevSwitchable[target]["body"];
+                scrollable.scrollTop = this.prevSwitchable[target]["scroll"] < this.navPos
+                    ? this.navPos
+                    : this.prevSwitchable[target]["scroll"];
+
+                if (target == ModalPostHelper.STATES[1]) {
+                    body.find(".comments-input").addClass("d-none");
+                } else {
+                    body.find(".comments-input").removeClass("d-none")
+                }
+                
+                this.state = target;
+            }
         }
     }
 
@@ -190,7 +237,7 @@ class ModalPostHelper{
         let btn = document.createElement("button");
         btn.setAttribute("data-target", "comments");
         this.switchSection(btn);
-        document.querySelector(`#switchable`).innerHTML = "<footer></footer>";
+        document.querySelector(`#switchable`).innerHTML = "<footer><button></button></footer>";
             
         this.modal.find('.comments-input').addClass('comments-base');
         this.modal.find('.comments-input').removeClass('comments-reply');
@@ -315,6 +362,22 @@ class ModalPostHelper{
         this.modal.find('.comments-input .reply-wrapper').addClass("d-none");
         this.reply[1] = -1;
     }
+
+    deleteComment(id){
+        if (this.reply[1] == id)
+            this.clearReply();
+
+        let formData = new FormData();
+        formData.append("comment_id", id);
+        formData.append("post_id", this.postID);
+
+        axios.post('api/api-delete-comment.php', formData).then(response => {
+            this.modal.find('nav[aria-label="comments/likes-menu"] #comments_button .num')
+                .text(response.data);
+        });
+        
+        document.querySelector(`#comment-${id}`).remove();
+    }
     
     _generateComments(comments){
         let result = '';
@@ -323,8 +386,20 @@ class ModalPostHelper{
             let comment = `
             <article id="comment-${comments[i]["id"]}" aria-labe="comment by ${comments[i]["user"]}">
                 <div class="row comment-body">
-                    <div class="col-2 propic">
-                        <img src="${comments[i]["propic"]}" alt="profile picture of comment's user">
+                    <div class="col-2 propic">`;
+
+            if (comments[i]["owned"]) {
+                comment +=  `
+                        <button aria-label="click to delete your comment" onclick="deleteComment(this)" data-id="${comments[i]["id"]}">
+                        <img src="./resources/bin-btn.png" alt="click to delete your comment">
+                        </button>`;
+            } else {
+                comment += `
+                        <img src="${comments[i]["propic"]}" alt="profile picture of comment's user">`;
+            }
+                        
+
+            comment += `  
                     </div>
 
                     <div class="col-10">
@@ -358,7 +433,7 @@ class ModalPostHelper{
                 comment += `
                     <footer class="col-5 offset-2">
                         <div class="col-6">
-                            <button><span></span>view replies</button>
+                            <button onclick="loadReplies(this)" data-cmtid="${comments[i]["id"]}" data-lstid="-1"><span></span>view replies</button>
                         </div>
                     </footer>`;
 
@@ -378,8 +453,19 @@ class ModalPostHelper{
             let comment = `
             <article id="comment-${comments[i]["id"]}" class="col-11" aria-labe="comment by ${comments[i]["user"]}">
                 <div class="row comment-body">
-                    <div class="col-2 propic">
-                        <img src="${comments[i]["propic"]}" alt="profile picture of comment's user">
+                    <div class="col-2 propic">`;
+
+            if (comments[i]["owned"]) {
+                comment +=  `
+                        <button aria-label="click to delete your comment" onclick="deleteComment(this)" data-id="${comments[i]["id"]}">
+                            <img src="./resources/bin-btn.png" alt="click to delete your comment">
+                        </button>`;
+            } else {
+                comment += `
+                        <img src="${comments[i]["propic"]}" alt="profile picture of comment's user">`;
+            }
+                            
+            comment += `  
                     </div>
 
                     <div class="col-10">

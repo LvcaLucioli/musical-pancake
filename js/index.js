@@ -39,7 +39,7 @@ function alt_like_btn(state) {
 }
 
 async function switchHome(tab) {
-    if (tab != homeStatus) {
+    if (tab != homeStatus && !isLoading) {
         const section = document.querySelector("main section");
         const scrollable = document.querySelector(".scrollable_feed");
         document.querySelector(DICT[!tab]).classList.remove("active");

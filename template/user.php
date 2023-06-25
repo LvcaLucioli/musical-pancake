@@ -54,7 +54,7 @@
                         </section>
 
                         <footer>
-                            <button onclick="loadMore();">
+                            <button onclick="loadMorePost();">
                                 loading...
                                 <div class="spinner-border text-dark" role="status">
                                     <span class="sr-only">loading...</span>

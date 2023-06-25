@@ -43,6 +43,35 @@ function clearReply(){
     modalHelper.clearReply();
 }
 
+function loadReplies(btn){
+    let commentID = $(btn).data('cmtid');
+    let lastID = $(btn).data('lstid');
+    modalHelper.loadReplies(commentID, lastID);
+}
+
+function deleteComment(btn){
+    let commentID = $(btn).data('id');
+ 
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Deleted!',
+                text: "Your comment has been deleted.",
+                icon: 'success',
+                confirmButtonColor: 'rgb(0, 128, 255)'
+            })
+            modalHelper.deleteComment(commentID);
+        }
+    })
+}
+
 
 
 let modalHelper = undefined;

@@ -13,8 +13,8 @@ function iOS() {
     || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
-function loadMore(){
-    base.loadMore();
+function loadMorePost(){
+    base.loadMorePost();
 }
 
 function checkSwipe() {

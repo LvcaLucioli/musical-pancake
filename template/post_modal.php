@@ -68,10 +68,10 @@
                     </div>
 
                     <section id="switchable" class="comments-section" aria-label="users comments">
-                        <footer></footer>
+                        <footer><button></button></footer>
                     </section>
                 </div>
 
             </div>
         </div>
-        </div>
+        </div>  
