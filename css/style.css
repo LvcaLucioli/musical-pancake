@@ -1151,10 +1151,10 @@ main div.scrollable_div footer button[disabled] img {
 
 /* .profile-aside */
 
-.navbar[aria-label="profile-nav"] .navbar-nav {
+/* .navbar[aria-label="profile-nav"] .navbar-nav {
     margin-right: 10px;
     margin-left: 5px;
-}
+} */
 
 .active-button {
     background-color: black !important;
@@ -1171,11 +1171,6 @@ main div.scrollable_div footer button[disabled] img {
     width: 80%;
 }
 
-.row .content p {
-    margin-left: 10px;
-    margin-bottom: 0px;
-}
-
 .row .content img {
     width: 40px;
     height: 40px;
@@ -1185,6 +1180,9 @@ main div.scrollable_div footer button[disabled] img {
 .row .content-copy p {
     color: black;
     font-size: 14px;
+    word-wrap: break-word;
+    margin-left: 10px;
+    margin-bottom: 0px;
 }
 
 .search-section .row .content-copy p {
@@ -1194,22 +1192,29 @@ main div.scrollable_div footer button[disabled] img {
 .row .content-copy p a {
     font-weight: bold;
 }
+
 .row .content-copy footer p {
     color: black;
     font-size: 11px;
 }
 
+/* sections */
 
+.row>main:has(.notifications-section, .search-section) {
+    display: flex;
+    justify-content: center;
+}
 
-
-
-
-
+.row>main>section {
+    margin-top: 3vh;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+}
 
 /* notifications section */
 
 .notifications-section {
-    width: 100%;
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -1218,9 +1223,7 @@ main div.scrollable_div footer button[disabled] img {
 
 .row .notifications {
     display: flex;
-    width: 100%;
     margin: 0 0;
-    padding: 0;
     padding: 5px;
     align-items: center;
     justify-content: space-around;
@@ -1240,8 +1243,7 @@ main div.scrollable_div footer button[disabled] img {
     border-radius: 25px;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .read_btn p {
@@ -1251,12 +1253,12 @@ main div.scrollable_div footer button[disabled] img {
     padding-right: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
+    font-weight: bold;
 }
 
 /* search section */
 
 .search-section {
-    width: 100%;
     height: 85vh;
     display: flex;
     flex-direction: column;
@@ -1265,12 +1267,11 @@ main div.scrollable_div footer button[disabled] img {
 
 .search-section header div {
     margin-bottom: 15px;
-    margin-right: 10px;
 }
+
 .search-section>header>div>input {
-    width: 98%;
+    width: 100%;
     padding: 4px 8px;
-    margin: 5px;
     border: 2px solid black;
     border-radius: 20px;
     background-color: #f2f2f2;
@@ -1293,9 +1294,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .row .search {
     display: flex;
-    width: 100%;
     margin: 0 0;
-    padding: 0;
     padding: 5px;
     flex-wrap: nowrap;
     flex-direction: row;
@@ -1313,9 +1312,8 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .search-section .user_btn {
-    margin-top: 0;
-    font-size: 1em;
-    margin-right: 10px;
+    margin: 0;
+    min-width: 130px;
 }
 
 .login form {
@@ -1639,9 +1637,14 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-top: 0.5vw;
     }
 
-    .search-section .user_btn {
-        min-width: 16vh;
-        max-width: 18vh;
+
+    .search-section header div {
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-section header div input {
+        width: 91%;
     }
 }
 
@@ -2040,6 +2043,7 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-top: 10vh;
         top: 6vmin;
         max-width: 33vw !important;
+        width: 96%;
     }
 
     .profile-aside .navbar button:focus {
@@ -2055,10 +2059,8 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .profile-aside .navbar ul {
-        display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
+        width: 96%;
         padding: 0;
         border-radius: 10px;
     }
@@ -2079,7 +2081,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .profile-aside .navbar ul li button span {
         color: black;
-        padding-left: 10px;
     }
 
     .profile-aside .navbar ul li .active-button span {
@@ -2142,5 +2143,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
     aside>main {
         margin-top: 3vmin;
+        width: 96%;
     }
 }

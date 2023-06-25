@@ -269,7 +269,7 @@ $(document).ready(function () {
     function handleResize() {
         var windowWidth = $(window).width();
 
-        if (((windowWidth > 992) && ((document.querySelector(".row>main .notifications-section"))) || (document.querySelector(".row>main .search-section")))) {
+        if ((windowWidth > 992) && ((document.querySelector(".row>main .notifications-section")) || (document.querySelector(".row>main .search-section")))) {
             document.querySelector(".row>main").innerHTML = index;
             document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
             container = new SwitchableContainer("aside", [new SearchSection(), new NotificationsSection()]);
