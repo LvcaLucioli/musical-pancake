@@ -67,15 +67,23 @@ let scrollableDiv = document.querySelector('.scrollable_div');
 let isScrolling;
 
 scrollableDiv.addEventListener('scroll', function() {
-    window.clearTimeout(isScrolling);
-    scrollableDiv.classList.add('show-scrollbar');
-    isScrolling = setTimeout(function() {
-        scrollableDiv.classList.remove('show-scrollbar');
-    }, 700);
-
     if(init) {
         base.swipeUp();
         init = false;
+    }
+});
+
+
+window.addEventListener('resize', function() {
+    base.setLogoutBtn();
+    if (IS_MOBILE){
+        if (scrollableUser.scrollTop > 10){
+            header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
+        } else {
+            header.style.boxShadow = "none";
+        }
+    } else {
+        header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
     }
 });
 
@@ -90,6 +98,8 @@ scrollableUser.addEventListener('scroll', function() {
         } else {
             header.style.boxShadow = "none";
         }
+    } else {
+        header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
     }
 
     if(init){

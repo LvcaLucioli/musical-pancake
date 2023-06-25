@@ -125,6 +125,34 @@ class UserHelper{
                 break;
         }
     }
+
+    setLogoutBtn() {
+        if (this.userBtn == "settings" && window.innerWidth < 768) {
+            document.getElementsByClassName("nav-item")[1].innerHTML = `
+                <div>
+                    <a title="logout" class="nav-link" href="logout.php">
+                        <img src="./resources/logout.png" alt="Logout from your account" class="logout">
+                    </a>
+                    <span class="label d-none d-md-inline">logout</span>
+                </div>`;  
+        } else if (this.userBtn == "settings") {
+            document.getElementsByClassName("nav-item")[1].innerHTML = `
+                <div class="active">
+                    <a title="personal profile" class="nav-link" href="user.php?username=${this.user}">
+                        <img src="./resources/icon-profile-active.png" alt="personal profile">
+                        <span class="label d-none d-md-inline">profile</span>
+                    </a>
+                </div>`;
+        } else {
+            document.getElementsByClassName("nav-item")[1].innerHTML = `
+                <div>
+                    <a title="personal profile" class="nav-link" href="user.php?username=${this.user}">
+                        <img src="./resources/icon-profile.png" alt="personal profile">
+                        <span class="label d-none d-md-inline">profile</span>
+                    </a>
+                </div>`;
+        }
+    }
     
     _generateUserPage(user){
         let header = `
@@ -164,7 +192,7 @@ class UserHelper{
         if (user["btn"] == "settings" && window.innerWidth < 768) {
                 document.getElementsByClassName("nav-item")[1].innerHTML = `
                 <div>
-                    <a class="nav-link" href="logout.php">
+                    <a title="logout" class="nav-link" href="logout.php">
                         <img src="./resources/logout.png" alt="Logout from your account" class="logout">
                     </a>
                     <span class="label d-none d-md-inline">logout</span>

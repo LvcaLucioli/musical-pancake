@@ -298,18 +298,32 @@ let scrollableDivMain = document.querySelectorAll('.scrollable_feed')[0];
 let isScrollingMain;
 const screenWidth = window.innerWidth;
 
+let header = document.querySelector('header[aria-label="primary-menu"]');
+let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
 scrollableDivMain.addEventListener('scroll', function () {
-    let header = document.querySelector('header[aria-label="primary-menu"]');
-    let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
     if (IS_MOBILE) {
         if (scrollableDivMain.scrollTop > nav_feed.scrollHeight) {
             header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
         } else {
             header.style.boxShadow = "none";
         }
+    } else {
+        header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
     }
 });
 
 if (iOS() && window.innerWidth < 768) {
     document.querySelector("main div.scrollable_feed > footer").style.marginBottom = "50%";
 }
+
+window.addEventListener('resize', function() {
+    if (IS_MOBILE){
+        if (scrollableDivMain.scrollTop > nav_feed.scrollHeight){
+            header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
+        } else {
+            header.style.boxShadow = "none";
+        }
+    } else {
+        header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
+    }
+});
