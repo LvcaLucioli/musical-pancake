@@ -39,7 +39,7 @@ function alt_like_btn(state) {
 }
 
 async function switchHome(tab) {
-    if (tab != homeStatus) {
+    if (tab != homeStatus && !isLoading) {
         const section = document.querySelector("main section");
         const scrollable = document.querySelector(".scrollable_feed");
         document.querySelector(DICT[!tab]).classList.remove("active");
@@ -126,7 +126,7 @@ function generatePosts(posts) {
                     </div>
                 </header>
                 <section>
-                    <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-target="post" alt="open post pop-up page">
+                    <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-from="feed-followers" data-display="post" alt="open post pop-up page">
                         <img src="${posts[i]["img_name"]}" alt="post picture" />
                     </button>
                 </section>
@@ -136,12 +136,12 @@ function generatePosts(posts) {
                             <button onClick="likeClick(this, ${posts[i]["is_liked"]}, ${posts[i]["id"]})" aria-pressed="${posts[i]["is_liked"]}" alt="${alt_like_btn(posts[i]["is_liked"])}">
                                 <img src="resources/like_button_${posts[i]["is_liked"]}.png" alt="${alt_like_btn(posts[i]["is_liked"])}">
                             </button>
-                            <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-target="like" alt="show post likes">
+                            <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-from="feed-followers" data-display="likes" alt="show post likes">
                                 ${posts[i]["n_likes"]} likes
                             </button>
                         </div>
                         <div class="col-6 comments_block text-right">
-                            <button type="button" data-toggle="modal" data-target="#postModal"  data-postid="${posts[i]["id"]}" data-target="comments" alt="show post comments">
+                            <button type="button" data-toggle="modal" data-target="#postModal"  data-postid="${posts[i]["id"]}" data-from="feed-followers" data-display="comments" alt="show post comments">
                                 <span>add comment</span> &nbsp;&nbsp;${posts[i]["n_comments"]}
                                 <img src="resources/comment.png" alt="view and add commens">
                             </button>

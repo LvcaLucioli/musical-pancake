@@ -23,6 +23,55 @@ function modalLikeClick(isLiked) {
     }
 }
 
+function replyTo(commentId, user) {
+    modalHelper.replyTo(commentId, user);
+}
+
+function scrollToReply() {
+    setTimeout(function() {
+        document.querySelector(".modal").scrollTop -= 150;
+
+        let targetElement = document.querySelector(`#comment-${modalHelper.getReplyId()}`);
+        targetElement.style.backgroundColor = "rgb(193, 214, 225)";
+        setTimeout(function() {
+            targetElement.style.backgroundColor = "rgb(230, 230, 231)";
+        }, 1500);
+    }, 10);
+}
+
+function clearReply(){
+    modalHelper.clearReply();
+}
+
+function loadReplies(btn){
+    let commentID = $(btn).data('cmtid');
+    let lastID = $(btn).data('lstid');
+    modalHelper.loadReplies(commentID, lastID);
+}
+
+function deleteComment(btn){
+    let commentID = $(btn).data('id');
+ 
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Deleted!',
+                text: "Your comment has been deleted.",
+                icon: 'success',
+                confirmButtonColor: 'rgb(0, 128, 255)'
+            })
+            modalHelper.deleteComment(commentID);
+        }
+    })
+}
+
 
 
 let modalHelper = undefined;
@@ -30,8 +79,10 @@ let modalHelper = undefined;
 $('#postModal').on('show.bs.modal', function (event) {
     let button = $(event.relatedTarget);
     let postId = button.data('postid');
+    let from = button.data('from');
+    let display = button.data('display');
     let modal = $(this);
-    modalHelper = new ModalPostHelper(postId, modal);
+    modalHelper = new ModalPostHelper(postId, modal, from, display);
 })
 
 $('#postModal').on('hidden.bs.modal', function (event) {

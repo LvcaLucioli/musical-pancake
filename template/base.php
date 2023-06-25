@@ -15,7 +15,7 @@
     <script src="js/class/NotificationsSection.js"></script>
     <script src="js/class/NotImplementedError.js"></script>
     <script src="js/class/SearchSection.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>

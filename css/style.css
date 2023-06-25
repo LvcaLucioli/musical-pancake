@@ -157,8 +157,8 @@ main nav[aria-label="feed-menu"] {
     border-radius: 20px;
     overflow: hidden;
     height: 40px;
-    margin: calc(3% + 1vh) auto 10px;
-    top: calc(3% + 1vh);
+    margin: calc(2% + 1vh) auto 10px;
+    top: calc(2% + 1vh);
     z-index: 101;
     min-width: 200px;
     max-width: 200px;
@@ -199,15 +199,14 @@ main nav[aria-label="feed-menu"] ul li button.active {
     padding: 0%;
     padding-left: 21px;
     padding-right: 21px;
-    /* width: 100vw; */
     height: 94vh;
     overflow-y: scroll;
     overflow-x: hidden;
     position: fixed;
-    margin-top: -2vw;
+    margin-top: calc(-2vh - 1vw);
 }
 
-.modal-body #switchable footer button,
+.modal-body #switchable>footer button,
 main div.scrollable_feed>footer button,
 .search-section footer button,
 .notifications-section footer button {
@@ -229,7 +228,7 @@ main div.scrollable_feed>footer button,
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.modal-body #switchable footer button img,
+.modal-body #switchable>footer button img,
 main div.scrollable_feed>footer button img,
 .search-section footer button img,
 .notifications-section footer button img {
@@ -240,7 +239,7 @@ main div.scrollable_feed>footer button img,
     margin-left: 3%;
 }
 
-.modal-body #switchable footer button[disabled],
+.modal-body #switchable>footer button[disabled],
 main div.scrollable_feed>footer button[disabled],
 .search-section footer button[disabled],
 .notifications-section footer button[disabled] {
@@ -252,7 +251,7 @@ main div.scrollable_feed>footer button[disabled],
     box-shadow: none;
 }
 
-.modal-body #switchable footer button[disabled] img,
+.modal-body #switchable>footer button[disabled] img,
 main div.scrollable_feed>footer button[disabled] img,
 .search-section footer button[disabled] img,
 .notifications-section footer button[disabled] img {
@@ -285,7 +284,6 @@ main section.followers article {
     margin-right: auto;
     border-radius: 25px;
     margin-top: 7%;
-    border: 0.1px solid rgba(0, 0, 0, 0.1);
 }
 
 main section.followers article header img {
@@ -493,7 +491,7 @@ main section.followers article footer pre {
     border-radius: 20px;
     height: 40px;
     margin: 7% 10% 10px;
-    top: 100px;
+    top: 104px;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
     width: 90%;
@@ -563,6 +561,11 @@ main section.followers article footer pre {
     margin-top: 10%;
 }
 
+.modal-body #switchable > footer .spinner-border {
+    width: 1.3rem !important;
+    height: 1.3rem !important;
+}
+
 
 
 /* comments */
@@ -576,7 +579,7 @@ main section.followers article footer pre {
     margin: 1rem 0;
     border-radius: 15px;
     background-color: rgb(230, 230, 231);
-    min-height: 8vh;
+    min-height: 120px;
     transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
 }
@@ -601,6 +604,15 @@ main section.followers article footer pre {
     width: 100%;
     max-width: 67px;
     border-radius: 1000px;
+    min-width: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.modal-body section.comments-section article .propic button {
+    width: fit-content;
+    padding: 0;
+    height: fit-content;
+    background-color: transparent;
 }
 
 .modal-body section.comments-section article .comment-username {
@@ -643,6 +655,83 @@ main section.followers article footer pre {
     padding-right: 0.7rem;
 }
 
+.modal-body section.comments-section article div>footer button {
+    width: 25vw;
+    height: 30px;
+    margin-bottom: 0.5rem;
+    border-radius: 100px;
+    font-weight: 700;
+    padding: 0;
+    background-color: white;
+    padding-bottom: 0.3rem;
+    text-decoration: none;
+    color: black;
+    margin-left: 10%;
+}
+
+.modal-body section.comments-section article div>footer button img {
+    width: 18px;
+    height: auto;
+}
+
+.modal-body section.comments-section article section.comment-reply article:last-child{
+    margin-bottom: 1rem !important;
+}
+
+.modal-body section.comments-section article section.comment-reply article:first-child{
+    margin-top: 3rem !important;
+}
+
+.modal-body section.comments-section article div> footer {
+    margin-bottom: calc(-30px - 0.5rem);
+}
+
+.modal-body section.comments-section article section.comment-reply footer button {
+    width: 40vw;
+    height: 30px;
+    margin-bottom: 0.5rem;
+    background-color: transparent;
+    font-weight: 700;
+    margin-left: -10vw;
+    text-decoration: none;
+    color: black;
+}
+
+.modal-body section.comments-section article section.comment-reply footer button span {
+    display: inline-block;
+    width: 20%;
+    border-top: 2px solid black;
+    margin-bottom: 0.2em;
+    margin-right: 2%;
+    margin-left: -9%;
+}
+
+.modal-body section.comments-section article section.comment-reply article {
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 0.7rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.07), 0 -0.5rem 1rem rgba(0,0,0,.07);
+    margin-bottom: 0;
+    min-height: 8vh;
+    background-color: rgb(239, 239, 240);
+}
+
+.modal-body section.comments-section article section.comment-reply .comment-date pre {
+    font-size: 2.5vw;
+}
+
+@media (min-width: 490px) {
+    .modal-body section.comments-section article section.comment-reply .comment-date pre {
+        font-size: 12px;
+    }
+}
+
+.modal-body section.comments-section article section.comment-reply .propic img {
+    width: 110%;
+}
+
 
 
 /* modal comment form */
@@ -662,8 +751,8 @@ main section.followers article footer pre {
 }
 
 .modal-body .comments-reply {
-    top: calc(100% - 112px);
-    height: 117px;
+    top: calc(100% - 118px);
+    height: 120px;
 }
 
 .modal-body .comments-base {
@@ -709,7 +798,6 @@ main section.followers article footer pre {
 }
 
 .modal-body .comments-input .reply-wrapper {
-    display: none;
     margin-bottom: -0.3rem;
     margin-left: 0.5rem;
     background-color: rgb(0, 128, 255);
@@ -737,7 +825,7 @@ main section.followers article footer pre {
 .modal-body .comments-input .reply-wrapper button span {
     height: 1.3rem;
     display: block;
-    margin-top: -2.1vw;
+    margin-top: -11px;
 }
 
 
@@ -757,7 +845,7 @@ main nav[aria-label="followers/following-nav"] {
     margin-left: auto;
     margin-right: auto;
     position: sticky;
-    top: 7%;
+    top: 4%;
 }
 
 main nav[aria-label="followers/following-nav"].active {
@@ -793,12 +881,14 @@ main nav[aria-label="followers/following-nav"] ul li button {
     opacity: 1;
     font-weight: bold;
     background-color: transparent;
+    font-size: 1em;
 }
 
 main nav[aria-label="followers/following-nav"] ul li button.active {
     font-weight: bold;
     opacity: 1;
 }
+
 
 
 /* user header */
@@ -809,9 +899,9 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     height: 85%;
     width: 100%;
     overflow-y: scroll;
-    overflow-x: unset;
+    overflow-x: hidden;
     position: fixed;
-    margin-top: 0;
+    margin-top: -2vh;
     transition-duration: 0.6s;
     transition-timing-function: ease-in-out;
     padding-left: 20px;
@@ -987,8 +1077,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 }
 
 #drawer {
-    top: calc(37.2vh + 19.5vw);
-    ;
+    top: calc(37.7vh + 15vw);
     position: fixed;
     width: 105vw;
     height: 100vh;
@@ -1089,7 +1178,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 main section#posts_section article {
     background-color: black;
     margin: 0;
-    padding: 0.5vw;
+    padding: 0.8vw;
 }
 
 main section#posts_section article img {
@@ -1203,6 +1292,17 @@ main div.scrollable_div footer button[disabled] img {
 .row>main:has(.notifications-section, .search-section) {
     display: flex;
     justify-content: center;
+
+.row .content p {
+    margin-left: 10px;
+    margin-bottom: 0px;
+    align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 70%;
+    margin-top: 1.5%;
+
 }
 
 .row>main>section {
@@ -1313,7 +1413,10 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .search-section .user_btn {
     margin: 0;
-    min-width: 130px;
+    /* margin-top: 0; */
+    font-size: 1em;
+    /* min-width: 130px; */
+    margin-top: 1.5%;
 }
 
 .login form {
@@ -1410,7 +1513,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .logout_lg span {
-        color: rgb(179, 0, 0);
+        color: #d33;
     }
 
     .logout_lg {
@@ -1465,7 +1568,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_user {
-        margin-top: calc(-10.5vh + 9vw);
+        margin-top: calc(-10.5vh + 7vw);
         height: 90%;
     }
 
@@ -1535,7 +1638,6 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-left: auto;
         height: 45px;
         border-radius: 100px;
-        top: 5%;
     }
 
     #followers_button {
@@ -1566,15 +1668,16 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_feed {
-        margin-top: calc(-15vh + 13vw);
+        margin-top: calc(-15vh + 10vw);
         padding-left: 10vw;
         padding-right: 10vw;
+        height: 100vh;
     }
 
     main nav[aria-label="feed-menu"] {
         max-width: 300px;
-        margin: calc(2vmin + 1vh) auto 10px;
-        top: calc(2vmin + 1vh);
+        margin: calc(4vmin + 1vh) auto 10px;
+        top: calc(4vmin + 1vh);
     }
 
     main section.followers article header img {
@@ -1693,7 +1796,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .logout_lg span {
-        color: rgb(179, 0, 0);
+        color: #d33;
     }
 
     .logout_lg {
@@ -1727,11 +1830,11 @@ input[type="search"]::-webkit-search-cancel-button {
     #drawer {
         border-radius: 0 30px;
         width: 69.5vw;
-        top: calc(30% + 5vw + 1vmin);
+        top: calc(30% + 4.5vw + 1.5vmin);
     }
 
     .posts_count {
-        font-size: 1.2em;
+        font-size: 1.15em;
         padding-top: 1%;
         margin-left: 10%;
     }
@@ -1741,7 +1844,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_el {
-        padding-left: 40px;
+        padding-left: 2.5vw;
         padding-right: 20px;
     }
 
@@ -1769,7 +1872,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     main section#posts_section article {
-        padding: 0.15vw;
+        padding: 0.3vw;
     }
 
     main div.scrollable_div footer button img {
@@ -1811,7 +1914,7 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-left: auto;
         height: 50px;
         border-radius: 100px;
-        margin-top: -1%;
+        margin-top: 0%;
         max-height: 5vh;
         top: 5%;
     }
@@ -1834,7 +1937,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .scrollable_user .username {
         margin-top: -3%;
-        font-size: 4.2vmin;
+        font-size: 2vmax;
         margin-bottom: 0;
         height: 100%;
         padding-top: 0;
@@ -1843,12 +1946,12 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_user .bio {
-        font-size: 2vmin;
+        font-size: 1vmax;
         margin-top: 0%;
         padding-left: 0 !important;
         width: 100%;
         padding-bottom: 0;
-        height: 100px;
+        height: 12vmin;
     }
 
     .scrollable_user .user_info {
@@ -1875,9 +1978,8 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-top: 0;
         font-size: 2.3vmin;
         height: 4vmin;
-        width: 100%;
         max-width: 10vw;
-        min-width: 150px;
+        min-width: 100px;
     }
 
     .user_btn img {
@@ -1892,7 +1994,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .settings_btn img {
         margin-left: 6%;
-        width: 3vh;
+        width: 3.5vmin;
     }
 
     .scrollable_user header {
@@ -1901,9 +2003,10 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_user {
-        margin-top: -10px;
+        margin-top: calc(10.5vh - 6.5vw);
         width: 66vw;
         height: 87vmin;
+        padding-top: calc(3.3vh - 1.5vw);
     }
 
     .following_btn img {
@@ -1925,10 +2028,11 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .scrollable_feed {
-        margin-top: -1vh;
+        margin-top: calc(-2vh - 3vw);
         padding-left: 5vw;
         padding-right: 5vw;
         width: 68vw;
+        height: 100vh;
     }
 
     main nav[aria-label="feed-menu"] ul li button:hover {
@@ -1937,8 +2041,8 @@ input[type="search"]::-webkit-search-cancel-button {
 
     main nav[aria-label="feed-menu"] {
         max-width: 300px;
-        margin: calc(2vmin + 1vh) auto 10px;
-        top: calc(2vmin + 1vh);
+        margin: calc(2vmax + 50px) auto 10px;
+        top: calc(2vmax + 50px);
     }
 
     main section.followers article header img {
@@ -2044,6 +2148,7 @@ input[type="search"]::-webkit-search-cancel-button {
         top: 6vmin;
         max-width: 33vw !important;
         width: 96%;
+        background-color: white;
     }
 
     .profile-aside .navbar button:focus {
@@ -2144,5 +2249,9 @@ input[type="search"]::-webkit-search-cancel-button {
     aside>main {
         margin-top: 3vmin;
         width: 96%;
+    }
+
+    .search-section .user_btn {
+        font-size: 1vmax;
     }
 }

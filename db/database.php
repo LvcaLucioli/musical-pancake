@@ -125,7 +125,8 @@ class DatabaseHelper
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('iii', $postID, $lastID, $n);
         } else {
-            $query = "SELECT c.*, u.propic
+            $query = "SELECT c.*, u.propic,
+            CASE WHEN EXISTS (SELECT 1 FROM comments WHERE to_comment = c.id) THEN 1 ELSE 0 END AS has_replies
             FROM comments c, users u
             WHERE c.post = ?
             AND c.to_comment IS NULL
@@ -158,8 +159,55 @@ class DatabaseHelper
         return $result;
     }
 
-    public function leaveComment($date, $text, $user, $postID, $repliedID)
+    public function getCommentReplies($postID, $lastID, $n, $commentId)
     {
+        if ($lastID != -1) {
+            $query = "SELECT c.*, u.propic
+            FROM comments c, users u
+            WHERE c.post = ?
+            AND c.to_comment = ?
+            AND c.user = u.username
+            AND c.id < ? 
+            ORDER BY c.datetime DESC
+            LIMIT ?;";
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('iiii', $postID, $commentId, $lastID, $n);
+        } else {
+            $query = "SELECT c.*, u.propic
+            FROM comments c, users u
+            WHERE c.post = ?
+            AND c.to_comment = ?
+            AND c.user = u.username
+            ORDER BY c.datetime DESC
+            LIMIT ?;";
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('iii', $postID, $commentId, $n);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT c.*, u.propic
+        FROM comments c, users u
+        WHERE c.post = ?
+        AND c.to_comment = ?
+        AND c.user = u.username
+        AND c.id < ?
+        ORDER BY c.datetime DESC
+        LIMIT 1;";
+
+        $stmt = $this->db->prepare($query);
+        $id = $result[count($result) - 1]["id"];
+        $stmt->bind_param('iii', $postID, $commentId, $id);
+        $stmt->execute();
+        $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
+
+        return $result;
+    }
+
+    public function leaveComment($date, $text, $user, $postID, $repliedID) {
         if ($repliedID != -1) {
             $query = "INSERT INTO `comments`
             (`datetime`, `text`, `user`, `post`, `to_comment`)
@@ -190,6 +238,27 @@ class DatabaseHelper
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         // notifica commento
         return $result;
+    }
+
+    public function deleteComment($commentID, $postID)
+    {
+        $query = "DELETE
+        FROM comments
+        WHERE post = ?
+        AND to_comment = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $postID, $commentID);
+        $stmt->execute();
+
+        $query = "DELETE
+        FROM comments
+        WHERE post = ?
+        AND id = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $postID, $commentID);
+        $stmt->execute();
     }
 
     public function getUser($username)

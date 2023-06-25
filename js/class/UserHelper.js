@@ -50,7 +50,7 @@ class UserHelper{
         }
     }
 
-    loadMore(){
+    loadMorePost(){
         this.postsDrawer.loadMore();
     }
 

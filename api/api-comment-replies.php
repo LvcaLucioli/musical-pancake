@@ -1,6 +1,6 @@
 <?php
 require_once '../bootstrap.php';
-$comments = $dbh->getComments($_POST["post_id"], $_POST["last_id"], $_POST["n"]);
+$comments = $dbh->getCommentReplies($_POST["post_id"], $_POST["last_id"], $_POST["n"], $_POST["cmt_id"]);
 
 for($i = 0; $i < count($comments)-1; $i++){
     $comments[$i]["propic"] = UPLOAD_DIR.$comments[$i]["propic"];
