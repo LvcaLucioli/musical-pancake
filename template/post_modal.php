@@ -21,13 +21,20 @@
                     </button>
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body row">
+                    <div class="col-lg-6">
                     <section aria-label="post section">
                         <img alt="post picture">
+                        <pre class="d-lg-none"></pre>
+                    </section>
+                    </div>
+
+                    <div class="col-lg-6">
+                    <section aria-label="post description" class=" d-none d-lg-block">
                         <pre></pre>
                     </section>
 
-                    <nav aria-label="comments/likes-menu" class="sticky-top">
+                    <nav aria-label="comments/likes-menu" class=" sticky-top">
                         <ul>
                             <li id='comments_button'>
                                 <button title="comments area" class="active" aria-pressed="true" data-target="comments" onclick="switchPostSection(this)">
@@ -45,7 +52,7 @@
                         </ul>
                     </nav>
 
-                    <div class="comments-input comments-base">
+                    <div class="comments-input comments-base ">
                         <div class="row reply-wrapper d-none">
                             <pre><a aria-label="return to the selected to reply comment" onclick="scrollToReply()"></a></pre>
 
@@ -66,9 +73,10 @@
                         </div>
                     </div>
 
-                    <section id="switchable" class="comments-section" aria-label="users comments">
+                    <section id="switchable" class="comments-section " aria-label="users comments">
                         <footer><button></button></footer>
                     </section>
+                    </div>
                 </div>
 
             </div>

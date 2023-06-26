@@ -122,12 +122,14 @@ $('#postModal').on('hidden.bs.modal', function (event) {
 
 let modal_br = true
 document.querySelector(".modal").addEventListener('scroll', function() {
-    if (this.scrollTop > 100 && modal_br) {
-        document.querySelector(".modal-header").style.setProperty("border-radius", "0px", "important");
-        modal_br = false;
-    }
-    if (this.scrollTop < 70 && !modal_br) {
-        document.querySelector(".modal-header").style.removeProperty("border-radius");
-        modal_br = true;
+    if (IS_MOBILE) {
+        if (this.scrollTop > 100 && modal_br) {
+            document.querySelector(".modal-header").style.setProperty("border-radius", "0px", "important");
+            modal_br = false;
+        }
+        if (this.scrollTop < 70 && !modal_br) {
+            document.querySelector(".modal-header").style.removeProperty("border-radius");
+            modal_br = true;
+        }
     }
 });

@@ -69,6 +69,7 @@ class ModalPostHelper{
         
             body.find('section[aria-label="post section"] img').attr("src", `${response.data["img_name"]}`);
             body.find('section[aria-label="post section"] pre').text(response.data["description"]);
+            body.find('section[aria-label="post description"] pre').text(response.data["description"]);
 
             body.find('nav[aria-label="comments/likes-menu"] #comments_button .num').text(response.data["n_comments"]);
             if (response.data["n_likes"] == 0) {
@@ -137,33 +138,35 @@ class ModalPostHelper{
                 document.querySelector(`#switchable`).innerHTML += append;
                 this.prevSwitchable[this.state]["last_id"] = elements[elements.length-2]["id"];
             
-                switch (this.display) {
-                    case "comments":
-                        setTimeout(function() {
-                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
-                                behavior: "smooth",
-                                block: "start",
-                                inline: "nearest",
-                                scrollTimingFunction: "ease-in-out",
-                                scrollDuration: 300
-                            });
-                        }, 500);
-                        this.display = "";
-                        break;
-                    case "likes":
-                        let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
-                        this.switchSection(btn);
-                        setTimeout(function() {
-                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
-                                behavior: "smooth",
-                                block: "start",
-                                inline: "nearest",
-                                scrollTimingFunction: "ease-in-out",
-                                scrollDuration: 300
-                            });
-                        }, 500);
-                        this.display = "";
-                        break;
+                if (IS_MOBILE) {
+                    switch (this.display) {
+                        case "comments":
+                            setTimeout(function() {
+                                document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                                    behavior: "smooth",
+                                    block: "start",
+                                    inline: "nearest",
+                                    scrollTimingFunction: "ease-in-out",
+                                    scrollDuration: 300
+                                });
+                            }, 500);
+                            this.display = "";
+                            break;
+                        case "likes":
+                            let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
+                            this.switchSection(btn);
+                            setTimeout(function() {
+                                document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                                    behavior: "smooth",
+                                    block: "start",
+                                    inline: "nearest",
+                                    scrollTimingFunction: "ease-in-out",
+                                    scrollDuration: 300
+                                });
+                            }, 500);
+                            this.display = "";
+                            break;
+                    }
                 }
                 this.isLoading = false;
             });

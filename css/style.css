@@ -677,7 +677,7 @@ main section.followers article footer pre {
     padding-right: 0.7rem;
 }
 
-.modal-body section.comments-section article div>footer button {
+.modal-body #switchable article div>footer button {
     width: 25vw;
     height: 30px;
     margin-bottom: 0.5rem;
@@ -691,7 +691,7 @@ main section.followers article footer pre {
     margin-left: 10%;
 }
 
-.modal-body section.comments-section article div>footer button img {
+.modal-body #switchable article div>footer button img {
     width: 18px;
     height: auto;
 }
@@ -2148,6 +2148,90 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .row>main .search-section {
         display: none;
+    }
+
+    .modal-body section[aria-label="post section"] {
+        position: -webkit-sticky;
+        position: sticky;
+        top: calc(83px + 2.1vw);
+        z-index: 1020;
+    }
+
+    .modal-body section[aria-label="post section"] img {
+        max-width: 79vh;
+        margin-left: 0;
+        margin-top: -0.1vw;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .modal-body section[aria-label="post description"] pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-x: auto;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.1em;
+        margin-bottom: 5vh;
+    }
+
+    .modal-body nav[aria-label="comments/likes-menu"] {
+        margin-top: 2%;
+        top: calc(120px);
+    }
+
+    .modal-body section.comments-section {
+        margin-top: 15vh;
+        margin-bottom: 7%;
+    }
+
+    .modal-body #switchable article div>footer button {
+        width: 11vw;
+    }
+
+    .modal-body section.comments-section article section.comment-reply footer button span {
+        width: 10%;
+        margin-left: -30%;
+    }
+
+    .modal-body #switchable>footer button {
+        margin-bottom: calc(40vh - 7vw);
+    }
+
+    .modal-body {
+        margin-bottom: 1vw;
+    }
+
+    .modal-lg {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        width: 90vw !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .modal-content {
+        border-radius: 0 !important;
+    }
+
+    .modal-header {
+        z-index: 1200 !important;
+
+    }
+
+    .modal-body .comments-input {
+        margin-top: -20vh;
+        margin-bottom: -2vw;
+    }
+
+    .modal-header .edit-btn button {
+        margin-left: calc(300% - 8vh);
+    }
+
+    .modal-body #switchable>footer button[disabled] img {
+        margin-top: 0.1vh;
+        margin-left: -0.2vw;
     }
 
     /*aside*/
