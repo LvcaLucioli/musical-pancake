@@ -7,14 +7,13 @@
                         <div class="col-2 profile_pic">
                             <a><img alt="profile picture" /></a>
                         </div>
-                        <div class="col-6 user">
+                        <div class="col-9 user">
                             <a></a>
                         </div>
-                        <div class="col-4 edit-btn">
-                            <pre></pre>
+                        <div class="col-1 edit-btn">
                         </div>
                         <div class="col-12 date">
-                        <pre></pre>
+                            <pre></pre>
                         </div>
                     </div>
                     <button title="close post pop-up" type="button" class="close" data-dismiss="modal" aria-label="Close">

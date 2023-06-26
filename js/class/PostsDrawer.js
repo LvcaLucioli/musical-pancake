@@ -260,9 +260,9 @@ class PostsDrawer{
         for (let i = 0; (i < 6) && (count < posts.length-1); i++) {
           result += `
           <article class="col-4 col-lg-2">
-              <a href="post.php?id=${posts[count]["id"]}" >
+            <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[count]["id"]}" data-from="userpage" data-display="post" alt="open post pop-up page">
               <img src="${posts[count]["img_name"]}" alt="Post by ${posts[count]["username"]} on ${posts[count]["date"]}" />
-              </a>
+            </button>
           </article>
           `;
           count++;

@@ -261,6 +261,41 @@ class DatabaseHelper
         $stmt->execute();
     }
 
+    public function deletePost($id)
+    {
+        $query = "DELETE
+        FROM comments
+        WHERE post = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
+        $query = "DELETE
+        FROM likes
+        WHERE post = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
+        $query = "DELETE
+        FROM notifications
+        WHERE targetPost = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
+        $query = "DELETE
+        FROM posts
+        WHERE id = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+    }
+
     public function getUser($username)
     {
         $query = "SELECT 

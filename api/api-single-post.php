@@ -8,6 +8,7 @@ $likes = $dbh->getLikes($_POST["id"]);
 $post["n_likes"] = count($likes);
 $post["is_liked"] = is_numeric(array_search($_SESSION["username"], array_column($likes, 'user')));
 
+$post["owned"] = $_SESSION["username"] == $post["user"];
 $post["n_comments"] = $dbh->getNComments($_POST["id"])[0]["COUNT(*)"];
 
 header('Content-Type: application/json');
