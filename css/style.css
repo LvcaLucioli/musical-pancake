@@ -255,10 +255,7 @@ main div.scrollable_feed>footer button[disabled],
     box-shadow: none;
 }
 
-.modal-body #switchable>footer button[disabled] img,
-main div.scrollable_feed>footer button[disabled] img,
-.search-section footer button[disabled] img,
-.notifications-section footer button[disabled] img {
+main div.scrollable_feed>footer button[disabled] img {
     margin-left: -1vh;
     margin-top: -0.5vw;
     padding: 0;
@@ -266,6 +263,16 @@ main div.scrollable_feed>footer button[disabled] img,
     height: auto;
     opacity: 0.1;
 }
+
+.search-section footer button[disabled] img,
+.notifications-section footer button[disabled] img,
+.modal-body #switchable>footer button[disabled] img {
+    width: 50px;
+    margin-left: -0.5vw;
+    margin-top: 0.2vh;
+    opacity: 0.1;
+}
+
 
 
 /* posts list */
@@ -300,12 +307,12 @@ main section.followers article header img {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-main section.followers article header .col-8 {
-    padding-top: calc(2% + 0.5vh);
+main section.followers article header .col-9 {
+    padding-top: calc(1.5% + 0.5vh);
     font-weight: bold;
     padding-left: 0;
     font-size: 1.1em;
-    margin-left: calc(-12vw + 4vh);
+    margin-left: calc(-15vw + 4vh);
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -434,7 +441,7 @@ main section.followers article footer pre {
     padding-left: 0.7rem !important;
 }
 
-.modal-header button {
+.modal-header>button {
     padding-top: 0.6rem !important;
 }
 
@@ -442,7 +449,7 @@ main section.followers article footer pre {
     width: 100vw;
 }
 
-.modal-header img {
+.modal-header .profile_pic img {
     height: 6vh;
     max-height: 35px;
     width: auto;
@@ -451,8 +458,8 @@ main section.followers article footer pre {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-.modal-header .col-6 {
-    padding-top: 0.5vh;
+.modal-header .col-9 {
+    padding-top: calc(0.5vh - 0.3vw);
     font-weight: bold;
     margin-left: calc(50px - 13vw);
     font-size: 1.1em;
@@ -474,6 +481,21 @@ main section.followers article footer pre {
     font-size: 0.8em;
     margin-left: 20px;
     margin-top: 0.2rem;
+}
+
+.modal-header .edit-btn button {
+    width: fit-content;
+    height: auto;
+    background-color: transparent;
+    text-align: right;
+    margin-left: calc(150% - 2vh);
+}
+
+.modal-header .edit-btn button img {
+    height: 6vh;
+    max-height: 35px;
+    width: auto;
+    border-radius: 7px;
 }
 
 .modal-body {
@@ -659,7 +681,7 @@ main section.followers article footer pre {
     padding-right: 0.7rem;
 }
 
-.modal-body section.comments-section article div>footer button {
+.modal-body #switchable article div>footer button {
     width: 25vw;
     height: 30px;
     margin-bottom: 0.5rem;
@@ -673,7 +695,7 @@ main section.followers article footer pre {
     margin-left: 10%;
 }
 
-.modal-body section.comments-section article div>footer button img {
+.modal-body #switchable article div>footer button img {
     width: 18px;
     height: auto;
 }
@@ -1183,6 +1205,11 @@ main section#posts_section article {
     background-color: black;
     margin: 0;
     padding: 0.8vw;
+}
+
+main section#posts_section article button {
+    background-color: transparent;
+    padding: 0;
 }
 
 main section#posts_section article img {
@@ -1700,7 +1727,7 @@ input[type="search"]::-webkit-search-cancel-button {
         height: 100%;
     }
 
-    main section.followers article header .col-8 {
+    main section.followers article header .col-9 {
         margin-left: calc(-5vw - 2vh + 1%);
         font-size: 1.2em;
         padding-top: 3vw;
@@ -1763,12 +1790,20 @@ input[type="search"]::-webkit-search-cancel-button {
         /* background-color: transparent; */
     }
 
+    .modal-lg {
+        width: 85vw !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    
     .search-section {
         height: 90vh;
     }
 
     .search-section header div input {
         width: 91%;
+    }
+    .modal-header .edit-btn button {
+        margin-left: calc(400% - 8vh);
     }
 }
 
@@ -2081,10 +2116,10 @@ input[type="search"]::-webkit-search-cancel-button {
         max-height: 50px;
     }
 
-    main section.followers article header .col-8 {
-        margin-left: calc(-5vh - 3vw);
+    main section.followers article header .col-9 {
+        margin-left: calc(-5vw - 2vh + 1%);
         font-size: 1.2em;
-        padding-top: calc(2.3vw - 2vh);
+        padding-top: calc(1.1vw + 0.7vh);
     }
 
     main section.followers article section:nth-child(2) img {
@@ -2164,6 +2199,91 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .row>main .search-section {
         display: none;
+    }
+
+    .modal-body section[aria-label="post section"] {
+        position: -webkit-sticky;
+        position: sticky;
+        top: calc(83px + 2.1vw);
+        z-index: 1020;
+    }
+
+    .modal-body section[aria-label="post section"] img {
+        max-width: 79vh;
+        margin-left: 0;
+        margin-top: -0.1vw;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .modal-body section[aria-label="post description"] pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-x: auto;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.1em;
+        margin-bottom: 5vh;
+    }
+
+    .modal-body nav[aria-label="comments/likes-menu"] {
+        margin-top: 2%;
+        top: calc(120px);
+    }
+
+    .modal-body section.comments-section {
+        margin-top: calc(-20vh - 80px);
+        margin-bottom: 7%;
+    }
+
+    .modal-body #switchable article div>footer button {
+        width: 11vw;
+    }
+
+    .modal-body section.comments-section article section.comment-reply footer button span {
+        width: 10%;
+        margin-left: -30%;
+    }
+
+    .modal-body #switchable>footer button {
+        margin-bottom: calc(40vh - 7vw);
+    }
+
+    .modal-body {
+        margin-bottom: 1vw;
+    }
+
+    .modal-lg {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        width: 90vw !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .modal-content {
+        border-radius: 0 !important;
+        min-height: 100vh;
+    }
+
+    .modal-header {
+        z-index: 1200 !important;
+
+    }
+
+    .modal-body .comments-input {
+        margin-top: 20vh;
+        margin-bottom: -2vw;
+    }
+
+    .modal-header .edit-btn button {
+        margin-left: calc(calc(400% - 4.5vh) - 7vw);
+    }
+
+    .modal-body #switchable>footer button[disabled] img {
+        margin-top: 0.1vh;
+        margin-left: -0.2vw;
     }
 
     /*aside*/
@@ -2264,20 +2384,15 @@ input[type="search"]::-webkit-search-cancel-button {
         font-size: 14px;
         border-left: 0 !important;
     } */
-    .profile-aside main section footer button {
-        width: 100%;
-        min-width: 13vh;
-        max-width: 15vh;
-        font-size: 0.9em;
-    }
-
-    .profile-aside main section footer button img {
-        width: 4vh;
-    }
 
     aside>main {
         margin-top: 3vmin;
         width: 96%;
+    }
+
+    .search-section footer button[disabled] img,
+    .notifications-section footer button[disabled] img {
+        margin-left: -2px;
     }
 
     .search-section .user_btn {

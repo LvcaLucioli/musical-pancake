@@ -72,10 +72,32 @@ function deleteComment(btn){
     })
 }
 
+function deletePost(){ 
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Deleted!',
+                text: "Your post has been deleted.",
+                icon: 'success',
+                confirmButtonColor: 'rgb(0, 128, 255)'
+            }).then((result) => {
+                window.location.href = `./user.php?username=${modalHelper.getUsername()}`;
+            });
+            modalHelper.deletePost();
+        }
+    });
+}
+
 
 
 let modalHelper = undefined;
-
 $('#postModal').on('show.bs.modal', function (event) {
     let button = $(event.relatedTarget);
     let postId = button.data('postid');
@@ -94,19 +116,20 @@ $('#postModal').on('hidden.bs.modal', function (event) {
             + ' <img src="resources/comment.png" alt="view and add commens">';
     }
     modalHelper.clear();
-    modalHelper = undefined;
 });
   
 
 
 let modal_br = true
 document.querySelector(".modal").addEventListener('scroll', function() {
-    if (this.scrollTop > 100 && modal_br) {
-        document.querySelector(".modal-header").style.setProperty("border-radius", "0px", "important");
-        modal_br = false;
-    }
-    if (this.scrollTop < 70 && !modal_br) {
-        document.querySelector(".modal-header").style.removeProperty("border-radius");
-        modal_br = true;
+    if (IS_MOBILE) {
+        if (this.scrollTop > 100 && modal_br) {
+            document.querySelector(".modal-header").style.setProperty("border-radius", "0px", "important");
+            modal_br = false;
+        }
+        if (this.scrollTop < 70 && !modal_br) {
+            document.querySelector(".modal-header").style.removeProperty("border-radius");
+            modal_br = true;
+        }
     }
 });

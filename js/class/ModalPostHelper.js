@@ -27,13 +27,14 @@ class ModalPostHelper{
         </button>`;
     
 
-    constructor(postID, modal, from, display){
+    constructor(postID, modal, from, display) {
         this.isLoading = false;
         this.navPos = 0;
         this.commentForm = "";
         this.state = ModalPostHelper.STATES[0];
         this.reply = [postID, -1];
         this.isLiked = false;
+        this.user = undefined;
         this.prevSwitchable = {
             "comments" : {
                 "body" : ``,
@@ -60,6 +61,7 @@ class ModalPostHelper{
             header.find('.profile_pic a').attr("href", `user.php?username=${response.data["user"]}`);
             header.find('.profile_pic img').attr("src", `${response.data["propic"]}`);
             
+            this.user = response.data["user"];
             header.find('.user a').text(response.data["user"]);
             header.find('.user a').attr("href", `user.php?username=${response.data["user"]}`);
             
@@ -67,6 +69,7 @@ class ModalPostHelper{
         
             body.find('section[aria-label="post section"] img').attr("src", `${response.data["img_name"]}`);
             body.find('section[aria-label="post section"] pre').text(response.data["description"]);
+            body.find('section[aria-label="post description"] pre').text(response.data["description"]);
 
             body.find('nav[aria-label="comments/likes-menu"] #comments_button .num').text(response.data["n_comments"]);
             if (response.data["n_likes"] == 0) {
@@ -79,6 +82,14 @@ class ModalPostHelper{
                 body.find("#switchable").html("<pre class='no-element text-center mt-5'>leave the first comment</pre>")
             } else {
                 this.loadMore();
+            }
+
+            if (response.data["owned"]) {
+                header.find('.edit-btn').html(`
+                    <button aria-label="" onclick="deletePost()">
+                        <img src="./resources/bin-btn.png" alt="click to delete your post">
+                    </button>
+                `);
             }
 
             body.find("#like_click_btn").html(response.data["is_liked"]
@@ -126,7 +137,8 @@ class ModalPostHelper{
                 document.querySelector(`#switchable`).removeChild(document.querySelector(`#switchable > footer`));
                 document.querySelector(`#switchable`).innerHTML += append;
                 this.prevSwitchable[this.state]["last_id"] = elements[elements.length-2]["id"];
-            
+                this.isLoading = false;
+               
                 switch (this.display) {
                     case "comments":
                         setTimeout(function() {
@@ -155,7 +167,6 @@ class ModalPostHelper{
                         this.display = "";
                         break;
                 }
-                this.isLoading = false;
             });
         }
     }
@@ -278,6 +289,10 @@ class ModalPostHelper{
         return this.modal.find('nav[aria-label="comments/likes-menu"] #comments_button .num').text();
     }
 
+    getUsername() {
+        return this.user;
+    }
+
     postComment() {
         let textarea = this.modal.find("#comment_textarea");
         let text = textarea.val().trim();
@@ -363,7 +378,7 @@ class ModalPostHelper{
         this.reply[1] = -1;
     }
 
-    deleteComment(id){
+    deleteComment(id) {
         if (this.reply[1] == id)
             this.clearReply();
 
@@ -378,8 +393,16 @@ class ModalPostHelper{
         
         document.querySelector(`#comment-${id}`).remove();
     }
+
+    deletePost() {
+        let formData = new FormData();
+        formData.append("id", this.postID);
+
+        axios.post('api/api-delete-post.php', formData);
+        this.modal.modal("hide");
+    }
     
-    _generateComments(comments){
+    _generateComments(comments) {
         let result = '';
         
         for (let i = 0; i < comments.length - 1; i++) {
@@ -446,7 +469,7 @@ class ModalPostHelper{
         return result;
     }
 
-    _generateCommentReplies(comments){
+    _generateCommentReplies(comments) {
         let result = '';
         
         for (let i = 0; i < comments.length - 1; i++) {
