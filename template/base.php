@@ -36,7 +36,11 @@
                     <div <?php if (isActive("user.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a title="personal profile" class="nav-link" href="<?php if(isset($_SESSION['username'])){echo "user.php?username=" . $_SESSION['username'];}else{echo "login.php";} ?>">
+                        <a title="personal profile" class="nav-link" href="<?php if (isset($_SESSION['username'])) {
+                                                                                echo "user.php?username=" . $_SESSION['username'];
+                                                                            } else {
+                                                                                echo "login.php";
+                                                                            } ?>">
                             <img src="./resources/icon-profile<?php echo isIconActive("user.php"); ?>.png" alt="personal profile">
                             <span class="label d-none d-md-inline">profile</span>
                         </a>
@@ -47,6 +51,13 @@
                         <a title="logout" class="nav-link logout_lg" href="logout.php">
                             <img src="./resources/logout.png" alt="logout">
                             <span class="label d-none d-md-inline">logout</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item d-none d-sm-block d-md-none bevero">
+                    <div>
+                        <a title="home page" class="nav-link " href="index.php">
+                            <img src="./resources/header.png" alt="home page">
                         </a>
                     </div>
                 </li>
@@ -66,32 +77,36 @@
                         </button>
                     </div>
                 </li>
+                <li class="nav-item d-none d-sm-none d-md-block bevero">
+                    <div>
+                        <a title="home page" class="nav-link " href="index.php">
+                            <img src="./resources/header.png" alt="home page">
+                        </a>
+                    </div>
+                </li>
             </ul>
         </nav>
-        <div>
-            <img src="./resources/header.png" alt="">
-        </div>
     </header>
     <div class="row row_back">
-            <main class="col-lg-7">
-                <?php
-                if (isset($templateParams["main"])) {
-                    require __DIR__ . "\\" . $templateParams["main"];
-                }
+        <main class="col-lg-7">
+            <?php
+            if (isset($templateParams["main"])) {
+                require __DIR__ . "\\" . $templateParams["main"];
+            }
 
-                if (isset($templateParams["modal"])) {
-                    require __DIR__ . "\\" . $templateParams["modal"];
-                }
-                ?>
-            </main>
-            <aside class="col-lg-4 d-lg-block profile-aside">
-                <?php
-                if (isset($templateParams["aside"])) {
-                    require __DIR__ . "\\" . $templateParams["aside"];
-                } ?>
-                
-            </aside>
-        
+            if (isset($templateParams["modal"])) {
+                require __DIR__ . "\\" . $templateParams["modal"];
+            }
+            ?>
+        </main>
+        <aside class="col-lg-4 d-lg-block profile-aside">
+            <?php
+            if (isset($templateParams["aside"])) {
+                require __DIR__ . "\\" . $templateParams["aside"];
+            } ?>
+
+        </aside>
+
     </div>
     <?php
     if (isset($templateParams["js"])) :
