@@ -2182,7 +2182,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .modal-body section.comments-section {
-        margin-top: 15vh;
+        margin-top: calc(-20vh - 80px);
         margin-bottom: 7%;
     }
 
@@ -2213,6 +2213,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .modal-content {
         border-radius: 0 !important;
+        min-height: 100vh;
     }
 
     .modal-header {
@@ -2221,7 +2222,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .modal-body .comments-input {
-        margin-top: -20vh;
+        margin-top: 20vh;
         margin-bottom: -2vw;
     }
 

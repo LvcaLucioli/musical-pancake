@@ -137,38 +137,36 @@ class ModalPostHelper{
                 document.querySelector(`#switchable`).removeChild(document.querySelector(`#switchable > footer`));
                 document.querySelector(`#switchable`).innerHTML += append;
                 this.prevSwitchable[this.state]["last_id"] = elements[elements.length-2]["id"];
-            
-                if (IS_MOBILE) {
-                    switch (this.display) {
-                        case "comments":
-                            setTimeout(function() {
-                                document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
-                                    behavior: "smooth",
-                                    block: "start",
-                                    inline: "nearest",
-                                    scrollTimingFunction: "ease-in-out",
-                                    scrollDuration: 300
-                                });
-                            }, 500);
-                            this.display = "";
-                            break;
-                        case "likes":
-                            let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
-                            this.switchSection(btn);
-                            setTimeout(function() {
-                                document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
-                                    behavior: "smooth",
-                                    block: "start",
-                                    inline: "nearest",
-                                    scrollTimingFunction: "ease-in-out",
-                                    scrollDuration: 300
-                                });
-                            }, 500);
-                            this.display = "";
-                            break;
-                    }
-                }
                 this.isLoading = false;
+               
+                switch (this.display) {
+                    case "comments":
+                        setTimeout(function() {
+                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                                behavior: "smooth",
+                                block: "start",
+                                inline: "nearest",
+                                scrollTimingFunction: "ease-in-out",
+                                scrollDuration: 300
+                            });
+                        }, 500);
+                        this.display = "";
+                        break;
+                    case "likes":
+                        let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
+                        this.switchSection(btn);
+                        setTimeout(function() {
+                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                                behavior: "smooth",
+                                block: "start",
+                                inline: "nearest",
+                                scrollTimingFunction: "ease-in-out",
+                                scrollDuration: 300
+                            });
+                        }, 500);
+                        this.display = "";
+                        break;
+                }
             });
         }
     }
