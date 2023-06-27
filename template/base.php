@@ -52,7 +52,7 @@
                 </li>
                 <li class="nav-item d-lg-none">
                     <div>
-                        <button title="notifications" class="nav-link" onClick="notificationsSectionClick()">
+                        <button title="notifications" class="nav-link" onClick="notificationsSectionClick(this)">
                             <img src="./resources/icon-notification.png" alt="notifications">
                             <span class="label d-none d-md-inline">notifications</span>
                         </button>
@@ -60,7 +60,7 @@
                 </li>
                 <li class="nav-item d-lg-none">
                     <div>
-                        <button title="user search" class="nav-link" onclick="searchSectionClick()">
+                        <button title="user search" class="nav-link" onclick="searchSectionClick(this)">
                             <img src="./resources/icon-search.png" alt="user search">
                             <span class="label d-none d-md-inline">search</span>
                         </button>

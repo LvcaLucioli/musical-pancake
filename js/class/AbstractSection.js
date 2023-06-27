@@ -1,7 +1,7 @@
 class AbstractSection {
 
     static LOAD_BTN = ` 
-    <button onclick="container.sections[container.activeSection].loadMore();">
+    <button onclick="loadMoreSection();">
         view more
         <img src="./resources/load_white.png" alt="load more item">
     </button>`;

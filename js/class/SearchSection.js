@@ -15,26 +15,26 @@ class SearchSection extends AbstractSection {
 
     static USER_BTN = {
         "following": `
-                                        <button class="user_btn following_btn" onCLick="container.sections[0].clickUserBtn(this)">
+                                        <button class="user_btn following_btn" onCLick="clickUserBtn(this)">
                                             following
                                         <img src="./resources/following.png">
                                     </button>`,
 
         "follow": `
-                                        <button class="user_btn follow_btn" onCLick="container.sections[0].clickUserBtn(this)">
+                                        <button class="user_btn follow_btn" onCLick="clickUserBtn(this)">
                                         follow
                                         <img src="./resources/follow.png">
                                     </button>`,
 
         "settings": `
-                                    <button class="user_btn settings_btn" onCLick="container.sections[0].clickUserBtn(this)">
+                                    <button class="user_btn settings_btn" onCLick="clickUserBtn(this)">
                                             settings
                                             <img src="./resources/settings.png">
                                     </button>`
     };
 
     static LOAD_BTN = ` 
-    <button onclick="container.sections[0].loadMore();">
+    <button onclick="loadMoreSection();">
         view more
         <img src="./resources/load_white.png" alt="load more item">
     </button>`;
@@ -136,7 +136,7 @@ class SearchSection extends AbstractSection {
                     const formData = new FormData();
                     formData.append('username', element["username"]);
 
-                    const userResponse = await axios.post('api/api-user.php', formData, { signal: this.abortController.signal });
+                    const userResponse = await axios.post('api/api-search-user.php', formData, { signal: this.abortController.signal });
                     const button = SearchSection.USER_BTN[userResponse.data["btn"]];
                     
 
@@ -153,7 +153,7 @@ class SearchSection extends AbstractSection {
         document.querySelector(this.container).innerHTML = `<section class="search-section">
          <header>
              <div>
-                 <input type="search" placeholder="search" aria-label="search" oninput="container.sections[0].search(this); ">
+                 <input type="search" placeholder="search" aria-label="search" oninput="search(this); ">
              </div>
          </header></section>`;
     }

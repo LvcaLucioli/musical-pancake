@@ -15,8 +15,7 @@ const LOAD_BTN_DISABLED = `
     <button aria-label="no more item to view" disabled>
         <img src="./resources/nomore.png" alt="no more item to view">
     </button>`;
-scrollPosition = document.querySelector(".row>main").scrollTop;
-index = document.querySelector(".row>main");
+
 
 function iOS() {
     return [
@@ -230,54 +229,7 @@ async function loadMore() {
     }
 }
 
-function notificationsSectionClick() {
-    if (document.querySelector(".row>main .search-section")) {
-        document.querySelector(".row>main").innerHTML = index;
 
-        document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
-    }
-    if (document.querySelector(".row>main .notifications-section")) {
-        document.querySelector(".row>main").innerHTML = index;
-
-        document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
-    } else {
-        scrollPosition = document.querySelector(".scrollable_feed").scrollTop;
-        index = document.querySelector(".row>main").innerHTML;
-        container = new Container(".row>main", [new NotificationsSection()]);
-        container.sections[0].show();
-    }
-
-}
-
-function searchSectionClick() {
-    if (document.querySelector(".row>main .notifications-section")) {
-        document.querySelector(".row>main").innerHTML = index;
-        document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
-    }
-    if (document.querySelector(".row>main .search-section")) {
-        document.querySelector(".row>main").innerHTML = index;
-        document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
-    } else {
-        scrollPosition = document.querySelector(".scrollable_feed").scrollTop;
-        index = document.querySelector(".row>main").innerHTML;
-        container = new Container(".row>main", [new SearchSection()]);
-        container.sections[0].show();
-    }
-}
-
-$(document).ready(function () {
-    function handleResize() {
-        var windowWidth = $(window).width();
-
-        if ((windowWidth > 992) && ((document.querySelector(".row>main .notifications-section")) || (document.querySelector(".row>main .search-section")))) {
-            document.querySelector(".row>main").innerHTML = index;
-            document.querySelector(".scrollable_feed").scrollTo(0, scrollPosition);
-            container = new SwitchableContainer("aside", [new SearchSection(), new NotificationsSection()]);
-            container.sections[container.activeSection].show();
-        }
-    }
-    $(window).on('load resize', handleResize);
-});
 
 let homeStatus = true;
 let prevPosts = [``, 0, 0];

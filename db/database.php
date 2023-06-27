@@ -207,7 +207,8 @@ class DatabaseHelper
         return $result;
     }
 
-    public function leaveComment($date, $text, $user, $postID, $repliedID) {
+    public function leaveComment($date, $text, $user, $postID, $repliedID)
+    {
         if ($repliedID != -1) {
             $query = "INSERT INTO `comments`
             (`datetime`, `text`, `user`, `post`, `to_comment`)
@@ -299,7 +300,7 @@ class DatabaseHelper
 
     public function getSearchUser($username)
     {
-        $query = "SELECT u.username, u.propic, u.bio FROM users u WHERE u.username = ?";
+        $query = "SELECT u.username, u.propic FROM users u WHERE u.username = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
@@ -382,7 +383,6 @@ class DatabaseHelper
         }
         $stmt->execute();
         $result = $stmt->get_result();
-
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -494,7 +494,7 @@ class DatabaseHelper
 
     private function notifyFollow($user, $targetUser)
     {
-        $content = "<b>" . $user . "</b>&nbsp;" . "started following you";
+        $content = $user . "started following you";
 
         $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`) VALUES (?, ?, ?, NOW());";
         $stmt = $this->db->prepare($query);
@@ -514,7 +514,7 @@ class DatabaseHelper
         $targetUser = $row[0];
 
         if ($user != $targetUser) {
-            $content = "<b>" . $user . "</b>&nbsp;" . "liked your post";
+            $content = $user . "liked your post";
 
             $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, NOW(), ?);";
             $stmt = $this->db->prepare($query);

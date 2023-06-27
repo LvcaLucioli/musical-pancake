@@ -1258,6 +1258,15 @@ main div.scrollable_div footer button[disabled] img {
     display: flex;
     flex-direction: row;
     width: 80%;
+    background-color: transparent;
+}
+
+button.content:focus {
+    outline: auto !important;
+}
+
+button.read_btn:focus {
+    outline: auto !important;
 }
 
 .row .content img {
@@ -1266,21 +1275,20 @@ main div.scrollable_div footer button[disabled] img {
     border-radius: 50%;
 }
 
-.row .content-copy p {
+.content-copy p {
     color: black;
     font-size: 14px;
     word-wrap: break-word;
     margin-left: 10px;
     margin-bottom: 0px;
+    text-align: left;
 }
 
 .search-section .row .content-copy p {
     font-size: 18px;
+    word-break: break-all;
 }
 
-.row .content-copy p a {
-    font-weight: bold;
-}
 
 .row .content-copy footer p {
     color: black;
@@ -1294,7 +1302,7 @@ main div.scrollable_div footer button[disabled] img {
     justify-content: center;
 }
 
-.row .content p {
+/* .row .content p {
     margin-left: 10px;
     margin-bottom: 0px;
     align-items: center;
@@ -1303,34 +1311,31 @@ main div.scrollable_div footer button[disabled] img {
     overflow: hidden;
     max-width: 70%;
     margin-top: 1.5%;
-
-}
+} */
 
 .row>main>section {
     margin-top: 3vh;
     margin-left: 5px;
     margin-right: 5px;
     width: 100%;
+    overflow-y: scroll;
 }
 
 /* notifications section */
 
 .notifications-section {
     height: 80vh;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
 }
 
 .row .notifications {
     display: flex;
     margin: 0 0;
     padding: 5px;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    /* align-items: center;
+    justify-content: center; */
+    flex-wrap: initial;
     margin-bottom: 10px;
+    justify-content: center;
 }
 
 .row .notifications .content-copy {
@@ -1360,10 +1365,15 @@ main div.scrollable_div footer button[disabled] img {
 /* search section */
 
 .search-section {
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+    height: 80vh;
+}
+
+.search-section header {
+    top: 0;
+    position: sticky;
+    z-index: 100;
+    background-color: transparent;
+    border-radius: 0 0 25px 25px;
 }
 
 .search-section header div {
@@ -1374,7 +1384,7 @@ main div.scrollable_div footer button[disabled] img {
     width: 100%;
     padding: 4px 8px;
     border: 2px solid black;
-    border-radius: 20px;
+    border-radius: 25px;
     background-color: #f2f2f2;
 }
 
@@ -1397,7 +1407,7 @@ input[type="search"]::-webkit-search-cancel-button {
     display: flex;
     margin: 0 0;
     padding: 5px;
-    flex-wrap: nowrap;
+    flex-wrap: initial;
     flex-direction: row;
     justify-content: space-around;
     margin-bottom: 10px;
@@ -1741,10 +1751,16 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-top: 0.5vw;
     }
 
-
     .search-section header div {
         display: flex;
         justify-content: center;
+        border-radius: 25px;
+        width: 100%;
+        /* background-color: transparent; */
+    }
+
+    .search-section {
+        height: 90vh;
     }
 
     .search-section header div input {
@@ -2064,7 +2080,7 @@ input[type="search"]::-webkit-search-cancel-button {
     main section.followers article header .col-8 {
         margin-left: calc(-5vh - 3vw);
         font-size: 1.2em;
-        padding-top: calc(2.3vw - 2vh);;
+        padding-top: calc(2.3vw - 2vh);
     }
 
     main section.followers article section:nth-child(2) img {
