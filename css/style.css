@@ -1790,11 +1790,6 @@ input[type="search"]::-webkit-search-cancel-button {
         /* background-color: transparent; */
     }
 
-    .modal-lg {
-        width: 85vw !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-    
     .search-section {
         height: 90vh;
     }
@@ -1802,6 +1797,13 @@ input[type="search"]::-webkit-search-cancel-button {
     .search-section header div input {
         width: 91%;
     }
+
+    .modal-lg {
+        width: 85vw !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
     .modal-header .edit-btn button {
         margin-left: calc(400% - 8vh);
     }
