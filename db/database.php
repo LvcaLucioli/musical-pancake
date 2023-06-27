@@ -529,7 +529,7 @@ class DatabaseHelper
 
     private function notifyFollow($user, $targetUser)
     {
-        $content = $user . "started following you";
+        $content = "started following you";
 
         $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`) VALUES (?, ?, ?, NOW());";
         $stmt = $this->db->prepare($query);
@@ -549,7 +549,7 @@ class DatabaseHelper
         $targetUser = $row[0];
 
         if ($user != $targetUser) {
-            $content = $user . "liked your post";
+            $content = "liked your post";
 
             $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, NOW(), ?);";
             $stmt = $this->db->prepare($query);

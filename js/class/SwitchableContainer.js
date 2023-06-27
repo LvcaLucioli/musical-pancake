@@ -19,7 +19,6 @@ class SwitchableContainer extends Container {
         })
     
         this.addIconActive(triggerButton);
-        console.log(this.sections[this.activeSection]);
         // TODO: change class from static to property
         if (document.querySelector(SearchSection.class)) document.querySelector(SearchSection.class).outerHTML = "";
         if (document.querySelector('.' + NotificationsSection.class)) document.querySelector('.' + NotificationsSection.class).outerHTML = "";

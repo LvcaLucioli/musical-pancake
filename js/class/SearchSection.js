@@ -71,7 +71,7 @@ class SearchSection extends AbstractSection {
         this.searchResults.slice(0, SearchSection.N_SEARCH_RESULT).forEach(element => {
             var child = document.createElement("div");
             document.querySelector(SearchSection.class).appendChild(child);
-            child.outerHTML = element.getHTMLItem();
+            child.outerHTML = element;
         });
 
         this.searchResults = this.searchResults.slice(SearchSection.N_SEARCH_RESULT, this.searchResults.length);
@@ -139,13 +139,16 @@ class SearchSection extends AbstractSection {
                     const userResponse = await axios.post('api/api-search-user.php', formData, { signal: this.abortController.signal });
                     const button = SearchSection.USER_BTN[userResponse.data["btn"]];
                     
-
-                    this.searchResults.push(new AsideItem(SearchSection.itemClass, element["propic"], element["username"] + " propic", [element["username"]], "user.php?username=" + element["username"], button));
+                    this.searchResults.push(`<div class="row ${SearchSection.itemClass}">
+                                                <button tabindex="0" type="button" class="content" onClick="redirectToPage('user.php?username=${element["username"]}')">
+                                                        <img src="./uploads/${element["propic"]}" alt="${element["username"]} propic">
+                                                        <span class="content-copy">${element["username"]}</span>
+                                                </button>
+                                                ${button}
+                                            </div>`);
                 }
             }
         } catch (error) {}
-
-
     }
 
 

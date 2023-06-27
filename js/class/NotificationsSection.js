@@ -57,24 +57,29 @@ class NotificationsSection extends AbstractSection {
 
         axios.post('api/api-notification.php', formData).then(response => {
             var child = document.createElement("footer");
-            
+
 
             if (response.data.length > 0) {
-                var i = 0;
                 response.data.slice(0, n).forEach(element => {
                     // TODO: linkare il box del post
-                    var img = !element["img_name"] ? element["propic"] : element["img_name"];
-                    var alt = !element["img_name"] ? element["user"] + " propic" : element["user"] + " post";
-                    var target = !element["img_name"] ? "user.php?username=" + element["user"] : "user.php?username=" + element["user"]; // il secondo vuole il modale
+                    var img = !element["targetPost"] ? element["propic"] : element["img_name"];
+                    var alt = !element["targetPost"] ? `${element["user"]}'s propic` : `${element["user"]}'s post`;
                     var content = element["content"].replace(element["user"], `<b>${element["user"]}</b>`);
+                    var containerButton = !element["targetPost"] ? `<button tabindex="0" type="button" class="content" onClick="redirectToPage('user.php?username=${element["user"]}')" alt="${element["user"]} profile">` :
+                        `<button class="content" type="button" data-toggle="modal" data-target="#postModal" data-postid="${element["targetPost"]}" data-from="notifications" data-display="post" alt="open post pop-up page">`;
 
-                    this.items[i] = new AsideItem(NotificationsSection.itemClass, img, alt, [content, element["date"]], target, NotificationsSection.readButton);
                     var child = document.createElement("div");
-                    console.log(document.querySelector(this.container + " ." + NotificationsSection.class));
-                    console.log(this.container + " ." + NotificationsSection.class);
                     document.querySelector(this.container + " ." + NotificationsSection.class).appendChild(child);
-                    child.outerHTML = this.items[i].getHTMLItem();
-                    i++;
+                    child.outerHTML = `<div class="row ${NotificationsSection.itemClass}">
+                                        ${containerButton}
+                                            <img src="./uploads/${img}" alt="${alt}">
+                                            <span class="content-copy">
+                                                <p><b>${element["user"]}</b> ${content}</p>
+                                                <footer><p>${element["date"]}</p></footer>
+                                            </span>
+                                        </button>
+                                        ${NotificationsSection.readButton}
+                                        </div>`;
                 });
                 if (response.data.length <= n) {
                     child.innerHTML = NotificationsSection.LOAD_BTN_DISABLED;
@@ -83,7 +88,7 @@ class NotificationsSection extends AbstractSection {
                     this.lastNotification = response.data[n - 1]["id"];
                     child.innerHTML = NotificationsSection.LOAD_BTN;
                 }
-            }else{
+            } else {
                 child.innerHTML = NotificationsSection.LOAD_BTN_DISABLED;
             }
             document.querySelector("." + NotificationsSection.class).appendChild(child);
