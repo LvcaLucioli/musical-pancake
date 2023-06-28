@@ -1,4 +1,4 @@
-var container = new SwitchableContainer("aside", [new NotificationsSection(), new SearchSection()]);
+var container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
 container.sections[container.activeSection].show();
 
 scrollables = document.querySelectorAll('[class*="scrollable"]');
@@ -15,9 +15,9 @@ function redirectToPage(target) {
 
 function notificationsSectionClick(button) {
 
-    if (!document.querySelector(".row>main .search-section") && (!document.querySelector(".row>main .notifications-section"))) {
+    if (!document.querySelector(".row>main>.search-section") && (!document.querySelector(".row>main>.notifications-section"))) {
         // c'è index, lo salvo
-        container = new Container(".row>main", [new NotificationsSection(), new SearchSection()], document.querySelectorAll(".navbar-expand-md button"));
+        container = new Container(".row>main", [new NotificationsSection(), new SearchSection("users")], document.querySelectorAll(".navbar-expand-md button"));
 
         scrollables = document.querySelectorAll('[class*="scrollable"]');
         scrollPositions = [];
@@ -27,7 +27,7 @@ function notificationsSectionClick(button) {
 
         index = document.querySelector(".row>main").innerHTML;
     }
-    if (document.querySelector(".row>main .notifications-section")) {
+    if (document.querySelector(".row>main>.notifications-section")) {
         // notifiche, ripristino index
         container.switch(button);
         document.querySelector(".row>main").innerHTML = index;
@@ -45,9 +45,9 @@ function notificationsSectionClick(button) {
 
 function searchSectionClick(button) {
 
-    if (!document.querySelector(".row>main .search-section") && (!document.querySelector(".row>main .notifications-section"))) {
+    if (!document.querySelector(".row>main>.search-section") && (!document.querySelector(".row>main>.notifications-section"))) {
         // c'è index, lo salvo
-        container = new Container(".row>main", [new NotificationsSection(), new SearchSection()], document.querySelectorAll(".navbar-expand-md button"));
+        container = new Container(".row>main", [new NotificationsSection(), new SearchSection("users")], document.querySelectorAll(".navbar-expand-md button"));
 
         scrollables = document.querySelectorAll('[class*="scrollable"]');
         scrollPositions = [];
@@ -57,7 +57,7 @@ function searchSectionClick(button) {
 
         index = document.querySelector(".row>main").innerHTML;
     }
-    if (document.querySelector(".row>main .search-section")) {
+    if (document.querySelector(".row>main>.search-section")) {
         // search, ripristino index
         container.switch(button);
         document.querySelector(".row>main").innerHTML = index;
@@ -73,8 +73,14 @@ function searchSectionClick(button) {
     }
 }
 
+
 async function search(querySection) {
-    container.sections[1].search(querySection);
+    if(querySection.getAttribute('data-target') == "users"){
+        container.sections[container.activeSection].search(querySection);
+    }else{
+        followersFollowingContainer.sections[followersFollowingContainer.activeSection].search(querySection);
+    }
+    
 }
 
 function clickUserBtn(button) {
@@ -85,8 +91,12 @@ function markAsRead(button) {
     container.sections[0].markAsRead(button);
 }
 
-function loadMoreSection() {
-    container.sections[container.activeSection].loadMore();
+function loadMoreSection(button) {
+    if(button.getAttribute('data-target') == 'users'){
+        container.sections[container.activeSection].loadMore();
+    }else{
+        followersFollowingContainer.sections[followersFollowingContainer.activeSection].loadMore();
+    }
 }
 
 $(document).ready(function () {
@@ -94,16 +104,16 @@ $(document).ready(function () {
         var windowWidth = $(window).width();
 
         if (windowWidth > 992) {
-            container = new SwitchableContainer("aside", [new NotificationsSection(), new SearchSection()]);
+            container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
         }
-        if ((windowWidth > 992) && ((document.querySelector(".row>main .notifications-section")) || (document.querySelector(".row>main .search-section")))) {
+        if ((windowWidth > 992) && ((document.querySelector(".row>main>.notifications-section")) || (document.querySelector(".row>main>.search-section")))) {
             document.querySelector(".row>main").innerHTML = index;
             var i = 0;
             document.querySelectorAll('[class*="scrollable"]').forEach(element => {
                 element.scrollTo(0, scrollPositions[i]);
                 i++;
             });
-            container = new SwitchableContainer("aside", [new SearchSection(), new NotificationsSection()]);
+            container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
             container.sections[container.activeSection].show();
         }
     }

@@ -935,7 +935,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     flex-direction: column;
 }
 
-.scrollable_user header {
+.scrollable_user>header {
     height: calc(22vh + 13vw);
     display: table-footer-group;
 }
@@ -1399,7 +1399,7 @@ button.read_btn:focus {
     height: 80vh;
 }
 
-.search-section header {
+.search-section>header {
     top: 0;
     position: sticky;
     z-index: 100;
@@ -1614,7 +1614,7 @@ input[type="search"]::-webkit-search-cancel-button {
         height: 90%;
     }
 
-    .scrollable_user header {
+    .scrollable_user>header {
         height: calc(21vw);
         margin-top: 1.5vmin;
     }
@@ -2055,7 +2055,7 @@ input[type="search"]::-webkit-search-cancel-button {
         width: 3.5vmin;
     }
 
-    .scrollable_user header {
+    .scrollable_user>header {
         height: 25vh;
         margin-top: 1.5vh;
     }
@@ -2199,7 +2199,7 @@ input[type="search"]::-webkit-search-cancel-button {
         display: none;
     }
 
-    .row>main .search-section {
+    .row>main>.search-section {
         display: none;
     }
 

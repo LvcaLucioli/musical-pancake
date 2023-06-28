@@ -3,7 +3,7 @@ class SwitchableContainer extends Container {
     substring = "-";
     activeSection = SwitchableContainer.DEFAULT_SECTION;
     constructor(container, sections) {
-        super(container + ">main", sections, document.querySelectorAll(container + ">nav button"));
+        super(container, sections, document.querySelector(container).parentElement.querySelectorAll("nav button"));
     }
 
     switch(triggerButton) {

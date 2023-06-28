@@ -69,7 +69,7 @@ class NotificationsSection extends AbstractSection {
                         `<button class="content" type="button" data-toggle="modal" data-target="#postModal" data-postid="${element["targetPost"]}" data-from="notifications" data-display="post" alt="open post pop-up page">`;
 
                     var child = document.createElement("div");
-                    document.querySelector(this.container + " ." + NotificationsSection.class).appendChild(child);
+                    document.querySelector(" ." + NotificationsSection.class).appendChild(child);
                     child.outerHTML = `<div class="row ${NotificationsSection.itemClass}">
                                         ${containerButton}
                                             <img src="./uploads/${img}" alt="${alt}">
@@ -82,14 +82,14 @@ class NotificationsSection extends AbstractSection {
                                         </div>`;
                 });
                 if (response.data.length <= n) {
-                    child.innerHTML = NotificationsSection.LOAD_BTN_DISABLED;
+                    child.innerHTML = this.LOAD_BTN_DISABLED;
                     this.lastNotification = response.data[response.data.length - 1]["id"];
                 } else {
                     this.lastNotification = response.data[n - 1]["id"];
-                    child.innerHTML = NotificationsSection.LOAD_BTN;
+                    child.innerHTML = this.LOAD_BTN;
                 }
             } else {
-                child.innerHTML = NotificationsSection.LOAD_BTN_DISABLED;
+                child.innerHTML = this.LOAD_BTN_DISABLED;
             }
             document.querySelector("." + NotificationsSection.class).appendChild(child);
         });

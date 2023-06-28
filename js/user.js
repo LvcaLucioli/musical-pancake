@@ -35,6 +35,10 @@ function slideDownDrawer(){
 
 function switchSection(target){
     base.switchSection(target);
+    followersFollowingContainer.activeSection = Math.abs(followersFollowingContainer.activeSection - 1);
+    followersFollowingContainer.sections[followersFollowingContainer.activeSection].target = target;
+    followersFollowingContainer.sections[followersFollowingContainer.activeSection].show();
+    followersFollowingContainer.sections[followersFollowingContainer.activeSection].search(document.querySelector(followersFollowingContainer.container + " input"));
 }
 
 function clickUserBtn(){
@@ -107,3 +111,9 @@ scrollableUser.addEventListener('scroll', function() {
         init = false;
     }
 });
+
+var followersFollowingContainer = new Container(".scrollable_user #userlist_section", [new SearchSection("followers"), new SearchSection("following")], document.querySelectorAll("scrollable_user nav button"));
+followersFollowingContainer.sections[followersFollowingContainer.activeSection].show();
+followersFollowingContainer.sections[followersFollowingContainer.activeSection].search(document.querySelector(followersFollowingContainer.container + " input"));
+
+// followersFollowingContainer.sections[followersFollowingContainer.activeSection].show();

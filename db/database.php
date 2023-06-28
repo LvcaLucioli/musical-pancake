@@ -333,6 +333,35 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getFollowers($username, $searchQuery)
+    {
+        // error_log($searchQuery);
+        $query = "SELECT u.username, u.propic 
+            FROM followers, users u
+            WHERE followed = ? AND follower <> ? AND follower = u.username AND follower LIKE CONCAT('%', ?, '%')";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sss', $username, $username, $searchQuery);
+
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getFollowings($username, $searchQuery)
+    {
+        $query = "SELECT u.username, u.propic 
+            FROM followers, users u
+            WHERE follower = ? AND followed <> ? AND followed = u.username AND followed LIKE CONCAT('%', ?, '%')";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sss', $username, $username, $searchQuery);
+
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getSearchUser($username)
     {
         $query = "SELECT u.username, u.propic FROM users u WHERE u.username = ?";

@@ -8,10 +8,15 @@ class SearchSection extends AbstractSection {
     // isLoading = false;
     abortController = new AbortController();
 
-    // constructor(container){
-    //     super();
-    //     this.container = container;
-    // }
+    constructor(target){
+        super();
+        this.target = target;
+        this.LOAD_BTN = ` 
+    <button data-target="${this.target}" onclick="loadMoreSection(this);">
+        view more
+        <img src="./resources/load_white.png" alt="load more item">
+    </button>`;
+    }
 
     static USER_BTN = {
         "following": `
@@ -33,11 +38,7 @@ class SearchSection extends AbstractSection {
                                     </button>`
     };
 
-    static LOAD_BTN = ` 
-    <button onclick="loadMoreSection();">
-        view more
-        <img src="./resources/load_white.png" alt="load more item">
-    </button>`;
+    
 
     loadMore() {
         // if (!isLoading) {
@@ -85,9 +86,9 @@ class SearchSection extends AbstractSection {
         var child = document.createElement("footer");
         document.querySelector(SearchSection.class).appendChild(child);
         if (this.searchResults.length == 0) {
-            child.innerHTML = SearchSection.LOAD_BTN_DISABLED;
+            child.innerHTML = this.LOAD_BTN_DISABLED;
         } else {
-            child.innerHTML = SearchSection.LOAD_BTN;
+            child.innerHTML = this.LOAD_BTN;
         }
 
         //     isLoading = false;
@@ -96,7 +97,7 @@ class SearchSection extends AbstractSection {
 
     clickUserBtn(userBtn) {
         const formData = new FormData();
-        formData.append('username', userBtn.parentNode.querySelector("p").textContent);
+        formData.append('username', userBtn.parentNode.querySelector("button span").textContent);
         if (userBtn.textContent.includes("settings")) {
             window.location.href = "./settings.php";
         } else if (userBtn.textContent.includes("following")) {
@@ -125,10 +126,11 @@ class SearchSection extends AbstractSection {
         });
 
         // reset if nothing is found
-        if (searchQuery == "") return;
+        if ((searchQuery == "") && (this.target == "users")) return;
 
         const formData = new FormData();
         formData.append('q', searchQuery);
+        formData.append('target', this.target);
         try {
             const response = await axios.post('api/api-search.php', formData, { signal: this.abortController.signal });
             if (response.data.length > 0) {
@@ -156,7 +158,7 @@ class SearchSection extends AbstractSection {
         document.querySelector(this.container).innerHTML = `<section class="search-section">
          <header>
              <div>
-                 <input type="search" placeholder="search" aria-label="search" oninput="search(this); ">
+                 <input type="search" placeholder="search" aria-label="search" data-target="${this.target}" onload="search(this)" oninput="search(this); ">
              </div>
          </header></section>`;
     }
