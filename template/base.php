@@ -11,7 +11,6 @@
     <script src="js/class/Container.js"></script>
     <script src="js/class/SwitchableContainer.js"></script>
     <script src="js/class/AbstractSection.js"></script>
-    <script src="js/class/AsideItem.js"></script>
     <script src="js/class/NotificationsSection.js"></script>
     <script src="js/class/NotImplementedError.js"></script>
     <script src="js/class/SearchSection.js"></script>
@@ -21,7 +20,7 @@
 <body>
     <header aria-label="primary-menu">
         <nav class="navbar-expand-md" aria-label="explore-nav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav left">
                 <li class="nav-item">
                     <div <?php if (isActive("index.php")) {
                                 echo 'class="active"';
@@ -54,13 +53,17 @@
                         </a>
                     </div>
                 </li>
-                <li class="nav-item d-none d-sm-block d-md-none bevero">
+            </ul>
+            <ul class="navbar-nav center-bevero d-sm-block d-md-none">
+                <li class="nav-item bevero">
                     <div>
                         <a title="home page" class="nav-link " href="index.php">
                             <img src="./resources/header.png" alt="home page">
                         </a>
                     </div>
                 </li>
+            </ul>
+            <ul class="navbar-nav right">
                 <li class="nav-item d-lg-none">
                     <div>
                         <button title="notifications" class="nav-link" onClick="notificationsSectionClick(this)">
@@ -77,7 +80,11 @@
                         </button>
                     </div>
                 </li>
-                <li class="nav-item d-none d-sm-none d-md-block bevero">
+
+            </ul>
+
+            <ul class="navbar-nav d-none d-md-block d-lg-block d-xl-block right-bevero">
+                <li class="nav-item bevero">
                     <div>
                         <a title="home page" class="nav-link " href="index.php">
                             <img src="./resources/header.png" alt="home page">

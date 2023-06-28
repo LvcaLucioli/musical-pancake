@@ -87,6 +87,17 @@ class DatabaseHelper
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getLikeList($postId, $searchQuery)
+    {
+        $query = "SELECT u.username FROM likes, users u WHERE post = ? AND u.username = user AND u.username LIKE CONCAT('%', ?, '%') ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('is', $postId, $searchQuery);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
     public function getLikes($postId)
     {
         $query = "SELECT user FROM likes WHERE post = ?";

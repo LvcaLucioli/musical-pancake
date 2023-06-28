@@ -5,10 +5,13 @@ switch($_POST["target"]){
         $searchResult = $dbh->getSearchResult($_POST["q"]);
         break;
     case "followers":
-        $searchResult = $dbh->getFollowers($_SESSION["username"], $_POST["q"]);
+        $searchResult = $dbh->getFollowers($_POST["username"], $_POST["q"]);
         break;
     case "following":
-        $searchResult = $dbh->getFollowings($_SESSION["username"], $_POST["q"]);
+        $searchResult = $dbh->getFollowings($_POST["username"], $_POST["q"]);
+        break;
+    case "likes":
+        $searchResult = $dbh->getLikeList($_POST["postId"], $_POST["q"]);
         break;
 }
 

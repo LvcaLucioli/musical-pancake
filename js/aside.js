@@ -77,7 +77,7 @@ function searchSectionClick(button) {
 async function search(querySection) {
     if(querySection.getAttribute('data-target') == "users"){
         container.sections[container.activeSection].search(querySection);
-    }else{
+    }else if(querySection.getAttribute('data-target') != "likes"){
         followersFollowingContainer.sections[followersFollowingContainer.activeSection].search(querySection);
     }
     

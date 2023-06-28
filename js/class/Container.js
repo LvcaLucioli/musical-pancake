@@ -3,7 +3,7 @@ class Container {
   substring = "-nav-";
 
   constructor(container, sections, buttons) {
-    this.buttons = Array.from(buttons);
+    if (buttons) this.buttons = Array.from(buttons);
     this.container = container;
     this.sections = sections;
     this.sections.forEach(section => {
@@ -21,14 +21,12 @@ class Container {
   switch(triggerButton) {
     
     this.activeSection = this.buttons.indexOf(triggerButton);
-    // console.log(triggerButton.classList);
     if (triggerButton.classList.contains("active" + this.substring + "button")) {
       this.removeIconActive(triggerButton);
       
     } else {
 
       this.buttons.forEach(button => {
-        // console.log(button);
         
         this.removeIconActive(button);
       });

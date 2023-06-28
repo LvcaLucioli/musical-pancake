@@ -1,8 +1,8 @@
-class ModalPostHelper{
+class ModalPostHelper {
     static N_ITEMS = 3;
-    static STATES = { 
-        0 : "comments",
-        1 : "likes"
+    static STATES = {
+        0: "comments",
+        1: "likes"
     };
     static LOAD_BTN = `
         <footer>
@@ -25,7 +25,7 @@ class ModalPostHelper{
         <button onClick="modalLikeClick(true)" aria-pressed="true" alt="liked post, click to unlike">
             <img src="resources/like_button_white_true.png" alt="liked post">
         </button>`;
-    
+
 
     constructor(postID, modal, from, display) {
         this.isLoading = false;
@@ -36,15 +36,15 @@ class ModalPostHelper{
         this.isLiked = false;
         this.user = undefined;
         this.prevSwitchable = {
-            "comments" : {
-                "body" : ``,
-                "scroll" : 0,
-                "last_id" : -1
+            "comments": {
+                "body": ``,
+                "scroll": 0,
+                "last_id": -1
             },
-            "likes" : {
-                "body" : ``,
-                "scroll" : 0,
-                "last_id" : -1
+            "likes": {
+                "body": ``,
+                "scroll": 0,
+                "last_id": -1
             }
         };
         this.modal = modal;
@@ -128,21 +128,21 @@ class ModalPostHelper{
                         break;
                 }
 
-                if(elements[elements.length-1]){
+                if (elements[elements.length - 1]) {
                     append += ModalPostHelper.LOAD_DISABLED_BTN;
                 } else {
                     append += ModalPostHelper.LOAD_BTN;
                 }
-            
+
                 document.querySelector(`#switchable`).removeChild(document.querySelector(`#switchable > footer`));
                 document.querySelector(`#switchable`).innerHTML += append;
-                this.prevSwitchable[this.state]["last_id"] = elements[elements.length-2]["id"];
+                this.prevSwitchable[this.state]["last_id"] = elements[elements.length - 2]["id"];
                 this.isLoading = false;
-               
+
                 switch (this.display) {
                     case "comments":
-                        setTimeout(function() {
-                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                        setTimeout(function () {
+                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({
                                 behavior: "smooth",
                                 block: "start",
                                 inline: "nearest",
@@ -155,8 +155,8 @@ class ModalPostHelper{
                     case "likes":
                         let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
                         this.switchSection(btn);
-                        setTimeout(function() {
-                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({ 
+                        setTimeout(function () {
+                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({
                                 behavior: "smooth",
                                 block: "start",
                                 inline: "nearest",
@@ -189,11 +189,11 @@ class ModalPostHelper{
                 let comments = this._generateCommentReplies(elements);
 
                 document.querySelector(`#comment-${commentID} .comment-reply`).removeChild(document.querySelector(`#comment-${commentID} .comment-reply footer`));;
-                if(!elements[elements.length-1]){
+                if (!elements[elements.length - 1]) {
                     comments += `
                     <footer class="col-5 offset-2">
                         <div class="col-6">
-                            <button onclick="loadReplies(this)" data-cmtid="${commentID}" data-lstid="${elements[elements.length-2]["id"]}"><span></span>view replies</button>
+                            <button onclick="loadReplies(this)" data-cmtid="${commentID}" data-lstid="${elements[elements.length - 2]["id"]}"><span></span>view replies</button>
                         </div>
                     </footer>`;
                 }
@@ -238,9 +238,16 @@ class ModalPostHelper{
                 } else {
                     body.find(".comments-input").removeClass("d-none")
                 }
-                
+
                 this.state = target;
             }
+        }
+        if (this.state == "likes") {
+            this.searchContainer = new Container(`.likes-section`, [new SearchSection("likes", this.postID)], this.modal[0].querySelector('[title="likes area"]'));
+
+            this.searchContainer.sections[this.searchContainer.activeSection].show();
+            this.searchContainer.sections[this.searchContainer.activeSection].search(this.modal[0].querySelector("input"));
+
         }
     }
 
@@ -249,11 +256,11 @@ class ModalPostHelper{
         btn.setAttribute("data-target", "comments");
         this.switchSection(btn);
         document.querySelector(`#switchable`).innerHTML = "<footer><button></button></footer>";
-            
+
         this.modal.find('.comments-input').addClass('comments-base');
         this.modal.find('.comments-input').removeClass('comments-reply');
         this.modal.find('.comments-input .reply-wrapper').addClass("d-none");
-    
+
         this.modal.find("#comment_textarea").val("");
     }
 
@@ -266,12 +273,12 @@ class ModalPostHelper{
             } else {
                 formData.append('action', 'add');
             }
-            axios.post('api/api-like.php', formData).then(response => {});
+            axios.post('api/api-like.php', formData).then(response => { });
         }
         this.isLiked = !this.isLiked;
         this.modal.find("#like_click_btn").html(this.isLiked
-                ? ModalPostHelper.LIKED_BTN
-                : ModalPostHelper.LIKE_BTN);
+            ? ModalPostHelper.LIKED_BTN
+            : ModalPostHelper.LIKE_BTN);
 
         let nLikes = this.modal.find('nav[aria-label="comments/likes-menu"] #likes_button .num');
         if (this.isLiked) {
@@ -280,7 +287,7 @@ class ModalPostHelper{
             nLikes.text(parseInt(nLikes.text()) - 1);
         }
     }
-    
+
     getPostId() {
         return this.postID;
     }
@@ -317,18 +324,18 @@ class ModalPostHelper{
                     if (this.getNComments() != 0) {
                         document.querySelector(`#switchable`).innerHTML =
                             this._generateComments(response.data)
-                            +  document.querySelector(`#switchable`).innerHTML;
+                            + document.querySelector(`#switchable`).innerHTML;
                     } else {
                         document.querySelector(`#switchable`).innerHTML =
                             this._generateComments(response.data);
                     }
                 } else {
                     document.querySelector(`#comment-${this.reply[1]} .comment-reply`).innerHTML =
-                            this._generateCommentReplies(response.data)
-                            +  document.querySelector(`#comment-${this.reply[1]} .comment-reply`).innerHTML;
+                        this._generateCommentReplies(response.data)
+                        + document.querySelector(`#comment-${this.reply[1]} .comment-reply`).innerHTML;
                     this.clearReply();
                 }
-                
+
                 let targetElement = document.querySelector(`#comment-${response.data[0]["id"]}`);
                 document.querySelector(`.modal`).scrollTo({
                     top: targetElement.offsetTop - 50,
@@ -337,10 +344,10 @@ class ModalPostHelper{
 
                 targetElement.setAttribute("aria-label", "your new comment");
                 targetElement.style.backgroundColor = "rgb(193, 214, 225)";
-                setTimeout(function() {
+                setTimeout(function () {
                     targetElement.style.backgroundColor = "rgb(230, 230, 231)";
                 }, 1500);
-                
+
                 let nComment = this.modal.find('nav[aria-label="comments/likes-menu"] #comments_button .num');
                 nComment.text(parseInt(nComment.text()) + 1);
             });
@@ -356,13 +363,13 @@ class ModalPostHelper{
             this.modal.find('.comments-input .reply-wrapper').removeClass("d-none");
         }
         this.modal.find('.comments-input .reply-wrapper a').html("reply to @" + user);
-            this.modal.find('.comments-input .reply-wrapper a').attr("href", `#comment-${commentId}`); 
-        
+        this.modal.find('.comments-input .reply-wrapper a').attr("href", `#comment-${commentId}`);
+
         this.reply[1] = commentId;
         this.modal.find("#comment_textarea").focus();
         let targetElement = document.querySelector(`#comment-${commentId}`);
         targetElement.style.backgroundColor = "rgb(193, 214, 225)";
-        setTimeout(function() {
+        setTimeout(function () {
             targetElement.style.backgroundColor = "rgb(230, 230, 231)";
         }, 1500);
     }
@@ -390,7 +397,7 @@ class ModalPostHelper{
             this.modal.find('nav[aria-label="comments/likes-menu"] #comments_button .num')
                 .text(response.data);
         });
-        
+
         document.querySelector(`#comment-${id}`).remove();
     }
 
@@ -401,10 +408,10 @@ class ModalPostHelper{
         axios.post('api/api-delete-post.php', formData);
         this.modal.modal("hide");
     }
-    
+
     _generateComments(comments) {
         let result = '';
-        
+
         for (let i = 0; i < comments.length - 1; i++) {
             let comment = `
             <article id="comment-${comments[i]["id"]}" aria-labe="comment by ${comments[i]["user"]}">
@@ -412,7 +419,7 @@ class ModalPostHelper{
                     <div class="col-2 propic">`;
 
             if (comments[i]["owned"]) {
-                comment +=  `
+                comment += `
                         <button aria-label="click to delete your comment" onclick="deleteComment(this)" data-id="${comments[i]["id"]}">
                         <img src="./resources/bin-btn.png" alt="click to delete your comment">
                         </button>`;
@@ -420,7 +427,7 @@ class ModalPostHelper{
                 comment += `
                         <img src="${comments[i]["propic"]}" alt="profile picture of comment's user">`;
             }
-                        
+
 
             comment += `  
                     </div>
@@ -460,7 +467,7 @@ class ModalPostHelper{
                         </div>
                     </footer>`;
 
-            
+
             result += comment + `
                 </section>
             </article>`;
@@ -471,7 +478,7 @@ class ModalPostHelper{
 
     _generateCommentReplies(comments) {
         let result = '';
-        
+
         for (let i = 0; i < comments.length - 1; i++) {
             let comment = `
             <article id="comment-${comments[i]["id"]}" class="col-11" aria-labe="comment by ${comments[i]["user"]}">
@@ -479,7 +486,7 @@ class ModalPostHelper{
                     <div class="col-2 propic">`;
 
             if (comments[i]["owned"]) {
-                comment +=  `
+                comment += `
                         <button aria-label="click to delete your comment" onclick="deleteComment(this)" data-id="${comments[i]["id"]}">
                             <img src="./resources/bin-btn.png" alt="click to delete your comment">
                         </button>`;
@@ -487,7 +494,7 @@ class ModalPostHelper{
                 comment += `
                         <img src="${comments[i]["propic"]}" alt="profile picture of comment's user">`;
             }
-                            
+
             comment += `  
                     </div>
 
@@ -511,7 +518,6 @@ class ModalPostHelper{
 
             result += comment;
         }
-
         return result;
     }
 }

@@ -8,8 +8,11 @@ class SearchSection extends AbstractSection {
     // isLoading = false;
     abortController = new AbortController();
 
-    constructor(target){
+    constructor(target, postId, username) {
         super();
+        if (postId) this.postId = postId;
+        if (username) this.username = username;
+
         this.target = target;
         this.LOAD_BTN = ` 
     <button data-target="${this.target}" onclick="loadMoreSection(this);">
@@ -71,7 +74,7 @@ class SearchSection extends AbstractSection {
         // add items to searchlist
         this.searchResults.slice(0, SearchSection.N_SEARCH_RESULT).forEach(element => {
             var child = document.createElement("div");
-            document.querySelector(SearchSection.class).appendChild(child);
+            document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
             child.outerHTML = element;
         });
 
@@ -79,12 +82,12 @@ class SearchSection extends AbstractSection {
 
         // this.lastSearchResult = this.searchResults.slice(0, SearchSection.N_SEARCH_RESULT).length - 1;
 
-        if (document.querySelector(SearchSection.class + ' footer')) {
-            document.querySelector(SearchSection.class + ' footer').outerHTML = "";
+        if (document.querySelector(this.container + " " + SearchSection.class + ' footer')) {
+            document.querySelector(this.container + " " + SearchSection.class + ' footer').outerHTML = "";
         }
 
         var child = document.createElement("footer");
-        document.querySelector(SearchSection.class).appendChild(child);
+        document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
         if (this.searchResults.length == 0) {
             child.innerHTML = this.LOAD_BTN_DISABLED;
         } else {
@@ -120,7 +123,7 @@ class SearchSection extends AbstractSection {
         this.abortController.abort();
         this.abortController = new AbortController();
         // reset search area
-        const searchSection = document.querySelector(SearchSection.class);
+        const searchSection = document.querySelector(this.container + " " + SearchSection.class);
         searchSection.querySelectorAll("." + SearchSection.itemClass).forEach(function (row) {
             row.remove();
         });
@@ -131,6 +134,9 @@ class SearchSection extends AbstractSection {
         const formData = new FormData();
         formData.append('q', searchQuery);
         formData.append('target', this.target);
+        if (this.postId) formData.append('postId', this.postId);
+        if (this.username) formData.append('username', this.username); 
+
         try {
             const response = await axios.post('api/api-search.php', formData, { signal: this.abortController.signal });
             if (response.data.length > 0) {
@@ -143,24 +149,41 @@ class SearchSection extends AbstractSection {
                     
                     this.searchResults.push(`<div class="row ${SearchSection.itemClass}">
                                                 <button tabindex="0" type="button" class="content" onClick="redirectToPage('user.php?username=${element["username"]}')">
-                                                        <img src="./uploads/${element["propic"]}" alt="${element["username"]} propic">
+                                                        <img src="./uploads/${userResponse.data["propic"]}" alt="${element["username"]} propic">
                                                         <span class="content-copy">${element["username"]}</span>
                                                 </button>
                                                 ${button}
                                             </div>`);
                 }
             }
-        } catch (error) {}
+        } catch (error) { }
     }
 
 
     show() {
-        document.querySelector(this.container).innerHTML = `<section class="search-section">
-         <header>
-             <div>
-                 <input type="search" placeholder="search" aria-label="search" data-target="${this.target}" onload="search(this)" oninput="search(this); ">
-             </div>
-         </header></section>`;
+        var section = ``;
+        switch (this.target) {
+            case "likes":
+                section = ` <section class="search-section">
+                                <header>
+                                    <div>
+                                        <input type="search" placeholder="search" aria-label="search" data-target="${this.target}" onload="search(this)" oninput="modalHelper.searchContainer.sections[modalHelper.searchContainer.activeSection].search(this); ">
+                                    </div>
+                                </header>
+                            </section>`;
+                break;
+            case "users":
+            case "followers":
+            case "following":
+                section = `<section class="search-section">
+                <header>
+                    <div>
+                        <input type="search" placeholder="search" aria-label="search" data-target="${this.target}" onload="search(this)" oninput="search(this); ">
+                    </div>
+                </header></section>`;
+                break;
+        }
+        document.querySelector(this.container).innerHTML = section;
     }
 
     async search(querySection) {

@@ -42,7 +42,7 @@
                                 </button>
                             </li>
                             <li id='likes_button'>
-                                <button title="likes area" aria-pressed="false" data-target="likes" onclick="switchPostSection(this)">
+                                <button title="likes area" aria-pressed="false" data-target="likes" data-id="" onclick="switchPostSection(this)">
                                 <span class="num"></span> likes
                                 </button>
                             </li>
