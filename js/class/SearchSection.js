@@ -25,19 +25,19 @@ class SearchSection extends AbstractSection {
         "following": `
                                         <button class="user_btn following_btn" onCLick="clickUserBtn(this)">
                                             following
-                                        <img src="./resources/following.png">
+                                        <img src="./resources/following.png" alt="following">
                                     </button>`,
 
         "follow": `
                                         <button class="user_btn follow_btn" onCLick="clickUserBtn(this)">
                                         follow
-                                        <img src="./resources/follow.png">
+                                        <img src="./resources/follow.png" alt="follow">
                                     </button>`,
 
         "settings": `
                                     <button class="user_btn settings_btn" onCLick="clickUserBtn(this)">
                                             settings
-                                            <img src="./resources/settings.png">
+                                            <img src="./resources/settings.png" alt="settings">
                                     </button>`
     };
 

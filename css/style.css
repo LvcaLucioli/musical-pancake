@@ -117,9 +117,14 @@ header[aria-label="primary-menu"]>div {
     display: flex;
     align-items: center;
 }
+*/
+.logout {
+    margin-top: -3px;
+    width: 33px !important;
+    height: auto !important;
+}
 
-
-
+/*
 header[aria-label="primary-menu"]>div>img {
     height: 24px;
     margin-right: 0;
@@ -140,35 +145,41 @@ header[aria-label="primary-menu"] nav ul {
     flex-direction: row;
 }
 
-header[aria-label="primary-menu"] nav ul li {
-    padding: 0 20px 0 10px;
-}
+/* header[aria-label="primary-menu"] nav ul li {
+    padding: 0 10px 0 15px;
+    margin-left: auto;
+    margin-right: auto;
+} */
 
 header[aria-label="primary-menu"] nav ul li span {
-    padding-top: 1vh;
+    padding-left: 1vh;
 }
 
 header[aria-label="primary-menu"] nav ul li button {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
 header[aria-label="primary-menu"] nav ul li a {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
-.bevero{
+/* .bevero{
     display: flex;
     align-items: center;
-}
+} */
 
 header[aria-label="primary-menu"] nav .left {
     margin-right: auto;
     display: flex;
     padding-top: 10px;
+}
+
+header[aria-label="primary-menu"] nav .left li{
+    padding-left: 15px;
 }
 
 header[aria-label="primary-menu"] nav .center-bevero {
@@ -180,14 +191,23 @@ header[aria-label="primary-menu"] nav .right {
     padding-top: 10px;
 }
 
-
+header[aria-label="primary-menu"] nav .right li{
+    padding-right: 15px;
+}
 header[aria-label="primary-menu"] img {
     width: 40px;
-
+    height: 40px;
 }
 
 header[aria-label="primary-menu"] button {
     background-color: transparent;
+}
+
+header[aria-label="primary-menu"] nav .bevero{
+    font-family: 'Ubuntu';
+    font-size: 40px;
+    font-weight: bold;
+    padding-right: 0;
 }
 
 .col-lg-6.scrollable_div {
@@ -204,10 +224,10 @@ header[aria-label="primary-menu"] button {
     height: auto !important;
 }
 
-.bevero {
+/* .bevero {
     width: 150px !important;
     height: 100%;
-}
+} */
 
 .bevero img {
     width: 100% !important;
@@ -1410,7 +1430,7 @@ button.read_btn:focus {
 } */
 
 .row>main>section {
-    margin-top: 3vh;
+    /* margin-top: 3vh; */
     margin-left: 5px;
     margin-right: 5px;
     width: 100%;
@@ -1630,9 +1650,14 @@ input[type="search"]::-webkit-search-cancel-button {
     header[aria-label="primary-menu"] nav .right-bevero {
         margin-left: auto;
     }
+    
+    header[aria-label="primary-menu"] nav li{
+        padding-left: 15px;
+        padding-right: 0 !important;
+    }
 
     .logout_lg img {
-        height: 40px !important;
+        height: 30px !important;
         width: auto !important;
     }
 
@@ -1874,6 +1899,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .search-section {
         height: 90vh;
+        overflow-y: scroll;
     }
 
     .search-section header div input {
@@ -1931,7 +1957,7 @@ input[type="search"]::-webkit-search-cancel-button {
     } */
 
     .logout_lg img {
-        height: 40px !important;
+        height: 30px !important;
         width: auto !important;
     }
 

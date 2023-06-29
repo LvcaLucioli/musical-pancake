@@ -6,7 +6,8 @@
     <title><?php echo $templateParams["title"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/class/Container.js"></script>
     <script src="js/class/SwitchableContainer.js"></script>
@@ -47,7 +48,7 @@
                 </li>
                 <li class="nav-item d-none d-md-inline">
                     <div>
-                        <a title="logout" class="nav-link logout_lg" href="logout.php">
+                        <a title="logout" class="nav-link" href="logout.php">
                             <img src="./resources/logout.png" alt="logout">
                             <span class="label d-none d-md-inline">logout</span>
                         </a>
@@ -58,7 +59,7 @@
                 <li class="nav-item bevero">
                     <div>
                         <a title="home page" class="nav-link " href="index.php">
-                            <img src="./resources/header.png" alt="home page">
+                            bevero
                         </a>
                     </div>
                 </li>
@@ -87,7 +88,7 @@
                 <li class="nav-item bevero">
                     <div>
                         <a title="home page" class="nav-link " href="index.php">
-                            <img src="./resources/header.png" alt="home page">
+                            bevero
                         </a>
                     </div>
                 </li>
