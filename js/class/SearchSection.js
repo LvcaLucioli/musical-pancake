@@ -5,7 +5,7 @@ class SearchSection extends AbstractSection {
     static N_SEARCH_RESULT = 4;
     searchResults = [];
     // lastSearchResult = -1;
-    // isLoading = false;
+    isLoading = false;
     abortController = new AbortController();
 
     constructor(target, postId, username) {
@@ -41,61 +41,45 @@ class SearchSection extends AbstractSection {
                                     </button>`
     };
 
-    
-
     loadMore() {
-        // if (!isLoading) {
-        //     isLoading = true;
+        if (!this.isLoading) {
+            this.isLoading = true;
+            if (!document.querySelector(this.container + " " + SearchSection.class + ' footer')) {
+                var child = document.createElement("footer");
+                document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
+            }
+            document.querySelector(this.container + " " + SearchSection.class + ' footer')
+                .innerHTML = `
+                            <button onclick="loadMore();">
+                                loading...
+                                <div class="spinner-border text-light" role="status">
+                                    <span class="sr-only">loading...</span>
+                                </div>
+                            </button>`;
 
-        // if(document.querySelector(SearchSection.class + ' footer button')){
-        //     console.log("loading footer");
-        //     document.querySelector(SearchSection.class + ' footer button').innerHTML = `
-        //     loading...
-        //     <div class="spinner-border text-light" role="status">
-        //       <span class="sr-only">loading...</span>
-        //     </div>`;
+            // add items to searchlist
+            this.searchResults.slice(0, SearchSection.N_SEARCH_RESULT).forEach(element => {
+                var child = document.createElement("div");
+                document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
+                child.outerHTML = element;
+            });
 
-        //     console.log(document.querySelector(SearchSection.class + ' footer'));
-        // }else{
-        //     var child = document.createElement("footer");
-        //     document.querySelector(SearchSection.class).appendChild(child);
-        //     child.innerHTML = `
-        //     loading...
-        //     <div class="spinner-border text-light" role="status">
-        //       <span class="sr-only">loading...</span>
-        //     </div>`;
-        //     console.log(document.querySelector(SearchSection.class + ' footer'));
-        // }
+            this.searchResults = this.searchResults.slice(SearchSection.N_SEARCH_RESULT, this.searchResults.length);
 
-        // document.querySelector(SearchSection.class).innerHTML = "";
-        // this.show();
-        
+            if (document.querySelector(this.container + " " + SearchSection.class + ' footer')) {
+                document.querySelector(this.container + " " + SearchSection.class + ' footer').outerHTML = "";
+            }
 
-        // add items to searchlist
-        this.searchResults.slice(0, SearchSection.N_SEARCH_RESULT).forEach(element => {
-            var child = document.createElement("div");
+            var child = document.createElement("footer");
             document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
-            child.outerHTML = element;
-        });
+            if (this.searchResults.length == 0) {
+                child.innerHTML = this.LOAD_BTN_DISABLED;
+            } else {
+                child.innerHTML = this.LOAD_BTN;
+            }
 
-        this.searchResults = this.searchResults.slice(SearchSection.N_SEARCH_RESULT, this.searchResults.length);
-
-        // this.lastSearchResult = this.searchResults.slice(0, SearchSection.N_SEARCH_RESULT).length - 1;
-
-        if (document.querySelector(this.container + " " + SearchSection.class + ' footer')) {
-            document.querySelector(this.container + " " + SearchSection.class + ' footer').outerHTML = "";
+            this.isLoading = false;
         }
-
-        var child = document.createElement("footer");
-        document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
-        if (this.searchResults.length == 0) {
-            child.innerHTML = this.LOAD_BTN_DISABLED;
-        } else {
-            child.innerHTML = this.LOAD_BTN;
-        }
-
-        //     isLoading = false;
-        // }
     }
 
     clickUserBtn(userBtn) {
@@ -135,7 +119,7 @@ class SearchSection extends AbstractSection {
         formData.append('q', searchQuery);
         formData.append('target', this.target);
         if (this.postId) formData.append('postId', this.postId);
-        if (this.username) formData.append('username', this.username); 
+        if (this.username) formData.append('username', this.username);
 
         try {
             const response = await axios.post('api/api-search.php', formData, { signal: this.abortController.signal });

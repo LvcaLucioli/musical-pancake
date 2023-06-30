@@ -1400,6 +1400,10 @@ button.read_btn:focus {
     text-align: left;
 }
 
+.content-copy p{
+    margin-bottom: 0.5rem;
+}
+
 .search-section .row .content-copy p {
     font-size: 18px;
     word-break: break-all;
@@ -1452,6 +1456,7 @@ button.read_btn:focus {
     flex-wrap: initial;
     margin-bottom: 10px;
     justify-content: center;
+    align-items: center;
 }
 
 .row .notifications .content-copy {
@@ -1466,6 +1471,7 @@ button.read_btn:focus {
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
     margin-left: 15px;
+    height: fit-content;
 }
 
 .read_btn p {
