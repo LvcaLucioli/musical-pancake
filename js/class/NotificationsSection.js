@@ -8,27 +8,10 @@ class NotificationsSection extends AbstractSection {
     lastNotification = -1;
     isLoading = false;
 
-    // constructor(container){
-    //     super();
-    //     this.container = container;
-    // }
-
     loadMore(n = NotificationsSection.N_NOTIFICATIONS) {
         if (!this.isLoading) {
 
-            // // remove footer
-            // if (document.querySelector('.' + NotificationsSection.class + '>footer')) {
-            //     console.log(document.querySelector('.' + NotificationsSection.class + '>footer'));
-            //     document.querySelector('.' + NotificationsSection.class + '>footer').outerHTML = "";
-            // }
             this.isLoading = true;
-
-            // document.querySelector('.' + NotificationsSection.class + '>footer button')
-            //     .innerHTML = `
-            //     loading...
-            //     <div class="spinner-border text-light" role="status">
-            //       <span class="sr-only">loading...</span>
-            //     </div>`;
 
             this.retrieve(n);
 
@@ -36,14 +19,6 @@ class NotificationsSection extends AbstractSection {
                 document.querySelector('.' + NotificationsSection.class + '>footer').outerHTML = "";
             }
 
-            // var child = document.createElement("footer");
-            // document.querySelector('.' + NotificationsSection.class).appendChild(child);
-            // if (this.searchResults.length == 0) {
-            //     child.innerHTML = NotificationsSection.LOAD_BTN_DISABLED;
-            // } else {
-            //     console.log(this.searchResults);
-            //     child.innerHTML = NotificationsSection.LOAD_BTN;
-            // }
             this.isLoading = false;
         }
     }
@@ -54,10 +29,8 @@ class NotificationsSection extends AbstractSection {
         const formData = new FormData();
         formData.append('n', n);
         formData.append('last_notifications', this.lastNotification);
-
         axios.post('api/api-notification.php', formData).then(response => {
             var child = document.createElement("footer");
-
 
             if (response.data.length > 0) {
                 response.data.slice(0, n).forEach(element => {

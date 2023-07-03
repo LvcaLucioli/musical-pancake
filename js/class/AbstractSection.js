@@ -1,7 +1,7 @@
 class AbstractSection {
 
     LOAD_BTN = ` 
-    <button onclick="loadMoreSection(this);">
+    <button data-target="users" onclick="loadMoreSection(this);">
         view more
         <img src="./resources/load_white.png" alt="load more item">
     </button>`;

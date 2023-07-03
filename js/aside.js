@@ -75,12 +75,12 @@ function searchSectionClick(button) {
 
 
 async function search(querySection) {
-    if(querySection.getAttribute('data-target') == "users"){
+    if (querySection.getAttribute('data-target') == "users") {
         container.sections[container.activeSection].search(querySection);
-    }else if(querySection.getAttribute('data-target') != "likes"){
+    } else if (querySection.getAttribute('data-target') != "likes") {
         followersFollowingContainer.sections[followersFollowingContainer.activeSection].search(querySection);
     }
-    
+
 }
 
 function clickUserBtn(button) {
@@ -92,9 +92,11 @@ function markAsRead(button) {
 }
 
 function loadMoreSection(button) {
-    if(button.getAttribute('data-target') == 'users'){
+    if (button.getAttribute('data-target') == 'users') {
         container.sections[container.activeSection].loadMore();
-    }else{
+    } else if (button.getAttribute('data-target') == 'likes') {
+        modalHelper.searchContainer.sections[modalHelper.searchContainer.activeSection].loadMore(); 
+    } else {
         followersFollowingContainer.sections[followersFollowingContainer.activeSection].loadMore();
     }
 }
@@ -103,7 +105,7 @@ $(document).ready(function () {
     function handleResize() {
         var windowWidth = $(window).width();
 
-        if (windowWidth > 992) {
+        if ((windowWidth > 992) && (!container.equals(new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")])))) {
             container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
         }
         if ((windowWidth > 992) && ((document.querySelector(".row>main>.notifications-section")) || (document.querySelector(".row>main>.search-section")))) {
@@ -115,6 +117,7 @@ $(document).ready(function () {
             });
             container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
             container.sections[container.activeSection].show();
+
         }
     }
     $(window).on('load resize', handleResize);
