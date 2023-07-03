@@ -41,13 +41,13 @@ class PostsDrawer{
         document.querySelector(".user_header").style.height = "auto";
         document.querySelector(".bio").style.removeProperty("-webkit-line-clamp");
 
-        let targetPosition = window.innerHeight - document.querySelector(".slide_button").offsetHeight + 4;
+        let targetPosition = window.innerHeight - document.querySelector(".slide_button").offsetHeight + 10;
         if(!IS_MOBILE){
           targetPosition -= 50;
-        }else{
+        }else if (window.innerWidth < 768) {
           targetPosition -= window.innerWidth/100;
           if (iOS())
-            targetPosition += 3;
+            targetPosition += 10;
         }
         $(".swipe_down-btn").animate({ 
           opacity: "0"
