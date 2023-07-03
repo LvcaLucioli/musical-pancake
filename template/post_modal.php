@@ -7,10 +7,10 @@
                         <div class="col-2 profile_pic">
                             <a><img alt="profile picture" /></a>
                         </div>
-                        <div class="col-9 user">
+                        <div class="col-8 user">
                             <a></a>
                         </div>
-                        <div class="col-1 edit-btn">
+                        <div class="col-2 edit-btn">
                         </div>
                         <div class="col-12 date">
                             <pre></pre>
