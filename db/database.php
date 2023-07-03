@@ -94,10 +94,10 @@ class DatabaseHelper
         $stmt->bind_param('is', $postId, $searchQuery);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-    
+
     public function getLikes($postId)
     {
         $query = "SELECT user FROM likes WHERE post = ?";
@@ -218,6 +218,26 @@ class DatabaseHelper
         return $result;
     }
 
+    public function notifyComment($user, $targetPost, $date, $text)
+    {
+        $query = "SELECT `user` FROM `posts` WHERE `id` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $targetPost);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_row();
+        $targetUser = $row[0];
+
+        if ($user != $targetUser) {
+            $content = 'commented your post "' . $text . '"';
+
+            $query = "INSERT INTO `notifications` (`targetUser`, `content`, `user`, `date`, `targetPost`) VALUES (?, ?, ?, ?, ?);";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ssssi', $targetUser, $content, $user, $date, $targetPost);
+            $stmt->execute();
+        }
+    }
+
     public function leaveComment($date, $text, $user, $postID, $repliedID)
     {
         if ($repliedID != -1) {
@@ -248,7 +268,8 @@ class DatabaseHelper
         $stmt->bind_param('i', $commentID);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        // notifica commento
+
+        $this->notifyComment($user, $postID, $date, $text);
         return $result;
     }
 
