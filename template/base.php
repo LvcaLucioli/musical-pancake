@@ -36,17 +36,23 @@
                     <div <?php if (isActive("user.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a title="personal profile" class="nav-link" href="<?php if (isset($_SESSION['username'])) {
-                                                                                echo "user.php?username=" . $_SESSION['username'];
-                                                                            } else {
-                                                                                echo "login.php";
-                                                                            } ?>">
+                        <a title="personal profile" class="nav-link" href="<?php echo "user.php?username=" . $_SESSION['username']; ?>">
                             <img src="./resources/icon-profile<?php echo isIconActive("user.php"); ?>.png" alt="personal profile">
                             <span class="label d-none d-md-inline">profile</span>
                         </a>
                     </div>
                 </li>
                 <li class="nav-item d-none d-md-inline">
+                    <div <?php if (isActive("new-post.php")) {
+                                echo 'class="active"';
+                            } ?>>
+                        <a title="create new post" class="nav-link" href="new-post.php">
+                            <img src="./resources/icon-add<?php echo isIconActive("new-post.php"); ?>.png" alt="create new post">
+                            <span class="label d-none d-md-inline">create</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item d-none d-lg-inline logout_lg">
                     <div>
                         <a title="logout" class="nav-link" href="logout.php">
                             <img src="./resources/logout.png" alt="logout">
@@ -81,7 +87,14 @@
                         </button>
                     </div>
                 </li>
-
+                <li class="nav-item d-none d-lg-none d-md-inline logout_lg">
+                    <div>
+                        <a title="logout" class="nav-link" href="logout.php">
+                            <img src="./resources/logout.png" alt="logout">
+                            <span class="label d-none d-md-inline">logout</span>
+                        </a>
+                    </div>
+                </li>
             </ul>
 
             <ul class="navbar-nav d-none d-md-block d-lg-block d-xl-block right-bevero">

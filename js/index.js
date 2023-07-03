@@ -247,11 +247,9 @@ loadMore();
 
 // set posts scroll shadow 
 let scrollableDivMain = document.querySelectorAll('.scrollable_feed')[0];
-let isScrollingMain;
-const screenWidth = window.innerWidth;
-
 let header = document.querySelector('header[aria-label="primary-menu"]');
 let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
+
 scrollableDivMain.addEventListener('scroll', function () {
     if (IS_MOBILE) {
         if (scrollableDivMain.scrollTop > nav_feed.scrollHeight) {

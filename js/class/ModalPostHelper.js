@@ -208,7 +208,7 @@ class ModalPostHelper {
         if (!this.isLoading) {
             let body = this.modal.find('.modal-body');
             if (this.navPos < 100) {
-                this.navPos = body.find('section[aria-label="post section"] pre').position().top + body.find('section[aria-label="post section"] pre').height() + 50;
+                this.navPos = body.find('nav').position().top + body.find('section[aria-label="post section"] pre').height() + 50;
             }
 
             let target = $(btn).data('target');

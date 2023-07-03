@@ -79,7 +79,6 @@ class PostsDrawer{
           queue : false
         });
 
-        $(".scrollable_user").css("overflow-y", "scroll");
         $(".user_header").css("opacity", "1");
         $(".scrollable_user").css("paddingTop", "0%");
         $("#userlist_section").css("opacity", "1");
