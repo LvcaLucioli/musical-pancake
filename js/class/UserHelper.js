@@ -6,19 +6,19 @@ class UserHelper{
 
     static USER_BTN = {
         "following" : `
-                                    <button title="click to unfollow" class="user_btn following_btn" onCLick="clickUserBtn()">
+                                    <button title="click to unfollow" class="user_btn following_btn" onCLick="clickUserpageBtn()">
                                         following
                                         <img src="./resources/following.png" alt="user followd icon">
                                     </button>`,
                             
         "follow" : `
-                                    <button title="click to follow" class="user_btn follow_btn" onCLick="clickUserBtn()">
+                                    <button title="click to follow" class="user_btn follow_btn" onCLick="clickUserpageBtn()">
                                         follow
                                         <img src="./resources/follow.png" alt="click to follow icon">
                                     </button>`,
 
         "settings" : `
-                                    <button title="edit personal profile settings" class="user_btn settings_btn" onCLick="clickUserBtn()">
+                                    <button title="edit personal profile settings" class="user_btn settings_btn" onCLick="clickUserpageBtn()">
                                             settings
                                             <img src="./resources/settings.png" alt="user settings icon">
                                     </button>`
@@ -159,12 +159,12 @@ class UserHelper{
                 <div class="user_header">
                     <div class="row ">
                         <div class="col-5 col-md-3">
-                        <a title="create a new post" href='./new_post.php'>
+                        ${user["btn"] == "settings" ? '<a title="create a new post" href="./new-post.php">' : ""}
                             <img class="propic" src="${user["propic"]}" alt="Profile picture" />
                             <div class="add_button ${user["btn"] != "settings" ? "d-none" : ""}">
                                 <img class="add_icon" src="./resources/add_icon.png" alt="add a new post" />
                             </div>
-                        </a>
+                        ${user["btn"] == "settings" ? '</a>' : ""}
                         </div>
                         <div class="col-7 col-md-9 user_info">
                             <div class="row">

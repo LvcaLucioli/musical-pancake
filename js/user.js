@@ -41,7 +41,7 @@ function switchSection(target){
     followersFollowingContainer.sections[followersFollowingContainer.activeSection].search(document.querySelector(followersFollowingContainer.container + " input"));
 }
 
-function clickUserBtn(){
+function clickUserpageBtn(){
     base.clickUserBtn();
 }
 
@@ -68,7 +68,6 @@ button.addEventListener("touchend", function(event) {
 // set scrolling effects scrollbar
 let init = true;
 let scrollableDiv = document.querySelector('.scrollable_div');
-let isScrolling;
 
 scrollableDiv.addEventListener('scroll', function() {
     if(init) {
@@ -92,8 +91,6 @@ window.addEventListener('resize', function() {
 });
 
 let scrollableUser = document.querySelector('.scrollable_user');
-let isScrollingUser;
-
 let header = document.querySelector('header[aria-label="primary-menu"]');
 scrollableUser.addEventListener('scroll', function() {
     if (IS_MOBILE){

@@ -991,10 +991,12 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 
 .scrollable_user #userlist_section .search {
     padding-left: 0 !important;
+    margin-bottom: 0;
 }
 
 .scrollable_user #userlist_section .search .content {
     padding-left: 5px !important;
+    padding: 7px 0;
 }
 
 .scrollable_user #userlist_section header {
@@ -1073,7 +1075,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     padding: 0;
     width: 4vh;
     height: auto;
-    margin-bottom: 1%;
+    margin-bottom: 3px;
 }
 
 .following_btn {
@@ -1316,11 +1318,6 @@ main div.scrollable_div footer button[disabled] img {
 
 /* .profile-aside */
 
-/* .navbar[aria-label="profile-nav"] .navbar-nav {
-    margin-right: 10px;
-    margin-left: 5px;
-} */
-
 .active-button {
     background-color: black !important;
     border-radius: 25px;
@@ -1335,25 +1332,23 @@ main div.scrollable_div footer button[disabled] img {
     flex-direction: row;
     width: 80%;
     background-color: transparent;
+    border-radius: 7px;
 }
 
 button.content:focus {
-    outline: auto !important;
-}
-
-button.read_btn:focus {
-    outline: auto !important;
+    outline-color: rgb(42, 149, 255) !important;
+    outline-style: solid !important;
 }
 
 .row .content img {
-    width: 40px;
-    height: 40px;
+    width: 47px;
+    height: 47px;
     border-radius: 50%;
 }
 
 .content-copy {
     color: black;
-    font-size: 14px;
+    font-size: 1em;
     word-wrap: break-word;
     margin-left: 10px;
     margin-bottom: 0px;
@@ -1581,6 +1576,11 @@ input[type="search"]::-webkit-search-cancel-button {
 #userlist_section .search-section {
     width: 90%;
     height: fit-content;
+    min-height: 60vh;
+}
+
+#userlist_section .search-section .following_btn img {
+    margin-top: 3px;
 }
 
 .likes-section .search-section {
@@ -1884,7 +1884,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 @media screen and (min-width: 992px) {
     header[aria-label="primary-menu"] {
-        height: 10vh;
+        height: 65px;
     }
 
     header[aria-label="primary-menu"] nav ul {
@@ -2114,12 +2114,12 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .follow_btn img {
         width: 2.5vh;
-        margin-bottom: 5px;
     }
 
     .settings_btn img {
         margin-left: 6%;
         width: 3.5vmin;
+        margin-top: 2px;
     }
 
     .scrollable_user>header {
@@ -2445,7 +2445,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .search-section .user_btn {
-        font-size: 1vmax;
+        font-size: 0.8em;
     }
 
     .search-section>header>div>input {
