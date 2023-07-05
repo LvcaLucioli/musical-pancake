@@ -30,7 +30,10 @@ function notificationsSectionClick(button) {
     if (document.querySelector(".row>main>.notifications-section")) {
         // notifiche, ripristino index
         container.switch(button);
-        document.querySelector(".row>main").innerHTML = index;
+        Array.from(document.querySelector(".row>main").children).forEach(child => {
+            if (!child.classList.contains("modal")) child.classList.remove("d-none");
+        });
+        document.querySelector(".row>main>.notifications-section").outerHTML = "";
 
         var i = 0;
         document.querySelectorAll('[class*="scrollable"]').forEach(element => {
@@ -38,7 +41,11 @@ function notificationsSectionClick(button) {
             i++;
         });
     } else {
+        if (document.querySelector(".row>main>.search-section")) document.querySelector(".row>main>.search-section").outerHTML = "";
         container.switch(button);
+        Array.from(document.querySelector(".row>main").children).forEach(child => {
+            if (!child.classList.contains("modal")) child.classList.add("d-none");
+        });
         container.sections[container.activeSection].show();
     }
 }
@@ -55,12 +62,14 @@ function searchSectionClick(button) {
             scrollPositions.push(element.scrollTop);
         });
 
-        index = document.querySelector(".row>main").innerHTML;
     }
     if (document.querySelector(".row>main>.search-section")) {
         // search, ripristino index
         container.switch(button);
-        document.querySelector(".row>main").innerHTML = index;
+        Array.from(document.querySelector(".row>main").children).forEach(child => {
+            if (!child.classList.contains("modal")) child.classList.remove("d-none");
+        });
+        document.querySelector(".row>main>.search-section").outerHTML = "";
 
         var i = 0;
         document.querySelectorAll('[class*="scrollable"]').forEach(element => {
@@ -68,7 +77,11 @@ function searchSectionClick(button) {
             i++;
         });
     } else {
+        if (document.querySelector(".row>main>.notifications-section")) document.querySelector(".row>main>.notifications-section").outerHTML = "";
         container.switch(button);
+        Array.from(document.querySelector(".row>main").children).forEach(child => {
+            if (!child.classList.contains("modal")) child.classList.add("d-none");
+        });
         container.sections[container.activeSection].show();
     }
 }
@@ -95,7 +108,7 @@ function loadMoreSection(button) {
     if (button.getAttribute('data-target') == 'users') {
         container.sections[container.activeSection].loadMore();
     } else if (button.getAttribute('data-target') == 'likes') {
-        modalHelper.searchContainer.sections[modalHelper.searchContainer.activeSection].loadMore(); 
+        modalHelper.searchContainer.sections[modalHelper.searchContainer.activeSection].loadMore();
     } else {
         followersFollowingContainer.sections[followersFollowingContainer.activeSection].loadMore();
     }
@@ -109,7 +122,14 @@ $(document).ready(function () {
             container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
         }
         if ((windowWidth > 992) && ((document.querySelector(".row>main>.notifications-section")) || (document.querySelector(".row>main>.search-section")))) {
-            document.querySelector(".row>main").innerHTML = index;
+            container.removeIconActive(document.querySelector(".navbar-expand-md .active-nav-button"));
+            if (document.querySelector(".row>main>.notifications-section")) document.querySelector(".row>main>.notifications-section").outerHTML = "";
+            if (document.querySelector(".row>main>.search-section")) document.querySelector(".row>main>.search-section").outerHTML = "";
+
+            Array.from(document.querySelector(".row>main").children).forEach(child => {
+                if (!child.classList.contains("modal")) child.classList.remove("d-none");
+            });
+
             var i = 0;
             document.querySelectorAll('[class*="scrollable"]').forEach(element => {
                 element.scrollTo(0, scrollPositions[i]);

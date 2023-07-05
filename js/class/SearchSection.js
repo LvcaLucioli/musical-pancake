@@ -143,10 +143,13 @@ class SearchSection extends AbstractSection {
 
 
     show() {
-        var section = ``;
+        var section = document.createElement("div");
+        var content = ``;
+        document.querySelector(this.container).appendChild(section);
+        
         switch (this.target) {
             case "likes":
-                section = ` <section class="search-section">
+                content = ` <section class="search-section">
                                 <header>
                                     <div>
                                         <input type="search" placeholder="search" aria-label="search" data-target="${this.target}" onload="search(this)" oninput="modalHelper.searchContainer.sections[modalHelper.searchContainer.activeSection].search(this); ">
@@ -157,7 +160,7 @@ class SearchSection extends AbstractSection {
             case "users":
             case "followers":
             case "following":
-                section = `<section class="search-section">
+                content = `<section class="search-section">
                 <header>
                     <div>
                         <input type="search" placeholder="search" aria-label="search" data-target="${this.target}" onload="search(this)" oninput="search(this); ">
@@ -165,7 +168,7 @@ class SearchSection extends AbstractSection {
                 </header></section>`;
                 break;
         }
-        document.querySelector(this.container).innerHTML = section;
+        section.outerHTML = content;
     }
 
     resetArea() {

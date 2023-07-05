@@ -116,6 +116,7 @@ $('#postModal').on('hidden.bs.modal', function (event) {
             + ' <img src="resources/comment.png" alt="view and add commens">';
     }
     modalHelper.clear();
+    modalHelper = undefined;
 });
   
 

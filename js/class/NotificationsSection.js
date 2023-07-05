@@ -69,7 +69,9 @@ class NotificationsSection extends AbstractSection {
     }
 
     show() {
-        document.querySelector(this.container).innerHTML = `<section class="${NotificationsSection.class}"></section>`;
+        var section = document.createElement("div");
+        document.querySelector(this.container).appendChild(section);
+        section.outerHTML = `<section class="${NotificationsSection.class}"></section>`;
         this.lastNotification = -1; // reset head
         this.retrieve();
     }
