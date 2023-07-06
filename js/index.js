@@ -231,6 +231,66 @@ async function loadMore() {
     }
 }
 
+function showAddBtn() {
+    let btn = document.getElementById("add-sm-btn");
+    if (btn != null && !addBtnShow) {
+        btn = $(btn);
+
+        $.when(
+            btn.animate({ 
+              left: parseInt(btn.css('left'), 10) + 60
+            }, {
+              duration: 500,
+              step: function(now, fx) {
+                $(this).css('left', now);
+              },
+              queue: false
+            }).promise(),
+            $("#add-sm-btn img").animate({
+              deg: -90
+            }, {
+              duration: 550,
+              step: function(now) {
+                $(this).css({ transform: 'rotate(' + now + 'deg)' });
+              },
+              queue: false
+            }).promise()
+        );
+
+        addBtnShow = true;
+    }
+}
+
+function hideAddBtn() {
+    let btn = document.getElementById("add-sm-btn");
+    if (btn != null && addBtnShow) {
+        btn = $(btn);
+
+        $.when(
+            btn.animate({ 
+              left: parseInt(btn.css('left'), 10) - 60
+            }, {
+              duration: 500,
+              step: function(now, fx) {
+                $(this).css('left', now);
+              },
+              queue: false
+            }).promise(),
+            $("#add-sm-btn img").animate({
+              deg: 90 
+            }, {
+              duration: 400,
+              step: function(now) {
+                $(this).css({ transform: 'rotate(' + now + 'deg)' });
+              },
+              queue: false
+            }).promise()
+        );
+
+        addBtnShow = false;
+    }
+}
+
 
 
 let homeStatus = true;
@@ -247,10 +307,12 @@ axios.post('api/api-discovery.php', formData).then(response => {
 
 loadMore();
 
-// set posts scroll shadow 
+// set posts scroll events 
 let scrollableDivMain = document.querySelectorAll('.scrollable_feed')[0];
 let header = document.querySelector('header[aria-label="primary-menu"]');
 let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
+let prevScroll = 0;
+let addBtnShow = true;
 
 scrollableDivMain.addEventListener('scroll', function () {
     if (IS_MOBILE) {
@@ -258,6 +320,15 @@ scrollableDivMain.addEventListener('scroll', function () {
             header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
         } else {
             header.style.boxShadow = "none";
+        }
+
+        if (window.innerWidth < 768 && scrollableDivMain.scrollTop > nav_feed.scrollHeight) {
+            if (prevScroll > scrollableDivMain.scrollTop) {
+                showAddBtn();
+            } else {
+                hideAddBtn();
+            }
+            prevScroll =  scrollableDivMain.scrollTop;
         }
     } else {
         header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";

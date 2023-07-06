@@ -15,6 +15,12 @@
                     </ul>
                 </nav>
 
+                <div class="feed-add-btn d-md-none">
+                    <a href="new-post.php" alt="create a new post" id="add-sm-btn">
+                        <img src="./resources/add_btn.png" alt="create a new post">
+                    </a>
+                </div>
+
                 <section class="followers" aria-label="posts from followed users"></section>
 
                 <footer>
