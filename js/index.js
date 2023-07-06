@@ -4,7 +4,7 @@ const DICT = {
 }
 
 const N_POST = 2;
-const N_BLOCK_DISC = 2;
+const N_BLOCK_DISC = 12;
 
 const LOAD_BTN = ` 
     <button onclick="loadMore();">
@@ -187,7 +187,9 @@ function generateDiscovery(posts) {
 
         let post = `
         <article class="col-4">
-            <img src="${posts[i]["img_name"]}" alt="Post image" />
+            <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-from="feed-discovery" data-display="post" alt="open post pop-up page">
+                <img src="${posts[i]["img_name"]}" alt="Post image" />
+            </button>
         </article>
         `;
         result += post;

@@ -209,6 +209,7 @@ main nav[aria-label="feed-menu"] ul li button.active {
     overflow-x: hidden;
     position: fixed;
     margin-top: -10px;
+    width: 100vw;
 }
 
 #postModal .modal-body #switchable>footer button,
@@ -278,15 +279,46 @@ main div.scrollable_feed>footer button[disabled] img {
 
 
 
-/* posts list */
+/* discovery list */
 
-main div[id="scrollable_feed"]>section.followers {
+main section.discovery {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: auto;
+    width: 100%;
+    margin-top: 7%;
+    margin-bottom: 4%;
 }
+
+main section.discovery article {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: white;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+main section.discovery article button {
+    background-color: transparent;
+    padding: 0;
+}
+
+main section.discovery article img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+
+
+/* posts list */
 
 main section.followers article {
     justify-content: center;
@@ -1563,10 +1595,6 @@ input[type="search"]::-webkit-search-cancel-button {
     color: white;
     background-color: black;
     border-radius: 25px;
-    /* padding-bottom: 10px;
-    padding-top: 5px;
-    padding-left: 20px;
-    padding-right: 20px; */
     width: 70px;
     height: 30px;
     display: flex;
