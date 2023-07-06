@@ -69,7 +69,11 @@ class NotificationsSection extends AbstractSection {
     }
 
     show() {
-        document.querySelector(this.container).innerHTML = `<section class="${NotificationsSection.class}"></section>`;
+        let notificationsSection = document.querySelector(`.${NotificationsSection.class}`);
+        if ((notificationsSection) && (document.querySelector(this.container).contains(notificationsSection))) document.querySelector(this.container).removeChild(notificationsSection);
+        var section = document.createElement("div");
+        document.querySelector(this.container).appendChild(section);
+        section.outerHTML = `<section class="${NotificationsSection.class}"></section>`;
         this.lastNotification = -1; // reset head
         this.retrieve();
     }
@@ -77,8 +81,17 @@ class NotificationsSection extends AbstractSection {
     markAsRead(button) {
         const formData = new FormData();
         var targetNotification = button.closest("." + NotificationsSection.itemClass);
-        formData.append("userPropic", targetNotification.querySelector("img").getAttribute("src"));
-        formData.append("content", targetNotification.querySelector("p").innerHTML);
+
+        let content = targetNotification.querySelector("p").innerHTML;
+        let matches = content.match(/\<b\>(.*?)\<\/b\>/g);
+
+        content = content.replace(/\<b\>(.*?)\<\/b\>\s*/g, '');
+
+        let user = matches.map(match => match.replace(/<\/?b>/g, ''));
+
+
+        formData.append("user", user);
+        formData.append("content", content);
         formData.append("date", targetNotification.querySelector("footer p").textContent);
         axios.post('api/api-mark-as-read.php', formData).then(response => {
             targetNotification.classList.add("d-none");

@@ -10,7 +10,7 @@
             <span class="label">password</span>
         </label>
         <div>
-            <button type="submit">login</button>
+            <button type="submit" disabled>login</button>
         </div>
     </form>
 </div>

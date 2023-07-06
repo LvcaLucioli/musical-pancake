@@ -1,6 +1,6 @@
 <?php
     require_once 'bootstrap.php';
-
+    isLoggedIn();
     // Base template
     $templateParams["title"] = "bevero";
     $templateParams["main"] = "feed.php";
