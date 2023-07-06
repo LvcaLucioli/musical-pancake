@@ -320,6 +320,15 @@ class DatabaseHelper
         $stmt->bind_param('i', $id);
         $stmt->execute();
 
+        $query = "SELECT img_name
+        FROM posts
+        WHERE id = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $ret = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
         $query = "DELETE
         FROM posts
         WHERE id = ?";
@@ -327,6 +336,31 @@ class DatabaseHelper
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $id);
         $stmt->execute();
+
+        return $ret;
+    }
+
+    public function addNewPost($user, $desc) {
+        $query = "INSERT INTO `posts`
+        (`user`, `date`, `description`)
+        VALUES (?, NOW(), ?)";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $user, $desc);
+        $stmt->execute();
+
+        $id = $this->db->insert_id;
+        $img_name = "post" . $id . ".png";
+
+        $query = " UPDATE `posts`
+        SET img_name = ?
+        WHERE id = ?";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('si', $img_name, $id);
+        $stmt->execute();
+
+        return $img_name;
     }
 
     public function getUser($username)

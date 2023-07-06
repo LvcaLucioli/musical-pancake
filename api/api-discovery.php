@@ -7,4 +7,5 @@ for($i = 0; $i < count($posts); $i++){
 }
 
 header('Content-Type: application/json');
-echo json_encode($posts);?>
+echo json_encode($posts);
+?>
