@@ -1502,13 +1502,17 @@ input[type="search"]::-webkit-search-cancel-button {
     min-height: 25px;
 }
 
-.login form {
+.login {
     width: 30vh;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
 }
 
 .login form label {
     position: relative;
-    width: 30vh;
     overflow: hidden;
     border-radius: 25px;
     border: 1px solid #aaa;
@@ -1560,16 +1564,16 @@ input[type="search"]::-webkit-search-cancel-button {
     outline: 0;
 }
 
+.login form div {
+    margin-top: 1vh;
+}
+
 .login button {
     color: white;
     background-color: black;
     border-radius: 25px;
-    /* padding-bottom: 10px;
-    padding-top: 5px;
-    padding-left: 20px;
-    padding-right: 20px; */
-    width: 70px;
-    height: 30px;
+    width: 100%;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1577,6 +1581,14 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .login button:disabled{
     opacity: .7;
+}
+
+.login-to-signup{
+    width: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2vh;
 }
 
 

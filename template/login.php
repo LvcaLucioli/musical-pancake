@@ -14,3 +14,6 @@
         </div>
     </form>
 </div>
+<div class="login-to-signup">
+    <span>don't have an account? <a href="signup.php">signup</a></span>
+</div>
