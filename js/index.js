@@ -238,7 +238,7 @@ function showAddBtn() {
 
         $.when(
             btn.animate({ 
-              left: parseInt(btn.css('left'), 10) + 60
+              left: $(window).width() - 82 - ($(window).width() - 242) / 2 + 60
             }, {
               duration: 500,
               step: function(now, fx) {
@@ -268,7 +268,7 @@ function hideAddBtn() {
 
         $.when(
             btn.animate({ 
-              left: parseInt(btn.css('left'), 10) - 60
+              left: $(window).width() - 82 - ($(window).width() - 242) / 2
             }, {
               duration: 500,
               step: function(now, fx) {
@@ -323,10 +323,10 @@ scrollableDivMain.addEventListener('scroll', function () {
         }
 
         if (window.innerWidth < 768 && scrollableDivMain.scrollTop > nav_feed.scrollHeight) {
-            if (prevScroll > scrollableDivMain.scrollTop) {
-                showAddBtn();
-            } else {
+            if (prevScroll < scrollableDivMain.scrollTop) {
                 hideAddBtn();
+            } else if (prevScroll - 8 > scrollableDivMain.scrollTop) {
+                showAddBtn();
             }
             prevScroll =  scrollableDivMain.scrollTop;
         }

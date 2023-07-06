@@ -1255,10 +1255,11 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 }
 
 .posts_count {
-    padding: 0.7% 0 5% 20%;
+    padding: 0 0 5% 20%;
     text-align: left;
     font-size: 1.2em;
     margin: 0;
+    margin-top: -0.4vh;
 }
 
 .num_posts {
@@ -1292,7 +1293,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     opacity: 0;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
-    padding-top: 0.2vh;
+    margin-top: -0.2vh;
     padding-left: calc(80% - 5vh);
 }
 
@@ -1682,6 +1683,10 @@ input[type="search"]::-webkit-search-cancel-button {
 .new-post-form .custom__image-container {
     flex-wrap: wrap;
     gap: 0.5rem;
+    padding: 0 15%;
+    max-width: 90vh;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .new-post-form .custom__image-container #add-img-btn {
@@ -1691,7 +1696,7 @@ input[type="search"]::-webkit-search-cancel-button {
     font-size: 50px;
     font-weight: bold;
     cursor: pointer;
-    width: 60vh;
+    width: 100%;
     aspect-ratio: 1/1;
     border: solid 5px black;
     border-radius: 15px;
@@ -1704,7 +1709,7 @@ input[type="search"]::-webkit-search-cancel-button {
     margin-top: 1rem;
     font-size: 1.2em;
     font-weight: 600;
-    padding-left: calc(calc(100vw - 60vh) / 2 + 1.5rem);
+    padding-left: 1rem;
 }
 
 .new-post-form .custom__image-container img {
@@ -1720,18 +1725,22 @@ input[type="search"]::-webkit-search-cancel-button {
     gap: 0.5rem;
     margin-bottom: 20vh;
     height: fit-content;
+    padding: 0 15%;
+    max-width: 90vh;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .new-post-form .description-container #add-desc-label {
     margin-top: 5%;
     font-size: 1.2em;
     font-weight: 600;
-    padding-left: calc(calc(100vw - 60vh) / 2 + 1.5rem);
+    padding-left: 1rem;
 }
 
 .new-post-form .description-container textarea {
     display: flex;
-    width: 60vh;
+    width: 100%;
     height: auto;
     min-height: 10vh;
     overflow: hidden;
@@ -1967,7 +1976,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .swipe_div {
-        margin-top: calc(3vw - 1vh);
+        margin-top: 2%
     }
 
     #drawer {
@@ -2152,6 +2161,11 @@ input[type="search"]::-webkit-search-cancel-button {
 
     #cropper-modal .img-container {
         max-height: 75vh;
+    }
+
+    .new-post-form .description-container,
+    .new-post-form .custom__image-container {
+        padding: 0 10vw;
     }
 }
 
@@ -2760,9 +2774,12 @@ input[type="search"]::-webkit-search-cancel-button {
         padding-right: 4vw !important;
     }
 
-    .new-post-form .custom__image-container #add-img-label,
-    .new-post-form .description-container #add-desc-label {
-        padding-left: calc(calc(69vw - 60vh) / 2 + 1.5rem);
+    .new-post-form .description-container,
+    .new-post-form .custom__image-container {
+        padding: 0 8vw;
     }
 
+    .new-post-form .custom__image-container #add-img-label {
+        margin-top: 0;
+    }
 }

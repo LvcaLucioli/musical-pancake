@@ -49,7 +49,7 @@ class PostsDrawer{
           if (iOS()) {
             targetPosition += 10;
           } else {
-            targetPosition += 8;
+            targetPosition += 7;
           }
         }
         $(".swipe_down-btn").animate({ 
