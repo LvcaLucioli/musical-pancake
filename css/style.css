@@ -1634,7 +1634,7 @@ input[type="search"]::-webkit-search-cancel-button {
     font-size: 50px;
     font-weight: bold;
     cursor: pointer;
-    width: 70%;
+    width: 60vh;
     aspect-ratio: 1/1;
     border: solid 5px black;
     border-radius: 15px;
@@ -1644,10 +1644,10 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .new-post-form .custom__image-container #add-img-label {
-    margin-top: 2.5%;
+    margin-top: 1rem;
     font-size: 1.2em;
     font-weight: 600;
-    padding-left: 17.5%;
+    padding-left: calc(calc(100vw - 60vh) / 2 + 1.5rem);
 }
 
 .new-post-form .custom__image-container img {
@@ -1669,12 +1669,12 @@ input[type="search"]::-webkit-search-cancel-button {
     margin-top: 5%;
     font-size: 1.2em;
     font-weight: 600;
-    padding-left: 17.5%;
+    padding-left: calc(calc(100vw - 60vh) / 2 + 1.5rem);
 }
 
 .new-post-form .description-container textarea {
     display: flex;
-    width: 70%;
+    width: 60vh;
     height: auto;
     min-height: 10vh;
     overflow: hidden;
@@ -1693,7 +1693,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .new-post-form header {
-    margin-top: 6%;
+    margin-top: 2rem;
 }
 
 .new-post-form header h1 {
@@ -1751,7 +1751,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 #cropper-modal img {
     display: block;
-    max-width: 100%;
+    max-height: 100%;
 }
 
 #cropper-modal .image {
@@ -1759,7 +1759,9 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 #cropper-modal .img-container {
-    max-height: calc(55vh + 30vw);
+    max-height: 80vh;
+    width: 100%;
+    aspect-ratio: 1/1;
 }
 
 #cropper-modal .modal-header {
@@ -2083,6 +2085,16 @@ input[type="search"]::-webkit-search-cancel-button {
         width: 30px !important;
         height: 30px !important;
         margin-bottom: -1%;
+    }
+
+    #cropper-modal .modal-dialog {
+        max-width: 70vw !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #cropper-modal .img-container {
+        max-height: 75vh;
     }
 }
 
@@ -2672,4 +2684,28 @@ input[type="search"]::-webkit-search-cancel-button {
     .search-section>header {
         background-color: white;
     }
+
+    #cropper-modal .modal-dialog {
+        max-width: 70vw !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #cropper-modal .img-container {
+        max-height: 75vh;
+    }
+
+    .new-post-form {
+        width: 69vw;
+    }
+
+    .new-post-form .btn-row .col-4 {
+        padding-right: 4vw !important;
+    }
+
+    .new-post-form .custom__image-container #add-img-label,
+    .new-post-form .description-container #add-desc-label {
+        padding-left: calc(calc(69vw - 60vh) / 2 + 1.5rem);
+    }
+
 }
