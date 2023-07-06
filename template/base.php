@@ -36,7 +36,7 @@
                     <div <?php if (isActive("user.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a title="personal profile" class="nav-link" href="<?php echo "user.php?username=" . $_SESSION['username']; ?>">
+                        <a title="personal profile" class="nav-link" href="<?php if(isset($_SESSION['username'])) echo "user.php?username=" . $_SESSION['username']; ?>">
                             <img src="./resources/icon-profile<?php echo isIconActive("user.php"); ?>.png" alt="personal profile">
                             <span class="label d-none d-md-inline">profile</span>
                         </a>
@@ -74,7 +74,7 @@
                 <li class="nav-item d-lg-none">
                     <div>
                         <button title="notifications" class="nav-link" onClick="notificationsSectionClick(this)">
-                            <img src="./resources/icon-notification.png" alt="notifications">
+                            <img src="./resources/icon-notification-nav.png" alt="notifications">
                             <span class="label d-none d-md-inline">notifications</span>
                         </button>
                     </div>
@@ -82,7 +82,7 @@
                 <li class="nav-item d-lg-none">
                     <div>
                         <button title="user search" class="nav-link" onclick="searchSectionClick(this)">
-                            <img src="./resources/icon-search.png" alt="user search">
+                            <img src="./resources/icon-search-nav.png" alt="user search">
                             <span class="label d-none d-md-inline">search</span>
                         </button>
                     </div>
