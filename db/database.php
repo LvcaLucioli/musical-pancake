@@ -549,28 +549,23 @@ class DatabaseHelper
         $stmt->execute();
     }
 
-    public function deleteNotification($targetUser, $userPropic, $content, $date)
+    public function deleteNotification($targetUser, $user, $content, $date)
     {
-        $userPropic = str_replace("./uploads/", "", $userPropic);;
         $query = "DELETE FROM notifications
         WHERE targetUser = ?
           AND content = ?
           AND date = ?
-          AND user IN (
-            SELECT username
-            FROM users  
-            WHERE propic = ?
-          );
+          AND user = ?
         ";
 
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ssss', $targetUser, $content, $date, $userPropic);
+        $stmt->bind_param('ssss', $targetUser, $content, $date, $user);
         $stmt->execute();
-        error_log($targetUser);
-        error_log($content);
-        error_log($date);
-        error_log($userPropic);
-        error_log($stmt->affected_rows);
+        // error_log($targetUser);
+        // error_log($content);
+        // error_log($date);
+        // error_log($user);
+        // error_log($stmt->affected_rows);
     }
 
     public function like_unlike($user, $action, $postId)

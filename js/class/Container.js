@@ -45,14 +45,14 @@ class Container {
   removeIconActive(button) {
     let icon = button.querySelector('img');
     let path = icon.getAttribute('src');
-    icon.setAttribute('src', path.replace(this.substring + "active", ""));
+    icon.setAttribute('src', path.replace("-active", ""));
     button.classList.remove("active" + this.substring + "button");
   }
 
   addIconActive(button) {
     let icon = button.querySelector('img');
     let path = icon.getAttribute('src');
-    icon.setAttribute('src', path.replace(".png", this.substring + "active.png"));
+    icon.setAttribute('src', path.replace(".png", "-active.png"));
     button.classList.add("active" + this.substring + "button");
   }
 }

@@ -117,12 +117,10 @@ function loadMoreSection(button) {
 $(document).ready(function () {
     function handleResize() {
         var windowWidth = $(window).width();
+        var activeSection;
 
-        if ((windowWidth > 992) && (!container.equals(new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")])))) {
-            container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
-        }
         if ((windowWidth > 992) && ((document.querySelector(".row>main>.notifications-section")) || (document.querySelector(".row>main>.search-section")))) {
-            container.removeIconActive(document.querySelector(".navbar-expand-md .active-nav-button"));
+            container.removeIconActive(document.querySelector(".active-nav-button"));
             if (document.querySelector(".row>main>.notifications-section")) document.querySelector(".row>main>.notifications-section").outerHTML = "";
             if (document.querySelector(".row>main>.search-section")) document.querySelector(".row>main>.search-section").outerHTML = "";
 
@@ -135,9 +133,11 @@ $(document).ready(function () {
                 element.scrollTo(0, scrollPositions[i]);
                 i++;
             });
+        }
+        if (windowWidth > 992) {
             container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
-            container.sections[container.activeSection].show();
-
+            activeSection = document.querySelector("aside>main>.notifications-section") ? 0 : 1;
+            container.activeSection = activeSection;
         }
     }
     $(window).on('load resize', handleResize);
