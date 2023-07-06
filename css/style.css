@@ -1590,7 +1590,12 @@ input[type="search"]::-webkit-search-cancel-button {
     margin-top: 2vh;
 }
 
-
+.error-message{
+    display: flex;
+    justify-content: center;
+    color: red;
+    margin-top: 1vh;
+}
 /* follower following */
 
 #userlist_section .search-section {

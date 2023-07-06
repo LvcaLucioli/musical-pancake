@@ -650,13 +650,22 @@ class DatabaseHelper
 
     public function checkLogin($username, $password)
     {
-        $query = "SELECT `username`, `password` FROM `users` WHERE `username` = ?";
+        $query = "SELECT `username` FROM `users` WHERE `username` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        $row = $result->fetch_row();
-        return password_verify($password, $row[1]);
+        if($result->num_rows == 0){
+            return false;
+        }else{
+            $query = "SELECT `password` FROM `users` WHERE `username` = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_row();
+            return password_verify($password, $row[0]);
+        }
     }
 
     public function signup($username, $password, $email)

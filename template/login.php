@@ -13,6 +13,9 @@
             <button type="submit" disabled>login</button>
         </div>
     </form>
+    <div class="error-message d-none">
+
+    </div>
 </div>
 <div class="login-to-signup">
     <span>don't have an account? <a href="signup.php">signup</a></span>
