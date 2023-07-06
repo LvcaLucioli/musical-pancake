@@ -39,7 +39,7 @@ function initCropperModal() {
 
 function crop() {
     const imgContainer = document.querySelector(".img-container");
-    const input = document.querySelector("#add-single-img");
+    const input = document.querySelector(".image");
     let url;
     let canvas = cropper.getCroppedCanvas();
 
