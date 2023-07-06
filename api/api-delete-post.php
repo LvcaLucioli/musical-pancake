@@ -1,4 +1,5 @@
 <?php
 require_once '../bootstrap.php';
-$dbh->deletePost($_POST["id"]);
+$img = $dbh->deletePost($_POST["id"]);
+unlink('.' . UPLOAD_DIR . $img[0]["img_name"]);
 ?>

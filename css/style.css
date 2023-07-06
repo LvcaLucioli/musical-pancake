@@ -211,7 +211,7 @@ main nav[aria-label="feed-menu"] ul li button.active {
     margin-top: -10px;
 }
 
-.modal-body #switchable>footer button,
+#postModal .modal-body #switchable>footer button,
 main div.scrollable_feed>footer button,
 .search-section footer button,
 .notifications-section footer button {
@@ -234,7 +234,7 @@ main div.scrollable_feed>footer button,
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.modal-body #switchable>footer button img,
+#postModal .modal-body #switchable>footer button img,
 main div.scrollable_feed>footer button img,
 .search-section footer button img,
 .notifications-section footer button img {
@@ -245,7 +245,7 @@ main div.scrollable_feed>footer button img,
     margin-left: 3%;
 }
 
-.modal-body #switchable>footer button[disabled],
+#postModal .modal-body #switchable>footer button[disabled],
 main div.scrollable_feed>footer button[disabled],
 .search-section footer button[disabled],
 .notifications-section footer button[disabled] {
@@ -269,7 +269,7 @@ main div.scrollable_feed>footer button[disabled] img {
 
 .search-section footer button[disabled] img,
 .notifications-section footer button[disabled] img,
-.modal-body #switchable>footer button[disabled] img {
+#postModal .modal-body #switchable>footer button[disabled] img {
     width: 50px;
     margin-left: -0.5vw;
     margin-top: 0.2vh;
@@ -420,22 +420,22 @@ main section.followers article footer pre {
     font-size: 1.1em;
     font-weight: bold;
     margin-top: 20%;
-    margin-bottom: 25vh;
+    margin-bottom: 28vh;
 }
 
 
 /* single post pop-up */
 
-.modal-lg {
+#postModal .modal-lg {
     max-width: 100% !important;
     margin: 70px 21px !important;
 }
 
-.modal-content {
+#postModal .modal-content {
     border-radius: 20px !important;
 }
 
-.modal-header {
+#postModal .modal-header {
     border-radius: 20px 20px 0 0 !important;
     background-color: white;
     box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
@@ -444,15 +444,15 @@ main section.followers article footer pre {
     padding-left: 0.7rem !important;
 }
 
-.modal-header>button {
+#postModal .modal-header>button {
     padding-top: 0.6rem !important;
 }
 
-.modal-header .row {
+#postModal .modal-header .row {
     width: 100%;
 }
 
-.modal-header .profile_pic img {
+#postModal .modal-header .profile_pic img {
     height: 6vh;
     max-height: 35px;
     width: auto;
@@ -461,7 +461,7 @@ main section.followers article footer pre {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-.modal-header .col-8 {
+#postModal .modal-header .col-8 {
     padding-top: calc(0.5vh - 0.3vw);
     font-weight: bold;
     margin-left: calc(50px - 13vw);
@@ -471,14 +471,14 @@ main section.followers article footer pre {
     overflow: hidden;
 }
 
-.modal-header .date {
+#postModal .modal-header .date {
     padding-left: 0;
     padding-right: 3vw;
     padding-top: 1.5%;
     background-color: transparent;
 }
 
-.modal-header .date pre {
+#postModal .modal-header .date pre {
     margin-bottom: 0;
     color: rgb(116, 116, 118);
     font-size: 0.8em;
@@ -486,7 +486,7 @@ main section.followers article footer pre {
     margin-top: 0.2rem;
 }
 
-.modal-header .edit-btn button {
+#postModal .modal-header .edit-btn button {
     width: fit-content;
     height: auto;
     background-color: transparent;
@@ -494,25 +494,25 @@ main section.followers article footer pre {
     margin-left: calc(15vw - 10vh);
 }
 
-.modal-header .edit-btn button img {
+#postModal .modal-header .edit-btn button img {
     height: 6vh;
     max-height: 35px;
     width: auto;
     border-radius: 7px;
 }
 
-.modal-body {
+#postModal .modal-body {
     padding-bottom: 0 !important;
 }
 
-.modal-body section[aria-label="post section"] img {
+#postModal .modal-body section[aria-label="post section"] img {
     width: calc(100% + 2rem);
     height: auto;
     margin-left: -1rem;
     margin-top: -1rem;
 }
 
-.modal-body nav[aria-label="comments/likes-menu"] {
+#postModal .modal-body nav[aria-label="comments/likes-menu"] {
     background-color: black;
     box-shadow: none;
     display: flex;
@@ -529,7 +529,7 @@ main section.followers article footer pre {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.modal-body nav[aria-label="comments/likes-menu"] ul {
+#postModal .modal-body nav[aria-label="comments/likes-menu"] ul {
     display: flex;
     justify-content: space-between;
     list-style: none;
@@ -539,13 +539,13 @@ main section.followers article footer pre {
     margin-top: auto;
 }
 
-.modal-body nav[aria-label="comments/likes-menu"] ul:nth-child(2) {
+#postModal .modal-body nav[aria-label="comments/likes-menu"] ul:nth-child(2) {
     width: 60px;
     padding-left: 0;
     margin-right: -1rem;
 }
 
-.modal-body nav[aria-label="comments/likes-menu"] ul li button {
+#postModal .modal-body nav[aria-label="comments/likes-menu"] ul li button {
     text-decoration: none;
     transition-property: opacity;
     transition-duration: 0.3s;
@@ -557,25 +557,25 @@ main section.followers article footer pre {
     padding: 0;
 }
 
-.modal-body nav[aria-label="comments/likes-menu"] ul li button.active {
+#postModal .modal-body nav[aria-label="comments/likes-menu"] ul li button.active {
     font-weight: bold;
     opacity: 1;
 }
 
-.modal-body nav[aria-label="comments/likes-menu"] #like_click_btn button {
+#postModal .modal-body nav[aria-label="comments/likes-menu"] #like_click_btn button {
     opacity: 1;
 }
 
-.modal-body nav[aria-label="comments/likes-menu"] #like_click_btn {
+#postModal .modal-body nav[aria-label="comments/likes-menu"] #like_click_btn {
     margin-top: 0.5%;
 }
 
-.modal-body nav[aria-label="comments/likes-menu"] #like_click_btn img {
+#postModal .modal-body nav[aria-label="comments/likes-menu"] #like_click_btn img {
     width: 25px;
     height: auto;
 }
 
-.modal-body section[aria-label="post section"] pre {
+#postModal .modal-body section[aria-label="post section"] pre {
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-x: auto;
@@ -586,32 +586,32 @@ main section.followers article footer pre {
     margin-top: 3%;
 }
 
-.modal-body #switchable>footer {
+#postModal .modal-body #switchable>footer {
     margin-top: 10%;
 }
 
-.modal-body #switchable>footer .spinner-border {
+#postModal .modal-body #switchable>footer .spinner-border {
     width: 1.3rem !important;
     height: 1.3rem !important;
 }
 
-.modal-body section.likes-section .search-section{
+#postModal .modal-body section.likes-section .search-section{
     margin-top: 5vmin;
 }
 
-.modal-body section.likes-section .search-section .user_btn {
+#postModal .modal-body section.likes-section .search-section .user_btn {
     padding: 0.2 0 !important;
 }
 
-.modal-body section.likes-section .search-section .search {
+#postModal .modal-body section.likes-section .search-section .search {
     padding-left: 0 !important;
 }
 
-.modal-body section.likes-section .search-section .search .content {
+#postModal .modal-body section.likes-section .search-section .search .content {
     padding-left: 5px !important;
 }
 
-.modal-body section.likes-section .search-section header {
+#postModal .modal-body section.likes-section .search-section header {
     top: -10vh !important;
 }
 
@@ -619,12 +619,12 @@ main section.followers article footer pre {
 
 /* comments */
 
-.modal-body section.comments-section {
+#postModal .modal-body section.comments-section {
     margin-top: calc(-20vh - 110px);
     margin-bottom: calc(14% + 12vh);
 }
 
-.modal-body section.comments-section article {
+#postModal .modal-body section.comments-section article {
     margin: 1rem 0;
     border-radius: 15px;
     background-color: rgb(230, 230, 231);
@@ -633,22 +633,22 @@ main section.followers article footer pre {
     transition-timing-function: ease-in-out;
 }
 
-.modal-body section.comments-section article .row {
+#postModal .modal-body section.comments-section article .row {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
 }
 
-.modal-body section.comments-section article .comment-body>div {
+#postModal .modal-body section.comments-section article .comment-body>div {
     margin-top: 0.7rem;
     padding: 0;
 }
 
-.modal-body section.comments-section article .propic {
+#postModal .modal-body section.comments-section article .propic {
     padding-left: 0.8rem !important;
 }
 
-.modal-body section.comments-section article .propic img {
+#postModal .modal-body section.comments-section article .propic img {
     height: auto;
     width: 100%;
     max-width: 67px;
@@ -657,14 +657,14 @@ main section.followers article footer pre {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-.modal-body section.comments-section article .propic button {
+#postModal .modal-body section.comments-section article .propic button {
     width: fit-content;
     padding: 0;
     height: fit-content;
     background-color: transparent;
 }
 
-.modal-body section.comments-section article .comment-username {
+#postModal .modal-body section.comments-section article .comment-username {
     padding-right: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -673,27 +673,27 @@ main section.followers article footer pre {
     font-size: 1.2em;
 }
 
-.modal-body section.comments-section article .comment-username p {
+#postModal .modal-body section.comments-section article .comment-username p {
     margin-bottom: 0;
     margin-top: -0.5vh;
 }
 
-.modal-body section.comments-section article .comment-date {
+#postModal .modal-body section.comments-section article .comment-date {
     padding-left: 0;
 }
 
-.modal-body section.comments-section article .comment-date pre {
+#postModal .modal-body section.comments-section article .comment-date pre {
     text-align: right;
     color: rgb(116, 116, 118);
     font-size: 12px;
     margin-bottom: 0;
 }
 
-.modal-body section.comments-section article .comment-text {
+#postModal .modal-body section.comments-section article .comment-text {
     padding-right: 0;
 }
 
-.modal-body section.comments-section article .comment-text pre {
+#postModal .modal-body section.comments-section article .comment-text pre {
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-x: auto;
@@ -704,7 +704,7 @@ main section.followers article footer pre {
     padding-right: 0.7rem;
 }
 
-.modal-body #switchable article div>footer button {
+#postModal .modal-body #switchable article div>footer button {
     width: 25vw;
     height: 30px;
     margin-bottom: 0.5rem;
@@ -716,26 +716,28 @@ main section.followers article footer pre {
     text-decoration: none;
     color: black;
     margin-left: 10%;
+    z-index: 200;
+    position: relative;
 }
 
-.modal-body #switchable article div>footer button img {
+#postModal .modal-body #switchable article div>footer button img {
     width: 18px;
     height: auto;
 }
 
-.modal-body section.comments-section article section.comment-reply article:last-child {
+#postModal .modal-body section.comments-section article section.comment-reply article:last-child {
     margin-bottom: 1rem !important;
 }
 
-.modal-body section.comments-section article section.comment-reply article:first-child {
+#postModal .modal-body section.comments-section article section.comment-reply article:first-child {
     margin-top: 3rem !important;
 }
 
-.modal-body section.comments-section article div>footer {
+#postModal .modal-body section.comments-section article div>footer {
     margin-bottom: calc(-30px - 0.5rem);
 }
 
-.modal-body section.comments-section article section.comment-reply footer button {
+#postModal .modal-body section.comments-section article section.comment-reply footer button {
     width: 40vw;
     height: 30px;
     margin-bottom: 0.5rem;
@@ -746,7 +748,7 @@ main section.followers article footer pre {
     color: black;
 }
 
-.modal-body section.comments-section article section.comment-reply footer button span {
+#postModal .modal-body section.comments-section article section.comment-reply footer button span {
     display: inline-block;
     width: 20%;
     border-top: 2px solid black;
@@ -755,7 +757,7 @@ main section.followers article footer pre {
     margin-left: -9%;
 }
 
-.modal-body section.comments-section article section.comment-reply article {
+#postModal .modal-body section.comments-section article section.comment-reply article {
     margin-left: auto;
     margin-right: auto;
     padding-right: 0;
@@ -767,17 +769,17 @@ main section.followers article footer pre {
     background-color: rgb(239, 239, 240);
 }
 
-.modal-body section.comments-section article section.comment-reply .comment-date pre {
+#postModal .modal-body section.comments-section article section.comment-reply .comment-date pre {
     font-size: 2.5vw;
 }
 
 @media (min-width: 490px) {
-    .modal-body section.comments-section article section.comment-reply .comment-date pre {
+    #postModal .modal-body section.comments-section article section.comment-reply .comment-date pre {
         font-size: 12px;
     }
 }
 
-.modal-body section.comments-section article section.comment-reply .propic img {
+#postModal .modal-body section.comments-section article section.comment-reply .propic img {
     width: 110%;
 }
 
@@ -785,7 +787,7 @@ main section.followers article footer pre {
 
 /* modal comment form */
 
-.modal-body .comments-input {
+#postModal .modal-body .comments-input {
     position: sticky;
     background-color: white;
     box-shadow: 0 -6px 4px -5px rgba(0, 0, 0, 0.2);
@@ -799,17 +801,17 @@ main section.followers article footer pre {
     z-index: 1000;
 }
 
-.modal-body .comments-reply {
+#postModal .modal-body .comments-reply {
     top: calc(100% - 118px);
     height: 120px;
 }
 
-.modal-body .comments-base {
+#postModal .modal-body .comments-base {
     top: calc(100% - 100px);
     height: 110px;
 }
 
-.modal-body .comments-input textarea {
+#postModal .modal-body .comments-input textarea {
     border: 3px solid rgb(230, 230, 230);
     width: 100%;
     height: auto;
@@ -824,13 +826,13 @@ main section.followers article footer pre {
     transition-timing-function: ease-in-out;
 }
 
-.modal-body .comments-input textarea:focus {
+#postModal .modal-body .comments-input textarea:focus {
     border: 3px solid rgb(0, 128, 255);
     outline: none !important;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.modal-body .comments-input .send-btn {
+#postModal .modal-body .comments-input .send-btn {
     padding: 0 12px;
     width: 50px;
     height: 50px;
@@ -841,12 +843,12 @@ main section.followers article footer pre {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.modal-body .comments-input .send-btn img {
+#postModal .modal-body .comments-input .send-btn img {
     width: 26px;
     height: auto;
 }
 
-.modal-body .comments-input .reply-wrapper {
+#postModal .modal-body .comments-input .reply-wrapper {
     margin-bottom: -0.3rem;
     margin-left: 0.5rem;
     background-color: rgb(0, 128, 255);
@@ -857,7 +859,7 @@ main section.followers article footer pre {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.modal-body .comments-input .reply-wrapper pre {
+#postModal .modal-body .comments-input .reply-wrapper pre {
     color: white;
     font-weight: bold;
     max-width: 70vw;
@@ -866,12 +868,12 @@ main section.followers article footer pre {
     overflow: hidden;
 }
 
-.modal-body .comments-input .reply-wrapper button {
+#postModal .modal-body .comments-input .reply-wrapper button {
     height: 1.3rem;
     margin-left: 0.8rem;
 }
 
-.modal-body .comments-input .reply-wrapper button span {
+#postModal .modal-body .comments-input .reply-wrapper button span {
     height: 1.3rem;
     display: block;
     margin-top: -11px;
@@ -1388,7 +1390,7 @@ button.content:focus {
 /* notifications section */
 
 .notifications-section {
-    height: 80vh;
+    height: 95vh;
     padding-top: 3%;
 }
 
@@ -1408,9 +1410,9 @@ button.content:focus {
 }
 
 .read_btn {
-    background-color: #8B0000;
+    background-color: #ce2424;
     color: white;
-    border-radius: 25px;
+    border-radius: 100px;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
     margin-left: 15px;
@@ -1418,19 +1420,16 @@ button.content:focus {
 }
 
 .read_btn p {
-    font-size: 16px;
+    font-size: 0.9em;
     margin: 0;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 0em 1em 0.2em;
     font-weight: bold;
 }
 
 /* search section */
 
 .search-section {
-    height: 80vh;
+    height: 95vh;
     padding-top: 5%;
 }
 
@@ -1601,12 +1600,211 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 #userlist_section .search-section .following_btn img {
-    margin-top: 3px;
+    margin-top: 3px;    
+}
+
+.likes-section .search-section .follow_btn img,
+#userlist_section .search-section .follow_btn img {
+    margin-bottom: 2.5%;
+}
+
+
+.search-section .follow_btn img {
+    margin-bottom: 5%;
+}
+
+.search-section .settings_btn img {
+    margin-bottom: 5%;
 }
 
 .likes-section .search-section {
     height: fit-content;
 }
+
+
+
+/* new post page */
+
+.new-post-form {
+    height: 95vh;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: fixed;
+    margin-top: -10px;
+}
+
+.new-post-form .custom__image-container {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.new-post-form .custom__image-container #add-img-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 70%;
+    aspect-ratio: 1/1;
+    border: solid 5px black;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.new-post-form .custom__image-container #add-img-label {
+    margin-top: 2.5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding-left: 17.5%;
+}
+
+.new-post-form .custom__image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.new-post-form .description-container {
+    display: block;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 20vh;
+    height: fit-content;
+}
+
+.new-post-form .description-container #add-desc-label {
+    margin-top: 5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding-left: 17.5%;
+}
+
+.new-post-form .description-container textarea {
+    display: flex;
+    width: 70%;
+    height: auto;
+    min-height: 10vh;
+    overflow: hidden;
+    border: solid 2px rgb(100, 100, 101);
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+    padding: 0.5em;
+}
+
+.new-post-form .description-container textarea:focus {
+    border: 3px solid rgb(0, 128, 255);
+    outline: none !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.new-post-form header {
+    margin-top: 6%;
+}
+
+.new-post-form header h1 {
+    font-size: 2.2em !important;
+    font-weight: bolder !important;
+    padding-left: 0;
+    margin-left: 3rem;
+}
+
+.new-post-form .btn-row {
+    top: 4.5em;
+    z-index: 2000;
+    position: sticky;
+}
+
+.new-post-form .btn-row .col-4 {
+    padding: 0 !important;
+    padding-right: 2rem !important;
+    padding-top: 0.5em !important;
+    margin-top: -3.8em;
+    height: fit-content;
+}
+
+.new-post-form .btn-row .col-4 button {
+    font-weight: bold;
+    color: white;
+    background-color: rgb(0, 128, 255);
+    border-radius: 100px;
+    width: 100%;
+    max-width: 120px;
+    padding-bottom: 0.2em;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.new-post-form .spinner-border {
+    margin: 0 !important;
+    font-size: small;
+    height: 15% !important;
+    width: 15% !important;
+}
+
+
+
+/* cropper modal */
+
+#cropper-modal .modal-dialog {
+    margin: 1rem;
+    margin-top: 2rem;
+    max-width: 100% !important;
+}
+
+#cropper-modal .modal-content {
+    border-radius: 20px;
+}
+
+#cropper-modal img {
+    display: block;
+    max-width: 100%;
+}
+
+#cropper-modal .image {
+    opacity: 0;
+}
+
+#cropper-modal .img-container {
+    max-height: calc(55vh + 30vw);
+}
+
+#cropper-modal .modal-header {
+    border-bottom: 0;
+    border-radius: 20px;
+}
+
+#cropper-modal .modal-header .btn-primary {
+    font-weight: bold;
+    border-radius: 100px;
+    background-color: rgb(0, 128, 255);
+    color: white;
+    padding: 0em 1.5em 0.2em;
+    border: 3px solid rgb(0, 101, 202);
+}
+
+#cropper-modal .modal-header .btn-secondary {
+    font-weight: bold;
+    border-radius: 100px;
+    background-color: #ce2424;
+    color: white;
+    padding: 0em 1em 0.2em;
+    border: 3px solid #a31d1d;
+}
+
+#cropper-modal .modal-body {
+    padding: 0.5rem;
+    padding-top: 0;
+    padding-bottom: 2rem;
+}
+
+
+
 
 /* Tablet rules */
 
@@ -1877,13 +2075,13 @@ input[type="search"]::-webkit-search-cancel-button {
         width: 91%;
     }
 
-    .modal-lg {
+    #postModal .modal-lg {
         width: 85vw !important;
         margin-left: auto !important;
         margin-right: auto !important;
     }
 
-    .modal-header .edit-btn button {
+    #postModal .modal-header .edit-btn button {
         margin-left: calc(calc(220% - 3vh) - 7vw);
     }
 
@@ -2046,7 +2244,7 @@ input[type="search"]::-webkit-search-cancel-button {
         max-width: 220px;
         border-radius: 100px;
         font-size: 1.2em;
-        margin-bottom: 20vh;
+        margin-bottom: 30vh;
     }
 
     main nav[aria-label="followers/following-nav"] {
@@ -2290,14 +2488,14 @@ input[type="search"]::-webkit-search-cancel-button {
         display: none;
     }
 
-    .modal-body section[aria-label="post section"] {
+    #postModal .modal-body section[aria-label="post section"] {
         position: -webkit-sticky;
         position: sticky;
         top: calc(83px + 2.1vw);
         z-index: 1020;
     }
 
-    .modal-body section[aria-label="post section"] img {
+    #postModal .modal-body section[aria-label="post section"] img {
         max-width: 79vh;
         margin-left: 0;
         margin-top: -0.1vw;
@@ -2305,7 +2503,7 @@ input[type="search"]::-webkit-search-cancel-button {
         border-radius: 10px;
     }
 
-    .modal-body section[aria-label="post description"] pre {
+    #postModal .modal-body section[aria-label="post description"] pre {
         white-space: pre-wrap;
         word-wrap: break-word;
         overflow-x: auto;
@@ -2316,34 +2514,34 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-bottom: 5vh;
     }
 
-    .modal-body nav[aria-label="comments/likes-menu"] {
+    #postModal .modal-body nav[aria-label="comments/likes-menu"] {
         margin-top: 2%;
         top: calc(120px);
     }
 
-    .modal-body section.comments-section {
+    #postModal .modal-body section.comments-section {
         margin-top: calc(-20vh - 80px);
         margin-bottom: 7%;
     }
 
-    .modal-body #switchable article div>footer button {
+    #postModal .modal-body #switchable article div>footer button {
         width: 11vw;
     }
 
-    .modal-body section.comments-section article section.comment-reply footer button span {
+    #postModal .modal-body section.comments-section article section.comment-reply footer button span {
         width: 10%;
         margin-left: -30%;
     }
 
-    .modal-body #switchable>footer button {
+    #postModal .modal-body #switchable>footer button {
         margin-bottom: calc(40vh - 7vw);
     }
 
-    .modal-body {
+    #postModal .modal-body {
         margin-bottom: 1vw;
     }
 
-    .modal-lg {
+    #postModal .modal-lg {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
         width: 90vw !important;
@@ -2351,26 +2549,26 @@ input[type="search"]::-webkit-search-cancel-button {
         margin-right: auto !important;
     }
 
-    .modal-content {
+    #postModal .modal-content {
         border-radius: 0 !important;
         min-height: 100vh;
     }
 
-    .modal-header {
+    #postModal .modal-header {
         z-index: 1200 !important;
 
     }
 
-    .modal-body .comments-input {
+    #postModal .modal-body .comments-input {
         margin-top: 20vh;
         margin-bottom: -2vw;
     }
 
-    .modal-header .edit-btn button {
+    #postModal .modal-header .edit-btn button {
         margin-left: calc(calc(220% - 4.5vh) - 7vw);
     }
 
-    .modal-body #switchable>footer button[disabled] img {
+    #postModal .modal-body #switchable>footer button[disabled] img {
         margin-top: 0.1vh;
         margin-left: -0.2vw;
     }
@@ -2467,6 +2665,10 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .search-section .user_btn {
         font-size: 0.8em;
+    }
+
+    .search-section .follow_btn img {
+        margin-bottom: 2%;
     }
 
     .search-section>header>div>input {

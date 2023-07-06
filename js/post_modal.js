@@ -82,15 +82,52 @@ function deletePost(){
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
+            let user = modalHelper.getUsername();
             Swal.fire({
                 title: 'Deleted!',
                 text: "Your post has been deleted.",
                 icon: 'success',
                 confirmButtonColor: 'rgb(0, 128, 255)'
             }).then((result) => {
-                window.location.href = `./user.php?username=${modalHelper.getUsername()}`;
+                window.location.href = `./user.php?username=${user}`;
             });
             modalHelper.deletePost();
+        }
+    });
+}
+
+function initPostModal() {
+    $('#postModal').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget);
+        let postId = button.data('postid');
+        let from = button.data('from');
+        let display = button.data('display');
+        let modal = $(this);
+        modalHelper = new ModalPostHelper(postId, modal, from, display);
+    })
+    
+    $('#postModal').on('hidden.bs.modal', function (event) {
+        let commentsBtn = document.querySelector(`main .scrollable_feed 
+            .followers #post-${modalHelper.getPostId()} .comments_block button`);
+        if (commentsBtn != null) {
+            commentsBtn.innerHTML = "<span>add comment</span> &nbsp;&nbsp;" 
+                + modalHelper.getNComments()
+                + ' <img src="resources/comment.png" alt="view and add commens">';
+        }
+        modalHelper.clear();
+        modalHelper = undefined;
+    });
+
+    document.querySelector(".modal").addEventListener('scroll', function() {
+        if (IS_MOBILE) {
+            if (this.scrollTop > 100 && modal_br) {
+                document.querySelector(".modal-header").style.setProperty("border-radius", "0px", "important");
+                modal_br = false;
+            }
+            if (this.scrollTop < 70 && !modal_br) {
+                document.querySelector(".modal-header").style.removeProperty("border-radius");
+                modal_br = true;
+            }
         }
     });
 }
@@ -98,39 +135,6 @@ function deletePost(){
 
 
 let modalHelper = undefined;
-$('#postModal').on('show.bs.modal', function (event) {
-    let button = $(event.relatedTarget);
-    let postId = button.data('postid');
-    let from = button.data('from');
-    let display = button.data('display');
-    let modal = $(this);
-    modalHelper = new ModalPostHelper(postId, modal, from, display);
-})
-
-$('#postModal').on('hidden.bs.modal', function (event) {
-    let commentsBtn = document.querySelector(`main .scrollable_feed 
-        .followers #post-${modalHelper.getPostId()} .comments_block button`);
-    if (commentsBtn != null) {
-        commentsBtn.innerHTML = "<span>add comment</span> &nbsp;&nbsp;" 
-            + modalHelper.getNComments()
-            + ' <img src="resources/comment.png" alt="view and add commens">';
-    }
-    modalHelper.clear();
-    modalHelper = undefined;
-});
-  
-
-
 let modal_br = true
-document.querySelector(".modal").addEventListener('scroll', function() {
-    if (IS_MOBILE) {
-        if (this.scrollTop > 100 && modal_br) {
-            document.querySelector(".modal-header").style.setProperty("border-radius", "0px", "important");
-            modal_br = false;
-        }
-        if (this.scrollTop < 70 && !modal_br) {
-            document.querySelector(".modal-header").style.removeProperty("border-radius");
-            modal_br = true;
-        }
-    }
-});
+
+initPostModal();

@@ -3,7 +3,7 @@ class PostsDrawer{
         0 : "closed",
         1 : "open"
     }
-    static N_POST = 36;
+    static N_POST = 12;
 
     constructor(user){
         this.user = user;
@@ -43,11 +43,14 @@ class PostsDrawer{
 
         let targetPosition = window.innerHeight - document.querySelector(".slide_button").offsetHeight + 10;
         if(!IS_MOBILE){
-          targetPosition -= 50;
+          targetPosition -= 45;
         }else if (window.innerWidth < 768) {
           targetPosition -= window.innerWidth/100;
-          if (iOS())
+          if (iOS()) {
             targetPosition += 10;
+          } else {
+            targetPosition += 8;
+          }
         }
         $(".swipe_down-btn").animate({ 
           opacity: "0"

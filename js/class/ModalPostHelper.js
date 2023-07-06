@@ -97,7 +97,7 @@ class ModalPostHelper {
                 : ModalPostHelper.LIKE_BTN);
         
             this.isLiked = response.data["is_liked"];
-            this.modal.removeClass('d-none');          
+            this.modal.removeClass('d-none');
         });
     }
 
@@ -337,10 +337,17 @@ class ModalPostHelper {
                 }
 
                 let targetElement = document.querySelector(`#comment-${response.data[0]["id"]}`);
-                document.querySelector(`.modal`).scrollTo({
-                    top: targetElement.offsetTop - 50,
-                    behavior: 'smooth'
-                });
+                if (IS_MOBILE) {
+                    document.querySelector(`.modal`).scrollTo({
+                        top: targetElement.offsetTop + 2*document.querySelector('section[aria-label="post section"] img').height,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    document.querySelector(`.modal`).scrollTo({
+                        top: targetElement.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                }
 
                 targetElement.setAttribute("aria-label", "your new comment");
                 targetElement.style.backgroundColor = "rgb(193, 214, 225)";
@@ -405,7 +412,9 @@ class ModalPostHelper {
         let formData = new FormData();
         formData.append("id", this.postID);
 
-        axios.post('api/api-delete-post.php', formData);
+        axios.post('api/api-delete-post.php', formData).then(response => {
+            console.log(response.data);
+        });
         this.modal.modal("hide");
     }
 

@@ -5,6 +5,7 @@
     $templateParams["title"] = "bevero";
     $templateParams["main"] = "new-post.php";
     $templateParams["modal"] = "post_modal.php";
+    $templateParams["cropperModal"] = "cropperModal.php";
     $templateParams["aside"] = "aside.php";
 
     // Home template
@@ -12,6 +13,8 @@
         "https://unpkg.com/axios/dist/axios.min.js",
         "js/base.js",
         "js/new-post.js",
+        "cropper/cropper.min.js",
+        "js/cropperModal.js",
         "js/post_modal.js",
         "js/aside.js"
     );
