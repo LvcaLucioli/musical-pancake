@@ -142,7 +142,8 @@ class SearchSection extends AbstractSection {
     }
 
 
-    show() {
+    show() { 
+        if (document.querySelector(this.container + " " + SearchSection.class)) document.querySelector(this.container).removeChild(document.querySelector(this.container + " " + SearchSection.class));
         var section = document.createElement("div");
         var content = ``;
         document.querySelector(this.container).appendChild(section);
