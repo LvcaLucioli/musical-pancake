@@ -164,7 +164,7 @@ main nav[aria-label="feed-menu"] {
     height: 40px;
     margin: calc(2% + 1vh) auto 10px;
     top: calc(2% + 1vh);
-    z-index: 101;
+    z-index: 4000;
     min-width: 200px;
     max-width: 200px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -198,6 +198,35 @@ main nav[aria-label="feed-menu"] ul li button.active {
 }
 
 
+
+/* feed new post btn */
+
+main div.scrollable_feed .feed-add-btn {
+    position: sticky;
+    top: calc(calc(2% + 1vh) + 50px);
+    z-index: 3000;
+}
+
+main div.scrollable_feed .feed-add-btn a {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -50px;
+    left: calc(calc(100vw - 82px) - calc(100vw - 242px)/2 + 60px);
+    padding: 0;
+    background-color: transparent;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 1000px;
+    transform-origin: center;
+}
+
+main div.scrollable_feed .feed-add-btn img {
+    width: 100%;
+    height: auto;
+}
+
+
+
 /*  index section */
 
 .scrollable_feed {
@@ -209,6 +238,7 @@ main nav[aria-label="feed-menu"] ul li button.active {
     overflow-x: hidden;
     position: fixed;
     margin-top: -10px;
+    width: 100vw;
 }
 
 #postModal .modal-body #switchable>footer button,
@@ -278,15 +308,46 @@ main div.scrollable_feed>footer button[disabled] img {
 
 
 
-/* posts list */
+/* discovery list */
 
-main div[id="scrollable_feed"]>section.followers {
+main section.discovery {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: auto;
+    width: 100%;
+    margin-top: 7%;
+    margin-bottom: 4%;
 }
+
+main section.discovery article {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: white;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    padding-right: 1%;
+    padding-left: 1%;
+}
+
+main section.discovery article button {
+    background-color: transparent;
+    padding: 0;
+}
+
+main section.discovery article img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+
+
+/* posts list */
 
 main section.followers article {
     justify-content: center;
@@ -1194,10 +1255,11 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
 }
 
 .posts_count {
-    padding: 0.7% 0 5% 20%;
+    padding: 0 0 5% 20%;
     text-align: left;
     font-size: 1.2em;
     margin: 0;
+    margin-top: -0.4vh;
 }
 
 .num_posts {
@@ -1231,7 +1293,7 @@ main nav[aria-label="followers/following-nav"] ul li button.active {
     opacity: 0;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
-    padding-top: 0.2vh;
+    margin-top: -0.2vh;
     padding-left: calc(80% - 5vh);
 }
 
@@ -1571,8 +1633,8 @@ input[type="search"]::-webkit-search-cancel-button {
     color: white;
     background-color: black;
     border-radius: 25px;
-    width: 100%;
-    height: 40px;
+    width: 70px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1655,6 +1717,10 @@ input[type="search"]::-webkit-search-cancel-button {
 .new-post-form .custom__image-container {
     flex-wrap: wrap;
     gap: 0.5rem;
+    padding: 0 15%;
+    max-width: 90vh;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .new-post-form .custom__image-container #add-img-btn {
@@ -1664,7 +1730,7 @@ input[type="search"]::-webkit-search-cancel-button {
     font-size: 50px;
     font-weight: bold;
     cursor: pointer;
-    width: 70%;
+    width: 100%;
     aspect-ratio: 1/1;
     border: solid 5px black;
     border-radius: 15px;
@@ -1674,10 +1740,10 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .new-post-form .custom__image-container #add-img-label {
-    margin-top: 2.5%;
+    margin-top: 1rem;
     font-size: 1.2em;
     font-weight: 600;
-    padding-left: 17.5%;
+    padding-left: 1rem;
 }
 
 .new-post-form .custom__image-container img {
@@ -1693,18 +1759,22 @@ input[type="search"]::-webkit-search-cancel-button {
     gap: 0.5rem;
     margin-bottom: 20vh;
     height: fit-content;
+    padding: 0 15%;
+    max-width: 90vh;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .new-post-form .description-container #add-desc-label {
     margin-top: 5%;
     font-size: 1.2em;
     font-weight: 600;
-    padding-left: 17.5%;
+    padding-left: 1rem;
 }
 
 .new-post-form .description-container textarea {
     display: flex;
-    width: 70%;
+    width: 100%;
     height: auto;
     min-height: 10vh;
     overflow: hidden;
@@ -1723,7 +1793,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .new-post-form header {
-    margin-top: 6%;
+    margin-top: 2rem;
 }
 
 .new-post-form header h1 {
@@ -1781,7 +1851,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 #cropper-modal img {
     display: block;
-    max-width: 100%;
+    max-height: 100%;
 }
 
 #cropper-modal .image {
@@ -1789,7 +1859,9 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 #cropper-modal .img-container {
-    max-height: calc(55vh + 30vw);
+    max-height: 80vh;
+    width: 100%;
+    aspect-ratio: 1/1;
 }
 
 #cropper-modal .modal-header {
@@ -1938,7 +2010,7 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .swipe_div {
-        margin-top: calc(3vw - 1vh);
+        margin-top: 2%
     }
 
     #drawer {
@@ -2113,6 +2185,21 @@ input[type="search"]::-webkit-search-cancel-button {
         width: 30px !important;
         height: 30px !important;
         margin-bottom: -1%;
+    }
+
+    #cropper-modal .modal-dialog {
+        max-width: 70vw !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #cropper-modal .img-container {
+        max-height: 75vh;
+    }
+
+    .new-post-form .description-container,
+    .new-post-form .custom__image-container {
+        padding: 0 10vw;
     }
 }
 
@@ -2701,5 +2788,32 @@ input[type="search"]::-webkit-search-cancel-button {
 
     .search-section>header {
         background-color: white;
+    }
+
+    #cropper-modal .modal-dialog {
+        max-width: 70vw !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #cropper-modal .img-container {
+        max-height: 75vh;
+    }
+
+    .new-post-form {
+        width: 69vw;
+    }
+
+    .new-post-form .btn-row .col-4 {
+        padding-right: 4vw !important;
+    }
+
+    .new-post-form .description-container,
+    .new-post-form .custom__image-container {
+        padding: 0 8vw;
+    }
+
+    .new-post-form .custom__image-container #add-img-label {
+        margin-top: 0;
     }
 }

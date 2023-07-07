@@ -4,7 +4,7 @@ const DICT = {
 }
 
 const N_POST = 2;
-const N_BLOCK_DISC = 2;
+const N_BLOCK_DISC = 12;
 
 const LOAD_BTN = ` 
     <button onclick="loadMore();">
@@ -187,7 +187,9 @@ function generateDiscovery(posts) {
 
         let post = `
         <article class="col-4">
-            <img src="${posts[i]["img_name"]}" alt="Post image" />
+            <button type="button" data-toggle="modal" data-target="#postModal" data-postid="${posts[i]["id"]}" data-from="feed-discovery" data-display="post" alt="open post pop-up page">
+                <img src="${posts[i]["img_name"]}" alt="Post image" />
+            </button>
         </article>
         `;
         result += post;
@@ -229,6 +231,66 @@ async function loadMore() {
     }
 }
 
+function showAddBtn() {
+    let btn = document.getElementById("add-sm-btn");
+    if (btn != null && !addBtnShow) {
+        btn = $(btn);
+
+        $.when(
+            btn.animate({ 
+              left: $(window).width() - 82 - ($(window).width() - 242) / 2 + 60
+            }, {
+              duration: 500,
+              step: function(now, fx) {
+                $(this).css('left', now);
+              },
+              queue: false
+            }).promise(),
+            $("#add-sm-btn img").animate({
+              deg: -90
+            }, {
+              duration: 550,
+              step: function(now) {
+                $(this).css({ transform: 'rotate(' + now + 'deg)' });
+              },
+              queue: false
+            }).promise()
+        );
+
+        addBtnShow = true;
+    }
+}
+
+function hideAddBtn() {
+    let btn = document.getElementById("add-sm-btn");
+    if (btn != null && addBtnShow) {
+        btn = $(btn);
+
+        $.when(
+            btn.animate({ 
+              left: $(window).width() - 82 - ($(window).width() - 242) / 2
+            }, {
+              duration: 500,
+              step: function(now, fx) {
+                $(this).css('left', now);
+              },
+              queue: false
+            }).promise(),
+            $("#add-sm-btn img").animate({
+              deg: 90 
+            }, {
+              duration: 400,
+              step: function(now) {
+                $(this).css({ transform: 'rotate(' + now + 'deg)' });
+              },
+              queue: false
+            }).promise()
+        );
+
+        addBtnShow = false;
+    }
+}
+
 function logout() {
     fetch('api/api-logout.php', {
         method: 'POST',
@@ -261,10 +323,12 @@ axios.post('api/api-discovery.php', formData).then(response => {
 
 loadMore();
 
-// set posts scroll shadow 
+// set posts scroll events 
 let scrollableDivMain = document.querySelectorAll('.scrollable_feed')[0];
 let header = document.querySelector('header[aria-label="primary-menu"]');
 let nav_feed = document.querySelector('nav[aria-label="feed-menu"]');
+let prevScroll = 0;
+let addBtnShow = true;
 
 scrollableDivMain.addEventListener('scroll', function () {
     if (IS_MOBILE) {
@@ -272,6 +336,15 @@ scrollableDivMain.addEventListener('scroll', function () {
             header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
         } else {
             header.style.boxShadow = "none";
+        }
+
+        if (window.innerWidth < 768 && scrollableDivMain.scrollTop > nav_feed.scrollHeight) {
+            if (prevScroll < scrollableDivMain.scrollTop) {
+                hideAddBtn();
+            } else if (prevScroll - 8 > scrollableDivMain.scrollTop) {
+                showAddBtn();
+            }
+            prevScroll =  scrollableDivMain.scrollTop;
         }
     } else {
         header.style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
