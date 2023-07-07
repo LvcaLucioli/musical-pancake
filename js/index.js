@@ -229,6 +229,22 @@ async function loadMore() {
     }
 }
 
+function logout() {
+    fetch('api/api-logout.php', {
+        method: 'POST',
+        credentials: 'same-origin' 
+    })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = 'login.php';
+            } else {
+                console.error('error during logout');
+            }
+        })
+        .catch(error => {
+            console.error('error in logout request:', error);
+        });
+}
 
 
 let homeStatus = true;

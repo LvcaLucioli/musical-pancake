@@ -1596,6 +1596,19 @@ input[type="search"]::-webkit-search-cancel-button {
     color: red;
     margin-top: 1vh;
 }
+
+.login form .error-icon {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    top: 6px;
+}
+
+.login form .error-icon img {
+    height: 100%;
+}
+
 /* follower following */
 
 #userlist_section .search-section {

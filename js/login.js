@@ -34,11 +34,11 @@ document.querySelector('.login form').addEventListener('submit', function(event)
       return response.json();
     })
     .then(function(data) {
-      if (data.logineseguito) {
+      if (data.login) {
         window.location.href = 'user.php?username=' + data.username;
       } else {
         var errorDiv = document.querySelector('.error-message');
-        errorDiv.textContent = data.errorelogin;
+        errorDiv.textContent = data.error;
         errorDiv.classList.remove("d-none");
       }
     })

@@ -17,6 +17,6 @@
 
     </div>
 </div>
-<div class="login-to-signup">
+<div class="login-signup">
     <span>don't have an account? <a href="signup.php">signup</a></span>
 </div>

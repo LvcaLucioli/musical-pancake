@@ -671,10 +671,21 @@ class DatabaseHelper
     public function signup($username, $password, $email)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $propic = "propic_" . $username;
+        $propic = "propic_" . $username . ".jpg";
         $query = "INSERT INTO `users` (`username`, `password`, `email`, `propic`) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssss', $username, $hashedPassword, $email, $propic);
         return $stmt->execute();
+    }
+
+    public function checkUsernameExists($username){
+        $query = "SELECT `username` FROM `users` WHERE `username` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            return true;
+        }
     }
 }

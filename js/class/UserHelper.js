@@ -130,9 +130,9 @@ class UserHelper{
         if (this.userBtn == "settings" && window.innerWidth < 768) {
             document.getElementsByClassName("nav-item")[1].innerHTML = `
                 <div>
-                    <a title="logout" class="nav-link" href="logout.php">
+                    <button title="logout" class="nav-link" onclick="logout()">
                         <img src="./resources/logout.png" alt="Logout from your account" class="logout">
-                    </a>
+                    </button>
                     <span class="label d-none d-md-inline">logout</span>
                 </div>`;  
         } else if (this.userBtn == "settings") {
@@ -192,9 +192,9 @@ class UserHelper{
         if (user["btn"] == "settings" && window.innerWidth < 768) {
                 document.getElementsByClassName("nav-item")[1].innerHTML = `
                 <div>
-                    <a title="logout" class="nav-link" href="logout.php">
+                    <button title="logout" class="nav-link" onclick="logout()">
                         <img src="./resources/logout.png" alt="Logout from your account" class="logout">
-                    </a>
+                    </button>
                     <span class="label d-none d-md-inline">logout</span>
                 </div>`;  
         }
