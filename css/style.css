@@ -1563,13 +1563,20 @@ input[type="search"]::-webkit-search-cancel-button {
     min-height: 25px;
 }
 
+.login-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .login {
-    width: 30vh;
+    width: 80vw;
 }
 
 .login form {
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    margin-top: 1vh;
 }
 
 .login form label {
@@ -1578,6 +1585,7 @@ input[type="search"]::-webkit-search-cancel-button {
     border-radius: 25px;
     border: 1px solid #aaa;
     box-shadow: 2px 2px 4px #aaa;
+    width: 100%;
 }
 
 .login form label .label {
@@ -1591,13 +1599,13 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .login form label input {
-    font-size: 12px;
+    font-size: 11px;
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
     border: 0;
     border-radius: 25px;
-    height: 40px;
+    height: 37px;
     padding-top: 6px;
     padding-bottom: 6px;
     padding-left: 15px;
@@ -1605,16 +1613,34 @@ input[type="search"]::-webkit-search-cancel-button {
     transition: all 0.15s ease;
 }
 
+
+.login form .textarea-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    box-shadow: 2px 2px 4px #aaa;
+    width: 100%;
+    margin-top: 0;
+}
+
+.login form textarea {
+    border: none;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    padding-left: 10px;
+}
 .login form label input:not(:placeholder-shown)+.label {
-    top: 13px;
-    font-size: 13px;
+    top: 11px;
+    font-size: 14px;
     opacity: 0.8;
     transform: translate3d(0, -12px, 0) scale(0.75);
 }
 
 .login form label input:not(:placeholder-shown) {
     padding-bottom: 0px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .login form .invalid-input {
@@ -1644,19 +1670,18 @@ input[type="search"]::-webkit-search-cancel-button {
     opacity: .7;
 }
 
-.login-to-signup{
-    width: 30vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.login-signup {
+    width: 40vh;
     margin-top: 2vh;
+    display: flex;
+    justify-content: center;
 }
 
-.error-message{
+.error-message {
     display: flex;
     justify-content: center;
     color: red;
-    margin-top: 1vh;
+    margin-top: 2vh;
 }
 
 .login form .error-icon {
@@ -1671,6 +1696,40 @@ input[type="search"]::-webkit-search-cancel-button {
     height: 100%;
 }
 
+.login .custom__image-container {
+    margin-top: 0;
+    width: 80vw;
+}
+
+.login .custom__image-container #add-img-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.login .custom__image-container #add-img-label {
+    border: none;
+    box-shadow: none;
+    margin-top: 1rem;
+}
+.login #bio-label {
+    border: none;
+    box-shadow: none;
+}
+
+.login .custom__image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
 /* follower following */
 
 #userlist_section .search-section {
@@ -1680,7 +1739,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 #userlist_section .search-section .following_btn img {
-    margin-top: 3px;    
+    margin-top: 3px;
 }
 
 .likes-section .search-section .follow_btn img,
@@ -1700,8 +1759,6 @@ input[type="search"]::-webkit-search-cancel-button {
 .likes-section .search-section {
     height: fit-content;
 }
-
-
 
 /* new post page */
 
@@ -2198,7 +2255,8 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .new-post-form .description-container,
-    .new-post-form .custom__image-container {
+    .new-post-form .custom__image-container,
+    .login .custom__image-container {
         padding: 0 10vw;
     }
 }
@@ -2816,4 +2874,17 @@ input[type="search"]::-webkit-search-cancel-button {
     .new-post-form .custom__image-container #add-img-label {
         margin-top: 0;
     }
+
+    .login{
+        width: 20vw;
+    }
+    .login .custom__image-container #add-img-label {
+        margin-top: 0;
+    }
+
+    .login .custom__image-container {
+        width: 20vw;
+    }
+
+
 }

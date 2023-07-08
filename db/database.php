@@ -678,10 +678,10 @@ class DatabaseHelper
         return $stmt->execute();
     }
 
-    public function checkUsernameExists($username){
-        $query = "SELECT `username` FROM `users` WHERE `username` = ?";
+    public function checkExists($credentialType, $credential){
+        $query = "SELECT `username` FROM `users` WHERE $credentialType = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('s', $credential);
         $stmt->execute();
         $result = $stmt->get_result();
         if($result->num_rows > 0){

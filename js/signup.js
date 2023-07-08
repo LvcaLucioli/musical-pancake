@@ -46,6 +46,7 @@ document.querySelector('.login form').addEventListener('submit', function (event
         })
         .then(function (data) {
             if (data.signup) {
+                uploadPropic();
                 window.location.href = 'user.php?username=' + data.username;
             } else {
                 var errorDiv = document.querySelector('.error-message');
@@ -59,13 +60,16 @@ document.querySelector('.login form').addEventListener('submit', function (event
         });
 });
 
-document.querySelector('.login form #username').addEventListener('focusout', function (event) {
+function checkCredential(event) {
     event.preventDefault();
 
-    var username = event.target.value;
+    var credential = event.target.value;
+    var credentialType = event.target.id;
     var formData = new FormData();
-    formData.append('username', username);
-    console.log(username);
+
+    formData.append('credentialType', credentialType);
+    formData.append('credential', credential);
+
     fetch('api/api-check-username.php', {
         method: 'POST',
         body: formData
@@ -77,22 +81,52 @@ document.querySelector('.login form #username').addEventListener('focusout', fun
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
             if (data.exists) {
-                document.querySelector('.login form #username').parentElement.classList.add('invalid-input');
-                document.querySelector('.login form #username').setCustomValidity("username taken");
-                document.querySelector('.login form .error-icon').classList.remove("d-none");
+                document.querySelector('.login form #' + credentialType).setCustomValidity(credentialType + " taken");
+                document.querySelector('.login form #' + credentialType).parentElement.querySelector('.error-icon').classList.remove("d-none");
             } else {
-                document.querySelector('.login form #username').parentElement.classList.remove('invalid-input');
-                document.querySelector('.login form #username').setCustomValidity("");
-                document.querySelector('.login form .error-icon').classList.add("d-none");
+                document.querySelector('.login form #' + credentialType).setCustomValidity("");
+                document.querySelector('.login form #' + credentialType).parentElement.querySelector('.error-icon').classList.add("d-none");
             }
         })
         .catch(function (error) {
             console.error('error on api request:', error);
         });
-});
+}
 
+function uploadPropic() {
+    let img = document.getElementById("img-to-save");
+    if (img != null) {
+        var url = img.src;
+
+        fetch(url)
+            .then(response => response.blob())
+            .then(blob => {
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = function () {
+                    var base64data = reader.result;
+                    const formData = new FormData();
+
+                    formData.append("image", base64data);
+                    axios.post('api/api-upload-profile-picture.php', formData, {
+                        headers: {
+                            'Content-Type': `multipart/form-data`
+                        },
+                        maxBodyLength: Infinity,
+                        maxContentLength: Infinity,
+                    });
+                };
+            });
+    } else {
+        axios.post('api/api-upload-profile-picture.php', {
+
+        });
+    }
+}
+
+document.querySelector('.login form #username').addEventListener('keyup', checkCredential);
+document.querySelector('.login form #email').addEventListener('keyup', checkCredential);
 
 const password = document.querySelector('.login #password');
 const confirmPassword = document.querySelector('.login #confirm-password');

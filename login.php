@@ -3,8 +3,8 @@
 
     // Base template
     $templateParams["title"] = "Profile";
-    // $templateParams["main"] = "";
-    $templateParams["aside"] = "login.php";
+    $templateParams["main"] = "login.php";
+    // $templateParams["aside"] = "login.php";
 
     // Home template
     $templateParams["js"] = array(
