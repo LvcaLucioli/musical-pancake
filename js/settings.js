@@ -31,9 +31,7 @@ document.querySelector('.login form').addEventListener('submit', function (event
             return response.json();
         }).then(function (data) {
             if (data.update) {
-                if (document.getElementById("img-to-save")) {
-                    uploadPropic();
-                }
+                uploadPropic();
                 window.location.href = 'user.php?username=' + data.username;
             } else {
                 var errorDiv = document.querySelector('.error-message');

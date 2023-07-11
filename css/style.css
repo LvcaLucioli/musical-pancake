@@ -1588,6 +1588,10 @@ input[type="search"]::-webkit-search-cancel-button {
     width: 100%;
 }
 
+.login form #add-img-label {
+    border-radius: 0;
+}
+
 .login form label .label {
     position: absolute;
     top: 6px;
