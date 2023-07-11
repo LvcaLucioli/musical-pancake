@@ -13,17 +13,17 @@
                 <span class="label">email</span>
             </label>
             <label for="password">
-                <input type="password" id="password" name="password" placeholder="&nbsp;" required minlength="8" maxlength="72">
+                <input type="password" id="password" name="password" placeholder="&nbsp;" minlength="8" maxlength="72">
                 <span class="label">password</span>
             </label>
             <label for="confirm-password">
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="&nbsp;" required minlength="8" maxlength="72">
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="&nbsp;" minlength="8" maxlength="72">
                 <span class="label">confirm password</span>
             </label>
             <div class="custom__image-container">
                 <label id="add-img-label" for="add-single-img">profile picture</label>
                 <label id="add-img-btn" for="add-single-img" class="img-container">+</label>
-                <input class="image" type="file" id="add-single-img" accept="image/*" hidden />
+                <input name="image" class="image" type="file" id="add-single-img" accept="image/*" hidden />
             </div>
             <label for="bio" id="bio-label">bio</label>
             <div class="textarea-wrapper">

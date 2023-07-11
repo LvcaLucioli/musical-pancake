@@ -10,6 +10,7 @@
     $templateParams["js"] = array(
         "https://unpkg.com/axios/dist/axios.min.js",
         "js/base.js",
+        "js/form.js",
         "js/login.js"
     );
 

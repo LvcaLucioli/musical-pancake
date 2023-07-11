@@ -13,3 +13,32 @@ window.addEventListener('load', (e) => {
         document.querySelector('.login form textarea').value = response[0].bio;
     })
 });
+
+document.querySelector('.login form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var form = event.target;
+    var formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Errore nella richiesta API: ' + response.status);
+            }
+            return response.json();
+        }).then(function (data) {
+            if(document.getElementById("img-to-save")){
+                uploadPropic();
+            }
+            window.location.href = 'user.php?username=' + data.username;
+        })
+})
+
+const password = document.querySelector('.login #password');
+const confirmPassword = document.querySelector('.login #confirm-password');
+
+password.addEventListener('keyup', checkPassword);
+confirmPassword.addEventListener('keyup', checkPassword);

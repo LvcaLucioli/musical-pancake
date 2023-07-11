@@ -11,11 +11,12 @@
     $templateParams["js"] = array(
         "https://unpkg.com/axios/dist/axios.min.js",
         "js/base.js",
-        "js/signup.js",
         "cropper/cropper.min.js",
         "js/cropperModal.js",
         "js/aside.js",
-        "js/settings.js"
+        "js/form.js",
+        "js/settings.js",
+        
     );
 
     require_once 'template/base.php';

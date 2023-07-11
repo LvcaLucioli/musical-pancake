@@ -678,25 +678,44 @@ class DatabaseHelper
         return $stmt->execute();
     }
 
-    public function checkExists($credentialType, $credential){
-        $query = "SELECT `username` FROM `users` WHERE $credentialType = ?";
+    public function checkExists($username, $credentialType, $credential)
+    {
+        $query = "SELECT `username` FROM `users` WHERE $credentialType = ? AND `username` <> ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $credential);
+        $stmt->bind_param('ss', $credential, $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        if($result->num_rows > 0){
+        if ($result->num_rows > 0) {
             return true;
         }
     }
 
     public function getUserInfo($username)
     {
-        $query = "SELECT `username`, `email`, `bio` FROM `users` WHERE `username` = ?";
+        $query = "SELECT `username`, `email`, `bio`, `propic` FROM `users` WHERE `username` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateUserInfo($old_username, $username, $email, $password, $bio, $propic = "")
+    {
+        if (!$password) {
+            $query = "UPDATE `users` SET `username` = ?, `email` = ?, `propic` = ?, `bio` = ? WHERE username = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssss', $username, $email, $propic, $bio, $old_username);
+        } else {
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $query = "UPDATE `users` SET `username` = ?, `password` = ?, `email` = ?, `propic` = ?, `bio` = ? WHERE username = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ssssss', $username, $hashedPassword, $email, $propic, $bio, $old_username);
+        }
+
+        $stmt->execute();
+
+        return $username;
     }
 }

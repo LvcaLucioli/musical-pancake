@@ -1,7 +1,7 @@
 <div class="login-wrapper">
     <div class="login">
         <h2>signup</h2>
-        <form action="api/api-signup.php" method="POST">
+        <form action="api/api-settings.php" method="POST">
             <label for="username">
                 <span class="error-icon d-none"><img src="resources/cross.png" title="username already taken" alt="username already taken"></span>
                 <input type="text" id="username" name="username" placeholder="&nbsp;" value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>" required minlength="8" maxlength="50">

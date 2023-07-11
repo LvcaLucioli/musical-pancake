@@ -11,6 +11,7 @@
     $templateParams["js"] = array(
         "https://unpkg.com/axios/dist/axios.min.js",
         "js/base.js",
+        "js/form.js",
         "js/signup.js",
         "cropper/cropper.min.js",
         "js/cropperModal.js",
