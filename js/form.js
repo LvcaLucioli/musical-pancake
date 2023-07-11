@@ -94,6 +94,3 @@ function checkCredential(event) {
             console.error('error on api request:', error);
         });
 }
-
-document.querySelector('.login form #username').addEventListener('keyup', checkCredential);
-document.querySelector('.login form #email').addEventListener('keyup', checkCredential);

@@ -30,7 +30,8 @@ document.querySelector('.login form').addEventListener('submit', function (event
         });
 });
 
-
+document.querySelector('.login form #username').addEventListener('keyup', checkCredential);
+document.querySelector('.login form #email').addEventListener('keyup', checkCredential);
 
 const password = document.querySelector('.login #password');
 const confirmPassword = document.querySelector('.login #confirm-password');

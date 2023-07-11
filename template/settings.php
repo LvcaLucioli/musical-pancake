@@ -13,12 +13,13 @@
                 <span class="label">email</span>
             </label>
             <label for="password">
+                <span class="error-icon d-none"><img src="resources/cross.png" title="username already taken" alt="username already taken"></span>
                 <input type="password" id="password" name="password" placeholder="&nbsp;" minlength="8" maxlength="72">
                 <span class="label">password</span>
             </label>
-            <label for="confirm-password">
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="&nbsp;" minlength="8" maxlength="72">
-                <span class="label">confirm password</span>
+            <label for="new-password">
+                <input type="password" id="new-password" name="new-password" placeholder="&nbsp;" minlength="8" maxlength="72">
+                <span class="label">new password</span>
             </label>
             <div class="custom__image-container">
                 <label id="add-img-label" for="add-single-img">profile picture</label>

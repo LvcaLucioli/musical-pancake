@@ -30,15 +30,15 @@ document.querySelector('.login form').addEventListener('submit', function (event
             }
             return response.json();
         }).then(function (data) {
-            if(document.getElementById("img-to-save")){
-                uploadPropic();
+            if (data.update) {
+                if (document.getElementById("img-to-save")) {
+                    uploadPropic();
+                }
+                window.location.href = 'user.php?username=' + data.username;
+            } else {
+                var errorDiv = document.querySelector('.error-message');
+                errorDiv.textContent = data.error;
+                errorDiv.classList.remove("d-none");
             }
-            window.location.href = 'user.php?username=' + data.username;
         })
 })
-
-const password = document.querySelector('.login #password');
-const confirmPassword = document.querySelector('.login #confirm-password');
-
-password.addEventListener('keyup', checkPassword);
-confirmPassword.addEventListener('keyup', checkPassword);
