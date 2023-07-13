@@ -692,7 +692,7 @@ class DatabaseHelper
 
     public function getUserInfo($username)
     {
-        $query = "SELECT `username`, `email`, `bio`, `propic` FROM `users` WHERE `username` = ?";
+        $query = "SELECT `username`, `email`, `bio`, `propic`, `is_in_disc` FROM `users` WHERE `username` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
@@ -701,12 +701,12 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function updateUserInfo($old_username, $username, $email, $password, $new_password, $bio, $propic = "")
+    public function updateUserInfo($old_username, $username, $email, $password, $new_password, $bio, $isInDiscovery, $propic = "")
     {
         if (!$password) {
-            $query = "UPDATE `users` SET `username` = ?, `email` = ?, `propic` = ?, `bio` = ? WHERE username = ?";
+            $query = "UPDATE `users` SET `username` = ?, `email` = ?, `propic` = ?, `bio` = ?, `is_in_disc` = ? WHERE username = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sssss', $username, $email, $propic, $bio, $old_username);
+            $stmt->bind_param('ssssis', $username, $email, $propic, $bio, $isInDiscovery, $old_username);
             $stmt->execute();
             return true;
         } else {
@@ -719,9 +719,9 @@ class DatabaseHelper
             if (password_verify($password, $row[0])) {
                 $hashedPassword = password_hash($new_password, PASSWORD_DEFAULT);
                 
-                $query = "UPDATE `users` SET `username` = ?, `password` = ?, `email` = ?, `propic` = ?, `bio` = ? WHERE username = ?";
+                $query = "UPDATE `users` SET `username` = ?, `password` = ?, `email` = ?, `propic` = ?, `bio` = ?, `is_in_disc` = ?  WHERE username = ?";
                 $stmt = $this->db->prepare($query);
-                $stmt->bind_param('ssssss', $username, $hashedPassword, $email, $propic, $bio, $old_username);
+                $stmt->bind_param('sssssis', $username, $hashedPassword, $email, $propic, $bio, $isInDiscovery, $old_username);
                 $stmt->execute();
                 return true;
             }

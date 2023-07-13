@@ -1563,23 +1563,47 @@ input[type="search"]::-webkit-search-cancel-button {
     min-height: 25px;
 }
 
-.login-wrapper {
-    width: 100%;
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    position: relative;
+    align-items: center;
+    top: 200px;
+    /* width: 100vw; */
+}
+
+.long.form-wrapper {
+    height: 81vh;
+    position: relative;
+    top: 0;
+    overflow-y: scroll;
+    padding-bottom: 50px;
+}
+
+.login {
+    width: 80vw;
+    min-width: 220px;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.login {
+.long-form {
     width: 80vw;
+    min-width: 220px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.login form {
-    width: 100%;
+.form-wrapper form {
     margin-top: 1vh;
 }
 
-.login form label {
+.form-wrapper form label {
     position: relative;
     overflow: hidden;
     border-radius: 25px;
@@ -1588,11 +1612,11 @@ input[type="search"]::-webkit-search-cancel-button {
     width: 100%;
 }
 
-.login form #add-img-label {
+.form-wrapper form #add-img-label {
     border-radius: 0;
 }
 
-.login form label .label {
+.form-wrapper form label .label {
     position: absolute;
     top: 6px;
     left: 16px;
@@ -1602,7 +1626,7 @@ input[type="search"]::-webkit-search-cancel-button {
     pointer-events: none;
 }
 
-.login form label input {
+.form-wrapper form label input {
     font-size: 11px;
     -webkit-appearance: none;
     appearance: none;
@@ -1618,7 +1642,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 
-.login form .textarea-wrapper {
+.form-wrapper form .textarea-wrapper {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
@@ -1628,57 +1652,55 @@ input[type="search"]::-webkit-search-cancel-button {
     margin-top: 0;
 }
 
-.login form textarea {
+.form-wrapper form textarea {
     border: none;
     width: 100%;
     height: 100%;
     outline: none;
     padding-left: 10px;
 }
-.login form label input:not(:placeholder-shown)+.label {
+
+.form-wrapper form label input:not(:placeholder-shown)+.label {
     top: 11px;
     font-size: 14px;
     opacity: 0.8;
     transform: translate3d(0, -12px, 0) scale(0.75);
 }
 
-.login form label input:not(:placeholder-shown) {
+.form-wrapper form label input:not(:placeholder-shown) {
     padding-bottom: 0px;
     font-size: 13px;
 }
 
-.login form .invalid-input {
+.form-wrapper form .invalid-input {
     box-shadow: 0px 0px 0px 2px red;
 }
 
-.login form .invalid-input input {
+.form-wrapper form .invalid-input input {
     outline: 0;
 }
 
-.login form div {
-    margin-top: 1vh;
+.form-wrapper form div {
+    margin: 0;
 }
 
-.login button {
+.form-wrapper button {
     color: white;
     background-color: black;
     border-radius: 25px;
-    width: 70px;
+    width: 100%;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login button:disabled{
+.form-wrapper button:disabled {
     opacity: .7;
 }
 
 .login-signup {
-    width: 40vh;
     margin-top: 2vh;
-    display: flex;
-    justify-content: center;
 }
 
 .error-message {
@@ -1688,7 +1710,7 @@ input[type="search"]::-webkit-search-cancel-button {
     margin-top: 2vh;
 }
 
-.login form .error-icon {
+.form-wrapper form .error-icon {
     position: absolute;
     right: 10px;
     width: 20px;
@@ -1696,16 +1718,16 @@ input[type="search"]::-webkit-search-cancel-button {
     top: 6px;
 }
 
-.login form .error-icon img {
+.form-wrapper form .error-icon img {
     height: 100%;
 }
 
-.login .custom__image-container {
+.form-wrapper .custom__image-container {
     margin-top: 0;
-    width: 80vw;
+    width: 100%;
 }
 
-.login .custom__image-container #add-img-btn {
+.form-wrapper .custom__image-container #add-img-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1718,22 +1740,110 @@ input[type="search"]::-webkit-search-cancel-button {
     object-fit: cover;
 }
 
-.login .custom__image-container #add-img-label {
+.form-wrapper .custom__image-container #add-img-label {
     border: none;
     box-shadow: none;
     margin-top: 1rem;
 }
-.login #bio-label {
+
+.form-wrapper #bio-label {
     border: none;
     box-shadow: none;
 }
 
-.login .custom__image-container img {
+.form-wrapper .custom__image-container img {
     width: 100%;
     height: auto;
     border-radius: 10px;
     object-fit: cover;
 }
+
+.switch {
+    position: relative !important;
+    display: inline-block;
+    width: 50px !important;
+    height: 23px;
+    border: none !important;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input[type="checkbox"]:checked+.slider {
+    background-color: black;
+}
+
+input[type="checkbox"]:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input[type="checkbox"]:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.form-wrapper #discoverable-label {
+    border: none;
+    box-shadow: none;
+    width: fit-content;
+    width: -moz-fit-content;
+}
+
+div.discoverable {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 25px !important;
+}
+
+div.submit-button {
+    margin-top: 20px !important;
+}
+
+div#first-column {
+    width: 100%;
+}
+
+div#second-column {
+    width: 100%;
+}
+
 /* follower following */
 
 #userlist_section .search-section {
@@ -2259,9 +2369,70 @@ input[type="search"]::-webkit-search-cancel-button {
     }
 
     .new-post-form .description-container,
-    .new-post-form .custom__image-container,
-    .login .custom__image-container {
+    .new-post-form .custom__image-container {
         padding: 0 10vw;
+    }
+
+    .long-form form .row.fields {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .login {
+        min-width: 300px;
+        max-width: 40vw;
+        width: 40vw;
+    }
+
+    .login .custom__image-container #add-img-label {
+        margin-top: 0;
+    }
+
+    .login .custom__image-container {
+        width: 100%;
+    }
+
+    .login form .textarea-wrapper {
+        width: 25vw;
+    }
+
+    div#first-column {
+        display: flex;
+        flex-direction: column;
+        margin-right: 5vw;
+    }
+
+    div#second-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .login .custom__image-container #add-img-btn {
+        width: 25vw;
+    }
+
+    .long.form-wrapper .long-form {
+        width: 70vw;
+        min-width: 500px;
+        max-width: 600px;
+    }
+
+    .long.form-wrapper form {
+        width: 100%;
+    }
+
+    .long.form-wrapper .custom__image-container label#add-img-label {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .long.form-wrapper .submit-button {
+        margin-top: 20px;
+    }
+
+    .long.form-wrapper .discoverable {
+        margin-top: 25px;
     }
 }
 
@@ -2890,5 +3061,68 @@ input[type="search"]::-webkit-search-cancel-button {
         width: 20vw;
     }
 
+    .login form .textarea-wrapper {
+        width: 25vw;
+    }
 
+    .login form button {
+        top: 10px;
+    }
+
+    div#first-column {
+        display: flex;
+        /* width: 25vw; */
+        /* align-content: space-between; */
+        flex-direction: column;
+        margin-right: 35px;
+        /* max-width: 300px; */
+    }
+
+    div#second-column {
+        display: flex;
+        /* width: 28vw; */
+        /* max-width: 300px; */
+        flex-direction: column;
+    }
+
+    .login-wrapper {
+        top: 100px;
+    }
+
+    .long.form-wrapper {
+        width: 68vw;
+        top: 100px;
+    }
+
+    .long.form-wrapper .long-form {
+        width: 70vw;
+        min-width: 500px;
+        max-width: 600px;
+    }
+
+    .long.form-wrapper form {
+        width: 100%;
+    }
+
+    .long.form-wrapper form .row.fields {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .long.form-wrapper .custom__image-container label#add-img-label {
+        margin-top: 0;
+    }
+
+    .long.form-wrapper .custom__image-container #add-img-btn {
+        margin-bottom: 0;
+    }
+
+    .long.form-wrapper .submit-button {
+        margin-top: 20px;
+    }
+
+    .long.form-wrapper .discoverable {
+        margin-top: 25px;
+    }
 }

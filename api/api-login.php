@@ -6,7 +6,7 @@ $result["username"] = $_POST["username"];
 if(isset($_POST["username"]) && isset($_POST["password"])){
     $login_result = $dbh->checkLogin($_POST["username"], $_POST["password"]);
     if(!$login_result){
-        $result["error"] = "error on username or password";
+        $result["error"] = "error! check your credentials";
     }
     else{
         logUserIn($_POST["username"]);

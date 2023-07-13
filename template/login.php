@@ -1,4 +1,4 @@
-<div class="login-wrapper">
+<div class="form-wrapper">
     <div class="login">
         <h2>login</h2>
         <form action="api/api-login.php" method="POST">
@@ -14,12 +14,10 @@
                 <button type="submit" disabled>login</button>
             </div>
         </form>
-
-    </div>
-    <div class="login-signup">
-        <span>don't have an account? <a href="signup.php">signup</a></span>
-    </div>
-    <div class="error-message d-none">
-
+        <div class="login-signup">
+            <span>don't have an account? <a href="signup.php">signup</a></span>
+        </div>
+        <div class="error-message d-none">
+        </div>
     </div>
 </div>

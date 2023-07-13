@@ -7,14 +7,17 @@ window.addEventListener('load', (e) => {
         }else{
             return response.json();
         }
-    }).then(function(response){
-        document.querySelector('.login form #username').value = response[0].username;
-        document.querySelector('.login form #email').value = response[0].email;
-        document.querySelector('.login form textarea').value = response[0].bio;
+    }).then(function (response) {
+        document.querySelector('.long-form form #username').value = response[0].username;
+        document.querySelector('.long-form form #email').value = response[0].email;
+        document.querySelector('.long-form form textarea').value = response[0].bio;
+        document.querySelector('.long-form form input#discoverable').value = response[0].is_in_disc;
+        if (document.querySelector('.long-form form input#discoverable').value == 1)
+            document.querySelector('.long-form form input#discoverable').click();
     })
 });
 
-document.querySelector('.login form').addEventListener('submit', function (event) {
+document.querySelector('.long-form form').addEventListener('submit', function (event) {
     event.preventDefault();
 
     var form = event.target;
@@ -31,7 +34,8 @@ document.querySelector('.login form').addEventListener('submit', function (event
             return response.json();
         }).then(function (data) {
             if (data.update) {
-                uploadPropic();
+                if (document.querySelector('#img-to-save'))
+                    uploadPropic();
                 window.location.href = 'user.php?username=' + data.username;
             } else {
                 var errorDiv = document.querySelector('.error-message');
@@ -39,7 +43,12 @@ document.querySelector('.login form').addEventListener('submit', function (event
                 errorDiv.classList.remove("d-none");
             }
         })
-})
+});
+
+document.querySelector('.long-form form input#discoverable').addEventListener('click', function (event) {
+    event.target.value = Math.abs(event.target.value - 1);
+    event.target.click();
+});
 
 function logout() {
     fetch('api/api-logout.php', {
