@@ -367,29 +367,28 @@ class DatabaseHelper
     {
         $query = "SELECT 
         q1.username, q1.propic, q1.bio, COALESCE(q1.followers, 0) AS followers, COALESCE(q2.following, 0) AS following
-        FROM (
-            SELECT 
-                u.username, u.propic, u.bio, COUNT(*) AS followers
-                FROM 
-                    users u
-                    JOIN followers f ON u.username = f.followed
-                WHERE 
-                    u.username = ?
-                GROUP BY 
-                    u.username
-        ) AS q1
-        LEFT JOIN (
-            SELECT 
-                    follower,
-                    COUNT(*) AS following
-                FROM 
-                    followers
-                WHERE 
-                    follower = ?
-                GROUP BY 
-                    follower
-        ) AS q2
-        ON q1.username = q2.follower;";
+    FROM (
+        SELECT 
+            u.username, u.propic, u.bio, COUNT(f.followed) AS followers
+        FROM 
+            users u
+            LEFT JOIN followers f ON u.username = f.followed
+        WHERE 
+            u.username = ?
+        GROUP BY 
+            u.username, u.propic, u.bio
+    ) AS q1
+    LEFT JOIN (
+        SELECT 
+            follower, COUNT(followed) AS following
+        FROM 
+            followers
+        WHERE 
+            follower = ?
+        GROUP BY 
+            follower
+    ) AS q2
+    ON q1.username = q2.follower;";
 
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ss', $username, $username);
