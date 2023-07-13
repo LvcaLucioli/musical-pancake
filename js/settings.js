@@ -52,7 +52,7 @@ document.querySelector('.long-form form').addEventListener('submit', function (e
             }
         })
 });
-
+document.querySelector('header[aria-label="primary-menu"]').style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
 document.querySelector('.long-form form input#discoverable').addEventListener('click', function (event) {
     event.target.value = Math.abs(event.target.value - 1);
     event.target.click();

@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="row submit-button">
-                <button type="submit">update</button>
+                <button type="submit">save changes</button>
             </div>
         </form>
         <div class="error-message d-none">
