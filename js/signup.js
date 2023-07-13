@@ -1,19 +1,40 @@
-function checkPassword(){
-    var passwordField = document.querySelector('.login #password');
-    var confirmPasswordField = document.querySelector('.login #confirm-password');
+document.querySelector('.login form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-    if (confirmPasswordField.value == passwordField.value){
-        passwordField.parentElement.classList.remove('invalid-input');
-        confirmPasswordField.parentElement.classList.remove('invalid-input');
-    }else{
-        passwordField.parentElement.classList.add('invalid-input');
-        confirmPasswordField.parentElement.classList.add('invalid-input');
-    }
-    
-}
+    var form = event.target;
+    var formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('error in api request: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            if (data.signup) {
+                uploadPropic();
+                window.location.href = 'user.php?username=' + data.username;
+            } else {
+                var errorDiv = document.querySelector('.error-message');
+                errorDiv.textContent = data.error;
+                errorDiv.classList.remove("d-none");
+            }
+        })
+        .catch(function (error) {
+
+            console.error('error in api request:', error);
+        });
+});
+
+document.querySelector('.login form #username').addEventListener('keyup', checkCredential);
+document.querySelector('.login form #email').addEventListener('keyup', checkCredential);
 
 const password = document.querySelector('.login #password');
 const confirmPassword = document.querySelector('.login #confirm-password');
 
-password.addEventListener('change', checkPassword);
-confirmPassword.addEventListener('change', checkPassword);
+password.addEventListener('keyup', checkPassword);
+confirmPassword.addEventListener('keyup', checkPassword);

@@ -61,18 +61,18 @@ class SearchSection extends AbstractSection {
             // add items to searchlist
             this.searchResults.slice(0, SearchSection.N_SEARCH_RESULT).forEach(element => {
                 var child = document.createElement("div");
-                document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
+                document.querySelector(this.container + ">" + SearchSection.class).appendChild(child);
                 child.outerHTML = element;
             });
 
             this.searchResults = this.searchResults.slice(SearchSection.N_SEARCH_RESULT, this.searchResults.length);
 
-            if (document.querySelector(this.container + " " + SearchSection.class + ' footer')) {
-                document.querySelector(this.container + " " + SearchSection.class + ' footer').outerHTML = "";
+            if (document.querySelector(this.container + ">" + SearchSection.class + ' footer')) {
+                document.querySelector(this.container + ">" + SearchSection.class + ' footer').outerHTML = "";
             }
 
             var child = document.createElement("footer");
-            document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
+            document.querySelector(this.container + ">" + SearchSection.class).appendChild(child);
             if (this.searchResults.length == 0) {
                 child.innerHTML = this.LOAD_BTN_DISABLED;
             } else {
@@ -143,7 +143,7 @@ class SearchSection extends AbstractSection {
 
 
     show() { 
-        if (document.querySelector(this.container + " " + SearchSection.class)) document.querySelector(this.container).removeChild(document.querySelector(this.container + " " + SearchSection.class));
+        if (document.querySelector(this.container + ">" + SearchSection.class)) document.querySelector(this.container).removeChild(document.querySelector(this.container + ">" + SearchSection.class));
         var section = document.createElement("div");
         var content = ``;
         document.querySelector(this.container).appendChild(section);
@@ -173,7 +173,7 @@ class SearchSection extends AbstractSection {
     }
 
     resetArea() {
-        const searchSection = document.querySelector(this.container + " " + SearchSection.class);
+        const searchSection = document.querySelector(this.container + ">" + SearchSection.class);
         searchSection.querySelectorAll("." + SearchSection.itemClass).forEach(function (row) {
             row.remove();
         });
@@ -185,11 +185,11 @@ class SearchSection extends AbstractSection {
         if ((querySection.value == "") && (this.target == "users")) this.resetArea();
 
         if ((querySection.value != "") || (this.target != "users")) {
-            if (!document.querySelector(this.container + " " + SearchSection.class + ' footer')) {
+            if (!document.querySelector(this.container + ">" + SearchSection.class + ' footer')) {
                 var child = document.createElement("footer");
-                document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
+                document.querySelector(this.container + ">" + SearchSection.class).appendChild(child);
             }
-            document.querySelector(this.container + " " + SearchSection.class + ' footer')
+            document.querySelector(this.container + ">" + SearchSection.class + ' footer')
                 .innerHTML = `
                             <button onclick="loadMore();">
                                 loading...

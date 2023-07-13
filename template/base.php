@@ -55,10 +55,10 @@
                 </li>
                 <li class="nav-item d-none d-lg-inline logout_lg">
                     <div>
-                        <a title="logout" class="nav-link" href="logout.php">
+                        <button title="logout" class="nav-link" onclick="logout()">
                             <img src="./resources/logout.png" alt="logout">
                             <span class="label d-none d-md-inline">logout</span>
-                        </a>
+                        </button>
                     </div>
                 </li>
             </ul>
@@ -90,10 +90,10 @@
                 </li>
                 <li class="nav-item d-none d-lg-none d-md-inline logout_lg">
                     <div>
-                        <a title="logout" class="nav-link" href="logout.php">
+                        <button title="logout" class="nav-link" onclick="logout()">
                             <img src="./resources/logout.png" alt="logout">
                             <span class="label d-none d-md-inline">logout</span>
-                        </a>
+                        </button>
                     </div>
                 </li>
             </ul>

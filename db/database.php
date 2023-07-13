@@ -649,22 +649,81 @@ class DatabaseHelper
 
     public function checkLogin($username, $password)
     {
-        $query = "SELECT `username`, `password` FROM `users` WHERE `username` = ?";
+        $query = "SELECT `username` FROM `users` WHERE `username` = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        $row = $result->fetch_row();
-        return password_verify($password, $row[1]);
+        if($result->num_rows == 0){
+            return false;
+        }else{
+            $query = "SELECT `password` FROM `users` WHERE `username` = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_row();
+            return password_verify($password, $row[0]);
+        }
     }
 
     public function signup($username, $password, $email)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $propic = "propic_" . $username;
+        $propic = "propic_" . $username . ".jpg";
         $query = "INSERT INTO `users` (`username`, `password`, `email`, `propic`) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssss', $username, $hashedPassword, $email, $propic);
         return $stmt->execute();
+    }
+
+    public function checkExists($username, $credentialType, $credential)
+    {
+        $query = "SELECT `username` FROM `users` WHERE $credentialType = ? AND `username` <> ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $credential, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return true;
+        }
+    }
+
+    public function getUserInfo($username)
+    {
+        $query = "SELECT `username`, `email`, `bio`, `propic`, `is_in_disc` FROM `users` WHERE `username` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateUserInfo($old_username, $username, $email, $password, $new_password, $bio, $isInDiscovery, $propic = "")
+    {
+        if (!$password) {
+            $query = "UPDATE `users` SET `username` = ?, `email` = ?, `propic` = ?, `bio` = ?, `is_in_disc` = ? WHERE username = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ssssis', $username, $email, $propic, $bio, $isInDiscovery, $old_username);
+            $stmt->execute();
+            return true;
+        } else {
+            $query = "SELECT `password` FROM `users` WHERE `username` = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_row();
+            if (password_verify($password, $row[0])) {
+                $hashedPassword = password_hash($new_password, PASSWORD_DEFAULT);
+                
+                $query = "UPDATE `users` SET `username` = ?, `password` = ?, `email` = ?, `propic` = ?, `bio` = ?, `is_in_disc` = ?  WHERE username = ?";
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('sssssis', $username, $hashedPassword, $email, $propic, $bio, $isInDiscovery, $old_username);
+                $stmt->execute();
+                return true;
+            }
+        }
     }
 }
