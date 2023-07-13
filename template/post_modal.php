@@ -5,7 +5,7 @@
                 <div class="modal-header sticky-top">
                     <div class="row" id="postModalLabel">
                         <div class="col-2 profile_pic">
-                            <a><img alt="profile picture" /></a>
+                            <a><img src="" alt="profile picture" /></a>
                         </div>
                         <div class="col-8 user">
                             <a></a>
@@ -24,7 +24,7 @@
                 <div class="modal-body row">
                     <div class="col-lg-6">
                     <section aria-label="post section">
-                        <img alt="post picture">
+                        <img src="" alt="post picture">
                         <pre class="d-lg-none"></pre>
                     </section>
                     </div>

@@ -9,12 +9,12 @@
                             <h5 class="modal-title" id="modalLabel">crop image</h5>
                         </div>
                         <div class="col-3 d-flex justify-content-end">
-                            <button type="button" class="btn btn-primary" id="crop" onclick="crop()"s>done</button>
+                            <button type="button" class="btn btn-primary" id="crop" onclick="crop()">done</button>
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="img-container">
-                            <img id="image">
+                            <img id="image" src="" alt="cropping image">
                         </div>
                     </div>
                 </div>

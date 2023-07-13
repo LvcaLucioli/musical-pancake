@@ -11,3 +11,6 @@ if(isset($_POST['image'])){
     copy('../resources/default-propic.jpg', '.' . UPLOAD_DIR . $img_name);
 }
 
+header('Content-Type: application/json');
+echo json_encode($_SESSION['username']);
+?>

@@ -1,6 +1,6 @@
         <div class="new-post-form">
             <header class="row">
-                <h1 class="col-6"><pre>new post</pre></h1>
+                <h1 class="col-6">new post</h1>
             </header>
             <div class="row btn-row">
                 <div class="offset-8 col-4 d-flex justify-content-end">

@@ -16,8 +16,14 @@
                 </nav>
 
                 <div class="feed-add-btn d-md-none">
-                    <a href="new-post.php" alt="create a new post" id="add-sm-btn">
-                        <img src="./resources/add_btn.png" alt="create a new post">
+                    <a href="new-post.php" id="add-sm-btn">
+                        <figure>
+                            <img src="./resources/add_btn.png" alt="click to create a new post">
+                            <figcaption class="d-none">
+                                Click the button to create a new post.
+                                Scroll down the page to hide the adding button, scroll up to show it.
+                            </figcaption>
+                        </figure>
                     </a>
                 </div>
 

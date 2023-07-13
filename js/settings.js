@@ -12,8 +12,14 @@ window.addEventListener('load', (e) => {
         document.querySelector('.long-form form #email').value = response[0].email;
         document.querySelector('.long-form form textarea').value = response[0].bio;
         document.querySelector('.long-form form input#discoverable').value = response[0].is_in_disc;
+        
         if (document.querySelector('.long-form form input#discoverable').value == 1)
             document.querySelector('.long-form form input#discoverable').click();
+
+        const newImg = document.createElement("img");
+        newImg.src = response[0].propic;
+        newImg.alt = "previous profile image";
+        document.querySelector('.long-form form .img-container').replaceChildren(newImg);
     })
 });
 
@@ -34,9 +40,11 @@ document.querySelector('.long-form form').addEventListener('submit', function (e
             return response.json();
         }).then(function (data) {
             if (data.update) {
-                if (document.querySelector('#img-to-save'))
+                if (document.querySelector('#img-to-save')){
                     uploadPropic();
-                window.location.href = 'user.php?username=' + data.username;
+                }else{
+                    window.location.href = 'user.php?username=' + data.username;
+                }
             } else {
                 var errorDiv = document.querySelector('.error-message');
                 errorDiv.textContent = data.error;

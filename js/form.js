@@ -1,4 +1,4 @@
-const inputFields = document.querySelectorAll('.login input');
+const inputFields = document.querySelectorAll('form input');
 inputFields.forEach(inputField => {
     inputField.addEventListener('keyup', (e) => {
         var disabledButton = true;
@@ -19,6 +19,7 @@ inputFields.forEach(inputField => {
 
 function uploadPropic() {
     let img = document.getElementById("img-to-save");
+    console.log(img);
     if (img != null) {
         var url = img.src;
 
@@ -30,7 +31,7 @@ function uploadPropic() {
                 reader.onloadend = function () {
                     var base64data = reader.result;
                     const formData = new FormData();
-
+                    console.log(blob);
                     formData.append("image", base64data);
                     axios.post('api/api-upload-profile-picture.php', formData, {
                         headers: {
@@ -38,19 +39,21 @@ function uploadPropic() {
                         },
                         maxBodyLength: Infinity,
                         maxContentLength: Infinity,
+                    }).then(function(response){
+                        window.location.href = 'user.php?username=' + response.data;
                     });
                 };
             });
     } else {
-        axios.post('api/api-upload-profile-picture.php', {
-
+        axios.post('api/api-upload-profile-picture.php').then(function(response){
+            window.location.href = 'user.php?username=' + response.data;
         });
     }
 }
 
 function checkPassword() {
-    var passwordField = document.querySelector('.login #password');
-    var confirmPasswordField = document.querySelector('.login #confirm-password');
+    var passwordField = document.querySelector('form #password');
+    var confirmPasswordField = document.querySelector('form #confirm-password');
 
     if (confirmPasswordField.value == passwordField.value) {
         passwordField.parentElement.classList.remove('invalid-input');
@@ -83,11 +86,11 @@ function checkCredential(event) {
         })
         .then(function (data) {
             if (data.exists) {
-                document.querySelector('.login form #' + credentialType).setCustomValidity(credentialType + " taken");
-                document.querySelector('.login form #' + credentialType).parentElement.querySelector('.error-icon').classList.remove("d-none");
+                document.querySelector('form #' + credentialType).setCustomValidity(credentialType + " taken");
+                document.querySelector('form #' + credentialType).parentElement.querySelector('.error-icon').classList.remove("d-none");
             } else {
-                document.querySelector('.login form #' + credentialType).setCustomValidity("");
-                document.querySelector('.login form #' + credentialType).parentElement.querySelector('.error-icon').classList.add("d-none");
+                document.querySelector('form #' + credentialType).setCustomValidity("");
+                document.querySelector('form #' + credentialType).parentElement.querySelector('.error-icon').classList.add("d-none");
             }
         })
         .catch(function (error) {

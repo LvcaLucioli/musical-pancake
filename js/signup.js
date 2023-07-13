@@ -1,4 +1,4 @@
-document.querySelector('.login form').addEventListener('submit', function (event) {
+document.querySelector('.long-form form').addEventListener('submit', function (event) {
     event.preventDefault();
 
     var form = event.target;
@@ -16,8 +16,8 @@ document.querySelector('.login form').addEventListener('submit', function (event
         })
         .then(function (data) {
             if (data.signup) {
+                // if (document.querySelector('#img-to-save'))
                 uploadPropic();
-                window.location.href = 'user.php?username=' + data.username;
             } else {
                 var errorDiv = document.querySelector('.error-message');
                 errorDiv.textContent = data.error;
@@ -30,11 +30,11 @@ document.querySelector('.login form').addEventListener('submit', function (event
         });
 });
 
-document.querySelector('.login form #username').addEventListener('keyup', checkCredential);
-document.querySelector('.login form #email').addEventListener('keyup', checkCredential);
+document.querySelector('.long-form form #username').addEventListener('keyup', checkCredential);
+document.querySelector('.long-form form #email').addEventListener('keyup', checkCredential);
 
-const password = document.querySelector('.login #password');
-const confirmPassword = document.querySelector('.login #confirm-password');
+const password = document.querySelector('.long-form #password');
+const confirmPassword = document.querySelector('.long-form #confirm-password');
 
 password.addEventListener('keyup', checkPassword);
 confirmPassword.addEventListener('keyup', checkPassword);
