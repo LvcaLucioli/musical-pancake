@@ -95,7 +95,9 @@ class NotificationsSection extends AbstractSection {
         formData.append("date", targetNotification.querySelector("footer p").textContent);
         axios.post('api/api-mark-as-read.php', formData).then(response => {
             targetNotification.classList.add("d-none");
+        }).then(function(){
+            this.loadMore(1);
         })
-        this.loadMore(1);
+       
     }
 }
