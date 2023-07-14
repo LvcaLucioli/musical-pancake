@@ -1,7 +1,7 @@
 <div class="long form-wrapper">
     <div class="long-form">
         <h2>sign up</h2>
-        <form action="api/api-settings.php" method="POST">
+        <form action="api/api-signup.php" method="POST">
             <div class="row fields">
                 <div id="first-column">
                     <label for="username">
