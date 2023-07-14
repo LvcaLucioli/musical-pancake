@@ -32,15 +32,6 @@ class Container {
       });
       this.addIconActive(triggerButton);
     }
-    // this.activeSection = this.buttons.length == 1 ? 0 : this.buttons.indexOf(triggerButton);
-    // TODO: change class from static to property
-    // if (document.querySelector(SearchSection.class)) document.querySelector(SearchSection.class).outerHTML = "";
-    // if (document.querySelector('.' + NotificationsSection.class)) document.querySelector('.' + NotificationsSection.class).outerHTML = "";
-    // console.log(this.buttons.length);
-    // console.log(this.activeSection);
-    // console.log(this.sections[this.activeSection]);
-    // console.log(this.sections[0]);
-
   }
   removeIconActive(button) {
     let icon = button.querySelector('img');
