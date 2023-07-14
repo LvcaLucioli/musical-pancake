@@ -4,6 +4,7 @@ $username = $_POST["username"] != "" ? $_POST["username"] : $_SESSION["username"
 $user = $dbh->getUser($username);
 
 if (isset($user[0])) {
+    $user = $user[0];
     $user["propic"] = UPLOAD_DIR.$user["propic"];
 
     if($_SESSION["username"] == $_POST["username"]) {

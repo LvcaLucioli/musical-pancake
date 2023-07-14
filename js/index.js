@@ -106,6 +106,7 @@ function likeClick(button, isLiked, postId) {
 }
 
 function generatePosts(posts) {
+    console.log(posts);
     if (posts.length > 1) {
         let result = '';
 
