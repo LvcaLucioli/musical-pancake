@@ -72,12 +72,13 @@ class ModalPostHelper {
             body.find('section[aria-label="post description"] pre').text(response.data["description"]);
 
             body.find('nav[aria-label="comments/likes-menu"] #comments_button .num').text(response.data["n_comments"]);
-            if (response.data["n_likes"] == 0) {
+            this.nLikes = response.data["n_likes"];
+            if (this.nLikes == 0) {
                 this.prevSwitchable["likes"]["body"] = "<pre class='no-element text-center'>no likes yet</pre>";
                 this.prevSwitchable["likes"]["last_id"] = null;
             } 
 
-            body.find('nav[aria-label="comments/likes-menu"] #likes_button .num').text(response.data["n_likes"]);
+            body.find('nav[aria-label="comments/likes-menu"] #likes_button .num').text(this.nLikes);
             if (response.data["n_comments"] == 0) {
                 body.find("#switchable").html("<pre class='no-element text-center mt-5'>leave the first comment</pre>")
                 this._displayInitSection();
@@ -218,9 +219,11 @@ class ModalPostHelper {
         }
         if (this.state == "likes") {
             this.searchContainer = new Container(`.likes-section`, [new SearchSection("likes", this.postID)], this.modal[0].querySelector('[title="likes area"]'));
-
-            this.searchContainer.sections[this.searchContainer.activeSection].show();
-            this.searchContainer.sections[this.searchContainer.activeSection].search(this.modal[0].querySelector("input"));
+            if(this.nLikes != 0){
+                this.searchContainer.sections[this.searchContainer.activeSection].show();
+                this.searchContainer.sections[this.searchContainer.activeSection].search(this.modal[0].querySelector("input"));
+            }
+            
 
         }
     }
