@@ -168,7 +168,7 @@ class UserHelper{
                     <div class="row ">
                         <div class="col-5 col-md-3">
                         ${user["btn"] == "settings" ? '<a title="create a new post" href="./new-post.php">' : ""}
-                            <img class="propic" src="${user["propic"]}" alt="Profile picture" />
+                            <img class="propic" src="${user["propic"]}?dummy=${Math.random()}" alt="Profile picture" />
                             <div class="add_button ${user["btn"] != "settings" ? "d-none" : ""}">
                                 <img class="add_icon" src="./resources/add_icon.png" alt="add a new post" />
                             </div>

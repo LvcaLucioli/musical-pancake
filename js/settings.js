@@ -15,7 +15,7 @@ window.addEventListener('load', (e) => {
         if (response[0].is_in_disc == 1)
             document.querySelector('.long-form form input#discoverable').click();
         const newImg = document.createElement("img");
-        newImg.src = response[0].propic;
+        newImg.src = response[0].propic + "?dummy=" + Math.random();
         newImg.alt = "previous profile image";
         document.querySelector('.long-form form .img-container').replaceChildren(newImg);
     })

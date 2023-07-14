@@ -38,7 +38,7 @@ function uploadPropic() {
                         maxBodyLength: Infinity,
                         maxContentLength: Infinity,
                     }).then(function(response){
-                        window.location.href = 'user.php?username=' + response.data + '&nocache=' + Math.random();;
+                        window.location.href = 'user.php?username=' + response.data;
                     });
                 };
             });
