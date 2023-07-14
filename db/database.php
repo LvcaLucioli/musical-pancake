@@ -56,20 +56,24 @@ class DatabaseHelper
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-        $query = "SELECT p.*, u.propic
-        FROM posts p, users u, followers f
-        WHERE f.follower = ?
-        AND f.followed = p.user
-        AND p.user = u.username
-        AND p.id < ? 
-        ORDER BY p.date DESC
-        LIMIT 1";
+        if (count($result) > 0) {
+            $query = "SELECT p.*, u.propic
+            FROM posts p, users u, followers f
+            WHERE f.follower = ?
+            AND f.followed = p.user
+            AND p.user = u.username
+            AND p.id < ? 
+            ORDER BY p.date DESC
+            LIMIT 1";
 
-        $stmt = $this->db->prepare($query);
-        $id = $result[count($result) - 1]["id"];
-        $stmt->bind_param('si', $current_user, $id);
-        $stmt->execute();
-        $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
+            $stmt = $this->db->prepare($query);
+            $id = $result[count($result) - 1]["id"];
+            $stmt->bind_param('si', $current_user, $id);
+            $stmt->execute();
+            $result[] = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC)) == 0;
+        } else {
+            $result = [""];
+        }
 
         return $result;
     }
