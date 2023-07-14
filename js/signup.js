@@ -1,4 +1,4 @@
-document.querySelector('.long-form form').addEventListener('submit', function (event) {
+document.querySelector('form').addEventListener('submit', function (event) {
     event.preventDefault();
 
     var form = event.target;
@@ -30,11 +30,11 @@ document.querySelector('.long-form form').addEventListener('submit', function (e
         });
 });
 
-document.querySelector('.long-form form #username').addEventListener('keyup', checkCredential);
-document.querySelector('.long-form form #email').addEventListener('keyup', checkCredential);
+document.querySelector('form #username').addEventListener('keyup', checkCredential);
+document.querySelector('form #email').addEventListener('keyup', checkCredential);
 
-const password = document.querySelector('.long-form #password');
-const confirmPassword = document.querySelector('.long-form #confirm-password');
+const password = document.querySelector('form #password');
+const confirmPassword = document.querySelector('form #confirm-password');
 
 password.addEventListener('keyup', checkPassword);
 confirmPassword.addEventListener('keyup', checkPassword);

@@ -1,4 +1,4 @@
-<div class="long form-wrapper">
+<div class="long form-wrapper settings">
     <div class="long-form">
         <h2>edit profile</h2>
         <form action="api/api-update-info.php" method="POST">

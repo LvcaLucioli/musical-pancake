@@ -665,13 +665,13 @@ class DatabaseHelper
         }
     }
 
-    public function signup($username, $password, $email)
+    public function signup($username, $password, $email, $bio)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $propic = "propic_" . $username . ".jpg";
-        $query = "INSERT INTO `users` (`username`, `password`, `email`, `propic`) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO `users` (`username`, `password`, `email`, `propic`, `bio`) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ssss', $username, $hashedPassword, $email, $propic);
+        $stmt->bind_param('sssss', $username, $hashedPassword, $email, $propic, $bio);
         return $stmt->execute();
     }
 

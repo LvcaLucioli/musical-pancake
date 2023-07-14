@@ -14,4 +14,4 @@
         </li>
     </ul>
 </nav>
-<main></main>
+<div class="wrap"></div>

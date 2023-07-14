@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <header aria-label="primary-menu">
+    <header aria-label="primary-menu" class="<?php if (!isset($templateParams["aside"]))   echo 'd-none'; ?>">
         <nav class="navbar-expand-md" aria-label="explore-nav">
             <ul class="navbar-nav left">
                 <li class="nav-item">
@@ -37,7 +37,7 @@
                     <div <?php if (isActive("user.php")) {
                                 echo 'class="active"';
                             } ?>>
-                        <a title="personal profile" class="nav-link" href="<?php if(isset($_SESSION['username'])) echo "user.php?username=" . $_SESSION['username']; ?>">
+                        <a title="personal profile" class="nav-link" href="<?php if (isset($_SESSION['username'])) echo "user.php?username=" . $_SESSION['username']; ?>">
                             <img src="./resources/icon-profile<?php echo isIconActive("user.php"); ?>.png" alt="personal profile">
                             <span class="label d-none d-md-inline">profile</span>
                         </a>
@@ -125,12 +125,12 @@
             }
             ?>
         </main>
-        <aside class="col-lg-4 d-lg-block profile-aside">
+        <aside class="col-lg-4 profile-aside <?php if (!isset($templateParams["aside"])) echo 'd-none';
+                                                else echo 'd-lg-block'; ?>">
             <?php
             if (isset($templateParams["aside"])) {
                 require __DIR__ . "\\" . $templateParams["aside"];
             } ?>
-
         </aside>
     </div>
     <?php
