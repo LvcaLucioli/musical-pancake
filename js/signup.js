@@ -16,8 +16,8 @@ document.querySelector('form').addEventListener('submit', function (event) {
         })
         .then(function (data) {
             if (data.signup) {
+                // if (document.querySelector('#img-to-save'))
                 uploadPropic();
-                window.location.href = 'user.php?username=' + data.username;
             } else {
                 var errorDiv = document.querySelector('.error-message');
                 errorDiv.textContent = data.error;

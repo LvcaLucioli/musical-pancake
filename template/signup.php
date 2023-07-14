@@ -1,6 +1,6 @@
 <div class="long form-wrapper">
     <div class="long-form">
-        <h2>signup</h2>
+        <h2>sign up</h2>
         <form action="api/api-settings.php" method="POST">
             <div class="row fields">
                 <div id="first-column">
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="row submit-button">
-                <button type="submit">singup</button>
+                <button type="submit">sign up</button>
             </div>
         </form>
         <div class="login-signup">

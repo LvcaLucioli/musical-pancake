@@ -1570,15 +1570,16 @@ input[type="search"]::-webkit-search-cancel-button {
     position: relative;
     align-items: center;
     top: 200px;
-    width: 100vw;
+    margin-top: -10px;
+    padding-top: 2%;
 }
 
 .long.form-wrapper {
-    height: 81vh;
+    height: 100vh;
     position: relative;
     top: 0;
     overflow-y: scroll;
-    padding-bottom: 50px;
+    padding-bottom: 20vh;
 }
 
 .login {
@@ -1693,6 +1694,9 @@ input[type="search"]::-webkit-search-cancel-button {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
+    padding-top: 1em;
+    padding-bottom: 1.2em;
 }
 
 .form-wrapper button:disabled {
@@ -1744,11 +1748,17 @@ input[type="search"]::-webkit-search-cancel-button {
     border: none;
     box-shadow: none;
     margin-top: 1rem;
+    font-weight: bold;
+    padding-left: 0.5rem;
+    margin-top: 2rem;
 }
 
 .form-wrapper #bio-label {
     border: none;
     box-shadow: none;
+    font-weight: bold;
+    padding-left: 0.5rem;
+    margin-top: 1rem;
 }
 
 .form-wrapper .custom__image-container img {
@@ -1823,6 +1833,7 @@ input[type="checkbox"]:checked+.slider:before {
     box-shadow: none;
     width: fit-content;
     width: -moz-fit-content;
+    font-weight: bold;
 }
 
 div.discoverable {
@@ -1873,6 +1884,8 @@ div#second-column {
 .likes-section .search-section {
     height: fit-content;
 }
+
+
 
 /* new post page */
 
@@ -1968,10 +1981,12 @@ div#second-column {
 }
 
 .new-post-form header h1 {
-    font-size: 2.2em !important;
+    font-size: 2em !important;
     font-weight: bolder !important;
     padding-left: 0;
     margin-left: 3rem;
+    font-family: "Courier New", Courier, monospace;
+    letter-spacing: 0em;
 }
 
 .new-post-form .btn-row {
@@ -1983,7 +1998,7 @@ div#second-column {
 .new-post-form .btn-row .col-4 {
     padding: 0 !important;
     padding-right: 2rem !important;
-    padding-top: 0.5em !important;
+    padding-top: 1.5em !important;
     margin-top: -3.8em;
     height: fit-content;
 }
@@ -1999,6 +2014,7 @@ div#second-column {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+.form-wrapper .spinner-border,
 .new-post-form .spinner-border {
     margin: 0 !important;
     font-size: small;
@@ -2319,7 +2335,6 @@ div#second-column {
         justify-content: center;
         border-radius: 25px;
         width: 100%;
-        /* background-color: transparent; */
     }
 
     .search-section {
@@ -3071,17 +3086,12 @@ div#second-column {
 
     div#first-column {
         display: flex;
-        /* width: 25vw; */
-        /* align-content: space-between; */
         flex-direction: column;
         margin-right: 35px;
-        /* max-width: 300px; */
     }
 
     div#second-column {
         display: flex;
-        /* width: 28vw; */
-        /* max-width: 300px; */
         flex-direction: column;
     }
 
@@ -3090,9 +3100,8 @@ div#second-column {
     }
 
     .long.form-wrapper {
-        width: 100vw;
-        top: 100px;
-        height: 95vh;
+        width: 68vw;
+        margin-top: 0.5%;
     }
 
     .long.form-wrapper .long-form {

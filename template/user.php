@@ -1,4 +1,4 @@
-        <div class="scrollable_user" onclick="slideDownDrawer();">
+        <div class="scrollable_user" onclick="slideDownDrawer();" tabindex="0">
             <div class="scrollable_el">
 
             <header></header>
@@ -25,7 +25,7 @@
 
         <section id="drawer">
             <div class="swipe_down-btn text-center">
-                <img src="./resources/swipedown__icon.png" alt="Add a new post" />
+                <img src="./resources/swipedown__icon.png" alt="swipe down or click to close the post drawer" />
             </div>
             <div class="row slide_button">
                 <div role="button" onclick="slideDrawer();" id="slide_button">

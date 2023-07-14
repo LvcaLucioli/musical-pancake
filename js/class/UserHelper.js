@@ -33,13 +33,21 @@ class UserHelper{
 
         const header = document.querySelector("main header");
         const formData = new FormData();
-
+        
         formData.append('username', this.user);
         axios.post('api/api-user.php', formData).then(response => {
-            header.innerHTML = this._generateUserPage(response.data);
-        });
+            this.user = response.data["username"];
 
-        this.postsDrawer = new PostsDrawer(this.user);
+            if (this.user != "unset") {
+                header.innerHTML = this._generateUserPage(response.data);
+                this.postsDrawer = new PostsDrawer(this.user);
+                console.log(this.user);
+            } else {
+                document.querySelector("main").innerHTML = `
+                <pre class='no-element text-center'>not existing user</pre>
+                `;
+            }
+        });
 
         if(iOS() && IS_MOBILE){
             if(window.innerWidth < 768) {
@@ -203,6 +211,6 @@ class UserHelper{
 
     _get(name){
         let params = new URL(window.location.href).searchParams;
-        return params.get(name);;
+        return params.get(name) != null ? params.get(name) : "";
     }
 }

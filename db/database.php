@@ -366,28 +366,27 @@ class DatabaseHelper
     public function getUser($username)
     {
         $query = "SELECT 
-        q1.username, q1.propic, q1.bio, COALESCE(q1.followers, 0) AS followers, COALESCE(q2.following, 0) AS following
+            q1.username, q1.propic, q1.bio, COALESCE(q1.followers, 0) AS followers, COALESCE(q2.following, 0) AS following
         FROM (
             SELECT 
-                u.username, u.propic, u.bio, COUNT(*) AS followers
-                FROM 
-                    users u
-                    JOIN followers f ON u.username = f.followed
-                WHERE 
-                    u.username = ?
-                GROUP BY 
-                    u.username
+                u.username, u.propic, u.bio, COUNT(f.followed) AS followers
+            FROM 
+                users u
+                LEFT JOIN followers f ON u.username = f.followed
+            WHERE 
+                u.username = ?
+            GROUP BY 
+                u.username, u.propic, u.bio
         ) AS q1
         LEFT JOIN (
             SELECT 
-                    follower,
-                    COUNT(*) AS following
-                FROM 
-                    followers
-                WHERE 
-                    follower = ?
-                GROUP BY 
-                    follower
+                follower, COUNT(followed) AS following
+            FROM 
+                followers
+            WHERE 
+                follower = ?
+            GROUP BY 
+                follower
         ) AS q2
         ON q1.username = q2.follower;";
 
@@ -401,7 +400,6 @@ class DatabaseHelper
 
     public function getFollowers($username, $searchQuery)
     {
-        // error_log($searchQuery);
         $query = "SELECT u.username, u.propic 
             FROM followers, users u
             WHERE followed = ? AND follower <> ? AND follower = u.username AND follower LIKE CONCAT('%', ?, '%')";
@@ -595,11 +593,6 @@ class DatabaseHelper
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ssss', $targetUser, $content, $date, $user);
         $stmt->execute();
-        // error_log($targetUser);
-        // error_log($content);
-        // error_log($date);
-        // error_log($user);
-        // error_log($stmt->affected_rows);
     }
 
     public function like_unlike($user, $action, $postId)
