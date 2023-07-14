@@ -897,7 +897,7 @@ main section.followers article footer pre {
     padding: 0 12px;
     width: 50px;
     height: 50px;
-    margin-top: calc(3.5vh - 1.4vw);
+    margin-top: 1.2rem;
     margin-left: calc(2vw - 2vh);
     background-color: rgb(31, 151, 61);
     border-radius: 2000px;
