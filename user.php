@@ -1,6 +1,11 @@
 <?php
     require_once 'bootstrap.php';
     isLoggedIn();
+
+    if (!isset($_GET['username'])) {
+        $_GET['username'] = $_SESSION["username"];
+    }
+
     // Base template
     $templateParams["title"] = "Profile";
     $templateParams["main"] = "user.php";

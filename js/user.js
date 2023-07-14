@@ -128,5 +128,3 @@ scrollableUser.addEventListener('scroll', function() {
 var followersFollowingContainer = new Container(".scrollable_user #userlist_section", [new SearchSection("followers", null, base.user), new SearchSection("following", null, base.user)], document.querySelectorAll("scrollable_user nav button"));
 followersFollowingContainer.sections[followersFollowingContainer.activeSection].show();
 followersFollowingContainer.sections[followersFollowingContainer.activeSection].search(document.querySelector(followersFollowingContainer.container + " input"));
-
-// followersFollowingContainer.sections[followersFollowingContainer.activeSection].show();
