@@ -1,4 +1,4 @@
-var container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
+var container = new SwitchableContainer("aside>.wrap", [new NotificationsSection(), new SearchSection("users")]);
 container.sections[container.activeSection].show();
 
 scrollables = document.querySelectorAll('[class*="scrollable"]');
@@ -135,8 +135,8 @@ $(document).ready(function () {
             });
         }
         if (windowWidth > 992) {
-            container = new SwitchableContainer("aside>main", [new NotificationsSection(), new SearchSection("users")]);
-            activeSection = document.querySelector("aside>main>.notifications-section") ? 0 : 1;
+            container = new SwitchableContainer("aside>.wrap", [new NotificationsSection(), new SearchSection("users")]);
+            activeSection = document.querySelector("aside>.wrap>.notifications-section") ? 0 : 1;
             container.activeSection = activeSection;
         }
     }
