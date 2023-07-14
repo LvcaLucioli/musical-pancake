@@ -11,11 +11,9 @@ window.addEventListener('load', (e) => {
         document.querySelector('.long-form form #username').value = response[0].username;
         document.querySelector('.long-form form #email').value = response[0].email;
         document.querySelector('.long-form form textarea').value = response[0].bio;
-        document.querySelector('.long-form form input#discoverable').value = response[0].is_in_disc;
         
-        if (document.querySelector('.long-form form input#discoverable').value == 1)
+        if (response[0].is_in_disc == 1)
             document.querySelector('.long-form form input#discoverable').click();
-
         const newImg = document.createElement("img");
         newImg.src = response[0].propic;
         newImg.alt = "previous profile image";
@@ -28,7 +26,6 @@ document.querySelector('.long-form form').addEventListener('submit', function (e
 
     var form = event.target;
     var formData = new FormData(form);
-
     fetch(form.action, {
         method: 'POST',
         body: formData
@@ -74,3 +71,5 @@ function logout() {
             console.error('error in logout request:', error);
         });
 }
+document.querySelector('form #username').addEventListener('keyup', checkCredential);
+document.querySelector('form #email').addEventListener('keyup', checkCredential);

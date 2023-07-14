@@ -13,13 +13,12 @@ inputFields.forEach(inputField => {
                 disabledButton = false;
             }
         });
-        parentElement.parentElement.querySelector("button").disabled = !disabledButton;
+        document.querySelector("form button").disabled = !disabledButton;
     })
 });
 
 function uploadPropic() {
     let img = document.getElementById("img-to-save");
-    console.log(img);
     if (img != null) {
         var url = img.src;
 
@@ -31,7 +30,6 @@ function uploadPropic() {
                 reader.onloadend = function () {
                     var base64data = reader.result;
                     const formData = new FormData();
-                    console.log(blob);
                     formData.append("image", base64data);
                     axios.post('api/api-upload-profile-picture.php', formData, {
                         headers: {
