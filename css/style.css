@@ -1570,7 +1570,7 @@ input[type="search"]::-webkit-search-cancel-button {
     position: relative;
     align-items: center;
     top: 200px;
-    /* width: 100vw; */
+    width: 100vw;
 }
 
 .long.form-wrapper {
@@ -3090,8 +3090,9 @@ div#second-column {
     }
 
     .long.form-wrapper {
-        width: 68vw;
+        width: 100vw;
         top: 100px;
+        height: 95vh;
     }
 
     .long.form-wrapper .long-form {
