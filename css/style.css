@@ -1572,6 +1572,7 @@ input[type="search"]::-webkit-search-cancel-button {
     top: 200px;
     margin-top: -10px;
     padding-top: 2%;
+    width: 100vw;
 }
 
 .long.form-wrapper {
@@ -2987,7 +2988,7 @@ div#second-column {
         width: 24px;
     }
 
-    .profile-aside main section {
+    .profile-aside .wrap section {
         margin-top: 5px;
         overflow-y: scroll;
         height: 85%;
@@ -3002,9 +3003,10 @@ div#second-column {
         transition-timing-function: ease-in-out;
     }
 
-    aside>main {
+    .wrap {
         margin-top: 3vmin;
         width: 96%;
+        height: 100%;
     }
 
     .search-section footer button[disabled] img,
@@ -3100,8 +3102,12 @@ div#second-column {
     }
 
     .long.form-wrapper {
-        width: 68vw;
+        /* width: 68vw; */
         margin-top: 0.5%;
+    }
+
+    .settings{
+        width: 68vw;
     }
 
     .long.form-wrapper .long-form {
