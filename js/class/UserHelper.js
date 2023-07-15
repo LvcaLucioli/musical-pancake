@@ -41,7 +41,6 @@ class UserHelper{
             if (this.user != "unset") {
                 header.innerHTML = this._generateUserPage(response.data);
                 this.postsDrawer = new PostsDrawer(this.user);
-                console.log(this.user);
             } else {
                 document.querySelector("main").innerHTML = `
                 <pre class='no-element text-center'>not existing user</pre>

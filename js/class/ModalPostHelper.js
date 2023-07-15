@@ -81,6 +81,7 @@ class ModalPostHelper {
             body.find('nav[aria-label="comments/likes-menu"] #likes_button .num').text(this.nLikes);
             if (response.data["n_comments"] == 0) {
                 body.find("#switchable").html("<pre class='no-element text-center mt-5'>leave the first comment</pre>")
+                this._displayInitSection();
             } else {
                 this.loadMore();
             }
@@ -140,34 +141,7 @@ class ModalPostHelper {
                 this.prevSwitchable[this.state]["last_id"] = elements[elements.length - 2]["id"];
                 this.isLoading = false;
 
-                switch (this.display) {
-                    case "comments":
-                        setTimeout(function () {
-                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({
-                                behavior: "smooth",
-                                block: "start",
-                                inline: "nearest",
-                                scrollTimingFunction: "ease-in-out",
-                                scrollDuration: 300
-                            });
-                        }, 500);
-                        this.display = "";
-                        break;
-                    case "likes":
-                        let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
-                        this.switchSection(btn);
-                        setTimeout(function () {
-                            document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({
-                                behavior: "smooth",
-                                block: "start",
-                                inline: "nearest",
-                                scrollTimingFunction: "ease-in-out",
-                                scrollDuration: 300
-                            });
-                        }, 500);
-                        this.display = "";
-                        break;
-                }
+                this._displayInitSection();
             });
         }
     }
@@ -416,7 +390,6 @@ class ModalPostHelper {
         formData.append("id", this.postID);
 
         axios.post('api/api-delete-post.php', formData).then(response => {
-            console.log(response.data);
         });
         this.modal.modal("hide");
     }
@@ -531,5 +504,36 @@ class ModalPostHelper {
             result += comment;
         }
         return result;
+    }
+
+    _displayInitSection() {
+        switch (this.display) {
+            case "comments":
+                setTimeout(function () {
+                    document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                        inline: "nearest",
+                        scrollTimingFunction: "ease-in-out",
+                        scrollDuration: 300
+                    });
+                }, 500);
+                this.display = "";
+                break;
+            case "likes":
+                let btn = document.querySelector('nav[aria-label="comments/likes-menu"] #likes_button button');
+                this.switchSection(btn);
+                setTimeout(function () {
+                    document.querySelector('nav[aria-label="comments/likes-menu"]').scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                        inline: "nearest",
+                        scrollTimingFunction: "ease-in-out",
+                        scrollDuration: 300
+                    });
+                }, 500);
+                this.display = "";
+                break;
+        }
     }
 }
