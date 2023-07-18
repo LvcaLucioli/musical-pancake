@@ -6,7 +6,7 @@
                 <div id="first-column">
                     <label for="username">
                         <span class="error-icon d-none"><img src="resources/cross.png" title="username already taken" alt="username already taken"></span>
-                        <input type="text" id="username" name="username" placeholder="&nbsp;" value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>" required minlength="8" maxlength="50">
+                        <input type="text" id="username" name="username" placeholder="&nbsp;" value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>" required minlength="1" maxlength="24">
                         <span class="label">username</span>
                     </label>
                     <label for="email">
@@ -26,7 +26,7 @@
 
                     <label for="bio" id="bio-label">bio</label>
                     <div class="textarea-wrapper">
-                        <textarea rows=6 id="bio" name="bio" placeholder="write about yourself" maxlength="144"></textarea>
+                        <textarea rows=6 id="bio" name="bio" placeholder="write about yourself" maxlength="300"></textarea>
                     </div>
                 </div>
                 <div id="second-column">
