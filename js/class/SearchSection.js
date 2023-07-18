@@ -4,7 +4,6 @@ class SearchSection extends AbstractSection {
     static buttonText = "button";
     static N_SEARCH_RESULT = 4;
     searchResults = [];
-    // lastSearchResult = -1;
     isLoading = false;
     abortController = new AbortController();
 
@@ -44,21 +43,6 @@ class SearchSection extends AbstractSection {
     loadMore() {
         if (!this.isLoading) {
             this.isLoading = true;
-            // if (!document.querySelector(this.container + " " + SearchSection.class + ' footer')) {
-            //     var child = document.createElement("footer");
-            //     document.querySelector(this.container + " " + SearchSection.class).appendChild(child);
-            // }
-            // document.querySelector(this.container + " " + SearchSection.class + ' footer')
-            //     .innerHTML = `
-            //                 <button onclick="loadMore();">
-            //                     loading...
-            //                     <div class="spinner-border text-light" role="status">
-            //                         <span class="sr-only">loading...</span>
-            //                     </div>
-            //                 </button>`;
-
-            
-            // add items to searchlist
             this.searchResults.slice(0, SearchSection.N_SEARCH_RESULT).forEach(element => {
                 var child = document.createElement("div");
                 document.querySelector(this.container + ">" + SearchSection.class).appendChild(child);
@@ -107,9 +91,6 @@ class SearchSection extends AbstractSection {
 
         this.abortController.abort();
         this.abortController = new AbortController();
-
-        // reset if nothing is found
-        // if ((searchQuery == "") && (this.target == "users")) return;
 
         const formData = new FormData();
         formData.append('q', searchQuery);

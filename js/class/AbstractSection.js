@@ -10,9 +10,6 @@ class AbstractSection {
     <button aria-label="no more item to view" disabled>
         <img src="./resources/nomore.png" alt="no more item to view">
     </button>`;
-    // constructor() {
-    //     this.items = [];
-    // }
 
     bind(container){
         this.container = container;

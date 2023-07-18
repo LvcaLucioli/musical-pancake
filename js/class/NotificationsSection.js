@@ -34,7 +34,6 @@ class NotificationsSection extends AbstractSection {
 
             if (response.data.length > 0) {
                 response.data.slice(0, n).forEach(element => {
-                    // TODO: linkare il box del post
                     var img = !element["targetPost"] ? element["propic"] : element["img_name"];
                     var alt = !element["targetPost"] ? `${element["user"]}'s propic` : `${element["user"]}'s post`;
                     var content = element["content"].replace(element["user"], `<b>${element["user"]}</b>`);
