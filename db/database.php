@@ -698,12 +698,12 @@ class DatabaseHelper
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function updateUserInfo($old_username, $username, $email, $password, $new_password, $bio, $isInDiscovery, $propic = "")
+    public function updateUserInfo($username, $email, $password, $new_password, $bio, $isInDiscovery, $propic = "")
     {
         if (!$password) {
-            $query = "UPDATE `users` SET `username` = ?, `email` = ?, `propic` = ?, `bio` = ?, `is_in_disc` = ? WHERE username = ?";
+            $query = "UPDATE `users` SET `email` = ?, `propic` = ?, `bio` = ?, `is_in_disc` = ? WHERE username = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ssssis', $username, $email, $propic, $bio, $isInDiscovery, $old_username);
+            $stmt->bind_param('sssis', $email, $propic, $bio, $isInDiscovery, $username);
             $stmt->execute();
             return true;
         } else {
@@ -716,9 +716,9 @@ class DatabaseHelper
             if (password_verify($password, $row[0])) {
                 $hashedPassword = password_hash($new_password, PASSWORD_DEFAULT);
                 
-                $query = "UPDATE `users` SET `username` = ?, `password` = ?, `email` = ?, `propic` = ?, `bio` = ?, `is_in_disc` = ?  WHERE username = ?";
+                $query = "UPDATE `users` SET `password` = ?, `email` = ?, `propic` = ?, `bio` = ?, `is_in_disc` = ?  WHERE username = ?";
                 $stmt = $this->db->prepare($query);
-                $stmt->bind_param('sssssis', $username, $hashedPassword, $email, $propic, $bio, $isInDiscovery, $old_username);
+                $stmt->bind_param('ssssis', $hashedPassword, $email, $propic, $bio, $isInDiscovery, $username);
                 $stmt->execute();
                 return true;
             }
