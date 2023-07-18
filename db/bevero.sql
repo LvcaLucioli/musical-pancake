@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2023 at 02:58 PM
+-- Generation Time: Jul 18, 2023 at 03:49 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -67,9 +67,9 @@ CREATE TABLE `likes` (
 
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
-  `targetUser` varchar(255) NOT NULL,
+  `targetUser` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `content` text DEFAULT NULL,
-  `user` varchar(255) DEFAULT NULL,
+  `user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `targetPost` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -120,8 +120,7 @@ ALTER TABLE `comments`
 -- Indexes for table `followers`
 --
 ALTER TABLE `followers`
-  ADD PRIMARY KEY (`follower`,`followed`),
-  ADD KEY `followed user` (`followed`);
+  ADD PRIMARY KEY (`follower`,`followed`);
 
 --
 -- Indexes for table `likes`
@@ -134,7 +133,10 @@ ALTER TABLE `likes`
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `targetPost` (`targetPost`),
+  ADD KEY `user` (`user`),
+  ADD KEY `targetUser` (`targetUser`);
 
 --
 -- Indexes for table `posts`
@@ -197,6 +199,14 @@ ALTER TABLE `followers`
 ALTER TABLE `likes`
   ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`post`) REFERENCES `posts` (`id`),
   ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`targetPost`) REFERENCES `posts` (`id`),
+  ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`username`),
+  ADD CONSTRAINT `notifications_ibfk_3` FOREIGN KEY (`targetUser`) REFERENCES `users` (`username`);
 
 --
 -- Constraints for table `posts`
