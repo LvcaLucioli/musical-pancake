@@ -16,7 +16,6 @@ function redirectToPage(target) {
 function notificationsSectionClick(button) {
     document.querySelector('header[aria-label="primary-menu"]').style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
     if (!document.querySelector(".row>main>.search-section") && (!document.querySelector(".row>main>.notifications-section"))) {
-        // c'è index, lo salvo
         container = new Container(".row>main", [new NotificationsSection(), new SearchSection("users")], document.querySelectorAll(".right button"));
 
         scrollables = document.querySelectorAll('[class*="scrollable"]');
@@ -28,7 +27,6 @@ function notificationsSectionClick(button) {
         index = document.querySelector(".row>main").innerHTML;
     }
     if (document.querySelector(".row>main>.notifications-section")) {
-        // notifiche, ripristino index
         container.switch(button);
         Array.from(document.querySelector(".row>main").children).forEach(child => {
             if (!child.classList.contains("modal")) child.classList.remove("d-none");
@@ -53,7 +51,6 @@ function notificationsSectionClick(button) {
 function searchSectionClick(button) {
     document.querySelector('header[aria-label="primary-menu"]').style.boxShadow = "0 4px 4px -2px rgba(0, 0, 0, 0.2)";
     if (!document.querySelector(".row>main>.search-section") && (!document.querySelector(".row>main>.notifications-section"))) {
-        // c'è index, lo salvo
         container = new Container(".row>main", [new NotificationsSection(), new SearchSection("users")], document.querySelectorAll(".right button"));
 
         scrollables = document.querySelectorAll('[class*="scrollable"]');
@@ -64,7 +61,6 @@ function searchSectionClick(button) {
 
     }
     if (document.querySelector(".row>main>.search-section")) {
-        // search, ripristino index
         container.switch(button);
         Array.from(document.querySelector(".row>main").children).forEach(child => {
             if (!child.classList.contains("modal")) child.classList.remove("d-none");
