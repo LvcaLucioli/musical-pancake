@@ -20,6 +20,7 @@ function initCropperModal() {
                 };
                 reader.readAsDataURL(file);
             }
+            e.target.value = "";
         }
     });
     
