@@ -6,7 +6,7 @@
                 <div id="first-column">
                     <label for="username">
                         <span class="error-icon d-none"><img src="resources/cross.png" title="username already taken" alt="username already taken"></span>
-                        <input type="text" id="username" name="username" placeholder="&nbsp;" value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>" required minlength="1" maxlength="24">
+                        <input type="text" id="username" name="username" placeholder="&nbsp;" value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>" disabled minlength="1" maxlength="24">
                         <span class="label">username</span>
                     </label>
                     <label for="email">

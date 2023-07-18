@@ -16,7 +16,6 @@ document.querySelector('form').addEventListener('submit', function (event) {
         })
         .then(function (data) {
             if (data.signup) {
-                // if (document.querySelector('#img-to-save'))
                 uploadPropic();
             } else {
                 var errorDiv = document.querySelector('.error-message');
