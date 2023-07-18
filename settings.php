@@ -1,6 +1,6 @@
 <?php
     require_once 'bootstrap.php';
-
+    isLoggedIn();
     // Base template
     $templateParams["title"] = "Profile";
     $templateParams["main"] = "settings.php";
